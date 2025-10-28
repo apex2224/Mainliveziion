@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./SyllabusCard.module.css";
-
+// CORRECT
+import Modal from "../../syllabusform/Syllabusmodal/Modal";
+import SyllabusForm from "../../syllabusform/SyllabusForm";
 // Import icons from react-icons
 import {
   FaCloud,
@@ -29,12 +31,17 @@ const SyllabusCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
+  // <-- ADDED STATE FOR MODAL -->
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState("");
+
   const cards = [
     {
       id: 1,
       title: "Cloud Computing",
       subtitle: "Scalable Cloud Solutions",
-      icon: icons.cloud, // No change needed here
+      icon: icons.cloud,
+      formValue: "cloud-computing", // Value for the form
       topics: [
         "AWS, Azure, GCP",
         "Serverless Architecture",
@@ -46,7 +53,8 @@ const SyllabusCard = () => {
       id: 2,
       title: "Flutter",
       subtitle: "Native & Cross-Platform",
-      icon: icons.mobile, // No change needed here
+      icon: icons.mobile,
+      formValue: "mobile-app-development", // Matched form value
       topics: [
         "Dart Programming and Flutter Widgets",
         "State Management, Networking",
@@ -60,7 +68,8 @@ const SyllabusCard = () => {
       id: 3,
       title: "Machine Learning",
       subtitle: "Intelligent Automation",
-      icon: icons.brain, // No change needed here
+      icon: icons.brain,
+      formValue: "machine-learning", // Value for the form
       topics: [
         "Functions, File I/O, Exception Handling",
         "Data Visualization",
@@ -75,7 +84,8 @@ const SyllabusCard = () => {
       id: 4,
       title: "Full Stack Development",
       subtitle: "Web Design Tools & Tech",
-      icon: icons.code, // No change needed here
+      icon: icons.code,
+      formValue: "full-stack-development", // Value for the form
       topics: [
         "Web Design Tools and Technologies",
         "HTML, CSS, Responsive Web Design",
@@ -89,7 +99,8 @@ const SyllabusCard = () => {
       id: 5,
       title: "Data Science",
       subtitle: "Actionable Business Insights",
-      icon: icons.chart, // No change needed here
+      icon: icons.chart,
+      formValue: "data-science", // Value for the form
       topics: [
         "Data And Database",
         "Relational databases and SQL",
@@ -105,7 +116,8 @@ const SyllabusCard = () => {
       id: 6,
       title: "DevOps",
       subtitle: "Streamline Your Operations",
-      icon: icons.infinity, // No change needed here
+      icon: icons.infinity,
+      formValue: "devops", // Value for the form
       topics: [
         "Continuous Integration",
         "Continuous Deployment",
@@ -117,7 +129,8 @@ const SyllabusCard = () => {
       id: 7,
       title: "Artificial Intelligence",
       subtitle: "Future of Technology",
-      icon: icons.ai, // No change needed here
+      icon: icons.ai,
+      formValue: "artificial-intelligence", // Value for the form
       topics: [
         "Data Preprocessing",
         "Neural Networks",
@@ -133,7 +146,8 @@ const SyllabusCard = () => {
       id: 8,
       title: "Cybersecurity",
       subtitle: "Protecting Your Digital Assets",
-      icon: icons.lock, // No change needed here
+      icon: icons.lock,
+      formValue: "cybersecurity", // Value for the form
       topics: [
         "Qualitative & quantitative data type",
         "Inferential Statistics",
@@ -168,6 +182,17 @@ const SyllabusCard = () => {
     return () => clearInterval(interval);
   }, [currentIndex, isAutoPlay, nextSlide]);
 
+  // <-- ADDED MODAL HANDLERS -->
+  const handleOpenModal = (courseValue) => {
+    setSelectedCourse(courseValue);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCourse(""); // Clear selection on close
+  };
+
   const getCardStyle = (index) => {
     const diff = index - currentIndex;
     const totalCards = cards.length;
@@ -191,86 +216,103 @@ const SyllabusCard = () => {
   };
 
   return (
-    <div className={styles.carouselContainer}>
-      <div className={styles.carouselHeader}>
-        <h2 className={styles.carouselTitle}>Our Training Programs</h2>
-      </div>
-
-      <div className={styles.carouselWrapper}>
-        <button
-          className={`${styles.navButton} ${styles.navButtonLeft}`}
-          onClick={prevSlide}
-          onMouseEnter={() => setIsAutoPlay(false)}
-          onMouseLeave={() => setIsAutoPlay(true)}
-          aria-label="Previous slide"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-
-        <div className={styles.carouselTrack}>
-          {cards.map((card, index) => (
-            <div
-              key={card.id}
-              className={styles.carouselCard}
-              style={getCardStyle(index)}
-              onClick={() => goToSlide(index)}
-              onMouseEnter={() => setIsAutoPlay(false)}
-              onMouseLeave={() => setIsAutoPlay(true)}
-            >
-              <div
-                className={styles.cardIconWrapper}
-                style={{
-                  background: `linear-gradient(135deg, ${card.color}, ${card.color}dd)`,
-                }}
-              >
-                {/* This span now renders the React component */}
-                <span className={styles.cardIcon}>{card.icon}</span>
-              </div>
-              <h3 className={styles.cardTitle}>{card.title}</h3>
-              <p className={styles.cardSubtitle}>{card.subtitle}</p>
-
-              <ul className={styles.topicList}>
-                {card.topics.map((topic, i) => (
-                  <li key={i} className={styles.topicItem}>
-                    <span className={styles.topicBullet}>•</span>
-                    {topic}
-                  </li>
-                ))}
-              </ul>
-
-              <p className={styles.detailsText}>Detailed Syllabus Available</p>
-
-              <div className={styles.buttonWrapper}>
-                <button className={styles.cardButton}>Read More</button>
-              </div>
-            </div>
-          ))}
+    // <-- ADDED WRAPPER DIV -->
+    <div className={styles.pageContainer}>
+      <div className={styles.carouselContainer}>
+        <div className={styles.carouselHeader}>
+          <h2 className={styles.carouselTitle}>Our Training Programs</h2>
         </div>
 
-        <button
-          className={`${styles.navButton} ${styles.navButtonRight}`}
-          onClick={nextSlide}
-          onMouseEnter={() => setIsAutoPlay(false)}
-          onMouseLeave={() => setIsAutoPlay(true)}
-          aria-label="Next slide"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
+        <div className={styles.carouselWrapper}>
+          <button
+            className={`${styles.navButton} ${styles.navButtonLeft}`}
+            onClick={prevSlide}
+            onMouseEnter={() => setIsAutoPlay(false)}
+            onMouseLeave={() => setIsAutoPlay(true)}
+            aria-label="Previous slide"
           >
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div className={styles.carouselTrack}>
+            {cards.map((card, index) => (
+              <div
+                key={card.id}
+                className={styles.carouselCard}
+                style={getCardStyle(index)}
+                // Only go to slide if not the center card
+                onClick={() => index !== currentIndex && goToSlide(index)}
+                onMouseEnter={() => setIsAutoPlay(false)}
+                onMouseLeave={() => setIsAutoPlay(true)}
+              >
+                <div
+                  className={styles.cardIconWrapper}
+                  style={{
+                    background: `linear-gradient(135deg, ${card.color}, ${card.color}dd)`,
+                  }}
+                >
+                  <span className={styles.cardIcon}>{card.icon}</span>
+                </div>
+                <h3 className={styles.cardTitle}>{card.title}</h3>
+                <p className={styles.cardSubtitle}>{card.subtitle}</p>
+
+                <ul className={styles.topicList}>
+                  {card.topics.map((topic, i) => (
+                    <li key={i} className={styles.topicItem}>
+                      <span className={styles.topicBullet}>•</span>
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
+
+                <p className={styles.detailsText}>Detailed Syllabus Available</p>
+
+                <div className={styles.buttonWrapper}>
+                  {/* <-- UPDATED BUTTON ONCLICK --> */}
+                  <button
+                    className={styles.cardButton}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Stop click from bubbling to the card
+                      handleOpenModal(card.formValue);
+                    }}
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button
+            className={`${styles.navButton} ${styles.navButtonRight}`}
+            onClick={nextSlide}
+            onMouseEnter={() => setIsAutoPlay(false)}
+            onMouseLeave={() => setIsAutoPlay(true)}
+            aria-label="Next slide"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* <-- ADDED THE MODAL COMPONENT --> */}
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <SyllabusForm defaultCourse={selectedCourse} />
+      </Modal>
     </div>
   );
 };

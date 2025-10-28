@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './SyllabusForm.module.css';
 
 // --- Icon Components (Inline SVG for simplicity) ---
-// You could also use a library like react-icons
-
 const UserIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
 );
@@ -31,12 +29,13 @@ const ErrorIcon = () => (
 
 // --- Main Form Component ---
 
-const SyllabusForm = () => {
+// <-- UPDATED to accept `defaultCourse` prop -->
+const SyllabusForm = ({ defaultCourse = '' }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     college: '',
-    course: '',
+    course: defaultCourse, // <-- Set initial state from prop
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +49,19 @@ const SyllabusForm = () => {
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  // <-- ADDED useEffect to update form if prop changes -->
+  useEffect(() => {
+    if (defaultCourse) {
+      setFormData((prev) => ({ ...prev, course: defaultCourse }));
+      
+      // Optionally, mark as touched and validate
+      setTouched((prev) => ({ ...prev, course: true }));
+      const error = validateField('course', defaultCourse);
+      setErrors((prev) => ({ ...prev, course: error }));
+    }
+  }, [defaultCourse]);
+
 
   // --- Validation Logic ---
   const validateField = (name, value) => {
@@ -136,11 +148,14 @@ const SyllabusForm = () => {
       setErrors({}); // Clear errors
       setTouched({}); // Reset touched state
       setIsSubmitting(false);
+      // NOTE: Here you would also call the `onClose` prop
+      // passed from the modal to close it after success.
     }, 2000); // Simulate a 2-second network delay
   };
 
   return (
-    <div className={styles.formWrapper}>
+    // <-- UPDATED CLASSNAME -->
+    <div className={styles.formWrapperInModal}>
       <form
         className={`${styles.formContainer} ${isLoaded ? styles.loaded : ''}`}
         onSubmit={handleSubmit}
@@ -224,24 +239,25 @@ const SyllabusForm = () => {
             id="course"
             name="course"
             className={styles.formInput}
-            value={formData.course}
+            value={formData.course} // This will be pre-filled
             onChange={handleChange}
             onBlur={handleBlur}
             required
           >
-            <option value="" disabled>Select Course</option> {/* Updated text */}
-            {/* --- Updated Course Options --- */}
+            <option value="" disabled>Select Course</option>
             <option value="full-stack-development">Full Stack Development</option>
             <option value="data-science">Data Science</option>
             <option value="web-designing">Web Designing</option>
             <option value="digital-marketing">Digital Marketing</option>
-            {/* Graphic Designing is intentionally omitted as per request */}
             <option value="php">PHP</option>
             <option value="python">Python</option>
             <option value="artificial-intelligence">Artificial Intelligence</option>
             <option value="machine-learning">Machine Learning</option>
             <option value="mobile-app-development">Mobile App Development</option>
-            {/* --- End Updated Course Options --- */}
+            {/* --- ADDED OPTIONS FROM CARDS --- */}
+            <option value="cloud-computing">Cloud Computing</option>
+            <option value="devops">DevOps</option>
+            <option value="cybersecurity">Cybersecurity</option>
           </select>
           <label htmlFor="course" className={styles.formLabelSelect}>
             Course Interested
@@ -261,7 +277,7 @@ const SyllabusForm = () => {
           {isSubmitting ? (
             <div className={styles.spinner}></div>
           ) : (
-            'Download Now'
+            'Request For Syllabus'
           )}
           <span className={styles.shine}></span>
         </button>

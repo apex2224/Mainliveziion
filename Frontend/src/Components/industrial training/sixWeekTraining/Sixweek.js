@@ -15,23 +15,16 @@ import Talktoexpert from "../sixMonthTraining/TalkToExpert/Talktoexpert";
 import ProjectShow from "../sixMonthTraining/ProjectShow/ProjectShow";
 import SyllabusCard from "./Carousel/SyllabusCard";
 import PlacedStudent from "./placedstudent/Placedstudent";
-import SyllabusForm from "../syllabusform/SyllabusForm";
-
-
-
-
 
 const Sixweek = () => {
   useCustom("Six Week Industrial Training | Ziion Technology");
   const navigate = useNavigate();
-
   return (
     <>
       <Navbar />
       <main>
         <HeroSection />
         <SyllabusCard />
-        <SyllabusForm/>
         <PlacedStudent/>
         <ProjectShow />
         <Courses />
