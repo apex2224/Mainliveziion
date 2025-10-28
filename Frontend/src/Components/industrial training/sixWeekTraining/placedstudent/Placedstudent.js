@@ -5,13 +5,13 @@ import { FaArrowLeft, FaArrowRight, FaPlay } from 'react-icons/fa';
 
 // --- (Image imports remain the same) ---
 import studentImg1 from '../../../../assets/placement-slider/Maya_img.png';
-import studentImg2 from '../../../../assets/placement-slider/placement-img-1.webp';
-import studentImg3 from '../../../../assets/placement-slider/placement-img-2.webp';
-import studentImg4 from '../../../../assets/placement-slider/placement-img-3.webp';
-import studentImg5 from '../../../../assets/placement-slider/placement-img-4.webp';
-import studentImg6 from '../../../../assets/placement-slider/placement-img-5.webp';
-import studentImg7 from '../../../../assets/placement-slider/student-1.png';
-import studentImg8 from '../../../../assets/placement-slider/student-2.png';
+import studentImg2 from '../../../../assets/placement-slider/student-akash.png';
+import studentImg3 from '../../../../assets/placement-slider/student-hemant.png';
+import studentImg4 from '../../../../assets/placement-slider/student-sahil.png';
+import studentImg5 from '../../../../assets/placement-slider/student-sandeep.png';
+import studentImg6 from '../../../../assets/placement-slider/student-3.png';
+import studentImg7 from '../../../../assets/placement-slider/student-sandeep.png';
+import studentImg8 from '../../../../assets/placement-slider/student-vitun.png';
 
 // --- Student Data Updated ---
 // Added thumbnailUrl and added ?autoplay=1 to videoUrl
