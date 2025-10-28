@@ -1,4 +1,4 @@
-/* Page Wrapper: Added a gradient background for the "glass" effect to work */
+/* Page Wrapper: Original style, NOT used by the modal */
 .formWrapper {
   display: flex;
   justify-content: center;
@@ -7,35 +7,32 @@
   min-height: 100vh;
   box-sizing: border-box;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  overflow: hidden; /* Hide elements animating in */
+  overflow: hidden;
 }
 
-/* The "Glassmorphism" Form Card */
-.formContainer {
-  /* --- The Glass Effect --- */
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  /* ----------------------- */
+/* --- ADDED CLASS FOR MODAL --- */
+.formWrapperInModal {
+  width: 100%;
+}
 
-  padding: 2.5rem 3rem;
-  border-radius: 24px; /* Softer, more modern radius */
+/* --- UPDATED .formContainer --- */
+.formContainer {
+  background: #fff;
+  padding: 1.75rem 2rem; /* <-- REDUCED PADDING */
+  border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 550px;
+  max-width: 500px; /* Max-width inside modal, slightly smaller than modal itself */
   display: flex;
   flex-direction: column;
-  gap: 1.25rem; /* Tighter gap, managed by formGroup padding */
+  gap: 1rem; /* <-- REDUCED GAP BETWEEN ELEMENTS */
 
-  /* --- Load-in Animation --- */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
               transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Animation 'loaded' state */
 .formContainer.loaded {
   opacity: 1;
   transform: translateY(0);
@@ -43,10 +40,10 @@
 
 /* Title with your gradient */
 .title {
-  font-size: 2.75rem;
+  font-size: 2rem; /* <-- REDUCED FONT SIZE */
   font-weight: 800;
   text-align: center;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0; /* <-- REDUCED MARGIN */
   line-height: 1.2;
   background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
   background-clip: text;
@@ -57,42 +54,39 @@
 /* --- Advanced Input Group --- */
 .formGroup {
   position: relative;
-  padding-bottom: 1rem; /* Space for the error message */
+  padding-bottom: 0.75rem; /* <-- REDUCED PADDING */
 }
 
 /* Icon embedded in the input */
 .iconWrapper {
   position: absolute;
-  top: 1rem;
+  top: 0.8rem; /* <-- ADJUSTED POSITION */
   left: 1rem;
   color: #888;
   pointer-events: none;
-  /* Smooth color transition when focusing */
   transition: color 0.3s ease;
 }
 
 /* Base style for inputs and select */
 .formInput {
   width: 100%;
-  padding: 1rem 3rem; /* Left padding for icon, Right for validation */
-  font-size: 1rem;
+  padding: 0.8rem 3rem; /* <-- REDUCED PADDING */
+  font-size: 0.95rem; /* <-- SLIGHTLY SMALLER FONT SIZE */
   font-family: inherit;
   color: #333;
-  border: 2px solid transparent; /* Start transparent */
+  border: 2px solid transparent;
   background-color: rgba(243, 246, 249, 0.8);
   border-radius: 12px;
   box-sizing: border-box;
-
-  /* The "Modern Transition" */
   transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 /* --- Floating Label --- */
 .formLabel {
   position: absolute;
-  top: 1rem;
-  left: 3rem; /* Positioned next to icon */
-  font-size: 1rem;
+  top: 0.8rem; /* <-- ADJUSTED POSITION */
+  left: 3rem;
+  font-size: 0.95rem; /* <-- SLIGHTLY SMALLER FONT SIZE */
   color: #888;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -101,15 +95,15 @@
 /* Floating label for <select> (static on top) */
 .formLabelSelect {
   position: absolute;
-  top: -0.5rem; /* Sits on top of the border */
-  left: 2.75rem; /* Aligns with input labels */
-  font-size: 0.75rem;
+  top: -0.5rem;
+  left: 2.75rem;
+  font-size: 0.7rem; /* <-- SLIGHTLY SMALLER FONT SIZE */
   color: #2c52be;
   font-weight: 600;
-  background: #fff; /* Needs a solid bg to hide border */
+  background: #fff;
   padding: 0 6px;
   border-radius: 4px;
-  opacity: 0; /* Hidden by default */
+  opacity: 0;
   transition: opacity 0.3s ease;
 }
 
@@ -118,17 +112,16 @@
 /* Float label when focused or has value */
 .formInput:focus + .formLabel,
 .formInput:not(:placeholder-shown) + .formLabel {
-  top: -0.5rem; /* Move up */
+  top: -0.5rem;
   left: 2.75rem;
-  font-size: 0.75rem; /* Shrink */
+  font-size: 0.7rem; /* <-- SHRINK FONT SIZE */
   color: #2c52be;
   font-weight: 600;
-  background: #fff; /* Solid bg to cut through the border */
+  background: #fff;
   padding: 0 6px;
   border-radius: 4px;
 }
 
-/* Show the static select label when it has a value */
 .formGroup select.formInput:not(:placeholder-shown) + .formLabelSelect {
   opacity: 1;
 }
@@ -149,13 +142,12 @@
 /* --- Validation Styling --- */
 .validationIcon {
   position: absolute;
-  top: 1rem;
+  top: 0.8rem; /* <-- ADJUSTED POSITION */
   right: 1rem;
   opacity: 0;
   transform: scale(0.5);
   transition: all 0.3s ease;
 }
-/* Specific position for select's arrow */
 .selectIcon {
   right: 2.75rem;
 }
@@ -163,22 +155,20 @@
 .isValid .validationIcon {
   opacity: 1;
   transform: scale(1);
-  color: #00c853; /* Success green */
+  color: #00c853;
 }
 
 .isInvalid .validationIcon {
   opacity: 1;
   transform: scale(1);
-  color: #d50000; /* Error red */
+  color: #d50000;
 }
 
-/* Green "glow" for valid */
 .isValid .formInput:not(:focus) {
   border-color: #00c853;
   box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.1);
 }
 
-/* Red "glow" for invalid */
 .isInvalid .formInput:not(:focus) {
   border-color: #d50000;
   box-shadow: 0 0 0 4px rgba(213, 0, 0, 0.1);
@@ -187,9 +177,9 @@
 /* Error text styling */
 .errorText {
   position: absolute;
-  bottom: -0.25rem;
+  bottom: -0.1rem; /* <-- ADJUSTED POSITION */
   left: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem; /* <-- SMALLER FONT */
   color: #d50000;
   font-weight: 500;
 }
@@ -197,11 +187,11 @@
 
 /* --- Submit Button with Shine --- */
 .submitButton {
-  position: relative; /* For the shine element */
-  overflow: hidden; /* Hide shine overflow */
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
+  padding: 0.8rem 1rem; /* <-- REDUCED PADDING */
+  font-size: 1rem; /* <-- SLIGHTLY SMALLER FONT */
   font-weight: 700;
   color: #ffffff;
   background: linear-gradient(90deg, #ff822b 0%, #2c52be 100%);
@@ -209,11 +199,11 @@
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.75rem; /* <-- REDUCED MARGIN */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 54px;
+  min-height: 48px; /* <-- SLIGHTLY SMALLER MIN-HEIGHT */
   
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -221,10 +211,9 @@
 .submitButton:hover:not(:disabled) {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px -5px rgba(44, 82, 190, 0.3);
-  background-position: right center; /* Gradient shift */
+  background-position: right center;
 }
 
-/* The shine element */
 .shine {
   position: absolute;
   top: 0;
@@ -252,9 +241,9 @@
 
 /* Loading spinner */
 .spinner {
-  width: 24px;
-  height: 24px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
+  width: 20px; /* <-- SMALLER SPINNER */
+  height: 20px; /* <-- SMALLER SPINNER */
+  border: 3px solid rgba(255, 255, 255, 0.3); /* <-- THINNER BORDER */
   border-top-color: #ffffff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -263,5 +252,46 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .formContainer {
+    padding: 1.5rem 1.5rem; /* Even less padding on small screens */
+    gap: 0.75rem;
+  }
+  .title {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .formInput {
+    padding: 0.7rem 2.5rem;
+    font-size: 0.9rem;
+  }
+  .formLabel {
+    top: 0.7rem;
+    left: 2.5rem;
+    font-size: 0.9rem;
+  }
+  .formInput:focus + .formLabel,
+  .formInput:not(:placeholder-shown) + .formLabel {
+    left: 2.25rem;
+  }
+  .iconWrapper {
+    top: 0.7rem;
+    left: 0.75rem;
+  }
+  .validationIcon {
+    top: 0.7rem;
+    right: 0.75rem;
+  }
+  .selectIcon {
+    right: 2.25rem;
+  }
+  .submitButton {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-height: 45px;
   }
 }

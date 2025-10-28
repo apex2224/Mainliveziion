@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Courses.module.css";
-
 // SVG for the default icon next to domain names
 const briefcaseIcon = (
   <svg

@@ -56,7 +56,7 @@ const IndustrialTraining = () => {
               Learn core concepts, tools, and technologies with real projects in
               just 6 weeks.
             </p>
-            <Link to="/six-weeks-training">
+            <Link to="/six-week-training">
               <button className={styles.industrialBtn}>
                 Six Weeks Training
               </button>

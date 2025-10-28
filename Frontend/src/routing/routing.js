@@ -106,7 +106,7 @@ export const routes = [
   // industrial training //
   // six month //
   { path: "/six-month-training", element: <Sixmonth /> },
-  { path: "/six-weeks-training", element: <Sixweek /> },
+  { path: "/six-week-training", element: <Sixweek /> },
 
   { path: "/card", element: <CardCarousel /> },
   { path: "/search", element: <StudentSearch /> },

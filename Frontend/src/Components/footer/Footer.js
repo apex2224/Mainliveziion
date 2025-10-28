@@ -84,7 +84,7 @@ const Footer = () => {
                   <li><a href="data-science">Data Science</a></li>
                   <li><a href="mobileapp">Mobile App Development</a></li>
                   <li><a href="php">PHP</a></li>
-                  <li><a href="six-week-training">Six Week Training</a></li>
+                  <li><a href="/six-week-training">Six Week Training</a></li>
                   <li><a href="six-month-training">Six Month Training</a></li>
                 </ul>
               </div>
