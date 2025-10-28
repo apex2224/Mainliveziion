@@ -1,201 +1,402 @@
-/* Overlay background */
+/* --- Global Resets & Smooth Easing --- */
+:root {
+  --smooth-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+  /* New Professional Color Palette */
+  --pro-accent: #4a43d1;
+  --pro-accent-dark: #4038b5;
+  --pro-text-primary: #18191a;
+  --pro-text-secondary: #6b7280;
+  --pro-input-bg: #f8f9fa;
+  --pro-input-border: #e9ecef;
+}
+
+/* Fixes potential layout glitches */
+* {
+  box-sizing: border-box;
+}
+
+/* --- Overlay & Modal --- */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(10, 10, 20, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  padding: 10px; /* Prevents overflow on small screens */
+  padding: 1rem;
+  opacity: 0;
+  animation: fadeIn 0.4s var(--smooth-ease) forwards;
 }
 
-/* Modal box */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
 .modalContent {
-  background: #fff;
+  background: #ffffff;
   display: flex;
-  gap: 0;
-  border-radius: 12px;
-  overflow: hidden; /* ensures rounded corners apply to banner + form */
+  border-radius: 20px;
+  overflow: hidden; /* This is crucial for the slide-in */
   position: relative;
-  max-width: 850px;
-  width: 95%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  animation: zoomFrom 0.6s ease-in-out;
+  max-width: 750px; /* Smaller width */
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05),
+    0 20px 60px rgba(0, 0, 0, 0.1);
+  will-change: transform, opacity;
+  animation: slideUpFadeIn 0.7s var(--smooth-ease) 0.1s backwards;
+  /* --- PROFESSIONAL FONT STACK --- */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-@keyframes zoomFrom {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes slideUpFadeIn {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-/* Close button */
+/* --- Refined Close Button --- */
 .closeBtn {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 15px;
-  font-size: 1.8rem;
-  background: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 36px;
+  text-align: center;
+  background: transparent;
   border: none;
-  color: #333;
+  border-radius: 50%;
+  color: #888;
   cursor: pointer;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* LEFT BANNER */
+.closeBtn:hover {
+  color: #111;
+  background: #f1f1f1;
+}
+
+/* --- Left Banner (Slides in from Left) --- */
 .leftBanner {
   flex: 1;
-  background: linear-gradient(180deg, #0230bb, #0077ff);
+  background: linear-gradient(170deg, #1e3a8a 0%, #3b0764 100%);
   color: white;
-  margin: 2rem; 
+  padding: 2rem; /* Shorter height */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
   text-align: center;
-}
-.gradientText {
-  background: linear-gradient(90deg, #2accb1, #ac1dbe, #d8cb19); /* green shades */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text; /* for Firefox */
-  font-weight: 700;
+  will-change: transform, opacity;
+  /* This animation is symmetrical with the right side */
+  animation: slideInLeft 0.8s var(--smooth-ease) 0.3s backwards;
 }
 
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
 .leftBanner img.logo {
-  width: 120px;
-  margin: 0 auto 15px;
+  width: 100px;
+  margin: 0 auto 20px;
 }
 
 .leftBanner h3 {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .leftBanner p {
   font-size: 0.9rem;
-  margin: 10px 0 5px;
+  margin: 15px 0 10px;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .socials {
   margin-top: 15px;
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
-.formIcon{
+.formIcon {
   height: 1.5rem;
   width: 1.5rem;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s var(--smooth-ease);
+  will-change: transform, color;
 }
-/* RIGHT FORM */
+.formIcon:hover {
+  color: #fff;
+  transform: scale(1.1) translateY(-2px);
+}
+
+/* --- Right Form (Slides in from Right) --- */
 .formContainer {
   flex: 1.5;
-  padding: 35px 25px;
+  padding: 2rem 2.5rem; /* Shorter height */
+  overflow-y: auto;
+  will-change: transform, opacity;
+  /* This animation is symmetrical with the left side */
+  animation: slideInRight 0.8s var(--smooth-ease) 0.3s backwards;
+}
+
+/* New animation for the right side */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .formContainer h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 15px;
+  font-size: 1.6rem; /* Shorter height */
+  font-weight: 700;
+  margin-bottom: 20px; /* Shorter height */
+  color: var(--pro-text-primary);
+}
+
+.gradientText {
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px; /* Shorter height */
+}
+
+/* --- Floating Label System --- */
+.inputGroup {
+  position: relative;
+}
+
+.floatingLabel {
+  position: absolute;
+  top: 12px; /* Shorter height */
+  left: 14px;
+  font-size: 1rem;
+  color: var(--pro-text-secondary);
+  pointer-events: none;
+  transition: all 0.3s var(--smooth-ease);
+  z-index: 2;
 }
 
 .form input,
 .form select {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
-  text-align: left;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 20px 14px 8px 14px; /* Shorter height */
+  border-radius: 8px;
+  background: var(--pro-input-bg);
+  border: 1px solid var(--pro-input-border);
+  font-size: 0.95rem; /* Shorter height */
+  color: var(--pro-text-primary);
+  transition: all 0.3s var(--smooth-ease);
+  -webkit-appearance: none;
+  appearance: none;
+  will-change: border-color, background, box-shadow;
 }
 
-/* Radio group */
+/* Label Animation */
+.form input:focus ~ .floatingLabel,
+.form input:not(:placeholder-shown) ~ .floatingLabel,
+.form select:focus ~ .floatingLabel,
+.form select:valid ~ .floatingLabel {
+  top: 5px; /* Shorter height */
+  left: 14px;
+  font-size: 0.75rem;
+  color: var(--pro-accent);
+}
+
+/* Select Arrow */
+.form select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.7rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  padding-right: 2.5rem;
+}
+
+/* Select Invalid State */
+.form select:invalid,
+.form select.invalidSelect {
+  color: transparent;
+}
+.form select option {
+  color: var(--pro-text-primary);
+}
+
+.form select:invalid ~ .floatingLabel,
+.form select.invalidSelect ~ .floatingLabel {
+  top: 5px; /* Shorter height */
+  left: 14px;
+  font-size: 0.75rem;
+  color: var(--pro-text-secondary);
+}
+
+/* Focus State */
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: var(--pro-accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(74, 67, 209, 0.1); /* Softer focus ring */
+  z-index: 3;
+}
+
+/* --- Custom Radio Buttons --- */
 .radioGroup {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 10px 0 5px;
+  gap: 0.75rem; /* Shorter height */
+  margin: 0; /* Shorter height */
 }
 
 .radioGroup label {
   font-size: 0.9rem;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  color: var(--pro-text-primary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.3s var(--smooth-ease);
 }
 
-/* Submit button */
+.radioGroup label:hover {
+  background: var(--pro-input-bg);
+}
+
+.form input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  width: 1.15em;
+  height: 1.15em;
+  border: 2px solid var(--pro-input-border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s var(--smooth-ease);
+}
+
+.form input[type='radio']::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  background: var(--pro-accent);
+  transform: scale(0);
+  transition: transform 0.2s var(--smooth-ease);
+}
+
+.form input[type='radio']:checked {
+  border-color: var(--pro-accent);
+}
+
+.form input[type='radio']:checked::before {
+  transform: scale(1);
+}
+
+/* --- Submit Button --- */
 .form button {
-  padding: 12px;
+  padding: 14px;
   border: none;
   border-radius: 8px;
-  background: #4f46e5;
+  background: var(--pro-accent);
   color: white;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
+  margin-top: 8px; /* Shorter height */
+  transition: background-color 0.3s var(--smooth-ease); /* Clean transition */
+  will-change: background-color, transform;
 }
 
-.form button:hover {
-  background: #4338ca;
+.form button:hover:not(:disabled) {
+  background: var(--pro-accent-dark);
 }
 
-/* 📱 Responsive */
+.form button:active:not(:disabled) {
+  background: var(--pro-accent-dark);
+  transform: translateY(1px);
+}
+
+.form button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* --- REMOVED Staggered Form Animation --- */
+/* All the .formContainer h2, .form .inputGroup, etc.
+   animation rules have been deleted. */
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
   .modalContent {
     flex-direction: column;
-    max-width: 95%;
+    max-width: 450px;
+    width: 95%;
   }
-
   .leftBanner {
     display: none;
   }
-
+  
+  /* On mobile, the right form is the only thing visible,
+     so we give it the slideUp animation */
   .formContainer {
-    padding: 20px;
+    padding: 2.5rem 2rem;
+    animation: slideUpFadeIn 0.7s var(--smooth-ease) 0.1s backwards;
   }
 }
 
 @media (max-width: 480px) {
-  .modalContent {
-    padding: 15px;
+  .formContainer {
+    padding: 2rem 1.5rem;
   }
-
-  .closeBtn {
+  .formContainer h2 {
     font-size: 1.5rem;
-    top: 8px;
-    right: 10px;
   }
-
-  .form input,
-  .form select {
-    font-size: 0.9rem;
-    padding: 8px;
-    text-align: left;
-  }
-  .form select option {
-  text-align: left;  /* ✅ dropdown options left aligned */
-}
-
-
-  .form button {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-
   .radioGroup {
     grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }
