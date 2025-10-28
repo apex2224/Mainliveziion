@@ -3,11 +3,13 @@ import styles from "./ProjectShow.module.css";
 import { useInView } from "react-intersection-observer";
 import Form from "../../../form/Getdemo"; // Import the form component
 
-// Make sure the path to your images is correct
+// --- Make sure the path to your images is correct ---
 import AI_ML from "../../../../assets/ProjectImages/AI_ML.jpg";
 import googleadd from "../../../../assets/ProjectImages/googleadd.jpg";
 import datascience from "../../../../assets/ProjectImages/datascience.jpg";
 import mern from "../../../../assets/ProjectImages/mern.jpg";
+// Make sure you have added this image to your assets folder
+import mobiledev from "../../../../assets/ProjectImages/mobiledev.jpg";
 
 // --- ICONS ---
 const CartIcon = () => (
@@ -74,20 +76,35 @@ const DataIcon = () => (
   >
     <path d="M3 3v18h18"></path>
     <path d="M18.7 8.3c-1.5-1-3.5-1.3-5.2-.6"></path>
-    <path d="M13.3 12.9c-1.5 1-3.5 1.3-5.2.6"></path>
-    <path d="M8 17.5c-1.5 1-3.5 1.3-5.2.6"></path>
+    <path d="M13.3 12.9c-1.5 1-3.5 1.3-5.2 .6"></path>
+    <path d="M8 17.5c-1.5 1-3.5 1.3-5.2 .6"></path>
+  </svg>
+);
+const MobileIcon = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+    <line x1="12" y1="18" x2="12.01" y2="18"></line>
   </svg>
 );
 
-// --- Project Data Array ---
+// --- Project Data Array (CONTENT UPDATED) ---
 const projectsData = [
   {
     icon: <BotIcon />,
     title: "Chatbot",
     description:
       "Build an AI-powered chatbot that can answer customer queries automatically using NLP (Natural Language Processing).",
-    techStack: "Python",
-    coreFeature: "Understands user queries & redirects to human agents.",
+    techStack: "Python, TensorFlow, NLTK, Flask",
+    coreFeature: "Natural Language Processing (NLP) & Intent Recognition.",
     buttonText: "Live Demo",
     buttonType: "demo",
     imageUrl: AI_ML,
@@ -97,8 +114,8 @@ const projectsData = [
     title: "Google Ads",
     description:
       "Technologies: Google Analytics,Google Tag Manager, Google Data Studio (Looker Studio),Google Keyword Planner",
-    techStack: "Google Analytics, Tag Manager, Data Studio, Keyword Planner",
-    coreFeature: "Keyword targeting, bid management, and ad scheduling.",
+    techStack: "Google Ads, Analytics, Tag Manager, Looker Studio",
+    coreFeature: "Campaign Setup, A/B Testing & Conversion Tracking.",
     buttonText: "Live Demo",
     buttonType: "demo",
     imageUrl: googleadd,
@@ -108,8 +125,8 @@ const projectsData = [
     title: " Real-World Data Collection",
     description:
       "Collected real-world datasets from sources such as Kaggle, company databases, and APIs for analysis.",
-    techStack: "Python (Pandas, NumPy), Excel",
-    coreFeature: "Ensures data accuracy and consistency across all sources.",
+    techStack: "Python, Pandas, NumPy, Matplotlib, Scikit-learn",
+    coreFeature: "Data Cleaning, Exploratory Data Analysis (EDA) & Visualization.",
     buttonText: "Live Demo",
     buttonType: "demo",
     imageUrl: datascience,
@@ -119,11 +136,22 @@ const projectsData = [
     title: " E-commerce Platform",
     description:
       "Engineered a responsive e-commerce solution with secure user authentication, dynamic product catalogs, and an integrated stripe payment gateway for seamless transactions..",
-    techStack: "MERN Stack ",
-    coreFeature: "Secure authentication and seamless transactions.",
+    techStack: "MongoDB, Express.js, React, Node.js (MERN)",
+    coreFeature: "RESTful API, JWT Authentication & Payment Gateway.",
     buttonText: "Live Demo",
     buttonType: "demo",
     imageUrl: mern,
+  },
+  {
+    icon: <MobileIcon />,
+    title: "Mobile App Development",
+    description:
+      "Developed a cross-platform mobile application for both iOS and Android from a single codebase, featuring native performance and access to device APIs.",
+    techStack: "React Native, Expo, Firebase, React Navigation",
+    coreFeature: "Cross-Platform (iOS/Android) UI & Firebase Auth/Firestore.",
+    buttonText: "Live Demo",
+    buttonType: "demo",
+    imageUrl: mobiledev,
   },
 ];
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Placements.module.css";
 
 // --- All Image Imports ---
-// Placement Images
+// (Image imports remain the same...)
 import abhishek from "../../../../assets/placementImages copy/abhishek.jpeg";
 import anuj from "../../../../assets/placementImages copy/anuj.jpeg";
 import anuragrai from "../../../../assets/placementImages copy/anuragrai.jpeg";
@@ -135,7 +135,8 @@ const Placements = () => {
       {/* --- SECTION 1: Placed Students Image Marquee --- */}
       <section className={styles.marqueeSection}>
         <h2 className={styles.sectionTitle}>
-          Success Stories: Our Placed Students
+          <span className={styles.blackText}>Our </span>
+          <span className={styles.gradientText}> Achievers</span>
         </h2>
         <div className={styles.imageMarqueeContainer}>
           <div className={styles.imageTrack}>
@@ -169,7 +170,10 @@ const Placements = () => {
       {/* --- SECTION 2: Placement Video Testimonials --- */}
       {videos.length > 0 && (
         <section className={styles.marqueeSection}>
-          <h2 className={styles.sectionTitle}>Hear From Our Students</h2>
+          <h2 className={styles.sectionTitle}>
+            <span className={styles.blackText}>Hear From Our</span>
+            <span className={styles.gradientText}> Students</span>
+          </h2>
           <div className={styles.videoMarqueeWrapper}>
             <div className={styles.videoTrack}>
               {videos.map((video) => (
@@ -202,7 +206,8 @@ const Placements = () => {
       {/* --- SECTION 3: MOU Section --- */}
       <section className={styles.mouSection}>
         <h2 className={styles.sectionTitle}>
-          Tie-Up- MOU signed with CGC Landran
+          <span className={styles.blackText}> MOU signed with </span>
+          <span className={styles.gradientText}>CGC Landran</span>
         </h2>
         <div className={styles.mouMainImages}>
           <img

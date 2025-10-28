@@ -90,8 +90,8 @@ const LandingPage = () => {
       <section className={styles.heroGrid}>
         <article className={styles.heroText}>
           <span className={`${styles.heroSubtitle} ${styles.animateFadeIn}`}>
-            Join Ziion technology for a transformative experience
-          </span>
+            Join Ziion technology for A  transformative experience  </span> 
+         
           <h1 className={styles.animateFadeIn}>
             Six Months <span className={styles.gradientText}>Industrial Training</span> in Chandigarh
           </h1>
@@ -130,7 +130,7 @@ Ziion Technology is offering six-month industrial training at Chandigarh for stu
       {/* --- Other sections --- */}
       <section className={styles.partnersSection}>
         <h3>
-          Learn with the best <span className={styles.highlight}>Technologies</span>
+          Learn with the best <span className={styles.gradientText}>Technologies</span>
         </h3>
         <div className={styles.logoScroller}>
           <div className={styles.logoTrack}>
