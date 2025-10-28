@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FormFilled, resetForm } from '../../store/studentSlice';
-import styles from './form.module.css';
-import emailjs from '@emailjs/browser';
-import images from '../../assets/images';
-import { useNavigate } from 'react-router-dom';
-import { FaInstagram, FaLinkedin } from 'react-icons/fa';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FormFilled, resetForm } from "../../store/studentSlice";
+import styles from "./form.module.css";
+import emailjs from "@emailjs/browser";
+import images from "../../assets/images";
+import { useNavigate } from "react-router-dom";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
 function Form({ closeForm }) {
   const formData = useSelector((state) => state.student);
@@ -23,23 +23,24 @@ function Form({ closeForm }) {
     setLoading(true);
     try {
       await emailjs.send(
-        'service_4zv8d5l',
-        'template_7lt1pb6',
+        "service_4zv8d5l",
+        "template_7lt1pb6",
         {
           name: formData.name,
+          college: formData.college,
           email: formData.email,
           phone: formData.phone,
           course: formData.course,
           preference: formData.category,
         },
-        'j6fsWCbZRRU2n1J4A'
+        "j6fsWCbZRRU2n1J4A"
       );
 
       dispatch(resetForm());
       closeForm();
-      navigate('/thank-you');
+      navigate("/thank-you");
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error("EmailJS Error:", error);
     } finally {
       setLoading(false);
     }
@@ -144,7 +145,7 @@ function Form({ closeForm }) {
                 onChange={handleChange}
                 required
                 /* This class applies the invalid style when no value is selected */
-                className={!formData.course ? styles.invalidSelect : ''}
+                className={!formData.course ? styles.invalidSelect : ""}
               >
                 <option value="" disabled>
                   Select Course*
@@ -178,7 +179,7 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="Working Professional"
-                  checked={formData.category === 'Working Professional'}
+                  checked={formData.category === "Working Professional"}
                   onChange={handleChange}
                   required
                 />
@@ -189,7 +190,7 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="College Student - Pursuing"
-                  checked={formData.category === 'College Student - Pursuing'}
+                  checked={formData.category === "College Student - Pursuing"}
                   onChange={handleChange}
                 />
                 College Student - Pursuing
@@ -199,9 +200,7 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="College Student - Final Year"
-                  checked={
-                    formData.category === 'College Student - Final Year'
-                  }
+                  checked={formData.category === "College Student - Final Year"}
                   onChange={handleChange}
                 />
                 College Student - Final Year
@@ -211,7 +210,7 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="Others"
-                  checked={formData.category === 'Others'}
+                  checked={formData.category === "Others"}
                   onChange={handleChange}
                 />
                 Others
@@ -220,7 +219,7 @@ function Form({ closeForm }) {
 
             {/* --- Submit Button --- */}
             <button type="submit" disabled={loading}>
-              {loading ? 'Submitting...' : 'Submit'}
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </form>
         </div>
