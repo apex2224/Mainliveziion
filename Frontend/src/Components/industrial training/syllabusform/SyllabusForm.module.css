@@ -1,0 +1,267 @@
+/* Page Wrapper: Added a gradient background for the "glass" effect to work */
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  overflow: hidden; /* Hide elements animating in */
+}
+
+/* The "Glassmorphism" Form Card */
+.formContainer {
+  /* --- The Glass Effect --- */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* ----------------------- */
+
+  padding: 2.5rem 3rem;
+  border-radius: 24px; /* Softer, more modern radius */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Tighter gap, managed by formGroup padding */
+
+  /* --- Load-in Animation --- */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Animation 'loaded' state */
+.formContainer.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Title with your gradient */
+.title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Advanced Input Group --- */
+.formGroup {
+  position: relative;
+  padding-bottom: 1rem; /* Space for the error message */
+}
+
+/* Icon embedded in the input */
+.iconWrapper {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: #888;
+  pointer-events: none;
+  /* Smooth color transition when focusing */
+  transition: color 0.3s ease;
+}
+
+/* Base style for inputs and select */
+.formInput {
+  width: 100%;
+  padding: 1rem 3rem; /* Left padding for icon, Right for validation */
+  font-size: 1rem;
+  font-family: inherit;
+  color: #333;
+  border: 2px solid transparent; /* Start transparent */
+  background-color: rgba(243, 246, 249, 0.8);
+  border-radius: 12px;
+  box-sizing: border-box;
+
+  /* The "Modern Transition" */
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* --- Floating Label --- */
+.formLabel {
+  position: absolute;
+  top: 1rem;
+  left: 3rem; /* Positioned next to icon */
+  font-size: 1rem;
+  color: #888;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Floating label for <select> (static on top) */
+.formLabelSelect {
+  position: absolute;
+  top: -0.5rem; /* Sits on top of the border */
+  left: 2.75rem; /* Aligns with input labels */
+  font-size: 0.75rem;
+  color: #2c52be;
+  font-weight: 600;
+  background: #fff; /* Needs a solid bg to hide border */
+  padding: 0 6px;
+  border-radius: 4px;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+}
+
+/* --- Interaction States (Focus, Float) --- */
+
+/* Float label when focused or has value */
+.formInput:focus + .formLabel,
+.formInput:not(:placeholder-shown) + .formLabel {
+  top: -0.5rem; /* Move up */
+  left: 2.75rem;
+  font-size: 0.75rem; /* Shrink */
+  color: #2c52be;
+  font-weight: 600;
+  background: #fff; /* Solid bg to cut through the border */
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+/* Show the static select label when it has a value */
+.formGroup select.formInput:not(:placeholder-shown) + .formLabelSelect {
+  opacity: 1;
+}
+
+/* --- Input Focus "Glow" Effect --- */
+.formInput:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: #2c52be;
+  box-shadow: 0 0 0 4px rgba(44, 82, 190, 0.1);
+}
+
+/* Change icon color on focus */
+.formInput:focus ~ .iconWrapper {
+  color: #2c52be;
+}
+
+/* --- Validation Styling --- */
+.validationIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+}
+/* Specific position for select's arrow */
+.selectIcon {
+  right: 2.75rem;
+}
+
+.isValid .validationIcon {
+  opacity: 1;
+  transform: scale(1);
+  color: #00c853; /* Success green */
+}
+
+.isInvalid .validationIcon {
+  opacity: 1;
+  transform: scale(1);
+  color: #d50000; /* Error red */
+}
+
+/* Green "glow" for valid */
+.isValid .formInput:not(:focus) {
+  border-color: #00c853;
+  box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.1);
+}
+
+/* Red "glow" for invalid */
+.isInvalid .formInput:not(:focus) {
+  border-color: #d50000;
+  box-shadow: 0 0 0 4px rgba(213, 0, 0, 0.1);
+}
+
+/* Error text styling */
+.errorText {
+  position: absolute;
+  bottom: -0.25rem;
+  left: 1rem;
+  font-size: 0.75rem;
+  color: #d50000;
+  font-weight: 500;
+}
+
+
+/* --- Submit Button with Shine --- */
+.submitButton {
+  position: relative; /* For the shine element */
+  overflow: hidden; /* Hide shine overflow */
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg, #ff822b 0%, #2c52be 100%);
+  background-size: 200% auto;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 54px;
+  
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -5px rgba(44, 82, 190, 0.3);
+  background-position: right center; /* Gradient shift */
+}
+
+/* The shine element */
+.shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient( 
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submitButton:hover:not(:disabled) .shine {
+  left: 120%;
+}
+
+.submitButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Loading spinner */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

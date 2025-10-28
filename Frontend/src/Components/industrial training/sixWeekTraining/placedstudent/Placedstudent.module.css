@@ -1,0 +1,409 @@
+/* --- Base & Heading --- */
+.mainHeading {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.placedStudentPage {
+  padding: 2rem 1rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+	Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* --- Section One --- */
+.sectionOne {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
+  align-items: stretch;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.sectionOneFading {
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+}
+
+.feedbackSection {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.studentName {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid transparent;
+  border-image-source: linear-gradient(
+	269.86deg,
+	#2c52be 11.04%,
+	#ff822b 75.82%
+  );
+  border-image-slice: 1;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.studentFeedback {
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: #444;
+  margin: 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid #2c52be;
+}
+
+.studentNav {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+/* --- Student Buttons (Gradient Border - Solid Fill) --- */
+.studentButton {
+  /* --- NEW: Solid white fill --- */
+  background-color: #ffffff; /* Fallback for older browsers */
+  color: #222; /* Dark icon */
+
+  /* --- UPDATED GRADIENT BORDER (2px) --- */
+  border: 2px solid transparent; /* Set border width, 2px is more visible */
+  background-image: linear-gradient(#ffffff, #ffffff),
+	/* 1. Inner fill (solid white) */
+	  linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%); /* 2. Outer border (the gradient) */
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.studentButton:hover {
+  /* No background-image change needed */
+  color: #2c52be; /* Change icon color on hover */
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+/* --- END Student Buttons --- */
+
+.videoSection {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background-color: #000;
+}
+
+.videoSection iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.videoPlayerContainer {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.videoThumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.videoPlayerContainer:hover .videoThumbnail {
+  transform: scale(1.05);
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  color: #2c52be;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 2px solid transparent;
+  background-image: linear-gradient(
+	  rgba(255, 255, 255, 0.95),
+	  rgba(255, 255, 255, 0.95)
+	),
+	linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.playButton svg {
+  margin-left: 4px;
+}
+
+.videoPlayerContainer:hover .playButton {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+  color: #1a3c8e;
+}
+
+/* --- Section Two --- */
+.sectionTwo {
+  width: 100%;
+  position: relative;
+  padding: 2.5rem 0;
+  margin-top: 2rem;
+}
+
+/* --- UPDATED: Slider Title --- */
+.sliderTitle {
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  /* --- ADDED GRADIENT --- */
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* --- END UPDATED Slider Title --- */
+
+.sliderOuterContainer {
+  position: relative;
+}
+
+.sliderContainer {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 1.5rem;
+}
+
+.sliderContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.sliderWrapper {
+  display: flex;
+  gap: 1.5rem;
+  /* Add padding so buttons don't overlap first/last card */
+  padding-inline: 1rem;
+}
+
+.slide {
+  min-width: calc((100% / 3) - 1rem);
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  border: 1px solid #f0f0f0;
+  padding: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.slide:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+  height: 360px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  box-shadow: none;
+}
+
+.slide:hover img {
+  transform: scale(1.01);
+}
+
+/* --- Modern Glassmorphism Slider Buttons --- */
+.sliderButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  /* --- Glassmorphism Style --- */
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #222; /* Dark icon for light button */
+
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.sliderButton:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  transform: translateY(-50%) scale(1.1); /* Updated transform */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.prevButton {
+  left: 1.5rem; /* Position INSIDE the container */
+}
+
+.nextButton {
+  right: 1.5rem; /* Position INSIDE the container */
+}
+
+/* --- Responsive Design --- */
+
+@media (max-width: 1024px) {
+  .slide {
+	min-width: calc((100% / 2) - 1rem);
+  }
+
+  .placedStudentPage {
+	padding: 2rem 1rem;
+  }
+
+  .slide img {
+	height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainHeading {
+	font-size: 2.2rem;
+	margin-bottom: 2rem;
+  }
+
+  .sectionOne {
+	grid-template-columns: 1fr;
+	gap: 2rem;
+  }
+
+  .feedbackSection {
+	padding: 1.5rem;
+	height: auto;
+  }
+
+  .studentName {
+	font-size: 2rem;
+  }
+
+  .studentFeedback {
+	font-size: 1rem;
+  }
+
+  .studentNav {
+	margin-top: 1.5rem; /* Changed from auto */
+	padding-top: 0;
+  }
+
+  /* Mobile Student Buttons */
+  .studentButton {
+	height: 2.8rem;
+	width: 2.8rem;
+	font-size: 1.1rem;
+  }
+
+  .playButton {
+	width: 4rem;
+	height: 4rem;
+	font-size: 1.5rem;
+  }
+
+  .sliderWrapper {
+	gap: 1rem;
+	padding-inline: 0.5rem; /* Reduce padding for mobile */
+  }
+
+  .slide {
+	min-width: 90%;
+	scroll-snap-align: center;
+	padding: 0.6rem;
+  }
+
+  .slide img {
+	height: 300px;
+  }
+
+  /* --- Mobile Slider Buttons --- */
+  .sliderButton {
+	height: 2.8rem;
+	width: 2.8rem;
+	font-size: 1.1rem;
+  }
+
+  .prevButton {
+	left: 1rem; /* Adjust mobile position */
+  }
+
+  .nextButton {
+	right: 1rem; /* Adjust mobile position */
+  }
+}
