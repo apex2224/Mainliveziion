@@ -13,6 +13,7 @@ import FAQ2 from "./FAQ2/FAQ2";
 import CompaniesTieUp from "../sixMonthTraining/CompaniesTieUp/CompaniesTieUp";
 import Talktoexpert from "../sixMonthTraining/TalkToExpert/Talktoexpert";
 import ProjectShow from "../sixMonthTraining/ProjectShow/ProjectShow";
+import SyllabusCard from "./Carousel/SyllabusCard";
 import PlacedStudent from "./placedstudent/Placedstudent";
 import SyllabusForm from "../syllabusform/SyllabusForm";
 
@@ -29,16 +30,17 @@ const Sixweek = () => {
       <Navbar />
       <main>
         <HeroSection />
+        <SyllabusCard />
         <SyllabusForm/>
         <PlacedStudent/>
         <ProjectShow />
         <Courses />
         <Placements />
         <TieUpClg />
-        <WhyChooseUs/>
-        <FAQ2/>
+        <WhyChooseUs />
+        <FAQ2 />
         <CompaniesTieUp />
-        <Talktoexpert/>
+        <Talktoexpert />
         <Proposal />
       </main>
       <Footer />
