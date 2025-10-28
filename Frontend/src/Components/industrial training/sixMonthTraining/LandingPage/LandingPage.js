@@ -7,6 +7,7 @@ import FAQ from "../../sixMonthTraining/FAQ/FAQ";
 import CompaniesTieUp from "../../sixMonthTraining/CompaniesTieUp/CompaniesTieUp";
 import Talktoexpert from "../../sixMonthTraining/TalkToExpert/Talktoexpert";
 import Propoasl from "../../sixWeekTraining/Proposal/Proposal";
+import SyllabusCard from "../../sixWeekTraining/Carousel/SyllabusCard";
 // IMPORT NEW ICONS for the cube and scroller
 import {
   FaReact,
@@ -22,6 +23,7 @@ import ProjectShow from "../ProjectShow/ProjectShow";
 import Form from "../../../form/Form";
 import GetdemoComponent from "../../../form/Getdemo";
 import Courses from "../../sixWeekTraining/Courses/Courses";
+import PlacedStudent from "../../sixWeekTraining/placedstudent/Placedstudent";
 
 const Getdemo = GetdemoComponent;
 
@@ -90,7 +92,7 @@ const LandingPage = () => {
       <section className={styles.heroGrid}>
         <article className={styles.heroText}>
           <span className={`${styles.heroSubtitle} ${styles.animateFadeIn}`}>
-            Join Ziion technology for A  transformative experience  </span> 
+            Join Ziion technology for a transformative experience  </span> 
          
           <h1 className={styles.animateFadeIn}>
             Six Months <span className={styles.gradientText}>Industrial Training</span> in Chandigarh
@@ -149,7 +151,9 @@ Ziion Technology is offering six-month industrial training at Chandigarh for stu
           </div>
         </div>
       </section>
+      <PlacedStudent />
       <ProjectShow />
+      <SyllabusCard />
       <Courses />
       <Placements />
       <TieUpClg />

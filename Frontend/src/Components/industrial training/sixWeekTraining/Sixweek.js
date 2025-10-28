@@ -24,9 +24,9 @@ const Sixweek = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <SyllabusCard />
-        <PlacedStudent/>
+        <PlacedStudent />
         <ProjectShow />
+        <SyllabusCard />
         <Courses />
         <Placements />
         <TieUpClg />
