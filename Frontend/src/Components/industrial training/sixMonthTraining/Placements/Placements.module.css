@@ -2,7 +2,7 @@
 :root {
   --color-primary: #2563eb;
   --color-primary-dark: #1e40af;
-  --color-text-heading: #111827;
+  --color-text-heading: #111827; /* This is the "black" color we'll use */
   --color-text-body: #374151;
   --color-background: #ffffff;
   --color-background-offset: #f9fafb;
@@ -28,7 +28,12 @@
   background-color: var(--color-background);
   overflow-x: hidden;
 }
-
+.gradientText {
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .sectionTitle {
   text-align: center;
   font-size: 2.75rem;
@@ -45,6 +50,15 @@
   max-width: 800px;
   line-height: 1.2;
   letter-spacing: -0.025em;
+}
+
+/* --- NEW CLASS TO OVERRIDE GRADIENT --- */
+.blackText {
+  background: none; /* Remove gradient background */
+  -webkit-background-clip: initial; /* Reset clipping */
+  background-clip: initial; /* Reset clipping */
+  -webkit-text-fill-color: var(--color-text-heading); /* Apply theme's heading color */
+  color: var(--color-text-heading); /* Fallback */
 }
 
 .marqueeSection {

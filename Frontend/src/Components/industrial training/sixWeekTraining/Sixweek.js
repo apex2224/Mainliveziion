@@ -13,6 +13,12 @@ import FAQ2 from "./FAQ2/FAQ2";
 import CompaniesTieUp from "../sixMonthTraining/CompaniesTieUp/CompaniesTieUp";
 import Talktoexpert from "../sixMonthTraining/TalkToExpert/Talktoexpert";
 import ProjectShow from "../sixMonthTraining/ProjectShow/ProjectShow";
+import PlacedStudent from "./placedstudent/Placedstudent";
+import SyllabusForm from "../syllabusform/SyllabusForm";
+
+
+
+
 
 const Sixweek = () => {
   useCustom("Six Week Industrial Training | Ziion Technology");
@@ -23,6 +29,8 @@ const Sixweek = () => {
       <Navbar />
       <main>
         <HeroSection />
+        <SyllabusForm/>
+        <PlacedStudent/>
         <ProjectShow />
         <Courses />
         <Placements />

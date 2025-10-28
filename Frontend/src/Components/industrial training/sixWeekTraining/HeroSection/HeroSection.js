@@ -124,7 +124,7 @@ Ziion Technology is offering six-weeks industrial training at Chandigarh for stu
       {/* --- Other sections --- */}
       <section className={styles.partnersSection}>
         <h3>
-          Learn with the best <span className={styles.highlight}>Technologies</span>
+          Learn with the best <span className={styles.gradientText}>Technologies</span>
         </h3>
         <div className={styles.logoScroller}>
           <div className={styles.logoTrack}>
