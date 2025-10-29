@@ -200,8 +200,8 @@ const SyllabusForm = ({ defaultCourse = "" }) => {
     try {
       // Send email using EmailJS with the current fields
       await emailjs.send(
-        "service_09dpakp", // Your Service ID
-        "template_gs3qao1", // Your Template ID from Form.js
+        "service_4zv8d5l", // Your Service ID
+        "template_rgf43hs", // Your Template ID from Form.js
         {
           name: formData.name,
           college: formData.college, // Using college as email for this template
@@ -209,7 +209,7 @@ const SyllabusForm = ({ defaultCourse = "" }) => {
           course: formData.course,
           preference: "Syllabus Request", // Using a fixed value for preference as this is a syllabus request
         },
-        "nxDr7y8eXJG5rDyyN" // Your Public Key  nxDr7y8eXJG5rDyyN
+        "j6fsWCbZRRU2n1J4A" // old Public Key  nxDr7y8eXJG5rDyyN
       );
 
       // Navigate to ThankYou page with name parameter after successful submission
