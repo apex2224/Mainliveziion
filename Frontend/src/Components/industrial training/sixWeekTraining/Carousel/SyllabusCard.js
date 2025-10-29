@@ -144,17 +144,19 @@ const SyllabusCard = () => {
     },
     {
       id: 8,
-      title: "Cybersecurity",
+      title: "Digital Marketing",
       subtitle: "Protecting Your Digital Assets",
       icon: icons.lock,
-      formValue: "cybersecurity", // Value for the form
+      formValue: "digital-marketing", // Value for the form
       topics: [
-        "Qualitative & quantitative data type",
-        "Inferential Statistics",
-        "Data Cleaning and Preprocessing",
-        "Data Wrangling and Transformation",
-        "Predictive Analytics and Regression",
-        "Decision trees and random forests",
+        "Google Ads",
+        "Onpage SEO Techniques",
+        "Offpage SEO Techniques",
+        "Technical SEO",
+        "Content Marketing",
+        "Social Media Marketing",
+        "Email Marketing",
+        "Analytics and Reporting",
         "Cluster Analysis",
       ],
     },
@@ -272,7 +274,9 @@ const SyllabusCard = () => {
                   ))}
                 </ul>
 
-                <p className={styles.detailsText}>Detailed Syllabus Available</p>
+                <p className={styles.detailsText}>
+                  Detailed Syllabus Available
+                </p>
 
                 <div className={styles.buttonWrapper}>
                   {/* <-- UPDATED BUTTON ONCLICK --> */}
