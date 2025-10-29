@@ -1,137 +1,533 @@
-.industrialHeroSection {
-  background-size: cover;
-  background-position: center;
-  height: 70vh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
+/* FIX: Add margin to the main container to account for the fixed Navbar */
+.industrialTrainingContainer {
+  /* Adjust this value (e.g., 80px) to match the exact height of your Navbar.
+     This pushes all the content down so it doesn't hide under the header.
+  */
+  margin-top: 60px;
 }
 
-.industrialOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+/* --- Modern Tech Theme Variables --- */
+:root {
+  --color-grad-blue: #2c52be;
+  --color-grad-orange: #ff822b;
+  --color-text-dark: #212529;
+  --color-text-body: #5a6470;
+  --color-bg-white: #ffffff;
+  --color-bg-light-gray: #f9fafb;
+  --color-border: #eef2f6;
+  --shadow-professional: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.07);
+  --border-radius: 8px;
+  --border-radius-large: 12px;
+  --transition-main: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  --font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --- Hero Section --- */
+.industrialHeroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem 5rem 2rem;
+  background-color: var(--color-bg-white);
+  min-height: 70vh;
+  text-align: center;
+  position: relative; /* Establishes stacking context */
+  overflow: hidden; /* Clips the shapes that drift out */
 }
 
 .industrialHeroContent {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
+  flex: 1;
+  max-width: 750px;
+  margin: 0 auto;
+  position: relative; /* Ensure it's part of the stacking context */
+  z-index: 2; /* Bring it in front of the background shapes (z-index: 1) */
 }
-
 .industrialHeroHeading {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.industrialGradientText {
-  background: linear-gradient(to right, #00f2ff, #c800ff);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  background: linear-gradient(
+    269.86deg,
+    var(--color-grad-blue) 11.04%,
+    var(--color-grad-orange) 75.82%
+  );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: bold;
 }
-
 .industrialPara {
-  font-size: 1.1rem;
-  color: #f0f0f0;
-  margin-top: 1rem;
-  max-width: 600px;
+  font-size: 1.15rem;
+  color: var(--color-text-body);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  max-width: 650px;
   margin-left: auto;
   margin-right: auto;
 }
-
-.industrialTalkBtn {
-  margin-top: 1.5rem;
-  padding: 12px 25px;
-  background-color: #00f2ff;
-  border: none;
-  border-radius: 25px;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.industrialTalkBtn:hover {
-  background-color: #00bcd4;
-  color: white;
-}
-
-.industrialCardSection {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 2rem;
-  gap: 2rem;
-  flex-wrap: wrap;
-  background-color: #0e0e0e;
-}
-
-.industrialCard {
-  background-color: #222121;
-  padding: 1.5rem;
-  border-radius: 10px;
-  width: 280px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-.industrialCardImage {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.industrialDescription {
-  margin: 1rem 0;
-  color: white;
-}
-
-.industrialBtn {
-  border: 1px solid white;
-  box-shadow: 0px 0px 2px white;
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  background-color: transparent;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.industrialBtn:hover {
-  background-color: #9b00cc;
-}
-
-.industrialImage {
-  width: 220px;
-  border-radius: 10px;
-}
 .herobutton {
-  border: 1px solid white;
-  box-shadow: 0px 0px 2px white;
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  background-color: transparent;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 8px;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-weight: 500;
   font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-professional);
+  background-color: transparent;
+  background: linear-gradient(
+    269.86deg,
+    var(--color-grad-blue) 11.04%,
+    var(--color-grad-orange) 75.82%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-grad-blue);
+  border: 2px solid transparent;
+  border-image-source: linear-gradient(
+    269.86deg,
+    var(--color-grad-blue) 11.04%,
+    var(--color-grad-orange) 75.82%
+  );
+  border-image-slice: 1;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    background 0.4s ease-in-out, color 0.4s ease-in-out;
 }
-
 .herobutton:hover,
 .herobutton:active {
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(
+    269.86deg,
+    var(--color-grad-blue) 11.04%,
+    var(--color-grad-orange) 75.82%
+  );
+  background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  -webkit-text-fill-color: white;
   color: white;
-  transition: 0.1s ease-in;
-  box-shadow: 0px 0px 5px white;
+  border-image-source: none;
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* --- 3D Hero Background Shapes --- */
+.heroBackgroundShapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1; /* Sits behind the content (z-index: 2) */
+  transform-style: preserve-3d; /* Enables 3D positioning for children */
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%; /* Soft, circular shapes */
+  opacity: 0.1; /* Very subtle */
+  filter: blur(100px); /* Very soft and blurry */
+  will-change: transform; /* Optimize animation */
+}
+
+.shape1 {
+  width: 450px;
+  height: 450px;
+  background: var(--color-grad-blue);
+  top: 5%;
+  left: 5%;
+  animation: slowDrift1 22s infinite alternate ease-in-out;
+}
+
+.shape2 {
+  width: 350px;
+  height: 350px;
+  background: var(--color-grad-orange);
+  top: 50%;
+  right: 10%;
+  animation: slowDrift2 18s infinite alternate ease-in-out;
+}
+
+.shape3 {
+  width: 250px;
+  height: 250px;
+  background: var(--color-grad-blue);
+  bottom: 10%;
+  left: 40%;
+  opacity: 0.07; /* Even more subtle */
+  animation: slowDrift3 25s infinite alternate ease-in-out;
+}
+
+/* Keyframes for the 3D drift.
+  Each animation includes translateZ() to keep the shape in 3D space.
+*/
+@keyframes slowDrift1 {
+  from {
+    transform: translateZ(-300px) translate(0, 0) rotate(0deg);
+  }
+  to {
+    transform: translateZ(-300px) translate(40px, -20px) rotate(20deg);
+  }
+}
+
+@keyframes slowDrift2 {
+  from {
+    transform: translateZ(-150px) translate(0, 0) rotate(10deg);
+  }
+  to {
+    transform: translateZ(-150px) translate(-30px, 30px) rotate(-10deg);
+  }
+}
+
+@keyframes slowDrift3 {
+  from {
+    transform: translateZ(-50px) translate(10px, -10px) rotate(-5deg);
+  }
+  to {
+    transform: translateZ(-50px) translate(-20px, 20px) rotate(15deg);
+  }
+}
+
+/* --- Conceptual Graphic --- */
+.conceptualGraphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  animation: fadeIn 1s ease-out forwards;
+  position: relative;
+  z-index: 2;
+}
+
+.sixWeekIcon,
+.sixMonthIcon {
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-professional);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: default;
+  color: white;
+}
+.sixWeekIcon {
+  background: linear-gradient(
+    135deg,
+    var(--color-grad-blue) 11.04%,
+    #5579e0 75.82%
+  );
+}
+.sixMonthIcon {
+  background: linear-gradient(
+    135deg,
+    var(--color-grad-orange) 11.04%,
+    #ffac70 75.82%
+  );
+}
+
+.sixWeekIcon:hover,
+.sixMonthIcon:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+
+.arrow {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--color-grad-blue);
+  opacity: 0;
+  animation: popIn 0.5s ease-out 0.8s forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Training Offerings Section --- */
+.trainingOfferingsSection {
+  padding: 6rem 2rem;
+  background-color: var(--color-bg-light-gray);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Section Headings */
+.sectionHeading {
+  font-size: 2.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-text-dark);
+}
+.sectionSubheading {
+  font-size: 1.15rem;
+  text-align: center;
+  color: var(--color-text-body);
+  max-width: 600px;
+  margin: 0 auto 4rem auto;
+}
+
+.offeringsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- MODERNIZED Training Card --- */
+.trainingCard {
+  background-color: var(--color-bg-white);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-professional);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+}
+
+/* Gradient border pseudo-element */
+.trainingCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--border-radius-large);
+  border: 2px solid transparent;
+  background: linear-gradient(
+      269.86deg,
+      var(--color-grad-blue) 11.04%,
+      var(--color-grad-orange) 75.82%
+    )
+    border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Upgraded hover effect */
+.trainingCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08),
+    0 0 20px rgba(44, 82, 190, 0.1);
+  border-color: transparent;
+}
+
+.trainingCard:hover::after {
+  opacity: 1;
+}
+
+/* Abstract Card Header */
+.cardHeader {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  color: white;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.header6Weeks {
+  background: linear-gradient(
+    135deg,
+    var(--color-grad-blue) 0%,
+    #5579e0 100%
+  );
+}
+.header6Months {
+  background: linear-gradient(
+    135deg,
+    var(--color-grad-orange) 0%,
+    #ffac70 100%
+  );
+}
+.duration {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.level {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+.trainingCard:hover .cardHeader {
+  transform: scale(1.03);
+}
+
+.trainingCardContent {
+  padding: 2rem;
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg-white);
+}
+
+.trainingCardTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+}
+
+.trainingDescription {
+  font-size: 1rem;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.keyFeaturesList {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.featureItem {
+  color: var(--color-text-body);
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.featureItem::before {
+  content: "»"; /* Modern icon */
+  color: var(--color-grad-blue);
+  font-weight: bold;
+  font-size: 1.25rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.trainingCard:hover .featureItem::before {
+  transform: translateX(5px); /* Slide right */
+  color: var(--color-grad-orange); /* Change to accent color */
+}
+
+.trainingBtnLink {
+  display: block;
+  padding: 0 2rem 2rem 2rem;
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg-white);
+  border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+}
+
+/* --- Secondary (Outline) Button --- */
+.trainingBtn {
+  width: 100%;
+  background-color: transparent;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out,
+    -webkit-text-fill-color 0.3s ease-in-out;
+  background: linear-gradient(
+    269.86deg,
+    var(--color-grad-blue) 11.04%,
+    var(--color-grad-orange) 75.82%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-grad-blue);
+  border: 2px solid transparent;
+  border-image-source: linear-gradient(
+    269.86deg,
+    var(--color-grad-blue) 11.04%,
+    var(--color-grad-orange) 75.82%
+  );
+  border-image-slice: 1;
+}
+
+.trainingBtn:hover {
+  background: linear-gradient(
+    269.86deg,
+    var(--color-grad-blue) 11.04%,
+    var(--color-grad-orange) 75.82%
+  );
+  background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  -webkit-text-fill-color: white;
+  color: white;
+  border-image-source: none;
+  border-color: transparent;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+  .industrialHeroSection {
+    padding: 4rem 2rem;
+  }
+  .offeringsGrid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .industrialHeroHeading {
+    font-size: 2.75rem;
+  }
+  .sectionHeading {
+    font-size: 2.25rem;
+  }
+  .trainingCardTitle {
+    font-size: 1.5rem;
+  }
+  .sixWeekIcon,
+  .sixMonthIcon {
+    width: 80px;
+    height: 80px;
+    font-size: 1rem;
+  }
+  .arrow {
+    font-size: 3rem;
+  }
+  .duration {
+    font-size: 1.75rem;
+  }
+  .level {
+    font-size: 0.9rem;
+  }
 }
