@@ -279,6 +279,7 @@
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 50px;
+  /* margin-bottom: 60px; <-- REMOVED */
   animation: slideUp 0.8s ease-out 1s both;
 }
 
@@ -294,15 +295,27 @@
 
 /* Scroll Indicator */
 .scrollIndicator {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* --- REMOVED ALL POSITIONING --- */
+  /* position: absolute; */
+  /* bottom: 40px; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  
+  /* --- ADDED MARGIN FOR SPACING --- */
+  margin-top: 48px;
+  
+  /* --- KEPT THESE FOR CENTERING ITS OWN CHILDREN --- */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
   animation: slideUp 0.8s ease-out 1.2s both;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.scrollIndicator:hover {
+  opacity: 0.8;
 }
 
 .scrollMouse {
@@ -414,7 +427,7 @@
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 100px 16px 60px;
+    padding: 120px 16px 60px; /* Increased top padding */
   }
 
   .mainTitle {
@@ -451,6 +464,15 @@
   .gradientOrb2 {
     width: 300px;
     height: 300px;
+  }
+  
+  .trustBadge {
+    /* margin-bottom: 90px; <-- REMOVED */
+  }
+
+  .scrollIndicator {
+    /* bottom: 20px; <-- REMOVED */
+    margin-top: 40px; /* Adjusted spacing for mobile */
   }
 }
 

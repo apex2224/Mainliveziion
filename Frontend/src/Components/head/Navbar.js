@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navWrapperRef = useRef(null);
-  const furtherNavRef = useRef(null);
+  const furtherNavRef = useRef(null); // This ref might not be strictly needed anymore
 
   // Scroll detection for glassmorphism effect
   useEffect(() => {
@@ -45,10 +45,10 @@ const Navbar = () => {
   // Close submenu/menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
+      // Updated ref check to be safer
       if (
         navWrapperRef.current &&
-        !navWrapperRef.current.contains(e.target) &&
-        (!furtherNavRef.current || !furtherNavRef.current.contains(e.target))
+        !navWrapperRef.current.contains(e.target)
       ) {
         setShowFurtherNav(false);
         setMenuOpen(false);
@@ -67,6 +67,7 @@ const Navbar = () => {
     if (isMobile) {
       setShowFurtherNav((prev) => !prev);
     } else {
+      // Clicking "Courses" on desktop can also toggle
       setShowFurtherNav(!showFurtherNav);
     }
   };
@@ -112,20 +113,26 @@ const Navbar = () => {
                 <li className={styles.mainMenuItem}>Home</li>
               </Link>
 
+              {/* === MODIFIED COURSES LI === */}
               <li
                 className={styles.mainMenuItem}
-                onClick={handleCoursesClick}
+                onClick={isMobile ? handleCoursesClick : undefined} // Only click on mobile
                 onMouseEnter={() => !isMobile && setShowFurtherNav(true)}
-                onMouseLeave={() => !isMobile && !menuOpen && setShowFurtherNav(false)}
-                ref={isMobile ? null : furtherNavRef}
+                onMouseLeave={() => !isMobile && setShowFurtherNav(false)}
               >
                 Courses
+                {/* Desktop Dropdown */}
                 {!isMobile && showFurtherNav && (
                   <div className={styles.externalFurtherNav}>
                     <FurtherNav />
                   </div>
                 )}
+                
+                {/* === FIX 2: ADDED MOBILE RENDER === */}
+                {/* Mobile Dropdown (appears inside menu) */}
+                {isMobile && showFurtherNav && <FurtherNav />}
               </li>
+              {/* === END MODIFIED COURSES LI === */}
 
               <Link
                 to="/services"
@@ -197,13 +204,6 @@ const Navbar = () => {
           )}
         </nav>
       </div>
-
-      {/* Mobile submenu */}
-      {isMobile && showFurtherNav && (
-        <div ref={furtherNavRef} className={styles.mobileFurtherNav}>
-          <FurtherNav />
-        </div>
-      )}
     </>
   );
 };

@@ -9,11 +9,15 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   animation: slideDown 0.3s ease-out;
   width: 240px;
-  position: absolute;
+  
+  /* === FIX 1: REMOVED THESE === */
+  /* These are now handled by .externalFurtherNav in Navbar.module.css */
+  /* position: absolute;
   top: 100%;
   left: 0;
   z-index: 9999;
-  margin-top: 8px;
+  margin-top: 8px; 
+  */
 }
 
 @keyframes slideDown {
@@ -88,7 +92,7 @@
   }
 }
 
-/* Mobile Styles */
+/* Mobile Styles (These are correct and remain unchanged) */
 @media (max-width: 768px) {
   .furtherMenu {
     background: rgba(248, 250, 252, 0.95);
@@ -98,7 +102,7 @@
     padding: 8px;
     animation: slideDownMobile 0.3s ease-out;
     border-radius: 8px;
-    position: static;
+    position: static; /* This is correct for mobile */
     width: 100%;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     margin-top: 12px;
