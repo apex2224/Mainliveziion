@@ -15,6 +15,7 @@ import Talktoexpert from "../sixMonthTraining/TalkToExpert/Talktoexpert";
 import ProjectShow from "../sixMonthTraining/ProjectShow/ProjectShow";
 import SyllabusCard from "./Carousel/SyllabusCard";
 import PlacedStudent from "./placedstudent/Placedstudent";
+import ReviewsSection from "../../reviews/ReviewsSection";
 
 const Sixweek = () => {
   useCustom("Six Week Industrial Training | Ziion Technology");
@@ -33,6 +34,7 @@ const Sixweek = () => {
         <WhyChooseUs />
         <FAQ2 />
         <CompaniesTieUp />
+        <ReviewsSection />
         <Talktoexpert />
         <Proposal />
       </main>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Courses.module.css";
+import Modal from "../../syllabusform/Syllabusmodal/Modal";
+import SyllabusForm from "../../syllabusform/SyllabusForm";
+
 // SVG for the default icon next to domain names
 const briefcaseIcon = (
   <svg
@@ -92,15 +95,23 @@ const courseData = [
 
 const Courses = () => {
   const [openDomain, setOpenDomain] = useState(courseData[0]?.name || null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleDomain = (domainName) => {
     setOpenDomain(openDomain === domainName ? null : domainName);
   };
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const handleExploreClick = () => {
-    // Navigate to the all courses page using React Router
-    navigate('/allcourses');
+    navigate("/SyllabusForm");
   };
 
   const activeDomain = courseData.find((domain) => domain.name === openDomain);
@@ -125,7 +136,9 @@ const Courses = () => {
             transforms knowledge into real-world achievements, building
             confidence and industry-ready skills.
           </p>
-          <button onClick={handleExploreClick} className={styles.exploreButton}>Explore All Courses</button>
+          <button onClick={handleOpenModal} className={styles.exploreButton}>
+            Download Syllabus
+          </button>
         </div>
 
         <div key={currentImageUrl} className={styles.imageCard}>
@@ -135,7 +148,7 @@ const Courses = () => {
             className={styles.cardImage}
           />
         </div>
-        </div>
+      </div>
 
       <div className={styles.rightSection}>
         <div className={styles.industryList}>
@@ -174,6 +187,11 @@ const Courses = () => {
           ))}
         </div>
       </div>
+      
+      {/* Modal component */}
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <SyllabusForm />
+      </Modal>
     </div>
   );
 };
