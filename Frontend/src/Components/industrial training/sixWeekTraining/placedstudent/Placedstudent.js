@@ -14,23 +14,24 @@ import studentImg7 from '../../../../assets/placement-slider/student-sandeep.png
 import studentImg8 from '../../../../assets/placement-slider/student-vitun.png';
 
 // --- Student Data Updated ---
-// Added thumbnailUrl and added ?autoplay=1 to videoUrl
+// Feedback has been updated to be more professional and specific.
 const studentData = [
   {
     name: 'MAYA',
     feedback:
-      '"This program was a game-changer! The practical skills and portfolio projects helped me land my dream job at a top tech company. The instructors were incredibly supportive throughout the entire process."',
+      '"After completing my BCA, I joined the MERN stack internship here. The hands-on experience with technologies like React, Next.js, and MongoDB on live projects was invaluable. It directly led to my placement as a MERN Stack Developer at an MNC in Noida. I highly recommend this program for enhancing your skills."',
     videoUrl: 'https://www.youtube.com/embed/bplbcMwCec0?autoplay=1',
     thumbnailUrl: 'https://img.youtube.com/vi/bplbcMwCec0/hqdefault.jpg',
   },
   {
     name: 'RAGHAV GULATI',
     feedback:
-      '"This program was a game-changer! The practical skills and portfolio projects helped me land my dream job at a top tech company. The instructors were incredibly supportive throughout the entire process."',
+      '"I\'m pursuing a Data Science course here alongside my internship, and the experience has been fantastic. The mentors are highly experienced specialists in their fields. I found this program to be incredibly beneficial and would definitely recommend it to anyone looking for a company with strong mentorship."',
     videoUrl: 'https://www.youtube.com/embed/Tj_qRxJf7PM?autoplay=1',
     thumbnailUrl: 'https://img.youtube.com/vi/Tj_qRxJf7PM/hqdefault.jpg',
   },
 ];
+// ------------------------------------
 
 const sliderImages = [
   studentImg1,
@@ -42,7 +43,6 @@ const sliderImages = [
   studentImg7,
   studentImg8,
 ];
-// ------------------------------------
 
 const PlacedStudent = () => {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
