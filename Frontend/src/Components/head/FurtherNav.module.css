@@ -1,14 +1,19 @@
+/* Further Menu Container */
 .furtherMenu {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  animation: slideDown 0.4s ease-in-out;
-  width: 20%;
-  position: fixed;
-  top: 12%;
-  left: 35%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+  width: 240px;
+  position: absolute;
+  top: 100%;
+  left: 0;
   z-index: 9999;
+  margin-top: 8px;
 }
 
 @keyframes slideDown {
@@ -22,87 +27,128 @@
   }
 }
 
+/* Menu List */
 .middleMenuList {
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 10px;
+  gap: 8px;
 }
 
+/* Menu Item */
 .menuItem {
   width: 100%;
-  background-color: #f9f9f9;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-
-.menuItem:hover {
-  background-color: #e6f7f7;
-}
-
-.furtherMenuLink {
-  color: #000;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  transition: color 0.2s ease-in-out;
-}
-
-.furtherMenuLink:hover {
-  color: #007a7a;
+  background-color: rgba(248, 250, 252, 0.6);
+  padding: 14px 18px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
-/* === Mobile Styles === */
-@media (max-width: 768px) {
-  .furtherMenu {
-    background: none;
-    border: none;
-    padding: 0.5rem 0;
-    animation: none;
-  }
-  
-
-  .menuItem {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px 16px;
-  }
-
-  .furtherMenuLink {
-    font-size: 15px;
-    color: #333;
-  }
-}
-@media(max-width: 1024px){
-  .furtherMenu{
-    left: 30%;
-    top: 10%;
-    width: 18%;
-  }
+.menuItem:hover {
+  background-color: rgba(30, 64, 175, 0.08);
+  border-color: rgba(30, 64, 175, 0.2);
+  transform: translateX(4px);
 }
 
-@media (max-width: 768px) {
-  .mainMenu {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* Menu Link */
+.furtherMenuLink {
+  color: #334155;
+  text-decoration: none;
+  font-size: 0.938rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.furtherMenuLink:hover {
+  color: #1e40af;
+}
+
+/* Icon Styling */
+.furtherMenuLink i {
+  font-size: 0.875rem;
+  color: #64748b;
+  transition: color 0.2s ease;
+}
+
+.menuItem:hover .furtherMenuLink i {
+  color: #1e40af;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
   .furtherMenu {
-    position: static;  /* flows below Courses */
-    display: block;    /* always visible in mobile */
+    width: 220px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .furtherMenu {
+    background: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    padding: 8px;
+    animation: slideDownMobile 0.3s ease-out;
+    border-radius: 8px;
+    position: static;
     width: 100%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    margin-top: 12px;
+  }
+
+  @keyframes slideDownMobile {
+    0% {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .middleMenuList {
+    gap: 6px;
   }
 
   .menuItem {
+    background-color: white;
+    border: 1px solid rgba(226, 232, 240, 0.8);
     padding: 12px 16px;
+    border-radius: 6px;
+  }
+
+  .menuItem:hover {
+    background-color: rgba(30, 64, 175, 0.05);
+    border-color: rgba(30, 64, 175, 0.3);
+    transform: translateX(2px);
   }
 
   .furtherMenuLink {
-    font-size: 15px;
-    color: #333;
+    font-size: 0.875rem;
+    color: #334155;
+  }
+
+  .furtherMenuLink i {
+    font-size: 0.813rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .menuItem {
+    padding: 10px 14px;
+  }
+
+  .furtherMenuLink {
+    font-size: 0.813rem;
   }
 }

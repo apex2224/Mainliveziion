@@ -61,10 +61,32 @@ const Refrencenumber = ({ onClose }) => {
 
   // Close modal if clicking on overlay
   const handleOverlayClick = (e) => {
-    if (e.target.className === "modalOverlay") {
+    if (e.target.classList.contains('modalOverlay') || e.target.classList.contains('modalBox')) {
+      // Only close if clicking on the overlay background, not inside the modal box
+      if (e.target.classList.contains('modalOverlay')) {
+        handleClose();
+      }
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
       handleClose();
     }
   };
+
+  // Add event listener for escape key when component mounts
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      // Restore body scroll when modal closes
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   return (
     <div className="modalOverlay" onClick={handleOverlayClick}>
@@ -81,6 +103,7 @@ const Refrencenumber = ({ onClose }) => {
               value={refNumber}
               onChange={(e) => setRefNumber(e.target.value)}
               className="searchInput"
+              autoFocus
             />
             <button className="searchBtn" onClick={searchStudent}>Search</button>
           </div>

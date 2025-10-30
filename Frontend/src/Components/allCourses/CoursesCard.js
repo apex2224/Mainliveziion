@@ -10,7 +10,7 @@ import Form from "../form/Form";
 import AI from "../../assets/NewCoursesImages/AI.png";
 import CC1 from "../../assets/NewCoursesImages/CC1.png";
 import DataAnalytics from "../../assets/NewCoursesImages/DataAnalytics.png";
-import DataScience from "../../assets/NewCoursesImages/DataScience.png";
+import DataScience from "../../assets/NewCoursesImages/DataScience.webp";
 import DevOps from "../../assets/NewCoursesImages/DevOps.png";
 import ML from "../../assets/NewCoursesImages/ML.png";
 import MobileAppDevelopment from "../../assets/NewCoursesImages/MobileAppDevelopment.png";
