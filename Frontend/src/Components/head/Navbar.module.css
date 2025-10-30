@@ -174,20 +174,16 @@
   border-color: #1e40af;
 }
 
-/* External Further Nav (Desktop) */
+/* External Further Nav (Desktop) - UPDATED */
 .externalFurtherNav {
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 1001;
-  width: 240px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(226, 232, 240, 0.5);
-  margin-top: 8px;
+  /* This padding creates the space but keeps the area hoverable */
+  padding-top: 8px; 
+  /* The width and visual styles (bg, shadow, etc.) 
+     are now handled by the .furtherMenu class in FurtherNav.module.css */
 }
 
 /* Reference Form Modal */
@@ -212,10 +208,10 @@
 
   .mainMenuContainer {
     position: fixed;
-    top: 8%;
+    top: 8%; /* Adjust this if your navbar height changes */
     right: 0%;
     width: 60%;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 60px); /* Adjust 60px if navbar height changes */
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -278,34 +274,11 @@
   .right {
     display: none;
   }
-
-  .externalFurtherNav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1001;
-    width: 100%;
-  }
-
-  .mobileFurtherNav {
-    width: 100%;
-    padding: 12px 0;
-    background: rgba(248, 250, 252, 0.95);
-    border-radius: 8px;
-    margin-top: 8px;
-    animation: slideDown 0.3s ease forwards;
-  }
-
-  @keyframes slideDown {
-    0% {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+  
+  /* This rule was pointing to a non-existent class, 
+     but the mobile styles in FurtherNav.module.css handle this anyway. 
+     You can safely remove .mobileFurtherNav, .mobileSubMenuList, etc. 
+     from this file if they exist. */
 
   /* Mobile Navbar Scrolled State */
   .navbar.scrolled {
@@ -325,3 +298,15 @@
     padding: 12px 16px;
   }
 }
+
+/* NOTE: The original file had styles for:
+  .mobileFurtherNav
+  .mobileSubMenuList
+  .mobileSubMenuList .mainMenuItem
+  .mobileSubMenuList .link
+  
+  These classes are not used in your Navbar.js or FurtherNav.js. 
+  The mobile styling for the submenu is correctly handled by the 
+  @media (max-width: 768px) block inside FurtherNav.module.css.
+  I have removed them to avoid confusion.
+*/

@@ -28,6 +28,14 @@ const Main = () => {
     navigate("/allcourses");
   };
 
+  // This function will scroll the page down by one viewport height
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight, // Scrolls down by the height of the viewport
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <NavBar />
@@ -124,12 +132,12 @@ const Main = () => {
               4.9/5 Rating from 2,000+ Reviews
             </span>
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className={styles.scrollIndicator}>
-          <div className={styles.scrollMouse} />
-          <span className={styles.scrollText}>Discover More</span>
+          {/* === SCROLL INDICATOR MOVED HERE === */}
+          <div className={styles.scrollIndicator} onClick={handleScrollDown}>
+            <div className={styles.scrollMouse} />
+            <span className={styles.scrollText}>Discover More</span>
+          </div>
         </div>
       </section>
 
