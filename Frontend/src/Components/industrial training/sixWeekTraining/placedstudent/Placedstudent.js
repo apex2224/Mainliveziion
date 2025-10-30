@@ -4,14 +4,15 @@ import styles from "./Placedstudent.module.css";
 import { FaArrowLeft, FaArrowRight, FaPlay } from "react-icons/fa";
 
 // --- (Image imports remain the same) ---
-import studentImg1 from "../../../../assets/placement-slider/Maya_img.png";
-import studentImg2 from "../../../../assets/placement-slider/student-akash.png";
-import studentImg3 from "../../../../assets/placement-slider/student-hemant.png";
-import studentImg4 from "../../../../assets/placement-slider/student-sahil.png";
-import studentImg5 from "../../../../assets/placement-slider/student-sandeep.png";
-import studentImg6 from "../../../../assets/placement-slider/student-3.png";
-import studentImg7 from "../../../../assets/placement-slider/student-sandeep.png";
-import studentImg8 from "../../../../assets/placement-slider/student-vitun.png";
+
+import akash from "../../../../assets/placement-slider/akash.jpg";
+import hemant from "../../../../assets/placement-slider/hemant.jpg";
+import jatinder from "../../../../assets/placement-slider/jatinder.jpg";
+import Maya_img from "../../../../assets/placement-slider/Maya_img.png";
+import sahilyadav from "../../../../assets/placement-slider/sahilyadav.jpg";
+import sandeep from "../../../../assets/placement-slider/sandeep.jpg";
+import vatsal from "../../../../assets/placement-slider/vatsal.jpg";
+import vinay from "../../../../assets/placement-slider/vinay.png";
 
 // --- Student Data Updated ---
 // Feedback has been updated to be more professional and specific.
@@ -33,62 +34,63 @@ const studentData = [
 ];
 // ------------------------------------
 
+// Updated sliderImages to include name, package, company, and course data
 const sliderImages = [
   {
-    img: studentImg1,
-    name: "Maya Sharma",
-    package: "₹8 LPA",
-    company: "TechCorp Solutions",
-    course: "MERN Stack Development"
-  },
-  {
-    img: studentImg2,
-    name: "Akash Verma",
-    package: "₹6.5 LPA",
-    company: "Innovate Systems",
-    course: "Full Stack Development"
-  },
-  {
-    img: studentImg3,
-    name: "Hemant Patel",
+    img: akash,
+    name: "Akash Dhiman",
     package: "₹7.2 LPA",
-    company: "Data Insights",
-    course: "Data Science & Analytics"
+    company: "Coding Cafe",
+    course: "React.Js Dev",
   },
   {
-    img: studentImg4,
-    name: "Sahil Kumar",
-    package: "₹5.8 LPA",
-    company: "CloudTech",
-    course: "DevOps Engineering"
+    img: hemant,
+    name: "Hemant Tuteja",
+    package: "₹10 LPA",
+    company: "Software Testing",
+    course: "Meritech",
   },
   {
-    img: studentImg5,
-    name: "Sandeep Singh",
-    package: "₹9 LPA",
-    company: "FinTech Global",
-    course: "Machine Learning"
+    img: jatinder,
+    name: "Jatinder Kumar",
+    package: "₹6.0 LPA",
+    company: "Shaandaar Events",
+    course: "Digital Marketing",
   },
   {
-    img: studentImg6,
-    name: "Priya Sharma",
-    package: "₹6.2 LPA",
-    company: "WebSolutions Inc",
-    course: "Frontend Development"
+    img: Maya_img,
+    name: "Maya Sharma",
+    package: "₹4.5 LPA",
+    company: "Ekarigar",
+    course: "MERN Stack Development",
   },
   {
-    img: studentImg7,
-    name: "Sandeep Gupta",
+    img: sahilyadav,
+    name: "Sahil Yadav",
+    package: "₹18 LPA",
+    company: "JIO Digital Life",
+    course: "Data Analyst",
+  },
+  {
+    img: sandeep,
+    name: "Sandeep ",
+    package: "₹7 LPA",
+    company: "Appisoft Technologies",
+    course: "Machine Learning",
+  },
+  {
+    img: vatsal,
+    name: "Vatsal Mehta",
     package: "₹7.5 LPA",
-    company: "AI Innovations",
-    course: "Artificial Intelligence"
+    company: "IRON",
+    course: "FullStack Developer",
   },
   {
-    img: studentImg8,
-    name: "Vitun Rao",
-    package: "₹6.8 LPA",
-    company: "Digital Enterprise",
-    course: "Cloud Computing"
+    img: vinay,
+    name: "Vinay Kumar",
+    package: "₹6.2 LPA",
+    company: "AI Creative Web Solutions",
+    course: "SEO Expert",
   },
 ];
 
@@ -270,7 +272,10 @@ const PlacedStudent = () => {
             <div className={styles.sliderWrapper}>
               {sliderImages.map((student, index) => (
                 <div className={styles.slide} key={index}>
-                  <img src={student.img} alt={`Placed student ${student.name}`} />
+                  <img
+                    src={student.img}
+                    alt={`Placed student ${student.name}`}
+                  />
                   <div className={styles.studentInfo}>
                     <h4 className={styles.studentName}>{student.name}</h4>
                     <p className={styles.package}>Package: {student.package}</p>
