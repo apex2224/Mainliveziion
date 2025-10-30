@@ -1,69 +1,117 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styles from './Placedstudent.module.css';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import styles from "./Placedstudent.module.css";
 // Import FaPlay for the new video facade
-import { FaArrowLeft, FaArrowRight, FaPlay } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaPlay } from "react-icons/fa";
 
 // --- (Image imports remain the same) ---
-import studentImg1 from '../../../../assets/placement-slider/Maya_img.png';
-import studentImg2 from '../../../../assets/placement-slider/student-akash.png';
-import studentImg3 from '../../../../assets/placement-slider/student-hemant.png';
-import studentImg4 from '../../../../assets/placement-slider/student-sahil.png';
-import studentImg5 from '../../../../assets/placement-slider/student-sandeep.png';
-import studentImg6 from '../../../../assets/placement-slider/student-3.png';
-import studentImg7 from '../../../../assets/placement-slider/student-sandeep.png';
-import studentImg8 from '../../../../assets/placement-slider/student-vitun.png';
+import studentImg1 from "../../../../assets/placement-slider/Maya_img.png";
+import studentImg2 from "../../../../assets/placement-slider/student-akash.png";
+import studentImg3 from "../../../../assets/placement-slider/student-hemant.png";
+import studentImg4 from "../../../../assets/placement-slider/student-sahil.png";
+import studentImg5 from "../../../../assets/placement-slider/student-sandeep.png";
+import studentImg6 from "../../../../assets/placement-slider/student-3.png";
+import studentImg7 from "../../../../assets/placement-slider/student-sandeep.png";
+import studentImg8 from "../../../../assets/placement-slider/student-vitun.png";
 
 // --- Student Data Updated ---
 // Feedback has been updated to be more professional and specific.
 const studentData = [
   {
-    name: 'MAYA',
+    name: "MAYA",
     feedback:
       '"After completing my BCA, I joined the MERN stack internship here. The hands-on experience with technologies like React, Next.js, and MongoDB on live projects was invaluable. It directly led to my placement as a MERN Stack Developer at an MNC in Noida. I highly recommend this program for enhancing your skills."',
-    videoUrl: 'https://www.youtube.com/embed/bplbcMwCec0?autoplay=1',
-    thumbnailUrl: 'https://img.youtube.com/vi/bplbcMwCec0/hqdefault.jpg',
+    videoUrl: "https://www.youtube.com/embed/bplbcMwCec0?autoplay=1",
+    thumbnailUrl: "https://img.youtube.com/vi/bplbcMwCec0/hqdefault.jpg",
   },
   {
-    name: 'RAGHAV GULATI',
+    name: "RAGHAV GULATI",
     feedback:
       '"I\'m pursuing a Data Science course here alongside my internship, and the experience has been fantastic. The mentors are highly experienced specialists in their fields. I found this program to be incredibly beneficial and would definitely recommend it to anyone looking for a company with strong mentorship."',
-    videoUrl: 'https://www.youtube.com/embed/Tj_qRxJf7PM?autoplay=1',
-    thumbnailUrl: 'https://img.youtube.com/vi/Tj_qRxJf7PM/hqdefault.jpg',
+    videoUrl: "https://www.youtube.com/embed/Tj_qRxJf7PM?autoplay=1",
+    thumbnailUrl: "https://img.youtube.com/vi/Tj_qRxJf7PM/hqdefault.jpg",
   },
 ];
 // ------------------------------------
 
 const sliderImages = [
-  studentImg1,
-  studentImg2,
-  studentImg3,
-  studentImg4,
-  studentImg5,
-  studentImg6,
-  studentImg7,
-  studentImg8,
+  {
+    img: studentImg1,
+    name: "Maya Sharma",
+    package: "₹8 LPA",
+    company: "TechCorp Solutions",
+    course: "MERN Stack Development"
+  },
+  {
+    img: studentImg2,
+    name: "Akash Verma",
+    package: "₹6.5 LPA",
+    company: "Innovate Systems",
+    course: "Full Stack Development"
+  },
+  {
+    img: studentImg3,
+    name: "Hemant Patel",
+    package: "₹7.2 LPA",
+    company: "Data Insights",
+    course: "Data Science & Analytics"
+  },
+  {
+    img: studentImg4,
+    name: "Sahil Kumar",
+    package: "₹5.8 LPA",
+    company: "CloudTech",
+    course: "DevOps Engineering"
+  },
+  {
+    img: studentImg5,
+    name: "Sandeep Singh",
+    package: "₹9 LPA",
+    company: "FinTech Global",
+    course: "Machine Learning"
+  },
+  {
+    img: studentImg6,
+    name: "Priya Sharma",
+    package: "₹6.2 LPA",
+    company: "WebSolutions Inc",
+    course: "Frontend Development"
+  },
+  {
+    img: studentImg7,
+    name: "Sandeep Gupta",
+    package: "₹7.5 LPA",
+    company: "AI Innovations",
+    course: "Artificial Intelligence"
+  },
+  {
+    img: studentImg8,
+    name: "Vitun Rao",
+    package: "₹6.8 LPA",
+    company: "Digital Enterprise",
+    course: "Cloud Computing"
+  },
 ];
 
 const PlacedStudent = () => {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
   const [isSliderPaused, setSliderPaused] = useState(false);
-  
+
   // --- New State for Smooth Animations & Video Facade ---
   const [isAnimating, setAnimating] = useState(false);
   const [isVideoPlaying, setVideoPlaying] = useState(false);
-  
+
   const sliderRef = useRef(null);
   const sliderIntervalRef = useRef(null);
 
   // --- Manual Student Navigation (Upgraded for Animation) ---
-  
+
   // A wrapper function to handle the animation logic
   const changeStudent = (newIndex) => {
     // Prevent double-clicks while animating
-    if (isAnimating) return; 
-    
+    if (isAnimating) return;
+
     setAnimating(true); // Start fade-out
-    
+
     // Wait for fade-out to complete (300ms, matches CSS)
     setTimeout(() => {
       setCurrentStudentIndex(newIndex);
@@ -79,7 +127,9 @@ const PlacedStudent = () => {
 
   const handlePrevStudent = () => {
     const newIndex =
-      currentStudentIndex === 0 ? studentData.length - 1 : currentStudentIndex - 1;
+      currentStudentIndex === 0
+        ? studentData.length - 1
+        : currentStudentIndex - 1;
     changeStudent(newIndex);
   };
 
@@ -90,9 +140,9 @@ const PlacedStudent = () => {
         const slider = sliderRef.current;
         const scrollAmount = slider.offsetWidth * 0.9;
         if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
-          slider.scrollTo({ left: 0, behavior: 'smooth' });
+          slider.scrollTo({ left: 0, behavior: "smooth" });
         } else {
-          slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
         }
       }
     }, 5000);
@@ -116,14 +166,14 @@ const PlacedStudent = () => {
   const handleNext = () => {
     if (sliderRef.current) {
       const scrollAmount = sliderRef.current.clientWidth * 0.9;
-      sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      sliderRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
   const handlePrev = () => {
     if (sliderRef.current) {
       const scrollAmount = sliderRef.current.clientWidth * 0.9;
-      sliderRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      sliderRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     }
   };
 
@@ -136,7 +186,7 @@ const PlacedStudent = () => {
       {/* --- Section One: Feedback and Video (Animation Class Added) --- */}
       <section
         className={`${styles.sectionOne} ${
-          isAnimating ? styles.sectionOneFading : ''
+          isAnimating ? styles.sectionOneFading : ""
         }`}
       >
         <div className={styles.feedbackSection}>
@@ -164,7 +214,7 @@ const PlacedStudent = () => {
           </div>
           {/* ------------------------- */}
         </div>
-        
+
         {/* --- Video Section (Facade Logic) --- */}
         <div className={styles.videoSection}>
           {isVideoPlaying ? (
@@ -218,9 +268,15 @@ const PlacedStudent = () => {
             onMouseLeave={() => setSliderPaused(false)}
           >
             <div className={styles.sliderWrapper}>
-              {sliderImages.map((src, index) => (
+              {sliderImages.map((student, index) => (
                 <div className={styles.slide} key={index}>
-                  <img src={src} alt={`Placed student ${index + 1}`} />
+                  <img src={student.img} alt={`Placed student ${student.name}`} />
+                  <div className={styles.studentInfo}>
+                    <h4 className={styles.studentName}>{student.name}</h4>
+                    <p className={styles.package}>Package: {student.package}</p>
+                    <p className={styles.company}>Company: {student.company}</p>
+                    <p className={styles.course}>Course: {student.course}</p>
+                  </div>
                 </div>
               ))}
             </div>
