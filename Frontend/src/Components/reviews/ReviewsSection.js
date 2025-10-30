@@ -1,8 +1,6 @@
 import React from 'react'
 import styles from './ReviewsSection.module.css'
 
-
-
 export const reviewsData = [
   {
     title: "Exceptional Experience",
@@ -194,69 +192,66 @@ export const reviewsData = [
     name: "Supriya Chouhan",
   },
   {
-  title: "Best Learning Experience",
-  rating: "⭐️⭐️⭐️⭐️⭐️",
-  text: "The internship program gave me real industry exposure and helped me build confidence in my skills.",
-  img: "https://picsum.photos/40/40?random=28",
-  name: "Rahul Mehta",
-},
-{
-  title: "Supportive Team Environment",
-  rating: "⭐️⭐️⭐️⭐️⭐️",
-  text: "The team at Ziion Technology was very supportive and always encouraged me to learn and grow.",
-  img: "https://picsum.photos/40/40?random=29",
-  name: "Priya Sharma",
-},
-{
-  title: "Practical Knowledge Gained",
-  rating: "⭐️⭐️⭐️⭐️⭐️",
-  text: "I gained a lot of practical knowledge during my internship which will definitely help in my career.",
-  img: "https://picsum.photos/40/40?random=30",
-  name: "Amit Verma",
-}
-
+    title: "Best Learning Experience",
+    rating: "⭐️⭐️⭐️⭐️⭐️",
+    text: "The internship program gave me real industry exposure and helped me build confidence in my skills.",
+    img: "https://picsum.photos/40/40?random=28",
+    name: "Rahul Mehta",
+  },
+  {
+    title: "Supportive Team Environment",
+    rating: "⭐️⭐️⭐️⭐️⭐️",
+    text: "The team at Ziion Technology was very supportive and always encouraged me to learn and grow.",
+    img: "https://picsum.photos/40/40?random=29",
+    name: "Priya Sharma",
+  },
+  {
+    title: "Practical Knowledge Gained",
+    rating: "⭐️⭐️⭐️⭐️⭐️",
+    text: "I gained a lot of practical knowledge during my internship which will definitely help in my career.",
+    img: "https://picsum.photos/40/40?random=30",
+    name: "Amit Verma",
+  }
 ];
 
+const ReviewsSection = () => {
+  return (
+    <>
+      <div className={styles.reviewsContainer}>
+        <h1 className={styles.heading}>Our Student Testimonials</h1>
 
-const ReviewsSection = ()=>{
-    return(
-        <>
-             
-   <div className={styles.reviewsContainer}>
-      <h1 className={styles.heading}>Our Student Testimonials</h1>
+        <ul className={styles.reviewsList}>
+          {reviewsData.map((review, index) => (
+            <li className={styles.reviewCard} key={index}>
+              <h4 className={styles.reviewHeader}>
+                <span className={styles.reviewTitle}>{review.title}</span>
+                <span className={styles.reviewRating}>{review.rating}</span>
+              </h4>
+              <p className={styles.reviewText}>{review.text}</p>
+              <div className={styles.writerContainer}>
+                <img
+                  src={review.img}
+                  alt={review.name}
+                  className={styles.userImg}
+                />
+                <p className={styles.writerName}>{review.name}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
 
-      <ul className={styles.reviewsList}>
-        {reviewsData.map((review, index) => (
-          <li className={styles.reviewCard} key={index}>
-            <h4 className={styles.reviewHeader}>
-              <span className={styles.reviewTitle}>{review.title}</span>
-              <span className={styles.reviewRating}>{review.rating}</span>
-            </h4>
-            <p className={styles.reviewText}>{review.text}</p>
-            <div className={styles.writerContainer}>
-              <img
-                src={review.img}
-                alt={review.name}
-                className={styles.userImg}
-              />
-              <p className={styles.writerName}>{review.name}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      <div className={styles.moreReviews}>
-        <a
-          href="https://www.google.com/search?q=ziion+technology#lrd=0x390fef7b48418d6b:0x8b24ec380ed85440,1"
-          className={styles.readMoreBtn}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Read More Reviews
-        </a>
+        <div className={styles.moreReviews}>
+          <a
+            href="https://www.google.com/search?q=ziion+technology#lrd=0x390fef7b48418d6b:0x8b24ec380ed85440,1"
+            className={styles.readMoreBtn}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read More Reviews
+          </a>
+        </div>
       </div>
-    </div>
-         </>
-    )
+    </>
+  )
 }
-export default ReviewsSection
+export default ReviewsSection;
