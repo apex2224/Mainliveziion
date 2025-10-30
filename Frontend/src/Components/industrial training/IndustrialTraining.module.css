@@ -330,15 +330,20 @@
       var(--color-grad-orange) 75.82%
     )
     border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
+  
+  /* ✅ Add both WebKit and standard mask properties for compatibility */
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
+
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
   z-index: 3;
 }
+
 
 /* Upgraded hover effect */
 .trainingCard:hover {

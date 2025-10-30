@@ -83,35 +83,27 @@
 
 /* --- Student Buttons (Gradient Border - Solid Fill) --- */
 .studentButton {
-  /* --- NEW: Solid white fill --- */
-  background-color: #ffffff; /* Fallback for older browsers */
-  color: #222; /* Dark icon */
-
-  /* --- UPDATED GRADIENT BORDER (2px) --- */
-  border: 2px solid transparent; /* Set border width, 2px is more visible */
+  /* ... (styles for background, border, etc. remain the same) ... */
+  background-color: #ffffff; 
+  color: #222; 
+  border: 2px solid transparent; 
   background-image: linear-gradient(#ffffff, #ffffff),
-	/* 1. Inner fill (solid white) */
-	  linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%); /* 2. Outer border (the gradient) */
+    linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%); 
   background-origin: border-box;
   background-clip: padding-box, border-box;
 
-  height: 3rem;
-  width: 3rem;
+  /* --- ADJUST ALL THREE VALUES --- */
+  height: 4rem; /* Example: Increased button height */
+  width: 4rem;  /* Example: Increased button width */
+  font-size: 4rem; /* Example: Large icon, but small enough to fit */
+
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-}
-
-.studentButton:hover {
-  /* No background-image change needed */
-  color: #2c52be; /* Change icon color on hover */
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 /* --- END Student Buttons --- */
 
@@ -366,9 +358,9 @@
 
   /* Mobile Student Buttons */
   .studentButton {
-	height: 2.8rem;
-	width: 2.8rem;
-	font-size: 1.1rem;
+	height: 3.6rem;
+	width: 3.6rem;
+	font-size: 5rem;
   }
 
   .playButton {
