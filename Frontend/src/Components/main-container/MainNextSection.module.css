@@ -1,517 +1,323 @@
-/* Main container */
+/* Card Container */
 .cardContainer {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap; /* allow wrapping */
-  gap: 1.5rem; /* spacing between cards */
-  padding: 2rem 1rem;
-  justify-content: center;
-  overflow: hidden;
-  background: #0e0e0e;
-  transition: transform 0.2s ease-in-out;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Card styles */
 .card {
-  background-color: #222121;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  min-height: 420px;
-  width: calc(33.333% - 1rem); /* 3 cards in row for large screens */
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease-in-out;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Image */
 .cardImage {
   width: 100%;
-  height: 200px;
+  height: 220px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .cardImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Text & button */
+.card:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .cardTitle {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: white;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
 }
 
 .description {
   font-size: 1rem;
-  color: #ccc;
-  margin-bottom: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  flex: 1;
 }
 
-.button {
-  background-color: transparent;
+.headerBtn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border: 1px solid white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: background-color 0.2s ease-in-out;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
 }
 
-.button:hover {
-  cursor: grab;
-  background-color: rgba(255, 255, 255, 0.1);
+.headerBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
 }
 
-/* Responsiveness */
-@media (max-width: 1024px) {
-  .card {
-    width: calc(50% - 1rem); /* 2 cards per row */
-  }
-}
-
-@media (max-width: 600px) {
-  .card {
-    width: 100%; /* 1 card per row */
-    min-height: auto;
-  }
-}
-
-/* hero Third Section */
-
+/* Category Section */
 .heroThirdSection {
-  width: 100%;
-  background: #0e0e0e;
-  padding: 2rem 0;
+  background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+  padding: 5rem 2rem;
 }
 
 .industry {
-  display: flex;
-  gap: 2rem;
-  width: 80%;
-  margin: auto;
-  padding: 20px;
-  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 3rem;
+  align-items: start;
 }
 
 .sidebar {
-  width: 300px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 2rem;
 }
 
 .category {
   display: flex;
-  padding: 1.5rem;
-  transition: 0.5s ease-in-out;
   align-items: center;
-}
-.category:hover {
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  border: 2px solid transparent;
+}
+
+.category:hover {
+  background: #f7fafc;
+  transform: translateX(4px);
+}
+
+.category.active {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border-color: #667eea;
 }
 
 .icon {
-  font-size: 1.5rem;
-  margin-right: 10px;
+  font-size: 2rem;
+  flex-shrink: 0;
 }
 
 .categoryTitle {
-  margin: 0;
-  color: white;
-  font-size: 1.2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.25rem;
 }
 
 .categorySubtitle {
-  margin: 5px 0 0;
-  color: white;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
 }
 
 .mainContent {
-  flex: 1;
-  background-color: #222121;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
-  border-radius: 20px;
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .title {
-  color: white;
-  font-size: 2rem;
-  margin-top: 0;
-}
-
-.description {
-  color: white;
-  line-height: 1.5;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .illustration {
-  margin-top: 20px;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .industryimage {
   width: 100%;
-  max-width: 500px;
-  height: 300px;
-  object-fit: contain;
-  transition: 2s ease-in-out;
+  height: 50%;
   display: block;
-  margin: 0 auto;
 }
 
-.active {
-  border: 1px solid white;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .industry {
-    flex-direction: column;
-    width: 95%;
-  }
-
-  .sidebar {
-    width: 100%;
-  }
-
-  .mainContent {
-    width: 100%;
-  }
-
-  .industryimage {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 496px) {
-  .category {
-    padding: 1rem;
-  }
-}
-
-/* Base (Desktop / Large screens) */
+/* CTA Hero Section */
 .wpHeroSection {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.wpImageWrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.wpHeroImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.wpOverlayContent {
-  position: relative;
-  z-index: 2;
-  color: white;
-  text-align: center;
-  padding: 20vh 10% 0;
-}
-
-.wpWelcomeText {
-  background: rgba(0, 0, 0, 0.7);
-  display: inline-block;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
-
-.wpTitle {
-  font-size: 48px;
-  line-height: 1.2;
-  font-weight: bold;
-  color: white;
-}
-
-.wpDescription {
-  margin-top: 20px;
-  font-size: 18px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  opacity: 0.85;
-  color: white;
-}
-
-.wpIconBox {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-}
-
-.herobutton {
-  background-color: rgba(0, 0, 0, 0.4);
-  color: white;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.herobutton:hover,
-.herobutton:active {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-}
-
-/* =================== Responsive =================== */
-
-/* Tablets */
-@media (max-width: 1024px) {
-  .wpOverlayContent {
-    padding: 15vh 5% 0;
-  }
-
-  .wpTitle {
-    font-size: 36px;
-  }
-
-  .wpDescription {
-    font-size: 16px;
-    max-width: 90%;
-  }
-
-  .herobutton {
-    padding: 10px 24px;
-    font-size: 0.95rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .wpOverlayContent {
-    padding: 12vh 5% 0;
-  }
-
-  .wpWelcomeText {
-    font-size: 12px;
-    padding: 8px 16px;
-  }
-
-  .wpTitle {
-    font-size: 28px;
-    line-height: 1.3;
-  }
-
-  .wpDescription {
-    font-size: 15px;
-    margin-top: 15px;
-  }
-
-  .wpIconBox {
-    margin-top: 30px;
-  }
-
-  .herobutton {
-    width: 100%;
-    max-width: 250px;
-    padding: 12px 20px;
-    font-size: 0.9rem;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .wpOverlayContent {
-    padding: 10vh 5% 0;
-  }
-
-  .wpTitle {
-    font-size: 22px;
-  }
-
-  .wpDescription {
-    font-size: 14px;
-  }
-
-  .herobutton {
-    font-size: 0.85rem;
-    padding: 10px 16px;
-  }
-}
-
-/* our team  */
-.ourTeams_section {
-  display: flex;
-  align-items: center;
-  background-color: #0e0e0e;
-  padding: 4rem 2rem;
-  color: white;
-  flex-wrap: wrap;
-}
-
-.ourTeams_text {
-  flex: 1 1 250px;
-}
-
-.subheading {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #a0a0a0;
-}
-
-.heading {
-  font-size: 2.5rem;
-  font-weight: bold;
-  line-height: 1.2;
-}
-
-.heading span {
-  font-weight: normal;
-}
-
-.scrollButtons {
-  display: flex;
-  gap: 0.8rem;
-  margin-top: 2rem;
-}
-
-.scrollBtn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 1.5rem;
-
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.ourTeams_cardsWrapper {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 1rem;
-  flex: 2 1 400px;
-}
-
-.ourTeams_cardsWrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.ourTeams_card {
-  flex: 0 0 280px;
-  background: transparent;
-  text-align: center;
-}
-
-.imageWrapper {
-  position: relative;
-}
-
-.imageWrapper img {
-  width: 100%;
-  height: auto;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.plusIcon {
-  position: absolute;
-  bottom: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #c3f3f0;
-  color: black;
-  font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid #ddd;
-}
-
-.ourTeams_card h3 {
-  margin-top: 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.ourTeams_card p {
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .ourTeams_section {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .ourTeams_cardsWrapper {
-    justify-content: center;
-  }
-
-  .ourTeams_text {
-    order: -1;
-  }
-}
-
-.headerBtn {
+  background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+  padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
-  border: 1px solid white;
-  color: white;
-  background-color: transparent;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-size: 1rem;
-  z-index: 0;
-  transition: color 0.3s ease;
 }
 
-.headerBtn::before {
+.wpHeroSection::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: white;
-  transform: translateX(-100%); /* Start hidden on left */
-  transition: transform 0.5s ease;
-  z-index: -1;
-  border-radius: 0; /* remove rounding */
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+  opacity: 0.3;
 }
 
-.headerBtn:hover::before {
-  transform: translateX(0);
+.wpOverlayContent {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
-.headerBtn:hover {
+.wpWelcomeText {
+  color: #000000;
+  font-size: 0.875rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.wpTitle {
+  font-size: 3rem;
+  font-weight: 800;
   color: black;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+.highlight {
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wpDescription {
+  font-size: 1.125rem;
+  color: grey;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.wpIconBox {
+  display: flex;
+  justify-content: center;
+}
+
+.wpIconBox .headerBtn {
+  background: #1e3a8a;
+  color: white;
+  font-size: 1.125rem;
+  padding: 1rem 2.5rem;
+}
+
+.wpIconBox .headerBtn:hover {
+  background: #f1f5f9;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .industry {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .wpTitle {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardContainer {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+
+  .heroThirdSection {
+    padding: 3rem 1rem;
+  }
+
+  .mainContent {
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 1.875rem;
+  }
+
+  .wpHeroSection {
+    padding: 4rem 1.5rem;
+  }
+
+  .wpTitle {
+    font-size: 1.75rem;
+  }
+
+  .wpDescription {
+    font-size: 1rem;
+  }
+
+  .category {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardTitle {
+    font-size: 1.5rem;
+  }
+
+  .headerBtn {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .wpTitle {
+    font-size: 1.5rem;
+  }
+
+  .icon {
+    font-size: 1.75rem;
+  }
 }
