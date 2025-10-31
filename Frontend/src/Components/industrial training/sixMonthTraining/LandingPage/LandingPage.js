@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./LandingPage.module.css";
-import Placements from "../../sixMonthTraining/Placements/Placements";
-import TieUpClg from "../../sixMonthTraining/TieUpClg/TieUpClg";
-import GrowthStory from "../../sixMonthTraining/GrowthStory/GrowthStory";
-import FAQ from "../../sixMonthTraining/FAQ/FAQ";
-import CompaniesTieUp from "../../sixMonthTraining/CompaniesTieUp/CompaniesTieUp";
-import Talktoexpert from "../../sixMonthTraining/TalkToExpert/Talktoexpert";
-import Propoasl from "../../sixWeekTraining/Proposal/Proposal";
-import SyllabusCard from "../../sixWeekTraining/Carousel/SyllabusCard";
+
 // IMPORT NEW ICONS for the cube and scroller
 import {
   FaReact,
@@ -19,12 +12,10 @@ import {
   FaJs,
   FaPython,
 } from "react-icons/fa";
-import ProjectShow from "../ProjectShow/ProjectShow";
+
 import Form from "../../../form/Form";
 import GetdemoComponent from "../../../form/Getdemo";
-import Courses from "../../sixWeekTraining/Courses/Courses";
-import PlacedStudent from "../../sixWeekTraining/placedstudent/Placedstudent";
-import ReviewsSection from "../../../reviews/ReviewsSection";
+
 
 const Getdemo = GetdemoComponent;
 
@@ -184,18 +175,6 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <PlacedStudent />
-      <ProjectShow />
-      <SyllabusCard />
-      <Courses />
-      <Placements />
-      <TieUpClg />
-      <GrowthStory />
-      <FAQ />
-      <CompaniesTieUp />
-      <ReviewsSection />
-      <Talktoexpert />
-      <Propoasl />
       {showForm && <Form closeForm={closeForm} />}
       {showDemo && <Getdemo closeForm={closeDemo} />}
     </main>
