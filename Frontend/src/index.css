@@ -1,25 +1,37 @@
-html, body {
+/* 1. Import the font at the very top */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* 2. Modern CSS Reset */
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  padding: 0;
+}
+
+/* 3. Body Defaults */
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   overflow-x: hidden; /* Prevent horizontal scroll */
-   width: 100%;
+  color: #333;
 }
 
-/* Apply justify text alignment to text elements */
-p, span, li, td, th, caption {
-  text-align: justify;
+/* 4. Responsive Media */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
 }
 
+/* 5. Code Font Stack */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
