@@ -1,11 +1,78 @@
 .chatbotContainer {
+  /* 1. Set a clean white base color */
   background-color: #ffffff;
-  min-height: 80vh; 
-  position: relative;
-  padding: 3rem 2rem; 
+  
+  min-height: 80vh;
+  position: relative; /* This is required for the ::before element */
+  padding: 3rem 2rem;
   font-family: Arial, sans-serif;
   text-align: center;
-  overflow: hidden; 
+  overflow: hidden;
+
+  /* --- ALIGNS THE ENTIRE CONTAINER TO THE RIGHT --- */
+  max-width: 1280px; 
+  margin: 0 0 0 auto; /* Sets auto margin on the left, pushing it to the right */
+}
+
+/* 2. Create a new pseudo-element for the gradient */
+.chatbotContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* 3. Apply the gradient to this new layer */
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  
+  /* 4. Apply the opacity to ONLY this layer */
+  opacity: 0.15; /* Very light background gradient */
+  
+  z-index: 1; /* Place it behind the content */
+}
+
+
+/* 5. Ensure all content stays on top of the gradient layer */
+.integrationLabel,
+.mediatordiv,
+.chatbotTitle,
+.placeholderText {
+  position: relative;
+  z-index: 2;
+}
+
+.mediatordiv {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- TEXT COLORS --- */
+.mediatertext {
+  font-size: 2rem;
+  text-align: justify;
+  color: #1f2937;
+}
+
+.chatbotTitle {
+  font-size: 3rem;
+  color: #111827;
+  margin: 0;
+  line-height: 1.2;
+  margin-right: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.placeholderText {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 40rem;
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
 }
 
 .integrationLabel {
@@ -15,37 +82,19 @@
   margin-left: 2rem;
   text-align: justify;
 }
-.mediatordiv {
-  display: flex;
-  justify-content: space-evenly;
-}
-.mediatertext {
-  font-size: 2rem;
-  text-align: justify;
-  color: #1f2937;
-}
-.chatbotTitle {
-  font-size: 3rem;
-  color: #111827;
-  margin: 0;
-  line-height: 1.2;
-  margin-right: 2rem;
-}
+/* --- END TEXT COLOR CHANGES --- */
 
-.placeholderText {
-  font-size: 1.2rem;
-  color: #666;
-  max-width: 40rem;
-  line-height: 1.5;
-}
 
 .integrationGrid {
   position: relative;
-  height: 400px; 
+  height: 400px;
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
-  perspective: 1000px; 
+  perspective: 1000px;
+  z-index: 10; /* Top-most layer for the icons */
+
+  /* --- CENTERING THE ICON GRID WITHIN THE CONTAINER --- */
+  margin: 0 auto; 
 }
 
 .integrationButton {
@@ -54,63 +103,55 @@
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
-  background: #ffffff;
+  background: #ffffff; 
   border: 1px solid #e2e8f0;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   font-size: 1rem;
-  color: #333;
+  color: #333; 
   cursor: pointer;
   transform-style: preserve-3d;
+  transition: all 0.3s ease;
 }
 
-/* --- UPDATED ICON STYLES --- */
+.integrationButton:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
 .icon {
-  font-size: 1.3rem; /* Slightly larger icon */
+  font-size: 1.3rem;
   color: #1a1a3d;
-  margin-right: 0.75rem; /* Added spacing between icon and text */
-  display: flex; /* Helps vertically align the icon */
+  margin-right: 0.75rem;
+  display: flex;
   align-items: center;
 }
-
-/* --- .app class is no longer needed --- */
 
 .appdiv {
   position: absolute;
   height: auto;
-  width: 22rem;
+  width: auto;
   gap: 1rem;
+  z-index: 5; /* Above the ::before, below the grid */
 }
 
-/* --- UPDATED integrationLink --- */
 .integrationLink {
   display: flex;
   align-items: center;
   text-decoration: none;
 }
 
-
 @media (min-width: 768px) {
   .chatbotTitle {
     font-size: 3rem;
   }
   .integrationGrid {
-    height: 450px; 
-  }
-}
-
-@media (min-width: 1024px) {
-  /* No styles needed here anymore */
-}
-
-@media (max-width: 768px) {
-  .chatbotContainer {
-    display: none;
+    height: 450px;
   }
 }
 
 @media (min-width: 1024px) {
   .integrationGrid {
-    height: 500px; 
+    height: 500px;
   }
 }

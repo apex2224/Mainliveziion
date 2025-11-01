@@ -2,414 +2,230 @@
 .contactSection {
   display: flex;
   justify-content: space-between;
-  gap: 3rem;
-  padding: 5rem 3rem;
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  gap: 2rem;
+  padding: 4rem 3rem;
+  background: #ffffff;
   position: relative;
-  overflow: hidden;
-}
-
-.contactSection::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(
-    circle,
-    rgba(0, 119, 255, 0.08) 0%,
-    transparent 70%
-  );
-  animation: pulse 8s ease-in-out infinite;
-}
-
-.contactSection::after {
-  content: "";
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(
-    circle,
-    rgba(247, 147, 30, 0.06) 0%,
-    transparent 70%
-  );
-  animation: pulse 10s ease-in-out infinite reverse;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1) translate(0, 0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.2) translate(20px, -20px);
-    opacity: 0.8;
-  }
 }
 
 /* Form Box */
 .formBox {
   flex: 1;
-  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-  padding: 3rem;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(0, 119, 255, 0.1) inset;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  z-index: 1;
-  border: 1px solid rgba(0, 119, 255, 0.15);
-}
-
-.formBox::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #0077ff 0%, #00aaff 50%, #0077ff 100%);
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-  border-radius: 24px 24px 0 0;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
 }
 
 .formBox:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 80px rgba(0, 119, 255, 0.2),
-    0 0 0 1px rgba(0, 119, 255, 0.3) inset;
-  border-color: rgba(0, 119, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .form input,
 .form select {
   width: 100%;
-  padding: 1rem 1.25rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
+  padding: 0.875rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   background: #ffffff;
-  color: #2d3748;
-  font-size: 1rem;
+  color: #1f2937;
+  font-size: 0.95rem;
   outline: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   font-family: inherit;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .form input::placeholder {
-  color: #a0aec0;
+  color: #9ca3af;
 }
 
 .form input:focus,
 .form select:focus {
-  border-color: #0077ff;
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(0, 119, 255, 0.15),
-    0 4px 20px rgba(0, 119, 255, 0.1);
-  transform: translateY(-2px);
-}
-
-.form input:hover:not(:focus),
-.form select:hover:not(:focus) {
-  border-color: #cbd5e0;
-  background: #fafbfc;
+  border-color: #2c52be;
+  box-shadow: 0 0 0 3px rgba(44, 82, 190, 0.1);
 }
 
 .form select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='9' viewBox='0 0 14 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%230077ff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 1.25rem center;
-  padding-right: 3rem;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
 }
 
 .form select option {
   background: #ffffff;
-  color: #2d3748;
-  padding: 1rem;
+  color: #1f2937;
+  padding: 0.75rem;
 }
 
 .sendBtn,
 .resetBtn {
-  padding: 1rem 2rem;
+  padding: 0.875rem 1.75rem;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
 }
 
 .sendBtn {
-  background: linear-gradient(135deg, #00aaff 0%, #0077ff 100%);
-  color: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 119, 255, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-}
-
-.sendBtn::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.4) 0%,
-    transparent 70%
-  );
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-  border-radius: 50%;
-}
-
-.sendBtn:hover::before {
-  width: 400px;
-  height: 400px;
+  background: #ffffff;
+  color: #1f2937;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#ffffff, #ffffff), 
+                    linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 4px 12px rgba(44, 82, 190, 0.15);
 }
 
 .sendBtn:hover:not(:disabled) {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(0, 119, 255, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(44, 82, 190, 0.25);
+  background-image: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%), 
+                    linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  color: #ffffff;
 }
 
 .sendBtn:active:not(:disabled) {
-  transform: translateY(-1px) scale(1);
+  transform: translateY(0);
 }
 
 .sendBtn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  transform: none;
 }
 
 .resetBtn {
-  background: linear-gradient(145deg, #f1f3f5 0%, #e9ecef 100%);
-  color: #495057;
-  border: 2px solid #dee2e6;
-  margin-left: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  margin-left: 0.75rem;
 }
 
 .resetBtn:hover {
-  background: linear-gradient(135deg, #f7931e 0%, #ff8800 100%);
-  border-color: #f7931e;
-  color: #ffffff;
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(247, 147, 30, 0.35);
+  background: #e5e7eb;
+  border-color: #9ca3af;
 }
 
 /* Info Box */
 .infoBox {
   flex: 1;
-  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-  padding: 3rem;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(247, 147, 30, 0.1) inset;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #2d3748;
-  position: relative;
-  z-index: 1;
-  border: 1px solid rgba(247, 147, 30, 0.15);
-}
-
-.infoBox::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #f7931e 0%, #ff8800 50%, #f7931e 100%);
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-  border-radius: 24px 24px 0 0;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+  transition: all 0.3s ease;
 }
 
 .infoBox:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 80px rgba(247, 147, 30, 0.2),
-    0 0 0 1px rgba(247, 147, 30, 0.3) inset;
-  border-color: rgba(247, 147, 30, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .subTitle {
-  color: #f7931e;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  margin-bottom: 1.5rem;
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.75rem;
-}
-
-.subTitle::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #f7931e 0%, #ff8800 100%);
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(247, 147, 30, 0.3);
 }
 
 .desc {
   margin-bottom: 2rem;
-  color: #4a5568;
-  line-height: 1.8;
-  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
 
 .contactItem {
   display: flex;
   align-items: flex-start;
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
-  padding: 1.25rem;
-  background: #ffffff;
-  border-radius: 12px;
-  border: 2px solid #f0f4f8;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.contactItem::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, #0077ff 0%, #f7931e 100%);
-  transform: scaleY(0);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: bottom;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .contactItem:hover {
-  transform: translateX(8px);
-  background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
-  border-color: #0077ff;
-  box-shadow: 0 8px 24px rgba(0, 119, 255, 0.15);
-}
-
-.contactItem:hover::before {
-  transform: scaleY(1);
-  transform-origin: top;
+  background: #f3f4f6;
+  transform: translateX(4px);
 }
 
 .icon {
-  font-size: 1.75rem;
-  color: #0077ff;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: rgba(0, 119, 255, 0.1);
-  padding: 0.75rem;
-  border-radius: 10px;
+  font-size: 1.5rem;
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.5rem;
   flex-shrink: 0;
 }
 
-.contactItem:hover .icon {
-  color: #f7931e;
-  background: rgba(247, 147, 30, 0.15);
-  transform: rotate(10deg) scale(1.1);
-  box-shadow: 0 8px 20px rgba(247, 147, 30, 0.25);
-}
-
 .contactItem h5 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.3px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.35rem;
 }
 
 .contactItem p {
-  font-size: 0.95rem;
-  color: #718096;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
   margin: 0;
 }
 
 /* Socials */
 .socials {
   margin-top: 2rem;
-  padding: 1.75rem;
-  background: #ffffff;
-  border-radius: 16px;
-  border: 2px solid #f0f4f8;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.socials::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #0077ff 0%, #f7931e 100%);
+  padding: 1.5rem;
+  background: #f9fafb;
+  border-radius: 12px;
 }
 
 .socials > p {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #2d3748;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
   margin-bottom: 1rem;
-  letter-spacing: 0.5px;
 }
 
 .icons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .icons a {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 119, 255, 0.08);
-  border-radius: 12px;
-  color: #0077ff;
-  font-size: 1.35rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid rgba(0, 119, 255, 0.15);
+  background: #ffffff;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
   position: relative;
   overflow: hidden;
 }
@@ -417,32 +233,31 @@
 .icons a::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: linear-gradient(135deg, #0077ff 0%, #f7931e 100%);
-  transform: translate(-50%, -50%);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 50%;
-}
-
-.icons a:hover::before {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-}
-
-.icons a:hover {
-  transform: translateY(-6px) rotate(5deg) scale(1.1);
-  box-shadow: 0 12px 32px rgba(247, 147, 30, 0.3);
-  color: white;
-  border-color: transparent;
+  inset: 0;
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .icons a svg {
   position: relative;
   z-index: 1;
+  transition: color 0.3s ease;
+  color: #6b7280;
+}
+
+.icons a:hover::before {
+  opacity: 1;
+}
+
+.icons a:hover svg {
+  color: #ffffff;
+}
+
+.icons a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(44, 82, 190, 0.25);
+  border-color: transparent;
 }
 
 /* Responsive */
@@ -455,7 +270,7 @@
 
   .formBox,
   .infoBox {
-    padding: 2.5rem;
+    padding: 2rem;
   }
 }
 
@@ -466,20 +281,20 @@
 
   .formBox,
   .infoBox {
-    padding: 2rem;
-    border-radius: 20px;
+    padding: 1.75rem;
+    border-radius: 14px;
   }
 
   .form input,
   .form select {
-    padding: 0.875rem 1rem;
-    font-size: 0.95rem;
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
   }
 
   .sendBtn,
   .resetBtn {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
   }
 
   .resetBtn {
@@ -487,13 +302,13 @@
   }
 
   .icon {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
 
   .icons a {
-    width: 44px;
-    height: 44px;
-    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.15rem;
   }
 }
 
@@ -505,19 +320,19 @@
   .formBox,
   .infoBox {
     padding: 1.5rem;
-    border-radius: 18px;
+    border-radius: 12px;
   }
 
   .form input,
   .form select {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .sendBtn,
   .resetBtn {
     padding: 0.75rem 1.25rem;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
   }
 
   .resetBtn {
@@ -526,16 +341,16 @@
   }
 
   .contactItem {
-    padding: 1rem;
+    padding: 0.875rem;
   }
 
   .socials {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .icons a {
-    width: 40px;
-    height: 40px;
-    font-size: 1.15rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
   }
 }
