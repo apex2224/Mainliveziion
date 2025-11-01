@@ -57,21 +57,6 @@
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-
-/* --- REMOVED --- */
-/* The :nth-child rules for --tilt are no longer needed */
-/*
-.reviewCard:nth-child(odd) {
-  --tilt: 2deg;
-}
-.reviewCard:nth-child(even) {
-  --tilt: -2deg;
-}
-.reviewCard:nth-child(3n) {
-  --tilt: 1deg;
-}
-*/
-
 /* Moving single-line border on hover */
 .reviewCard::before {
   content: "";
@@ -147,9 +132,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  /* padding-top: 0.5rem; */ /* --- REMOVED --- */
   margin-top: 1.5rem; /* --- NEW --- */
-  /* border-top: 1px solid #e2e8f0; */ /* --- REMOVED --- */
 }
 
 .userImg {
@@ -176,7 +159,7 @@
   display: inline-block;
   padding: 0.6rem 1.2rem;
   background: #ffffff; /* Solid background */
-  color: #3b82f6; /* Solid text color */
+  color: #333c8f; /* Solid text color */
   text-decoration: none;
   border-radius: 6px;
   font-weight: 500;
@@ -192,7 +175,6 @@
   /* ============================= */
 }
 
-
 /* Adjusting the ::before for hover effect */
 .readMoreBtn::before {
   content: "";
@@ -201,7 +183,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #3b82f6; /* Solid blue hover background */
+  background: #333c8f; /* Solid blue hover background */
   transform: translateX(-100%);
   transition: transform 0.5s ease;
   z-index: -1;
@@ -210,7 +192,7 @@
 
 .readMoreBtn:hover {
   color: #ffffff; /* White text on hover */
-  background: #3b82f6; /* Ensure background is solid blue on hover */
+  background: #333c8f; /* Ensure background is solid blue on hover */
 }
 
 .readMoreBtn:hover::before {
@@ -219,10 +201,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  /* .reviewCard { */ /* --- REMOVED --- */
-    /* --tilt: 0deg; */ /* No longer needed */
-  /* } */
-
   .heading {
     font-size: 1.5rem;
   }

@@ -1,33 +1,27 @@
-/* --- Animated Gradient Text (Using Your Colors) --- */
+/* --- Static Gradient Text (Using Your Colors) --- */
 .animated-user-gradient-text {
-  background: linear-gradient(
-    90deg, 
-    #2c52be 0%, 
-    #ff822b 50%,
-    #2c52be 100%
-  );
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
-  animation: text-flow 4s linear infinite;
+  /* Animation properties removed as requested gradient is static */
 }
 
-/* --- Animation Keyframes --- */
-@keyframes text-flow {
+/* --- Animation Keyframes (No longer used, can be removed) --- */
+/* @keyframes text-flow {
   from {
     background-position: 0% 50%;
   }
   to {
     background-position: 100% 50%;
   }
-}
-
+} 
+*/
 
 /* --- Main Component Styles (Light Theme) --- */
 .features-section {
   padding: 80px 0;
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   font-family: 'Poppins', 'Arial', sans-serif;
 }
 
@@ -42,33 +36,33 @@
 
 .feature-header {
   text-align: center;
-  margin-bottom: 3rem; 
+  margin-bottom: 3rem;
   grid-column: 1 / -1;
 }
 
 .feature-header h2 {
   font-size: 2.8rem;
   font-weight: 700;
-  color: #2c52be; /* Fallback color */
+  color: #333c8f; /* Fallback color */
   margin-bottom: 10px;
   transition: all 1s ease;
 }
 
 /* --- Card Styles (Unchanged) --- */
 .feature-box {
-  background-color: #ffffff; 
+  background-color: #ffffff;
   padding: 30px;
   text-align: center;
-  min-height: 380px; 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); 
+  min-height: 380px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease-in-out;
-  border-top-right-radius: 30px; 
+  border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: none; 
+  border: none;
 }
 
 .feature-box:hover {
@@ -78,10 +72,8 @@
 
 /* --- Icon Styles --- */
 .feature-icon {
-  /* --- UPDATED --- */
-  background-color: #eaf5fc; /* Back to light blue background */
-
-  font-size: 2.5rem; 
+  background-color: #333c8f15;
+  font-size: 2.5rem;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -93,20 +85,17 @@
 }
 
 .feature-icon i {
-  /* --- UPDATED --- */
-  color: #3498db; /* Back to accent blue color */
+  color: #333c8f;
   transition: transform 0.3s ease;
 }
 
 .feature-box:hover .feature-icon {
-  /* --- UPDATED --- */
-  background-color: #3498db; /* Invert on hover */
-  transform: scale(1.1); 
+  background-color: #333c8f;
+  transform: scale(1.1);
 }
 
 .feature-box:hover .feature-icon i {
-  /* --- UPDATED --- */
-  color: #ffffff; /* Icon becomes white */
+  color: #ffffff;
   transform: rotate(15deg);
 }
 
@@ -114,27 +103,19 @@
 .feature-box h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2c3e50; 
-  margin-bottom: 15px; 
+  color: #2c3e50;
+  margin-bottom: 15px;
 }
 
 .feature-box p {
   font-size: 1rem;
-  color: #555; 
-  line-height: 1.6; 
+  color: #555;
+  line-height: 1.6;
   padding: 0 10px;
-  flex-grow: 1; /* Pushes button down */
+  flex-grow: 1;
 }
 
 /* --- Responsive Media Queries (Unchanged) --- */
-@media (max-width: 1440px) { /* ... */ }
-@media (max-width: 1200px) { /* ... */ }
-@media (max-width: 992px) { /* ... */ }
-@media (max-width: 768px) { /* ... */ }
-@media (max-width: 600px) { /* ... */ }
-@media (max-width: 400px) { /* ... */ }
-@media (max-width: 399px) { /* ... */ }
-/* (All media queries are unchanged, kept here for completeness) */
 @media (max-width: 1440px) {
   .feature-container {
     max-width: 1100px;
@@ -251,34 +232,28 @@
 
 /* --- Modern "Ghost" Button Style --- */
 .headerBtn {
-  /* --- UPDATED --- */
-  background-color: transparent; /* 1. Transparent background */
-  color: #3498db;             /* 2. Blue text */
-  border: 2px solid #3498db;   /* 3. Blue border */
-  
-  padding: 10px 30px; /* Readjusted padding */
+  background-color: transparent;
+  color: #333c8f;
+  border: 2px solid #333c8f;
+  padding: 10px 30px;
   font-size: 1rem;
-  /* 4. Removed font-weight: 600; */
-  border-radius: 50px; 
+  border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out; /* 5. This will transition the background/color */
+  transition: all 0.3s ease-in-out;
   text-decoration: none;
-  margin-top: auto; 
+  margin-top: auto;
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
 .headerBtn:hover {
-  /* --- UPDATED --- */
-  /* This is the new "modern transition" */
-  background-color: #3498db; /* 6. Fills with blue on hover */
-  color: #ffffff;             /* 7. Text becomes white */
-  
-  transform: translateY(-3px); /* Keeps the subtle lift */
-  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); /* Keeps the glow */
+  background-color: #333c8f;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(51, 60, 143, 0.3);
 }
 
 .headerBtn::before {
- content: none;
+  content: none;
 }

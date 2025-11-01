@@ -1,4 +1,4 @@
-// src/components/Card.jsx
+// src/components/Card.jsx (or MainNextsection.js)
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainNextSection.module.css";
@@ -147,9 +147,11 @@ const MainNextSection = () => {
               <span className={styles.icon}>🧠</span>
               <div>
                 <h3 className={styles.categoryTitle}>Data Science</h3>
+                {/* --- CORRECTED CODE BLOCK --- */}
                 <p className={styles.categorySubtitle}>
                   Analyze data and build predictive models
                 </p>
+                {/* --- END CORRECTED CODE BLOCK --- */}
               </div>
             </div>
 
@@ -184,6 +186,8 @@ const MainNextSection = () => {
                 src={categoryContent[selectedCategory].image}
                 alt={`${selectedCategory} illustration`}
                 className={styles.industryimage}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
