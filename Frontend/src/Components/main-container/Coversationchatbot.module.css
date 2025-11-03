@@ -9,9 +9,11 @@
   text-align: center;
   overflow: hidden;
 
-  /* --- ALIGNS THE ENTIRE CONTAINER TO THE RIGHT --- */
-  max-width: 1280px; 
-  margin: 0 0 0 auto; /* Sets auto margin on the left, pushing it to the right */
+  /* --- FIX 1: REMOVED max-width and margin-left: auto --- */
+  /* This allows the container to be full-width */
+  margin: 0; 
+  /* max-width: 1280px;  <- REMOVED */
+  /* margin: 0 0 0 auto; <- REMOVED */
 }
 
 /* 2. Create a new pseudo-element for the gradient */
@@ -153,5 +155,13 @@
 @media (min-width: 1024px) {
   .integrationGrid {
     height: 500px;
+  }
+}
+
+/* --- FIX 2: HIDE COMPONENT ON MOBILE --- */
+/* This will hide the entire container on screens 767px wide or less */
+@media (max-width: 767px) {
+  .chatbotContainer {
+    display: none;
   }
 }
