@@ -1,305 +1,370 @@
-/* ============================================= */
-/* THEME & LAYOUT VARIABLES - PROFESSIONAL DARK
-/* ============================================= */
-.footer {
-  /* --- Professional Dark Theme --- */
-  --c-bg: #121212; /* Deep charcoal, not pure black */
-  --c-bg-section: #1e1e1e; /* Slightly lighter gray for sections */
-  --c-border: #2c2c2c; /* Subtle, dark border */
-  --c-text-primary: #ffffff; /* Pure white for headings & logo */
-  --c-text-secondary: #aaaaaa; /* Muted light gray for text */
-  --c-accent: #007aff; /* Professional, clean blue (Apple's) */
-  --c-accent-hover: #0056b3; /* Darker blue for hover */
-  --c-heart: #ff6b6b;
-
-  --max-width: 1280px;
-  --radius: 8px;
-  --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* ============ MAIN CONTAINER ============ */
+.footerSection {
+  background: black;
+  position: relative;
+  /* Added for consistent, modern font */
+  font-family: 'Poppins', sans-serif;
 }
 
-/* ============================================= */
-/* BASE & STRUCTURE
-/* ============================================= */
-.footer {
-  background-color: var(--c-bg);
-  color: var(--c-text-secondary);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px; /* Slightly larger base font */
-  line-height: 1.6;
+/* ============ GLARE HEADING ============ */
+.glareText {
+  font-size: clamp(2rem, 10vw, 6rem);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: clamp(2px, 0.5vw, 4px);
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  color: transparent;
+  background: linear-gradient(to right, #444 0%, #444 40%, #fff 50%, #444 60%, #444 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: glare 4s infinite ease-in-out;
 }
 
-.sectionWrapper {
-  width: 100%;
-  border-top: 1px solid var(--c-border);
+@keyframes glare {
+  0% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 4rem 2rem;
+/* ============ CTA BOX ============ */
+.footerCta {
+  border-bottom: 1px solid #373636;
 }
 
-/* ============================================= */
-/* LOGO & ABOUT
-/* ============================================= */
-.aboutColumn {
-  padding-right: 2rem;
-}
-
-.logo {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--c-text-primary);
-  margin-bottom: 1.25rem;
-}
-
-.footerText {
-  margin-bottom: 1.5rem;
-  max-width: 350px;
-}
-
-/* ============================================= */
-/* MAIN GRID & LINK COLUMNS
-/* ============================================= */
-.gridContainer {
-  display: grid;
-  /* 5 columns: About, Links, Links, Links, Newsletter */
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
-  gap: 2rem;
-}
-
-.footerHeading {
-  color: var(--c-text-primary);
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 1.25rem 0;
+.singleCta {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  color: white;
 }
 
-.footerColumn ul {
-  list-style: none;
+.ctaAlignSmall {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.singleCta i {
+  color: rgba(79, 226, 98, 0.43);
+  font-size: 30px;
+  margin-right: 0.9rem;
+  /* Added modern transition */
+  transition: transform 0.3s ease;
+}
+
+/* Added modern hover effect */
+.singleCta:hover i {
+  transform: scale(1.1);
+}
+
+/* ============ CTA TEXT ============ */
+.ctaText h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.ctaText span {
+  color: white;
+  font-size: 18px;
+}
+
+/* ============ FOOTER MAIN CONTENT ============ */
+.footerContent {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ WIDGETS ============ */
+.footerWidget {
+  margin-top: 2rem;
+}
+
+.footerLogo img {
+  max-width: 200px;
+}
+
+.footerText p {
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #7e7e7e;
+  line-height: 28px;
+}
+
+/* ============ SOCIAL ICONS ============ */
+.footerSocialIcon span {
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+
+.footerSocialIcon a {
+  color: #fff;
+  font-size: 16px;
+  margin-right: 15px;
+  text-decoration: none;
+  /* Added modern transition */
+  transition: transform 0.3s ease;
+}
+
+/* Added modern hover effect */
+.footerSocialIcon a:hover {
+  transform: translateY(-3px);
+}
+
+.footerSocialIcon i {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Social Icon Backgrounds */
+.facebookBg {
+  background: #3B5998;
+}
+
+.twitterBg {
+  background: #55ACEE;
+}
+
+.googleBg {
+  background: #DD4B39;
+}
+
+.linkedinBg {
+  background: #0077B5;
+}
+
+.instagramBg {
+  background: #E4405F;
+}
+
+/* ============ HEADINGS ============ */
+.footerWidgetHeading h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.footerWidgetHeading h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: rgb(130, 186, 235);
+}
+
+/* ============ LINK STYLES ============ */
+.footerWidget ul {
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  list-style: none;
 }
 
-.footerColumn a {
-  color: var(--c-text-secondary);
+.footerWidget ul li {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  margin-bottom: 12px;
+}
+
+.footerWidget ul li a {
+  color: #878787;
+  text-transform: capitalize;
   text-decoration: none;
   position: relative;
-  transition: color var(--transition);
+  display: inline-block;
+  transition: color 0.3s ease;
 }
 
-.footerColumn a:hover {
-  color: var(--c-accent);
+.footerWidget ul li a:hover {
+  color: rgb(130, 186, 235);
 }
 
-/* ============================================= */
-/* NEWSLETTER WIDGET
-/* ============================================= */
-.newsletterWrapper h3 {
-  color: var(--c-text-primary);
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 1.25rem 0;
+.footerWidget ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 2px;
+  background-color: rgb(130, 186, 235);
+  width: 0;
+  transition: width 300ms ease;
 }
 
-.newsletterText {
-  margin-bottom: 1.5rem;
-  font-size: 14px;
+.footerWidget ul li a:hover::after {
+  width: 100%;
 }
 
-.inputGroup {
-  display: flex;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--c-border);
-  background-color: var(--c-bg-section);
-  transition: border-color var(--transition), box-shadow var(--transition);
+/* ============ COPYRIGHT ============ */
+.copyrightArea {
+  background: #202020;
+  padding: 25px 0;
 }
 
-.inputGroup:focus-within {
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
-}
-
-.newsletterInput {
-  flex-grow: 1;
-  border: none;
-  padding: 0.75rem 1rem;
-  font-size: 14px;
-  background-color: transparent;
-  color: var(--c-text-primary);
-  outline: none;
-}
-
-.newsletterButton {
-  border: none;
-  background-color: var(--c-accent);
-  color: white;
-  padding: 0 1.25rem;
-  cursor: pointer;
-  font-size: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color var(--transition);
-}
-
-.newsletterButton:hover {
-  background-color: var(--c-accent-hover);
-}
-
-/* ============================================= */
-/* BOTTOM BAR (LEGAL & SOCIAL)
-/* ============================================= */
-.footerBottomWrapper {
-  background-color: var(--c-bg-section);
-  border-top: 1px solid var(--c-border);
-}
-
-.footerBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  font-size: 13px;
-}
-
-.copyright {
+.copyrightText {
   margin: 0;
+  font-size: 14px;
+  color: #878787;
 }
 
-.legalLinks {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.legalLinks a {
-  color: var(--c-text-secondary);
+.copyrightText a {
+  color: rgb(130, 186, 235);
   text-decoration: none;
-  transition: color var(--transition);
+}
+.copyrightText a:hover {
+  color: #fff;
 }
 
-.legalLinks a:hover {
-  color: var(--c-text-primary);
-}
-
-.socialIcons {
-  display: flex;
-  gap: 1rem;
-}
-
-.socialIcons a {
-  color: var(--c-text-secondary);
-  font-size: 1.25rem;
-  transition: color var(--transition), transform var(--transition);
-}
-
-.socialIcons a:hover {
-  color: var(--c-text-primary);
-  transform: translateY(-2px);
-}
-
-/* ============================================= */
-/* MOBILE RESPONSIVE & ACCORDION
-/* ============================================= */
-.accordionIcon {
-  display: none; /* Hidden on desktop */
-}
-
-@media (max-width: 992px) {
-  .gridContainer {
-    /* Stack About/Newsletter, then link columns */
-    grid-template-columns: 1fr;
-    gap: 0;
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1200px) {
+  .footerSocialIcon a {
+    white-space: nowrap;
+    margin-right: 10px;
   }
-  .aboutColumn {
-    padding-right: 0;
-    margin-bottom: 2rem;
-    text-align: center;
+
+  .singleCta i {
+    font-size: 1.5rem;
+    margin-top: 0;
   }
-  .newsletterWrapper {
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .glareText {
+    font-size: clamp(2rem, 9vw, 4rem);
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .ctaText span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 767px) {
+  .ctaText {
+    margin-left: 0.2rem;
+    margin-top: 0.7rem;
+  }
+
+  .footerWidget {
     margin-top: 2rem;
-    grid-row: 1; /* Move newsletter to the top on mobile */
-    text-align: center;
+  }
+
+  .glareText {
+    font-size: clamp(2rem, 9vw, 4rem);
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .footerColumn {
-    border-bottom: 1px solid var(--c-border);
-  }
-  /* Don't apply border to the main 'about' column */
-  .aboutColumn {
-    border-bottom: none;
+@media (max-width: 334px) {
+  .footerSocialIcon i {
+    height: 35px;
+    width: 35px;
+    line-height: 38px;
   }
 
-  .footerHeading {
-    cursor: pointer;
-    padding: 1rem 0;
-    margin: 0;
-    text-align: left;
+  .footerWidget {
+    margin-top: 1rem;
   }
+
+  .ctaAlignSmall {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ============================================= */
+/* MOBILE RESPONSIVE & ACCORDION (CORRECTED STYLES)
+/* ============================================= */
+
+/* 1. Hide the accordion icon by default on desktop */
+.accordionIcon {
+  display: none; 
+  color: #fff; 
+  font-size: 1.25rem;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Apply all accordion logic only on mobile screens (max-width: 768px) */
+@media (max-width: 768px) {
+  
+  /* Make the heading a clickable flex container */
+  .footerWidgetHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0; /* Remove bottom margin when collapsed */
+    padding: 1rem 0; /* Add padding for a better tap target */
+    -webkit-tap-highlight-color: transparent; 
+  }
+
+  /* Hide the heading's underline on mobile */
+  .footerWidgetHeading h3::before {
+    display: none;
+  }
+  
+  /* Reset h3 margin for mobile */
+  .footerWidgetHeading h3 {
+    margin-bottom: 0;
+  }
+
+  /* Show the icon on mobile */
   .accordionIcon {
     display: inline-block;
-    color: var(--c-text-secondary);
-    transition: transform var(--transition);
   }
+
+  /* Rotate the icon when the accordion is open */
   .accordionIconOpen {
     transform: rotate(180deg);
   }
+
+  /* This class is on the <ul> by default */
   .accordionContent {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    transition: max-height 0.35s ease-out, padding-top 0.35s ease-out;
     padding: 0;
+    margin: 0;
+    list-style: none;
+    float: none; 
+    width: 100%;
   }
+
+  /* Reset li styles for accordion */
+  .footerWidget ul li {
+    width: 100%;
+    float: none;
+    margin-bottom: 12px;
+  }
+  
+  .footerWidget ul li:first-child {
+    margin-top: 0;
+  }
+  
+  /* This class is added on click to open the accordion */
   .accordionContentOpen {
-    padding: 0.5rem 0 1.5rem 0;
-    max-height: 500px;
+    max-height: 100vh; /* Use 100vh for a robust max height */
+    padding-top: 1.5rem; /* Add spacing back */
   }
-
-  /* Stack the bottom bar */
-  .footerBottom {
-    flex-direction: column-reverse; /* Copyright at bottom */
-    gap: 1.5rem;
-  }
-  .legalLinks {
-    gap: 1rem;
-    font-size: 12px;
-  }
-}
-
-/* Badge styles (unchanged) */
-.badge {
-  margin-left: 0.5rem;
-  padding: 3px 10px;
-  border-radius: 99px;
-  font-size: 10px;
-  font-weight: 700;
-  vertical-align: middle;
-  text-transform: uppercase;
-}
-.new {
-  background-color: rgba(0, 122, 255, 0.15);
-  color: var(--c-accent);
-}
-.live {
-  background-color: rgba(255, 107, 107, 0.15);
-  color: var(--c-heart);
-}
-.hiring {
-  background-color: rgba(63, 185, 80, 0.15);
-  color: #3fb950;
-}
-.redeem {
-  background-color: rgba(255, 165, 0, 0.15);
-  color: #ffa500;
 }

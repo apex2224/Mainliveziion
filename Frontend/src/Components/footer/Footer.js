@@ -1,218 +1,211 @@
-import React, { useState, useEffect } from "react";
+// Footer.jsx
+import React, { useState } from "react";
 import styles from "./footer.module.css";
-import { FaFacebookF, FaLinkedinIn, FaHeart } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { IoChevronDown, IoSend } from "react-icons/io5"; // Changed IoIosArrowDown to IoChevronDown
-import { Link } from "react-router-dom";
-
-// A simple custom hook to check screen size
-const useMediaQuery = (query) => {
-  const [matches, setMatches] = useState(false);
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    if (media.matches !== matches) {
-      setMatches(media.matches);
-    }
-    const listener = () => setMatches(media.matches);
-    window.addEventListener("resize", listener);
-    return () => window.removeEventListener("resize", listener);
-  }, [matches, query]);
-  return matches;
-};
-
-// Helper component for accordion items
-const AccordionItem = ({
-  index,
-  title,
-  children,
-  openAccordion,
-  handleAccordionToggle,
-  isMobile,
-}) => {
-  const isOpen = openAccordion === index;
-  return (
-    <div className={styles.footerColumn}>
-      <h3
-        className={styles.footerHeading}
-        onClick={isMobile ? () => handleAccordionToggle(index) : undefined}
-      >
-        <span>{title}</span>
-        {/* --- AND FIX IS HERE --- */}
-        {isMobile && (
-          <IoChevronDown
-            className={`${styles.accordionIcon} ${
-              isOpen ? styles.accordionIconOpen : ""
-            }`}
-          />
-        )}
-      </h3>
-      <div
-        className={
-          isMobile
-            ? `${styles.accordionContent} ${
-                isOpen ? styles.accordionContentOpen : ""
-              }`
-            : ""
-        }
-      >
-        {children}
-      </div>
-    </div>
-  );
-};
+import images from "../../assets/images";
 
 const Footer = () => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const [openAccordion, setOpenAccordion] = useState(null);
-
-  const handleAccordionToggle = (index) => {
-    setOpenAccordion(openAccordion === index ? null : index);
-  };
-
-  const commonAccordionProps = {
-    openAccordion,
-    handleAccordionToggle,
-    isMobile,
-  };
+  // State for mobile accordions
+  const [quickLinksOpen, setQuickLinksOpen] = useState(false);
+  const [usefulLinksOpen, setUsefulLinksOpen] = useState(false);
 
   return (
-    <footer className={styles.footer}>
-      {/* Main content grid */}
-      <div className={styles.sectionWrapper}>
-        <div className={styles.container}>
-          <div className={styles.gridContainer}>
-            {/* Column 1: About - Not an accordion */}
-            <div className={styles.aboutColumn}>
-              <div className={styles.logo}> Ziion Technology</div>
-              <p className={styles.footerText}>
-                is a comprehensive platform offering web development, Python
-                programming, data science, AI/ML and digital marketing trainings
-                in Chandigarh/Mohali.
-              </p>
-              <p>
-                Made with <FaHeart className={styles.heartIcon} /> in{" "}
-                <strong>India</strong>
-              </p>
-            </div>
+    <footer className={styles.footerSection}>
+      <div className="container">
+        {/* Glare Heading */}
+        <div className={`${styles.footerCta} pt-5 pb-5`}>
+          <h1 className={styles.glareText}>Ziion Technology</h1>
 
-            {/* Column 2: Solutions */}
-            <AccordionItem
-              index={1}
-              title="Industrial Training"
-              {...commonAccordionProps}
-            >
-              <ul>
-                <li>
-                  <Link to="/six-week-training">sixWeekTraining</Link>
-                </li>
-                <li>
-                  <Link to="/six-month-training">sixMonthTraining</Link>
-                </li>
-              </ul>
-            </AccordionItem>
-
-            {/* Column 3: Company */}
-            <AccordionItem index={2} title="Courses" {...commonAccordionProps}>
-              <ul>
-                <li>
-                  <Link to="/web-development">Web Development</Link>
-                </li>
-                <li>
-                  <Link to="/ai">AI</Link>
-                </li>
-                <li>
-                  <Link to="/ml">ML</Link>
-                </li>
-                <li>
-                  <Link to="/data-science">Data Science</Link>
-                </li>
-                <li>
-                  <Link to="/mobileapp">Mobile App Development</Link>
-                </li>
-                <li>
-                  <Link to="/data-analytics">Data Analytics</Link>
-                </li>
-                <li>
-                  <a href="#">DevOps</a>
-                </li>
-                <li>
-                  <Link to="/php">PHP</Link>
-                </li>
-                <li>
-                  <Link to="/digital-marketing">Digital Marketing</Link>
-                </li>
-                <li>
-                  <a href="/allcourses/python">Python</a>
-                </li>
-              </ul>
-            </AccordionItem>
-
-            {/* Column 4: Resources */}
-            <AccordionItem index={3} title="Services" {...commonAccordionProps}>
-              <ul>
-                <li>
-                  <a href="#">About Us</a>
-                </li>
-                <li>
-                  <a href="#">Contact US</a>
-                </li>
-              </ul>
-            </AccordionItem>
-
-            {/* Column 5: Newsletter - Not an accordion */}
-            <div className={styles.newsletterWrapper}>
-              <h3>Stay in the loop</h3>
-              <p className={styles.newsletterText}>
-                Get the latest news, updates, and platform tips sent straight to
-                your inbox.
-              </p>
-              <form action="#" onSubmit={(e) => e.preventDefault()}>
-                <div className={styles.inputGroup}>
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className={styles.newsletterInput}
-                  />
-                  <button
-                    type="submit"
-                    className={styles.newsletterButton}
-                    aria-label="Subscribe"
-                  >
-                    <IoSend />
-                  </button>
+          <div className="row">
+            <div className="col-xl-4 col-md-4 mb-30">
+              <div className={`${styles.singleCta} ${styles.ctaAlignSmall}`}>
+                <i className="fas fa-map-marker-alt"></i>
+                <div className={styles.ctaText}>
+                  <h4>Find us</h4>
+                  <span>D-152, Phase 8, Industrial Area, Mohali</span>
                 </div>
-              </form>
+              </div>
+            </div>
+
+            <div className="col-xl-4 col-md-4 mb-30">
+              <div className={styles.singleCta}>
+                <i className="fas fa-phone"></i>
+                <div className={styles.ctaText}>
+                  <h4>Call us</h4>
+                  <span>9878564224, 9779904224</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-xl-4 col-md-4 mb-30">
+              <div className={`${styles.singleCta} ${styles.mailFooter}`}>
+                <i className="far fa-envelope-open"></i>
+                <div className={styles.ctaText}>
+                  <h4>Mail us</h4>
+                  <span>ziiontechnology@gmail.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Main Content */}
+        <div className={`${styles.footerContent} pt-5 pb-5`}>
+          <div className="row">
+            <div className="col-xl-4 col-lg-4 mb-50">
+              <div className={styles.footerWidget}>
+                <div className={styles.footerLogo}>
+                  <img src={images.ziionLogo} alt="logo" />
+                </div>
+                <div className={styles.footerText}>
+                  <p>
+                    Ziion Technology is a comprehensive platform offering web
+                    development, Python programming, data science, AI/ML and
+                    digital marketing trainings in Chandigarh/Mohali.
+                  </p>
+                </div>
+                <div className={styles.footerSocialIcon}>
+                  <span>Follow us</span>
+                  <a href="#">
+                    <i
+                      className={`fab fa-facebook-f ${styles.facebookBg}`}
+                    ></i>
+                  </a>
+                  <a href="#">
+                    <i className={`fab fa-twitter ${styles.twitterBg}`}></i>
+                  </a>
+                  <a href="https://www.linkedin.com/company/verma-programming-minds/">
+                    <i className={`fab fa-linkedin ${styles.linkedinBg}`}></i>
+                  </a>
+                  <a href="https://www.instagram.com/ziion_technology/?next=%2F&hl=en">
+                    <i
+                      className={`fab fa-instagram ${styles.instagramBg}`}
+                    ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="col-xl-4 col-lg-4 col-md-6 mb-30">
+              <div className={styles.footerWidget}>
+                <div
+                  className={styles.footerWidgetHeading}
+                  onClick={() => setQuickLinksOpen(!quickLinksOpen)}
+                >
+                  <h3>Quick Links</h3>
+                  <i
+                    className={`fas fa-chevron-down ${styles.accordionIcon} ${
+                      quickLinksOpen ? styles.accordionIconOpen : ""
+                    }`}
+                  ></i>
+                </div>
+                <ul
+                  className={`
+                    ${styles.accordionContent} 
+                    ${quickLinksOpen ? styles.accordionContentOpen : ""}
+                  `}
+                >
+                  <li>
+                    <a href="/web-development">Web Development</a>
+                  </li>
+                  <li>
+                    <a href="/graphic">Graphic Designing</a>
+                  </li>
+                  <li>
+                    <a href="/digital-marketing">Digital Marketing</a>
+                  </li>
+                  <li>
+                    <a href="/python">Python</a>
+                  </li>
+                  <li>
+                    <a href="/ai">AI</a>
+                  </li>
+                  <li>
+                    <a href="/ml">ML</a>
+                  </li>
+                  <li>
+                    <a href="/data-science">Data Science</a>
+                  </li>
+                  <li>
+                    <a href="/mobileapp">Mobile App Development</a>
+                  </li>
+                  <li>
+                    <a href="/php">PHP</a>
+                  </li>
+                  <li>
+                    <a href="/six-week-training">Six Week Training</a>
+                  </li>
+                  <li>
+                    <a href="/six-month-training">Six Month Training</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Useful Links */}
+            <div className="col-xl-4 col-lg-4 col-md-6 mb-30">
+              <div className={styles.footerWidget}>
+                <div
+                  className={styles.footerWidgetHeading}
+                  onClick={() => setUsefulLinksOpen(!usefulLinksOpen)}
+                >
+                  <h3>Useful Links</h3>
+                  <i
+                    className={`fas fa-chevron-down ${styles.accordionIcon} ${
+                      usefulLinksOpen ? styles.accordionIconOpen : ""
+                    }`}
+                  ></i>
+                </div>
+                <ul
+                  className={`
+                    ${styles.accordionContent} 
+                    ${usefulLinksOpen ? styles.accordionContentOpen : ""}
+                  `}
+                >
+                  <li>
+                    <a href="/home">Home</a>
+                  </li>
+                  <li>
+                    <a href="/services">Services</a>
+                  </li>
+                  <li>
+                    <a href="/placement">Placement</a>
+                  </li>
+                  <li>
+                    <a href="/about-us">About Us</a>
+                  </li>
+                  <li>
+                    <a href="#">Expert Team</a>
+                  </li>
+                  <li>
+                    <a href="/contact-us">Contact Us</a>
+                  </li>
+                  <li>
+                    <a href="#">Latest News</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar: Legal, Copyright, & Social */}
-      <div className={styles.footerBottomWrapper}>
-        <div className={`${styles.container} ${styles.footerBottom}`}>
-          <p className={styles.copyright}>
-            © {new Date().getFullYear()} ZIION Technology — All rights reserved.
-          </p>
-
-          <div className={styles.legalLinks}>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Cookie Settings</a>
-          </div>
-
-          <div className={styles.socialIcons}>
-            <a href="#" aria-label="Facebook">
-              <FaFacebookF />
-            </a>
-            <a href="#" aria-label="Twitter">
-              <FaSquareXTwitter />
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              <FaLinkedinIn />
-            </a>
+      {/* === COPYRIGHT SECTION === */}
+      <div className={styles.copyrightArea}>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <div className={styles.copyrightText}>
+                <p>
+                  Copyright &copy; 2025, All Right Reserved{" "}
+                  <a href="https://ziiontechnology.com/">Ziion Technology</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      {/* === END COPYRIGHT SECTION === */}
     </footer>
   );
 };
