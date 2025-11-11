@@ -368,3 +368,10 @@
     padding-top: 1.5rem; /* Add spacing back */
   }
 }
+
+/* Explicitly hide accordion icon on desktop screens */
+@media (min-width: 768px) {
+  .accordionIcon {
+    display: none !important;
+  }
+}

@@ -66,9 +66,7 @@ const Footer = () => {
                 <div className={styles.footerSocialIcon}>
                   <span>Follow us</span>
                   <a href="#">
-                    <i
-                      className={`fab fa-facebook-f ${styles.facebookBg}`}
-                    ></i>
+                    <i className={`fab fa-facebook-f ${styles.facebookBg}`}></i>
                   </a>
                   <a href="#">
                     <i className={`fab fa-twitter ${styles.twitterBg}`}></i>
@@ -77,9 +75,7 @@ const Footer = () => {
                     <i className={`fab fa-linkedin ${styles.linkedinBg}`}></i>
                   </a>
                   <a href="https://www.instagram.com/ziion_technology/?next=%2F&hl=en">
-                    <i
-                      className={`fab fa-instagram ${styles.instagramBg}`}
-                    ></i>
+                    <i className={`fab fa-instagram ${styles.instagramBg}`}></i>
                   </a>
                 </div>
               </div>
@@ -114,9 +110,7 @@ const Footer = () => {
                   <li>
                     <a href="/digital-marketing">Digital Marketing</a>
                   </li>
-                  <li>
-                    <a href="/python">Python</a>
-                  </li>
+
                   <li>
                     <a href="/ai">AI</a>
                   </li>
@@ -163,7 +157,7 @@ const Footer = () => {
                   `}
                 >
                   <li>
-                    <a href="/home">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li>
                     <a href="/services">Services</a>
@@ -172,7 +166,7 @@ const Footer = () => {
                     <a href="/placement">Placement</a>
                   </li>
                   <li>
-                    <a href="/about-us">About Us</a>
+                    <a href="/about">About Us</a>
                   </li>
                   <li>
                     <a href="#">Expert Team</a>
@@ -198,7 +192,7 @@ const Footer = () => {
               <div className={styles.copyrightText}>
                 <p>
                   Copyright &copy; 2025, All Right Reserved{" "}
-                  <a href="https://ziiontechnology.com/">Ziion Technology</a>
+                  <a href="https://ziiontechnology.in/">Ziion Technology</a>
                 </p>
               </div>
             </div>
