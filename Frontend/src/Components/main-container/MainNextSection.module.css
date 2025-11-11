@@ -23,24 +23,22 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-.cardImage {
+/* New style for the icon container in cards */
+.cardIcon {
   width: 100%;
-  height: 220px;
-  overflow: hidden;
-  background: #333c8f;
+  height: 220px; /* Same height as previous image div */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333c8f; /* Matching the previous cardImage background */
+  color: white; /* Color of the icon */
+  font-size: 4rem; /* Adjust icon size as needed */
+  border-bottom: 5px solid #ff822b; /* A subtle highlight */
+  transition: background 0.3s ease;
 }
 
-.cardImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  opacity: 0.8;
-}
-
-.card:hover .cardImage img {
-  transform: scale(1.05);
-  opacity: 1;
+.card:hover .cardIcon {
+  background: #2c52be; /* Slightly different background on hover */
 }
 
 .cardContent {
@@ -229,14 +227,12 @@
   line-height: 1.2;
 }
 
-/* --- THIS IS THE UPDATED STYLE --- */
 .highlight {
   background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-/* --- END UPDATED STYLE --- */
 
 .wpDescription {
   font-size: 1.125rem;
@@ -307,6 +303,12 @@
     flex-direction: column;
     text-align: center;
   }
+
+  /* Adjust icon size for smaller screens */
+  .cardIcon {
+    font-size: 3rem;
+    height: 180px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -325,5 +327,11 @@
 
   .icon {
     font-size: 1.75rem;
+  }
+
+  /* Further adjust icon size for very small screens */
+  .cardIcon {
+    font-size: 2.5rem;
+    height: 150px;
   }
 }

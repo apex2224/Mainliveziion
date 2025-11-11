@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainNextSection.module.css";
 import Homefeature from "./Homefeature";
-import images from "../../assets/images";
+import images from "../../assets/images"; // Consider if this is still needed if `images` is not used elsewhere
 import Form from "../form/Form";
-import courses2 from "../../assets/NewCoursesImages/courses2.png";
-import itservices from "../../assets/NewCoursesImages/itservices.png";
-import training from "../../assets/NewCoursesImages/training.png";
 import DataAnalytics from "../../assets/NewCoursesImages/DataAnalytics.png";
 import WebDevelopment from "../../assets/NewCoursesImages/WebDevelopment.png";
 import DataScience from "../../assets/NewCoursesImages/DataScience.webp";
 import DigitalMarketing from "../../assets/NewCoursesImages/DigitalMarketing.png";
+
+// Import Font Awesome icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGraduationCap, faChalkboardTeacher, faServer } from '@fortawesome/free-solid-svg-icons';
+
 
 const MainNextSection = () => {
   const [showForm, setShowForm] = useState(false);
@@ -53,8 +55,8 @@ const MainNextSection = () => {
       {/* Cards Section */}
       <div className={styles.cardContainer}>
         <div className={styles.card}>
-          <div className={styles.cardImage}>
-            <img src={courses2} alt="Courses" />
+          <div className={styles.cardIcon}> {/* New div for the icon */}
+            <FontAwesomeIcon icon={faGraduationCap} size="3x" />
           </div>
           <div className={styles.cardContent}>
             <h2 className={styles.cardTitle}>Courses</h2>
@@ -69,8 +71,8 @@ const MainNextSection = () => {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.cardImage}>
-            <img src={training} alt="Trainings" />
+          <div className={styles.cardIcon}> {/* New div for the icon */}
+            <FontAwesomeIcon icon={faChalkboardTeacher} size="3x" />
           </div>
           <div className={styles.cardContent}>
             <h2 className={styles.cardTitle}>Trainings</h2>
@@ -86,8 +88,8 @@ const MainNextSection = () => {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.cardImage}>
-            <img src={itservices} alt="IT Services" />
+          <div className={styles.cardIcon}> {/* New div for the icon */}
+            <FontAwesomeIcon icon={faServer} size="3x" />
           </div>
           <div className={styles.cardContent}>
             <h2 className={styles.cardTitle}>IT Services</h2>
@@ -147,11 +149,9 @@ const MainNextSection = () => {
               <span className={styles.icon}>🧠</span>
               <div>
                 <h3 className={styles.categoryTitle}>Data Science</h3>
-                {/* --- CORRECTED CODE BLOCK --- */}
                 <p className={styles.categorySubtitle}>
                   Analyze data and build predictive models
                 </p>
-                {/* --- END CORRECTED CODE BLOCK --- */}
               </div>
             </div>
 
