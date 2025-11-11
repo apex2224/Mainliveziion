@@ -50,6 +50,8 @@ import Sixweek from "../Components/industrial training/sixWeekTraining/Sixweek";
 import StudentSearch from "../Components/admin/Studentform.js";
 import CardCarousel from "../Components/placementcarousel/CardCarousel.jsx";
 
+import StudentForm from "../Components/admin/Studentform";
+
 export const routes = [
   { path: "/", element: <Main /> },
   // { path:'/aboutus',  element:<Pricing/> },
@@ -113,4 +115,5 @@ export const routes = [
 
   { path: "/courses", element: <CoursesCard /> },
   { path: "/about", element: <AboutUs /> },
+  { path: "/Studentform", element: <StudentForm /> },
 ];
