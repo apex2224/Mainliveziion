@@ -192,7 +192,7 @@ const Navbar = () => {
                   closeAllMenus();
                 }}
               >
-                Download Certificate
+                Verified Certificate
               </button>
             )}
           </div>
