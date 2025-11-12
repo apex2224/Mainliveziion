@@ -1,212 +1,118 @@
-/* Hero Section */
-.servicesSection {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+/* --- 1. Root & Variables (New Theme) --- */
+:root {
+  /* Colors - Based on your request: #1E40AF */
+  --color-primary: #1e40af; /* Main theme color (Tailwind blue-700) */
+  --color-primary-dark: #1e3a8a; /* Darker shade (Tailwind blue-800) */
+  --color-primary-light: #eff6ff; /* Very light tint (Tailwind blue-50) */
+
+  --color-text-primary: #111827; /* Dark charcoal (Tailwind gray-900) */
+  --color-text-secondary: #4b5563; /* Medium gray (Tailwind gray-600) */
+  --color-text-light: #f9fafb; /* Light gray for dark backgrounds */
+
+  --color-bg-light: #ffffff;
+  --color-bg-alt: #f9fafb; /* Clean alt bg (Tailwind gray-50) */
+  --color-border: #e5e7eb; /* Light border (Tailwind gray-200) */
+
+  /* Typography */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+
+  /* Sizing & Spacing */
+  --padding-section: 6rem 2rem;
+  --border-radius-md: 8px; /* Sharper, modern radius */
+  --border-radius-lg: 16px;
+
+  /* Effects */
+  --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 4px 6px -4px rgba(0, 0, 0, 0.08);
+  --transition-all: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.servicesBackground {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.pageContainer {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-secondary);
+  overflow-x: hidden;
 }
 
-.servicesImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: translateX(-20px);
-  filter: brightness(0.1);
-  opacity: 0.7;
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Floating animation keyframes */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateX(-20px) translateY(0);
-  }
-  50% {
-    transform: translateX(-20px) translateY(-15px);
-  }
-}
-
-.servicesOverlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  width: 90%;
-  max-width: 1200px;
-}
-
-.servicesTitle {
-  font-size: 4.5rem;
-  font-weight: 800;
-  color: #000000;
-  margin-bottom: 1.5rem;
-  text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
-  letter-spacing: -0.02em;
-  animation: fadeInUp 1s ease-out;
-}
-
-.servicesSubtitle {
-  font-size: 1.5rem;
-  color: #000000;
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeInUp 1s ease-out 0.2s both;
-}
-
-.servicesSubtitle strong {
-  color: #000000;
-  font-weight: 700;
-}
-
-.headerBtn {
-  padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
-  animation: fadeInUp 1s ease-out 0.4s both;
-}
-
-.headerBtn:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
-  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-}
-
-/* Services Cards Section */
-.appFourSection {
-  padding: 6rem 2rem;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-}
-
-.title {
-  font-size: 3.5rem;
+/* --- 2. Re-usable Utility Classes --- */
+.sectionTitle {
+  font-size: 2.75rem; /* Slightly reduced for a cleaner look */
   font-weight: 800;
   text-align: center;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
 
-.subtitle {
-  font-size: 1.25rem;
+.sectionSubtitle {
+  font-size: 1.125rem; /* Slightly reduced */
   text-align: center;
-  color: #475569;
+  color: var(--color-text-secondary);
   margin-bottom: 4rem;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
-.subtitle strong {
-  color: #2563eb;
-  font-weight: 700;
-}
-
-.cardsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.card {
-  position: relative;
-  padding: 3rem 2rem;
-  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-  border-radius: 24px;
-  border: 1px solid #e2e8f0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.05) 0%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
-  border-color: #60a5fa;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.iconContainer {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
-  transition: all 0.4s ease;
-}
-
-.card:hover .iconContainer {
-  transform: scale(1.1) rotate(5deg);
-}
-
-.icon {
-  width: 48px;
-  height: 48px;
-  filter: brightness(0) invert(1);
-}
-
-.cardTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 1rem;
-  line-height: 1.4;
-  transition: color 0.3s ease;
-}
-
-.card:hover .cardTitle {
-  color: #2563eb;
-}
-
-.cardDescription {
-  font-size: 1.125rem;
+.sectionSubtitle strong {
+  color: var(--color-primary);
   font-weight: 600;
-  color: #2563eb;
 }
 
-/* Features Section */
-.serviceFeature {
-  padding: 6rem 2rem;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+.categoryLabel {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.buttonPrimary {
+  padding: 1rem 2rem;
+  background: var(--color-primary);
+  color: white;
+  border: 2px solid var(--color-primary);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.buttonPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(30, 64, 175, 0.2); /* Themed shadow */
+  background: var(--color-primary-dark);
+}
+
+.buttonOutline {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.buttonOutline:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+.highlight {
+  color: var(--color-primary);
 }
 
 .pageWrapper {
@@ -214,412 +120,442 @@
   margin: 0 auto;
 }
 
-.headerSection {
+/* --- 3. Hero Section --- */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 95vh;
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: relative; /* This is crucial for layering */
+  width: 100%;
+  height: 100%;
+  
+  /* Solid, deep blue that the particles will sit on. */
+  background-color: #0c1a4b; /* A deep, dark blue */
+
+  /* Optional: A subtle gradient instead of solid color */
+  /* background-image: linear-gradient(180deg, #1e3a8a 0%, #0c1a4b 100%); */
+}
+
+/* Styles for the particle canvas */
+.particlesCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Sits on top of the background */
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2; /* Sits on top of the particles (z-index: 1) */
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 4rem;
+  /* A slightly more transparent gradient to let particles show through */
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
 }
 
-.categoryLabel {
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  background: #dbeafe;
-  color: #2563eb;
-  border-radius: 50px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.mainHeading {
-  font-size: 3.5rem;
+.heroTitle {
+  font-size: 4.5rem;
   font-weight: 800;
-  color: #0f172a;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  color: var(--color-bg-light);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.025em;
+  animation: fadeInUp 0.8s ease-out 0.1s both;
+  z-index: 3; /* Ensures text is on top */
 }
 
-.contentArea {
-  margin-top: 3rem;
+.heroSubtitle {
+  font-size: 1.375rem;
+  color: var(--color-text-light);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  max-width: 700px;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+  z-index: 3; /* Ensures text is on top */
 }
 
-.featurecontent {
+.heroSubtitle strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.heroCtaButton {
+  padding: 1.125rem 2.75rem;
+  background: var(--color-primary);
+  color: white;
+  border: 2px solid var(--color-primary);
+  border-radius: 50px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-all);
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+  box-shadow: 0 10px 20px rgba(30, 64, 175, 0.2);
+  z-index: 3; /* Ensures button is on top */
+}
+
+.heroCtaButton:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: var(--color-primary-dark);
+  box-shadow: 0 12px 25px rgba(30, 64, 175, 0.3);
+}
+
+/* --- 4. Advantages Section --- */
+.advantagesSection {
+  padding: var(--padding-section);
+  background: var(--color-bg-alt);
+}
+
+.advantagesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.featureBox {
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid #e2e8f0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.advantageCard {
+  position: relative;
+  padding: 2.5rem 2rem;
+  background: var(--color-bg-light);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.featureBox:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.1);
-  border-color: #93c5fd;
+.advantageCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-primary);
 }
 
-.featureIcon {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  border-radius: 16px;
+.advantageIconContainer {
+  width: 64px;
+  height: 64px;
+  background: var(--color-primary);
+  border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.75rem;
-  margin-bottom: 1.5rem;
-  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+  transition: var(--transition-all);
+  flex-shrink: 0;
 }
 
-.featureBox:hover .featureIcon {
-  transform: scale(1.1);
+.advantageCard:hover .advantageIconContainer {
+  transform: scale(1.05) rotate(3deg);
+  background: var(--color-primary-dark);
 }
 
-.featureTitle {
-  font-size: 1.25rem;
+.advantageIcon {
+  width: 36px;
+  height: 36px;
+  filter: brightness(0) invert(1);
+}
+
+.advantageTitle {
+  font-size: 1.375rem;
   font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 0.75rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  transition: color 0.3s ease;
 }
 
-.featureDescription {
-  font-size: 0.9375rem;
-  color: #64748b;
-  line-height: 1.7;
+.advantageCard:hover .advantageTitle {
+  color: var(--color-primary);
 }
 
-/* Process Steps Section */
-.appThird {
+.advantageDescription {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* --- 6. Process/Join Section --- */
+.processSection {
+  padding: var(--padding-section);
+  background: var(--color-bg-light); /* Swapped bg for flow */
+}
+
+.processGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.1fr;
   gap: 4rem;
-  padding: 6rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
   align-items: center;
 }
 
-.leftPanel {
+.processLeftPanel {
   padding-right: 2rem;
 }
 
-.joinBtn {
-  padding: 0.5rem 1.5rem;
-  background: #dbeafe;
-  color: #2563eb;
-  border: none;
-  border-radius: 50px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  cursor: pointer;
-}
-
-.heading {
-  font-size: 3.5rem;
+.processHeading {
+  font-size: 3rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin-bottom: 0.5rem;
   line-height: 1.2;
-  letter-spacing: -0.02em;
 }
 
-.subheading {
-  font-size: 2.25rem;
+.processSubheading {
+  font-size: 2rem;
   font-weight: 700;
-  color: #2563eb;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
   line-height: 1.3;
 }
 
-.description {
+.processDescription {
   font-size: 1.125rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   line-height: 1.8;
   margin-bottom: 2.5rem;
 }
 
-.buttonsGroup {
+.processButtonsGroup {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.learnMore {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.learnMore:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
-}
-
-.signUpNow {
-  padding: 1rem 2rem;
-  background: transparent;
-  color: #2563eb;
-  border: 2px solid #2563eb;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.signUpNow:hover {
-  background: #f0f9ff;
-  transform: translateY(-2px);
-}
-
-.rightPanel {
+.processRightPanel {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.stepBox {
+.processStep {
   display: flex;
   gap: 1.5rem;
   padding: 2rem;
-  background: #ffffff;
-  border-radius: 20px;
-  border: 2px solid #e2e8f0;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--color-bg-alt); /* Use alt bg for cards */
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-all);
 }
 
-.stepBox:hover {
-  border-color: #2563eb;
-  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.1);
+.processStep:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-subtle);
   transform: scale(1.02);
 }
 
-.stepNumber {
+.processStepNumber {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-  border-radius: 16px;
+  background: var(--color-primary-light);
+  border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #2563eb;
+  color: var(--color-primary);
+  transition: var(--transition-all);
 }
 
-.stepContent h3 {
-  font-size: 1.375rem;
+.processStep:hover .processStepNumber {
+  background: var(--color-primary);
+  color: var(--color-bg-light);
+}
+
+.processStepContent h3 {
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin-bottom: 0.5rem;
 }
 
-.stepContent p {
+.processStepContent p {
   font-size: 0.9375rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   line-height: 1.7;
 }
 
-/* Client Reviews Section */
-.clientReviewsSection {
-  padding: 6rem 2rem;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+/* --- 7. Services Grid Section --- */
+.servicesGridSection {
+  padding: var(--padding-section);
+  background: var(--color-bg-alt); /* Use alt bg */
 }
 
-.clientHeader {
+.servicesGridHeader {
   text-align: center;
   margin-bottom: 4rem;
 }
 
-.clientHeader h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-}
-
-.clientHighlight {
-  color: #2563eb;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.reviewContainer {
+.servicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 2rem;
   max-width: 1400px;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
 }
 
-.reviewCard {
+.serviceCard {
   display: flex;
-  background: #ffffff;
-  border-radius: 24px;
+  flex-direction: column;
+  background: var(--color-bg-light);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
-  border: 1px solid #e2e8f0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  height: 280px;
+  border: 1px solid var(--color-border);
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-subtle);
+  height: 100%;
 }
 
-.reviewCard:hover {
+.serviceCard:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
-  border-color: #60a5fa;
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-primary);
 }
 
-.reviewImageWrapper {
-  flex-shrink: 0;
-  width: 40%; /* Image takes 40% of card width */
-  height: 100%; /* Full height of the card */
+.serviceCardImageWrapper {
+  width: 100%;
+  height: 220px;
   position: relative;
   overflow: hidden;
-  border-top-left-radius: 24px;
-  border-bottom-left-radius: 24px;
 }
 
-.reviewImage {
+.serviceCardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
 
-.reviewCard:hover .reviewImage {
-  transform: scale(1.1);
+.serviceCard:hover .serviceCardImage {
+  transform: scale(1.05);
 }
 
-.reviewTextWrapper {
+.serviceCardTextWrapper {
   flex: 1;
-  padding: 2rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-.reviewTextContent h2 {
-  font-size: 1.75rem;
+.serviceCardTextContent h2 {
+  font-size: 1.375rem; /* Standardized size */
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin-bottom: 1rem;
   transition: color 0.3s ease;
 }
 
-.reviewCard:hover .reviewTextContent h2 {
-  color: #2563eb;
+.serviceCard:hover .serviceCardTextContent h2 {
+  color: var(--color-primary);
 }
 
-.reviewTextContent p {
+.serviceCardTextContent p {
   font-size: 0.9375rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   line-height: 1.7;
   margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
-.reviewMoreLink {
+.serviceCardMoreLink {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #2563eb;
+  color: var(--color-primary);
   font-weight: 600;
   text-decoration: none;
   transition: gap 0.3s ease;
 }
 
-.reviewMoreLink:hover {
+.serviceCardMoreLink:hover {
   gap: 0.75rem;
 }
 
-/* Animations */
+/* --- 8. Animations --- */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-/* Responsive Design */
+/* --- 9. Responsive Design --- */
 @media (max-width: 1024px) {
-  .servicesTitle {
+  .heroTitle {
     font-size: 3rem;
   }
-
-  .servicesSubtitle {
+  .heroSubtitle {
     font-size: 1.25rem;
   }
-
-  .title,
-  .mainHeading,
-  .heading {
+  .sectionTitle,
+  .processHeading {
     font-size: 2.5rem;
   }
-
-  .appThird {
+  .processGrid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-
-  .reviewContainer {
-    grid-template-columns: 1fr;
+  .processLeftPanel {
+    padding-right: 0;
+    text-align: center;
+  }
+  .processButtonsGroup {
+    justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
-  .servicesTitle {
-    font-size: 2rem;
+  :root {
+    --padding-section: 4rem 1.5rem;
   }
-
-  .servicesSubtitle {
+  .heroSection {
+    height: 90vh;
+  }
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+  .heroSubtitle {
     font-size: 1rem;
   }
-
-  .title,
-  .mainHeading,
-  .heading {
+  .sectionTitle,
+  .processHeading {
     font-size: 2rem;
   }
-
-  .subheading {
+  .sectionSubtitle {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+  .processSubheading {
     font-size: 1.5rem;
   }
-
-  .cardsContainer,
-  .featurecontent {
+  .advantagesGrid,
+  .servicesGrid {
     grid-template-columns: 1fr;
-  }
-
-  .reviewCard {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .reviewImageWrapper {
-    width: 100%;
-    height: 220px;
-    border-radius: 24px 24px 0 0;
   }
 }
