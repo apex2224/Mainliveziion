@@ -10,6 +10,7 @@ import nn from "../../assets/app/nn.png";
 import ReviewsSection from "../reviews/ReviewsSection";
 import WebDevelopment from "../../assets/NewCoursesImages/WebDevelopment.png";
 import useCustom from "../customHook/useCustom";
+import Form from "../form/Form"; // Import the Form component
 
 export default function Apphero() {
   const [showForm, setShowForm] = useState(false);
@@ -196,16 +197,28 @@ export default function Apphero() {
 
       <section className={styles.appThird}>
         <div className={styles.leftPanel}>
-          <button className={styles.joinBtn}>LET'S JOIN</button>
+          <button className={styles.joinBtn} onClick={() => setShowForm(true)}>
+            LET'S JOIN
+          </button>
           <h1 className={styles.heading}>It’s Time to Hire</h1>
           <h2 className={styles.subheading}>AI Customer Services</h2>
           <p className={styles.description}>
-            Hiring an AI Customer services it’s easy, you just need to know your
+            Hiring an AI Customer services it's easy, you just need to know your
             needs and the business very well.
           </p>
           <div className={styles.buttonsGroup}>
-            <button className={styles.learnMore}>Learn More</button>
-            <button className={styles.signUpNow}>Sign Up Now</button>
+            <button
+              className={styles.learnMore}
+              onClick={() => setShowForm(true)}
+            >
+              Learn More
+            </button>
+            <button
+              className={styles.signUpNow}
+              onClick={() => setShowForm(true)}
+            >
+              Contact Us
+            </button>
           </div>
         </div>
 
@@ -253,7 +266,7 @@ export default function Apphero() {
                     responsive, secure, and scalable websites that help
                     businesses establish a strong online presence."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/web-development" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -277,7 +290,7 @@ export default function Apphero() {
                     insights, helping organizations make data-driven decisions
                     with confidence."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/data-analytics" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -304,7 +317,7 @@ export default function Apphero() {
                     forecast trends, automate processes, and enhance customer
                     experiences."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/data-science" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -328,7 +341,7 @@ export default function Apphero() {
                     applications, CMS solutions, and dynamic websites tailored
                     to client requirements."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/php" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -355,7 +368,7 @@ export default function Apphero() {
                     mobile-responsive website designs that enhance user
                     engagement and brand identity."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/web-designing" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -379,7 +392,7 @@ export default function Apphero() {
                     predictive analytics, and smart decision-making systems for
                     future-ready growth."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/ai" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -406,7 +419,7 @@ export default function Apphero() {
                     automation, and intelligent solutions to solve complex
                     business problems."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/ml" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -430,7 +443,10 @@ export default function Apphero() {
                     strategies to boost online visibility and drive business
                     growth."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a
+                    href="/digital-marketing"
+                    className={styles.reviewMoreLink}
+                  >
                     Read More ↗
                   </a>
                 </div>
@@ -456,7 +472,7 @@ export default function Apphero() {
                     "We build scalable and user-friendly mobile apps for Android
                     and iOS platforms, ensuring seamless digital experiences."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/mobileapp" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -480,7 +496,7 @@ export default function Apphero() {
                     designs, logos, and branding materials that capture
                     attention and enhance your brand identity."
                   </p>
-                  <a href="#" className={styles.reviewMoreLink}>
+                  <a href="/graphic" className={styles.reviewMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -532,6 +548,19 @@ export default function Apphero() {
       <ReviewsSection />
 
       <Footer />
+      
+      {/* Modal for Form */}
+      {showForm && (
+        <div className={styles.modalOverlay} onClick={() => setShowForm(false)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeModal} type="button" onClick={(e) => {
+              e.stopPropagation();
+              setShowForm(false);
+            }}>×</button>
+            <Form closeForm={() => setShowForm(false)} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

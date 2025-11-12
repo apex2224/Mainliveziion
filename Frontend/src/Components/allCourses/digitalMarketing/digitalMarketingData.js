@@ -1,41 +1,33 @@
 // stats //
 export const statsData = [
-   { value: '5000+', label: 'Students Trained' },
-  { value: '15+', label: 'Courses Offered' },
-  { value: '98%', label: 'Placement Success Rate' },
-  { value: '10+', label: 'Years Of Experience' },
+  { value: "5000+", label: "Students Trained" },
+  { value: "15+", label: "Courses Offered" },
+  { value: "98%", label: "Placement Success Rate" },
+  { value: "10+", label: "Years Of Experience" },
 ];
-
-
 
 // why choose us //
 export const chooseUsLeftItems = [
-  { icon: '🧑', text: 'Focused on 90% Practical Training' },
-  { icon: '💼', text: 'LED Based Smart Classes' },
-  { icon: '📚', text: 'Learn with Real Projects' },
-  { icon: '💳', text: 'Freebies worth Rs.15000/' },
-  { icon: '🧠', text: 'Trainers with 7+ Years Experience' },
+  { icon: "🧑", text: "Focused on 90% Practical Training" },
+  { icon: "💼", text: "LED Based Smart Classes" },
+  { icon: "📚", text: "Learn with Real Projects" },
+  { icon: "💳", text: "Freebies worth Rs.15000/" },
+  { icon: "🧠", text: "Trainers with 7+ Years Experience" },
 ];
 
 export const chooseUsRightItems = [
-  { icon: '✅', text: '100% Placement Assistance' },
-  { icon: '📜', text: '350+ Reviews on Google' },
-  { icon: '🤝', text: '1500+ Placement Partners' },
-  { icon: '👨‍💻', text: 'Internship + Job Placement Support' },
-  { icon: '📝', text: 'Interview Preparation Classes' },
+  { icon: "✅", text: "100% Placement Assistance" },
+  { icon: "📜", text: "350+ Reviews on Google" },
+  { icon: "🤝", text: "1500+ Placement Partners" },
+  { icon: "👨‍💻", text: "Internship + Job Placement Support" },
+  { icon: "📝", text: "Interview Preparation Classes" },
 ];
 
-
-
 // hero phrase
- export const heroPhrases = [
-'Be a Digital Marketing Expert',
-'Be an SEO Specialist'
-
-]
-
-
-
+export const heroPhrases = [
+  "Be a Digital Marketing Expert",
+  "Be an SEO Specialist",
+];
 
 // SEO career opportunities
 export const careerOpportunities = [
@@ -71,27 +63,28 @@ export const careerOpportunities = [
   },
 ];
 
-
 export const faqQuestions = [
   {
-    question: 'What will I learn?',
-    answer: 'You will learn both On-Page and Off-Page SEO, Technical SEO, keyword research, link building, Google Search Console, analytics tracking, and tools like SEMrush, Ahrefs, and Yoast SEO.',
+    question: "What will I learn?",
+    answer:
+      "You will learn both On-Page and Off-Page SEO, Technical SEO, keyword research, link building, Google Search Console, analytics tracking, and tools like SEMrush, Ahrefs, and Yoast SEO.",
   },
   {
-    question: 'Is this course beginner-friendly?',
-    answer: 'Absolutely! Our SEO training starts from the basics and gradually advances to complex topics. It is perfect for beginners, marketing professionals, bloggers, and business owners.',
+    question: "Is this course beginner-friendly?",
+    answer:
+      "Absolutely! Our SEO training starts from the basics and gradually advances to complex topics. It is perfect for beginners, marketing professionals, bloggers, and business owners.",
   },
   {
-    question: 'Do I get certification?',
-    answer: 'Yes, upon successfully completing the SEO course and project assignments, you will receive a professional certification from SEO Markit, recognized in the industry.',
+    question: "Do I get certification?",
+    answer:
+      "Yes, upon successfully completing the SEO course and project assignments, you will receive a professional certification from SEO Markit, recognized in the industry.",
   },
   {
-    question: 'Is offline training available?',
-    answer: 'Yes, we offer both live online classes and in-person classroom training at our Chandigarh center to suit different learning preferences.',
+    question: "Is offline training available?",
+    answer:
+      "Yes, we offer both live online classes and in-person classroom training at our Chandigarh center to suit different learning preferences.",
   },
 ];
-
-
 
 export const syllabusData = {
   " Introduction to Digital Marketing": [
@@ -114,7 +107,7 @@ export const syllabusData = {
     "Digital Transformation in Marketing",
     "ROI in Digital Marketing",
     "Digital Marketing Certifications",
-    "Future of Digital Marketing"
+    "Future of Digital Marketing",
   ],
 
   " Website & Landing Page Optimization": [
@@ -137,7 +130,7 @@ export const syllabusData = {
     "Forms Optimization",
     "Trust Signals and Social Proof",
     "Accessibility Compliance",
-    "Website Audit Best Practices"
+    "Website Audit Best Practices",
   ],
 
   " Search Engine Optimization (SEO)": [
@@ -160,7 +153,7 @@ export const syllabusData = {
     "Image and Video SEO",
     "Voice Search Optimization",
     "SEO Audits",
-    "Future Trends in SEO"
+    "Future Trends in SEO",
   ],
 
   " Search Engine Marketing (SEM) & PPC": [
@@ -183,7 +176,7 @@ export const syllabusData = {
     "YouTube Ads",
     "Performance Reporting",
     "Ad Extensions",
-    "Future Trends in SEM/PPC"
+    "Future Trends in SEM/PPC",
   ],
 
   " Social Media Marketing (SMM)": [
@@ -206,7 +199,7 @@ export const syllabusData = {
     "Social Listening and Monitoring",
     "Crisis Management on Social Media",
     "Trends in Social Media Marketing",
-    "Case Studies in SMM"
+    "Case Studies in SMM",
   ],
 
   " Content Marketing": [
@@ -229,7 +222,7 @@ export const syllabusData = {
     "Landing Page Content",
     "Content Marketing Tools",
     "Trends in Content Marketing",
-    "Case Studies of Content Campaigns"
+    "Case Studies of Content Campaigns",
   ],
 
   " Email Marketing": [
@@ -252,7 +245,7 @@ export const syllabusData = {
     "Email Marketing Tools",
     "Compliance (CAN-SPAM, GDPR)",
     "Email Metrics (Open Rate, CTR, Bounce Rate)",
-    "Case Studies in Email Marketing"
+    "Case Studies in Email Marketing",
   ],
 
   " Affiliate & Influencer Marketing": [
@@ -275,7 +268,7 @@ export const syllabusData = {
     "Affiliate Promotions on Social Media",
     "Influencer Branding and Content Creation",
     "Long-term Partnerships with Influencers",
-    "Emerging Trends in Affiliate & Influencer Marketing"
+    "Emerging Trends in Affiliate & Influencer Marketing",
   ],
 
   " Mobile Marketing & App Promotion": [
@@ -298,7 +291,7 @@ export const syllabusData = {
     "Mobile Video Marketing",
     "Mobile Conversion Optimization",
     "Case Studies in Mobile Marketing",
-    "Future Trends in Mobile Marketing"
+    "Future Trends in Mobile Marketing",
   ],
 
   " Web Analytics & Conversion Optimization": [
@@ -321,7 +314,7 @@ export const syllabusData = {
     "Predictive Analytics in Marketing",
     "KPI Tracking and Reporting",
     "Advanced Analytics Techniques",
-    "Case Studies in Web Analytics"
+    "Case Studies in Web Analytics",
   ],
 
   " Video Marketing": [
@@ -344,7 +337,7 @@ export const syllabusData = {
     "Video Analytics",
     "Case Studies in Video Marketing",
     "Trends in Video Marketing",
-    "Tools for Video Creation and Editing"
+    "Tools for Video Creation and Editing",
   ],
 
   " E-commerce Marketing": [
@@ -367,7 +360,7 @@ export const syllabusData = {
     "User Reviews and Ratings",
     "Mobile Commerce",
     "E-commerce Marketing Tools",
-    "Case Studies in E-commerce"
+    "Case Studies in E-commerce",
   ],
 
   " Paid Advertising & Programmatic Marketing": [
@@ -390,7 +383,7 @@ export const syllabusData = {
     "Social Media Paid Ads",
     "Emerging Trends in Programmatic Ads",
     "Case Studies of Paid Advertising",
-    "Tools for Campaign Management"
+    "Tools for Campaign Management",
   ],
 
   " Marketing Automation & CRM": [
@@ -413,7 +406,7 @@ export const syllabusData = {
     "Workflow Optimization",
     "Case Studies in Marketing Automation",
     "Challenges in Automation",
-    "Future of Marketing Automation"
+    "Future of Marketing Automation",
   ],
 
   " Digital Marketing Strategy & Trends": [
@@ -436,118 +429,172 @@ export const syllabusData = {
     "Future Trends in Digital Marketing",
     "AI in Digital Marketing",
     "Ethics in Marketing Strategy",
-    "Case Studies and Best Practices"
-  ]
+    "Case Studies and Best Practices",
+  ],
 };
-
-
-
-
 
 // projects //
 export const projectData = [
   // Beginner Level
   {
-    title: 'Google My Business Optimization',
-    company: 'Local Café',
+    title: "Google My Business Optimization",
+    company: "Local Café",
     description:
-      'Set up and optimized Google My Business profile to increase local search visibility, attract nearby customers, and drive foot traffic.',
-    tags: ['Local SEO', 'GMB'],
+      "Set up and optimized Google My Business profile to increase local search visibility, attract nearby customers, and drive foot traffic.",
+    tags: ["Local SEO", "GMB"],
   },
   {
-    title: 'Social Media Profile Setup & Content Strategy',
-    company: 'StartUp India',
+    title: "Social Media Profile Setup & Content Strategy",
+    company: "StartUp India",
     description:
-      'Created professional social media profiles, developed a content calendar, and optimized posts for engagement.',
-    tags: ['Instagram', 'Facebook', 'Content Marketing'],
+      "Created professional social media profiles, developed a content calendar, and optimized posts for engagement.",
+    tags: ["Instagram", "Facebook", "Content Marketing"],
   },
   {
-    title: 'Website SEO Basics',
-    company: 'Small Business Owner',
+    title: "Website SEO Basics",
+    company: "Small Business Owner",
     description:
-      'Implemented on-page SEO techniques such as meta tags, alt text, and keyword placement to improve organic rankings.',
-    tags: ['SEO', 'Google Search Console'],
+      "Implemented on-page SEO techniques such as meta tags, alt text, and keyword placement to improve organic rankings.",
+    tags: ["SEO", "Google Search Console"],
   },
 
   // Intermediate Level
   {
-    title: 'Facebook & Instagram Ad Campaigns',
-    company: 'Nykaa',
+    title: "Facebook & Instagram Ad Campaigns",
+    company: "Nykaa",
     description:
-      'Designed and optimized paid campaigns to boost conversions, reach targeted demographics, and increase sales.',
-    tags: ['Facebook Ads', 'Instagram Ads'],
+      "Designed and optimized paid campaigns to boost conversions, reach targeted demographics, and increase sales.",
+    tags: ["Facebook Ads", "Instagram Ads"],
   },
   {
-    title: 'YouTube Video Marketing',
+    title: "YouTube Video Marketing",
     company: "BYJU'S",
     description:
-      'Created educational video content and promoted it with YouTube ads using keyword targeting and A/B testing.',
-    tags: ['YouTube Ads', 'Video SEO'],
+      "Created educational video content and promoted it with YouTube ads using keyword targeting and A/B testing.",
+    tags: ["YouTube Ads", "Video SEO"],
   },
   {
-    title: 'App Store Optimization (ASO)',
-    company: 'Zomato',
+    title: "App Store Optimization (ASO)",
+    company: "Zomato",
     description:
-      'Optimized mobile app title, description, and visuals to increase downloads and visibility in app stores.',
-    tags: ['ASO', 'App Marketing'],
+      "Optimized mobile app title, description, and visuals to increase downloads and visibility in app stores.",
+    tags: ["ASO", "App Marketing"],
   },
 
   // Advanced Level
   {
-    title: 'Google Ads & PPC Campaigns',
-    company: 'Flipkart',
+    title: "Google Ads & PPC Campaigns",
+    company: "Flipkart",
     description:
-      'Launched high-budget Google Search & Display Ads during festive sales, optimized bidding strategies, and increased conversions.',
-    tags: ['Google Ads', 'PPC', 'SEM'],
+      "Launched high-budget Google Search & Display Ads during festive sales, optimized bidding strategies, and increased conversions.",
+    tags: ["Google Ads", "PPC", "SEM"],
   },
   {
-    title: 'Product Listing Optimization',
-    company: 'Amazon',
+    title: "Product Listing Optimization",
+    company: "Amazon",
     description:
-      'Improved e-commerce product listings with keyword research, high-quality images, and A+ content to boost sales.',
-    tags: ['Amazon SEO', 'E-commerce Marketing'],
+      "Improved e-commerce product listings with keyword research, high-quality images, and A+ content to boost sales.",
+    tags: ["Amazon SEO", "E-commerce Marketing"],
   },
   {
-    title: 'Advanced Social Media Analytics',
-    company: 'Coca-Cola',
+    title: "Advanced Social Media Analytics",
+    company: "Coca-Cola",
     description:
-      'Analyzed performance across multiple platforms, tracked KPIs, and built dashboards to measure ROI from digital campaigns.',
-    tags: ['Analytics', 'Social Media Insights'],
+      "Analyzed performance across multiple platforms, tracked KPIs, and built dashboards to measure ROI from digital campaigns.",
+    tags: ["Analytics", "Social Media Insights"],
   },
   {
-    title: 'Integrated Digital Marketing Strategy',
-    company: 'Google',
+    title: "Integrated Digital Marketing Strategy",
+    company: "Google",
     description:
-      'Developed a cross-channel strategy integrating SEO, SEM, social media, content, and email marketing for maximum brand visibility.',
-    tags: ['Digital Strategy', 'SEO', 'SEM', 'SMM'],
-  }
+      "Developed a cross-channel strategy integrating SEO, SEM, social media, content, and email marketing for maximum brand visibility.",
+    tags: ["Digital Strategy", "SEO", "SEM", "SMM"],
+  },
 ];
-
-
-
-
 
 // placement //
 
 export const leftScrollCards = [
+  {
+    name: "Sharanjeet",
+    company: "DIGITAL MARKETING",
+    iframe: "https://www.youtube.com/embed/HYfD9I04fNM",
+  },
+  {
+    name: "Himanshu",
+    company: "Digital Marketing",
+    iframe: "https://www.youtube.com/embed/8lDAZ-Vhbg8",
+  },
+  {
+    name: "Gauri",
+    company: "DIGITAL MARKETING",
+    iframe: "https://www.youtube.com/embed/2oNCv72LqaY",
+  },
 
-      { name: "Sharanjeet", company: "DIGITAL MARKETING", iframe: "https://www.youtube.com/embed/HYfD9I04fNM" },
-    { name: "Himanshu", company: "Digital Marketing", iframe: "https://www.youtube.com/embed/8lDAZ-Vhbg8" },
-    { name: "Gauri", company: "DIGITAL MARKETING", iframe: "https://www.youtube.com/embed/2oNCv72LqaY" },
+  {
+    name: "Rohit",
+    company: "DATA SCIENCE",
+    iframe: "https://www.youtube.com/embed/bZB0xpEuU4w",
+  },
+  {
+    name: "Raghav",
+    company: "DATA SCIENCE",
+    iframe: "https://www.youtube.com/embed/jqavyDF02so",
+  },
 
-      { name: "Rohit", company: "DATA SCIENCE", iframe: "https://www.youtube.com/embed/bZB0xpEuU4w" },
-    { name: "Raghav", company: "DATA SCIENCE", iframe: "https://www.youtube.com/embed/jqavyDF02so" },
-
-    { name: "Ayush", company: "AI/ML", iframe: "https://www.youtube.com/embed/QV0GUD2I_MA" },
-    { name: "Kartik Bhandari", company: "PYTHON", iframe: "https://www.youtube.com/embed/ao2cMCnceP0" },
-    { name: "Harsh Gupta", company: "PYTHON", iframe: "https://www.youtube.com/embed/EiEtpwyuTSE" },
-    { name: "Diya", company: "PYTHON", iframe: "https://www.youtube.com/embed/OsdKrDbWQIM" },
-    { name: "Vishal Kumar", company: "FRONTEND DEVELOPER", iframe: "https://www.youtube.com/embed/432IgJeUL5s" },
-    { name: "Maya", company: "MERN Stack", iframe: "https://www.youtube.com/embed/bplbcMwCec0" },
-    { name: "Mandeep Singh", company: "MERN Stack", iframe: "https://www.youtube.com/embed/5c_ZlshtNAY" },
-    { name: "Vandana", company: "MERN Stack", iframe: "https://www.youtube.com/embed/QNVCrzBAjN0" },
-    { name: "Maya Dhingra", company: "MERN Stack", iframe: "https://www.youtube.com/embed/28f0eX_cAg0" },
-    { name: "Suman", company: "Graphic Designing", iframe: "https://www.youtube.com/embed/nS2EpHjpmFo" },
-    { name: "Ravi", company: "MERN Stack", iframe: "https://www.youtube.com/embed/moquD8DW7Xo" },
-    
+  {
+    name: "Ayush",
+    company: "AI/ML",
+    iframe: "https://www.youtube.com/embed/QV0GUD2I_MA",
+  },
+  {
+    name: "Kartik Bhandari",
+    company: "PYTHON",
+    iframe: "https://www.youtube.com/embed/ao2cMCnceP0",
+  },
+  {
+    name: "Harsh Gupta",
+    company: "PYTHON",
+    iframe: "https://www.youtube.com/embed/EiEtpwyuTSE",
+  },
+  {
+    name: "Diya",
+    company: "PYTHON",
+    iframe: "https://www.youtube.com/embed/OsdKrDbWQIM",
+  },
+  {
+    name: "Vishal Kumar",
+    company: "FRONTEND DEVELOPER",
+    iframe: "https://www.youtube.com/embed/432IgJeUL5s",
+  },
+  {
+    name: "Maya",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/bplbcMwCec0",
+  },
+  {
+    name: "Mandeep Singh",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/5c_ZlshtNAY",
+  },
+  {
+    name: "Vandana",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/QNVCrzBAjN0",
+  },
+  {
+    name: "Maya Dhingra",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/28f0eX_cAg0",
+  },
+  {
+    name: "Suman",
+    company: "Graphic Designing",
+    iframe: "https://www.youtube.com/embed/nS2EpHjpmFo",
+  },
+  {
+    name: "Ravi",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/moquD8DW7Xo",
+  },
 ];
