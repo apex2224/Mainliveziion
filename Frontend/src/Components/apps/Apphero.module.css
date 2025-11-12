@@ -14,8 +14,8 @@
   --color-border: #e5e7eb; /* Light border (Tailwind gray-200) */
 
   /* Typography */
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
 
   /* Sizing & Spacing */
   --padding-section: 6rem 2rem;
@@ -132,7 +132,7 @@
   position: relative; /* This is crucial for layering */
   width: 100%;
   height: 100%;
-  
+
   /* Solid, deep blue that the particles will sit on. */
   background-color: #0c1a4b; /* A deep, dark blue */
 
@@ -692,5 +692,4 @@
   background: #e2e8f0;
   color: #1e293b;
   transform: rotate(90deg);
-}
 }

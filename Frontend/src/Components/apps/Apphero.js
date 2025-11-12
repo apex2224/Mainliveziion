@@ -331,171 +331,7 @@ export default function Apphero() {
         </div>
       </section>
 
-      {/* client reviews */}
-
-      <div>
-        <section className={styles.clientReviewsSection}>
-          <div className={styles.clientHeader}>
-            <h1>
-              What Our <span className={styles.clientHighlight}>Clients</span>{" "}
-              <br />
-              Say About <span className={styles.clientHighlight}>Us</span>
-            </h1>
-          </div>
-
-          {/* Row 1 */}
-          <div className={styles.reviewContainer}>
-            {/* Block 1 - Web Development */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={WebDevelopment}
-                  alt="Web Development"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Web Development</h2>
-                  <p>
-                    "We provide custom web development services to build
-                    responsive, secure, and scalable websites that help
-                    businesses establish a strong online presence."
-                  </p>
-                  <a href="/web-development" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Block 2 - Data Analytics */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.dataAnalytics}
-                  alt="Data Analytics"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Data Analytics</h2>
-                  <p>
-                    "Our data analytics services turn raw data into actionable
-                    insights, helping organizations make data-driven decisions
-                    with confidence."
-                  </p>
-                  <a href="/data-analytics" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Row 2 */}
-          <div className={styles.reviewContainer}>
-            {/* Block 3 - Data Science */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.datascience}
-                  alt="Data Science"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Data Science</h2>
-                  <p>
-                    "We help businesses leverage data science solutions to
-                    forecast trends, automate processes, and enhance customer
-                    experiences."
-                  </p>
-                  <a href="/data-science" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Block 4 - PHP Development */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.php}
-                  alt="PHP Development"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>PHP Development</h2>
-                  <p>
-                    "Our PHP development services deliver robust web
-                    applications, CMS solutions, and dynamic websites tailored
-                    to client requirements."
-                  </p>
-                  <a href="/php" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Row 3 */}
-          <div className={styles.reviewContainer}>
-            {/* Block 5 - Web Designing */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.webdesigning}
-                  alt="Web Designing"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Web Designing</h2>
-                  <p>
-                    "We craft visually appealing, user-friendly, and
-                    mobile-responsive website designs that enhance user
-                    engagement and brand identity."
-                  </p>
-                  <a href="/web-designing" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Block 6 - AI Solutions */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.ai}
-                  alt="Artificial Intelligence"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Artificial Intelligence</h2>
-                  <p>
-                    "Our AI solutions empower businesses with automation,
-                    predictive analytics, and smart decision-making systems for
-                    future-ready growth."
-                  </p>
-                  <a href="/ai" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-      {/* --- SERVICES GRID SECTION (Moved Up) --- */}
+      {/* SERVICES GRID SECTION */}
       <section className={styles.servicesGridSection}>
         <div className={styles.servicesGridHeader}>
           <h1 className={styles.sectionTitle}>
@@ -514,15 +350,6 @@ export default function Apphero() {
                   className={styles.serviceCardImage}
                 />
               </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Machine Learning</h2>
-                  <p>
-                    "Our ML models deliver smarter predictions, enhanced
-                    automation, and intelligent solutions to solve complex
-                    business problems."
-                  </p>
-                  <a href="/ml" className={styles.reviewMoreLink}>
               <div className={styles.serviceCardTextWrapper}>
                 <div className={styles.serviceCardTextContent}>
                   <h2>{service.title}</h2>
@@ -540,79 +367,17 @@ export default function Apphero() {
         </div>
       </section>
 
-            {/* Block 8 - Digital Marketing */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.digital}
-                  alt="Digital Marketing"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Digital Marketing</h2>
-                  <p>
-                    "We offer SEO, social media, and performance marketing
-                    strategies to boost online visibility and drive business
-                    growth."
-                  </p>
-                  <a
-                    href="/digital-marketing"
-                    className={styles.reviewMoreLink}
-                  >
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Row 5 */}
-          <div className={styles.reviewContainer}>
-            {/* Block 9 - Mobile App Development */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.mobileapp}
-                  alt="Mobile App Development"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Mobile App Development</h2>
-                  <p>
-                    "We build scalable and user-friendly mobile apps for Android
-                    and iOS platforms, ensuring seamless digital experiences."
-                  </p>
-                  <a href="/mobileapp" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Block 10 - IT Consulting */}
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewImageWrapper}>
-                <img
-                  src={images.graphic}
-                  alt="Graphic Designing"
-                  className={styles.reviewImage}
-                />
-              </div>
-              <div className={styles.reviewTextWrapper}>
-                <div className={styles.reviewTextContent}>
-                  <h2>Graphic Designing</h2>
-                  <p>
-                    "Our graphic designing services create visually stunning
-                    designs, logos, and branding materials that capture
-                    attention and enhance your brand identity."
-                  </p>
-                  <a href="/graphic" className={styles.reviewMoreLink}>
-                    Read More ↗
-                  </a>
+      {/* CUSTOMER TESTIMONIALS SECTION */}
+      <section className={styles.clientReviewsSection}>
+        <div className={styles.clientHeader}>
+          <h1>
+            What Our <span className={styles.clientHighlight}>Clients</span>{" "}
+            <br />
+            Say About <span className={styles.clientHighlight}>Us</span>
+          </h1>
+        </div>
+        <ReviewsSection />
+      </section>
       {/* --- PROCESS/JOIN SECTION (Content Updated) --- */}
       <section className={styles.processSection}>
         <div className={styles.processGrid}>
@@ -666,7 +431,6 @@ export default function Apphero() {
           </div>
         </div>
       )}
-    </>
     </div>
   );
 }
