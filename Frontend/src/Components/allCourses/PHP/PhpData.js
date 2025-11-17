@@ -1,32 +1,29 @@
 // hero phrase
-export const heroPhrases = [
-  'Be a Professional',
-  'Be a PHP Developer'
-];
+export const heroPhrases = ["Be a Professional", "Be a PHP Developer"];
 
 // stats
 export const statsData = [
-  { value: '5000+', label: 'Students Trained' },
-  { value: '15+', label: 'Courses Offered' },
-  { value: '98%', label: 'Placement Success Rate' },
-  { value: '10+', label: 'Years Of Experience' },
+  { value: "5000+", label: "Students Trained" },
+  { value: "15+", label: "Courses Offered" },
+  { value: "98%", label: "Placement Success Rate" },
+  { value: "10+", label: "Years Of Experience" },
 ];
 
 // why choose us //
 export const chooseUsLeftItems = [
-  { icon: '🧑', text: 'Focused on 90% Practical Training' },
-  { icon: '💼', text: 'LED Based Smart Classes' },
-  { icon: '📚', text: 'Learn with Real Projects' },
-  { icon: '💳', text: 'Freebies worth Rs.15000/' },
-  { icon: '🧠', text: 'Trainers with 7+ Years Experience' }
+  { icon: "🧑", text: "Focused on 90% Practical Training" },
+  { icon: "💼", text: "LED Based Smart Classes" },
+  { icon: "📚", text: "Learn with Real Projects" },
+  { icon: "💳", text: "Freebies worth Rs.15000/" },
+  { icon: "🧠", text: "Trainers with 7+ Years Experience" },
 ];
 
 export const chooseUsRightItems = [
-  { icon: '✅', text: '100% Placement Assistance' },
-  { icon: '📜', text: '350+ Reviews on Google' },
-  { icon: '🤝', text: '1500+ Placement Partners' },
-  { icon: '👨‍💻', text: 'Internship + Job Placement Support' },
-  { icon: '📝', text: 'Interview Preparation Classes' }
+  { icon: "✅", text: "100% Placement Assistance" },
+  { icon: "📜", text: "350+ Reviews on Google" },
+  { icon: "🤝", text: "1500+ Placement Partners" },
+  { icon: "👨‍💻", text: "Internship + Job Placement Support" },
+  { icon: "📝", text: "Interview Preparation Classes" },
 ];
 
 // career opportunities
@@ -34,56 +31,57 @@ export const careerOpportunities = [
   {
     title: "PHP Developer",
     description:
-      "As a PHP developer, you'll work on dynamic web applications, backend development, and server-side scripting. Opportunities exist in web development agencies, startups, and corporate tech teams."
+      "As a PHP developer, you'll work on dynamic web applications, backend development, and server-side scripting. Opportunities exist in web development agencies, startups, and corporate tech teams.",
   },
   {
     title: "Full Stack Developer",
     description:
-      "Combine PHP backend with HTML, CSS, JS, and MySQL to become a full stack developer. High demand across SaaS companies, agencies, and freelance platforms."
+      "Combine PHP backend with HTML, CSS, JS, and MySQL to become a full stack developer. High demand across SaaS companies, agencies, and freelance platforms.",
   },
   {
     title: "WordPress Developer",
     description:
-      "Master PHP to build and customize WordPress themes and plugins. High freelancing demand and full-time opportunities at digital marketing firms."
+      "Master PHP to build and customize WordPress themes and plugins. High freelancing demand and full-time opportunities at digital marketing firms.",
   },
   {
     title: "Backend Engineer",
     description:
-      "Work on databases, APIs, and server logic using PHP frameworks like Laravel. Companies need backend engineers for scalable and secure applications."
+      "Work on databases, APIs, and server logic using PHP frameworks like Laravel. Companies need backend engineers for scalable and secure applications.",
   },
   {
     title: "Web Application Developer",
     description:
-      "Use PHP and MySQL to build portals, e-commerce sites, and dashboards. Opportunities in startups, consultancies, and enterprise development."
+      "Use PHP and MySQL to build portals, e-commerce sites, and dashboards. Opportunities in startups, consultancies, and enterprise development.",
   },
   {
     title: "Freelancer",
     description:
-      "Build and maintain websites for local businesses and international clients using PHP, WordPress, and CodeIgniter. High flexibility and earning potential."
-  }
+      "Build and maintain websites for local businesses and international clients using PHP, WordPress, and CodeIgniter. High flexibility and earning potential.",
+  },
 ];
-
-
 
 export const faqQuestions = [
   {
-    question: 'What will I learn?',
-    answer: 'You will learn PHP fundamentals, MySQL integration, form handling, sessions, authentication, object-oriented PHP, and frameworks like Laravel.',
+    question: "What will I learn?",
+    answer:
+      "You will learn PHP fundamentals, MySQL integration, form handling, sessions, authentication, object-oriented PHP, and frameworks like Laravel.",
   },
   {
-    question: 'Is this course beginner-friendly?',
-    answer: 'Yes! The PHP course starts from basics and gradually covers advanced concepts. Suitable for beginners, students, and developers.',
+    question: "Is this course beginner-friendly?",
+    answer:
+      "Yes! The PHP course starts from basics and gradually covers advanced concepts. Suitable for beginners, students, and developers.",
   },
   {
-    question: 'Do I get certification?',
-    answer: 'Yes, upon completing the PHP course and projects, you will receive an industry-recognized certification.',
+    question: "Do I get certification?",
+    answer:
+      "Yes, upon completing the PHP course and projects, you will receive an industry-recognized certification.",
   },
   {
-    question: 'Is offline training available?',
-    answer: 'Yes, we provide both online live sessions and classroom training at our Chandigarh center.',
+    question: "Is offline training available?",
+    answer:
+      "Yes, we provide both online live sessions and classroom training at our Chandigarh center.",
   },
 ];
-
 
 // syllabus
 export const syllabusData = {
@@ -107,7 +105,7 @@ export const syllabusData = {
     "Server-Side Scripting Basics",
     "PHP Versions Overview",
     "Tools and IDEs for PHP Development",
-    "Hands-on: First PHP Script"
+    "Hands-on: First PHP Script",
   ],
 
   "PHP Variables, Data Types & Constants": [
@@ -130,7 +128,7 @@ export const syllabusData = {
     "Increment/Decrement Operators",
     "Practical Variable Usage",
     "Hands-on: Variables & Constants Project",
-    "Hands-on: Superglobals Project"
+    "Hands-on: Superglobals Project",
   ],
 
   "PHP Control Structures": [
@@ -153,7 +151,7 @@ export const syllabusData = {
     "Combining Conditions with Loops",
     "Hands-on: Conditional Logic Project",
     "Hands-on: Loop-Based Project",
-    "Hands-on: Nested Loop Challenge"
+    "Hands-on: Nested Loop Challenge",
   ],
 
   "PHP Functions & OOP Basics": [
@@ -176,7 +174,7 @@ export const syllabusData = {
     "Abstract Classes & Interfaces",
     "Namespaces in PHP",
     "Traits in PHP",
-    "Hands-on: Function & OOP Project"
+    "Hands-on: Function & OOP Project",
   ],
 
   "PHP Arrays": [
@@ -199,7 +197,7 @@ export const syllabusData = {
     "Array Mapping with Callbacks",
     "Practical Array Usage",
     "Hands-on: Array Project",
-    "Hands-on: Multidimensional Array Project"
+    "Hands-on: Multidimensional Array Project",
   ],
 
   "PHP Strings": [
@@ -222,7 +220,7 @@ export const syllabusData = {
     "Working with JSON Strings",
     "Practical String Examples",
     "Hands-on: String Manipulation Project",
-    "Hands-on: Regular Expressions Project"
+    "Hands-on: Regular Expressions Project",
   ],
 
   "PHP Forms & User Input": [
@@ -245,7 +243,7 @@ export const syllabusData = {
     "Security Considerations",
     "CSRF Token Implementation",
     "Hands-on: Contact Form Project",
-    "Hands-on: File Upload Project"
+    "Hands-on: File Upload Project",
   ],
 
   "PHP Sessions & Cookies": [
@@ -268,7 +266,7 @@ export const syllabusData = {
     "Secure Authentication Flow",
     "Hands-on: Session Project",
     "Hands-on: Cookie Project",
-    "Hands-on: Login System Project"
+    "Hands-on: Login System Project",
   ],
 
   "PHP File Handling": [
@@ -291,7 +289,7 @@ export const syllabusData = {
     "File Locking Techniques",
     "Error Handling in File Operations",
     "Hands-on: File Read/Write Project",
-    "Hands-on: File Upload & Download Project"
+    "Hands-on: File Upload & Download Project",
   ],
 
   "PHP Error Handling & Debugging": [
@@ -314,7 +312,7 @@ export const syllabusData = {
     "Hands-on: Error Handling Project",
     "Hands-on: Exception Handling Project",
     "Hands-on: Debugging Practice",
-    "Hands-on: Logging Errors Project"
+    "Hands-on: Logging Errors Project",
   ],
 
   "PHP MySQL Basics": [
@@ -337,7 +335,7 @@ export const syllabusData = {
     "Relationships in Databases",
     "Hands-on: Database Connection Project",
     "Hands-on: CRUD Project",
-    "Hands-on: Secure Query Project"
+    "Hands-on: Secure Query Project",
   ],
 
   "Advanced PHP & OOP": [
@@ -360,7 +358,7 @@ export const syllabusData = {
     "Practical OOP Examples",
     "Hands-on: Advanced OOP Project",
     "Hands-on: Design Pattern Implementation",
-    "Hands-on: Composer Package Project"
+    "Hands-on: Composer Package Project",
   ],
 
   "PHP Security & Best Practices": [
@@ -383,7 +381,7 @@ export const syllabusData = {
     "Security Auditing Tools",
     "Common Vulnerabilities Overview",
     "Hands-on: Secure Login System",
-    "Hands-on: Secure Form Handling"
+    "Hands-on: Secure Form Handling",
   ],
 
   "PHP Frameworks Overview": [
@@ -406,7 +404,7 @@ export const syllabusData = {
     "Framework Comparison",
     "Hands-on: Laravel Mini Project",
     "Hands-on: CRUD with Framework",
-    "Hands-on: REST API Project"
+    "Hands-on: REST API Project",
   ],
 
   "PHP RESTful API Development": [
@@ -429,7 +427,7 @@ export const syllabusData = {
     "Logging API Requests",
     "Hands-on: CRUD API Project",
     "Hands-on: JWT Authentication API",
-    "Hands-on: Full API Project"
+    "Hands-on: Full API Project",
   ],
 
   "PHP & AJAX / jQuery": [
@@ -452,7 +450,7 @@ export const syllabusData = {
     "Hands-on: AJAX Form Project",
     "Hands-on: Real-Time Update Project",
     "Hands-on: jQuery AJAX Project",
-    "Hands-on: Interactive Dashboard"
+    "Hands-on: Interactive Dashboard",
   ],
 
   "PHP Testing & Debugging": [
@@ -475,7 +473,7 @@ export const syllabusData = {
     "Hands-on: Integration Test Project",
     "Hands-on: Debugging Project",
     "Hands-on: Code Coverage Project",
-    "Hands-on: Testing Automation Project"
+    "Hands-on: Testing Automation Project",
   ],
 
   "PHP Deployment & Cloud": [
@@ -498,7 +496,7 @@ export const syllabusData = {
     "Error Monitoring Post Deployment",
     "Scaling PHP Applications",
     "Hands-on: Hosting PHP Project",
-    "Hands-on: Cloud Deployment Project"
+    "Hands-on: Cloud Deployment Project",
   ],
 
   "PHP Capstone Projects & Portfolio": [
@@ -521,92 +519,158 @@ export const syllabusData = {
     "Project 17: Online Resume Builder",
     "Project 18: Multi-vendor Marketplace",
     "Project 19: Appointment Scheduling System",
-    "Project 20: RESTful API Integration Project"
-  ]
+    "Project 20: RESTful API Integration Project",
+  ],
 };
-
-
 
 // projects
 export const projectData = [
   {
-    title: 'Personal Portfolio Website',
-    company: 'Beginner Project',
-    description: 'Create a simple dynamic portfolio website with contact form and project showcase using PHP and MySQL.',
-    tags: ['HTML', 'CSS', 'PHP']
+    title: "Personal Portfolio Website",
+    company: "Beginner Project",
+    description:
+      "Create a simple dynamic portfolio website with contact form and project showcase using PHP and MySQL.",
+    tags: ["HTML", "CSS", "PHP"],
   },
   {
-    title: 'Blog Platform',
-    company: 'Ziion Tech',
-    description: 'Build a basic content management system (CMS) where users can post, edit, and manage articles with comments functionality.',
-    tags: ['PHP', 'MySQL', 'Bootstrap']
+    title: "Blog Platform",
+    company: "Ziion Tech",
+    description:
+      "Build a basic content management system (CMS) where users can post, edit, and manage articles with comments functionality.",
+    tags: ["PHP", "MySQL", "Bootstrap"],
   },
   {
-    title: 'Online Voting System',
-    company: 'Training Project',
-    description: 'Develop a secure online voting system with user login, candidate management, and real-time results.',
-    tags: ['PHP', 'MySQL', 'Sessions']
+    title: "Online Voting System",
+    company: "Training Project",
+    description:
+      "Develop a secure online voting system with user login, candidate management, and real-time results.",
+    tags: ["PHP", "MySQL", "Sessions"],
   },
   {
-    title: 'School Management System',
-    company: 'SmartEdu',
-    description: 'Create a web app to manage students, teachers, attendance, and grading using Laravel framework.',
-    tags: ['Laravel', 'MySQL']
+    title: "School Management System",
+    company: "SmartEdu",
+    description:
+      "Create a web app to manage students, teachers, attendance, and grading using Laravel framework.",
+    tags: ["Laravel", "MySQL"],
   },
   {
-    title: 'E-commerce Website',
-    company: 'Local Mart',
-    description: 'Develop a shopping website with product catalog, cart system, user authentication, and admin panel.',
-    tags: ['PHP', 'MySQL', 'Bootstrap']
+    title: "E-commerce Website",
+    company: "Local Mart",
+    description:
+      "Develop a shopping website with product catalog, cart system, user authentication, and admin panel.",
+    tags: ["PHP", "MySQL", "Bootstrap"],
   },
   {
-    title: 'Online Food Ordering System',
-    company: 'FoodRush',
-    description: 'Create a web-based ordering and delivery system with customer login, order tracking, and admin backend.',
-    tags: ['PHP', 'JavaScript', 'MySQL']
+    title: "Online Food Ordering System",
+    company: "FoodRush",
+    description:
+      "Create a web-based ordering and delivery system with customer login, order tracking, and admin backend.",
+    tags: ["PHP", "JavaScript", "MySQL"],
   },
   {
-    title: 'Job Portal Website',
-    company: 'JobHunt',
-    description: 'Implement features like user registration, resume upload, job listings, application tracking, and admin dashboard.',
-    tags: ['PHP', 'MySQL', 'Bootstrap']
+    title: "Job Portal Website",
+    company: "JobHunt",
+    description:
+      "Implement features like user registration, resume upload, job listings, application tracking, and admin dashboard.",
+    tags: ["PHP", "MySQL", "Bootstrap"],
   },
   {
-    title: 'Hospital Management System',
-    company: 'Capstone Project',
-    description: 'End-to-end PHP project to manage doctors, patients, appointments, billing, and pharmacy modules.',
-    tags: ['Laravel', 'MySQL', 'REST API']
-  }
+    title: "Hospital Management System",
+    company: "Capstone Project",
+    description:
+      "End-to-end PHP project to manage doctors, patients, appointments, billing, and pharmacy modules.",
+    tags: ["Laravel", "MySQL", "REST API"],
+  },
 ];
-
-
-
 
 // placement //
 
 export const leftScrollCards = [
-    
-    { name: "Maya", company: "MERN Stack", iframe: "https://www.youtube.com/embed/bplbcMwCec0" },
-    { name: "Mandeep Singh", company: "MERN Stack", iframe: "https://www.youtube.com/embed/5c_ZlshtNAY" },
-    { name: "Vandana", company: "MERN Stack", iframe: "https://www.youtube.com/embed/QNVCrzBAjN0" },
-    { name: "Maya Dhingra", company: "MERN Stack", iframe: "https://www.youtube.com/embed/28f0eX_cAg0" },
-    { name: "Ravi", company: "MERN Stack", iframe: "https://www.youtube.com/embed/moquD8DW7Xo" },
-     { name: "Sharanjeet", company: "DIGITAL MARKETING", iframe: "https://www.youtube.com/embed/HYfD9I04fNM" },
-    { name: "Himanshu", company: "Digital Marketing", iframe: "https://www.youtube.com/embed/8lDAZ-Vhbg8" },
-    { name: "Gauri", company: "DIGITAL MARKETING", iframe: "https://www.youtube.com/embed/2oNCv72LqaY" },
-      { name: "Suman", company: "Graphic Designing", iframe: "https://www.youtube.com/embed/nS2EpHjpmFo" },
-    { name: "Vishal Kumar", company: "FRONTEND DEVELOPER", iframe: "https://www.youtube.com/embed/432IgJeUL5s" },
+  {
+    name: "Maya",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/bplbcMwCec0",
+  },
+  {
+    name: "Mandeep Singh",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/5c_ZlshtNAY",
+  },
+  {
+    name: "Vandana",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/QNVCrzBAjN0",
+  },
+  {
+    name: "Maya Dhingra",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/28f0eX_cAg0",
+  },
+  {
+    name: "Ravi",
+    company: "MERN Stack",
+    iframe: "https://www.youtube.com/embed/moquD8DW7Xo",
+  },
+  {
+    name: "Sharanjeet",
+    company: "DIGITAL MARKETING",
+    iframe: "https://www.youtube.com/embed/HYfD9I04fNM",
+  },
+  {
+    name: "Himanshu",
+    company: "Digital Marketing",
+    iframe: "https://www.youtube.com/embed/8lDAZ-Vhbg8",
+  },
+  {
+    name: "Gauri",
+    company: "DIGITAL MARKETING",
+    iframe: "https://www.youtube.com/embed/2oNCv72LqaY",
+  },
+  {
+    name: "Suman",
+    company: "Graphic Designing",
+    iframe: "https://www.youtube.com/embed/nS2EpHjpmFo",
+  },
+  {
+    name: "Vishal Kumar",
+    company: "FRONTEND DEVELOPER",
+    iframe: "https://www.youtube.com/embed/432IgJeUL5s",
+  },
 
-      { name: "Ayush", company: "AI/ML", iframe: "https://www.youtube.com/embed/QV0GUD2I_MA" },
- { name: "Kartik Bhandari", company: "PYTHON", iframe: "https://www.youtube.com/embed/ao2cMCnceP0" },
-    { name: "Harsh Gupta", company: "PYTHON", iframe: "https://www.youtube.com/embed/EiEtpwyuTSE" },
-    { name: "Diya", company: "PYTHON", iframe: "https://www.youtube.com/embed/OsdKrDbWQIM" },
- { name: "Ashutosh", company: "DATA ANALYTICS", iframe: "https://www.youtube.com/embed/xfiz14e0k1Y" },
-     
-      { name: "Rohit", company: "DATA SCIENCE", iframe: "https://www.youtube.com/embed/bZB0xpEuU4w" },
-    { name: "Raghav", company: "DATA SCIENCE", iframe: "https://www.youtube.com/embed/jqavyDF02so" },
+  {
+    name: "Ayush",
+    company: "AI/ML",
+    iframe: "https://www.youtube.com/embed/QV0GUD2I_MA",
+  },
+  {
+    name: "Kartik Bhandari",
+    company: "PYTHON",
+    iframe: "https://www.youtube.com/embed/ao2cMCnceP0",
+  },
+  {
+    name: "Harsh Gupta",
+    company: "PYTHON",
+    iframe: "https://www.youtube.com/embed/EiEtpwyuTSE",
+  },
+  {
+    name: "Diya",
+    company: "PYTHON",
+    iframe: "https://www.youtube.com/embed/OsdKrDbWQIM",
+  },
+  {
+    name: "Ashutosh",
+    company: "DATA ANALYTICS",
+    iframe: "https://www.youtube.com/embed/xfiz14e0k1Y",
+  },
 
- 
-
-    
+  {
+    name: "Rohit",
+    company: "DATA SCIENCE",
+    iframe: "https://www.youtube.com/embed/bZB0xpEuU4w",
+  },
+  {
+    name: "Raghav",
+    company: "DATA SCIENCE",
+    iframe: "https://www.youtube.com/embed/jqavyDF02so",
+  },
 ];
