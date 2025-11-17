@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from "react"; // Import useCallback
-import Particles from "react-tsparticles"; // Import Particles
-import { loadSlim } from "tsparticles-slim"; // Import the slim engine
-import particlesConfig from "../apps/Particles-config"; // Import our new config
+import React, { useState, useCallback } from "react";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
+import particlesConfig from "../apps/Particles-config";
+import { useNavigate } from "react-router-dom";
 
 import NavBar from "../head/Navbar";
 import styles from "./Apphero.module.css";
@@ -13,16 +14,16 @@ import appFourSection3 from "../../assets/app/appFourthSection3.png";
 import ReviewsSection from "../reviews/ReviewsSection";
 import WebDevelopment from "../../assets/NewCoursesImages/WebDevelopment.png";
 import useCustom from "../customHook/useCustom";
-import Form from "../form/Form"; // Import the Form component
+import Form from "../form/Form";
 
 export default function Apphero() {
   const [showForm, setShowForm] = useState(false);
 
+  const navigate = useNavigate();
+
   useCustom("Services | Ziion Technology");
 
-  // Add this function to load the particle engine
   const particlesInit = useCallback(async (engine) => {
-    // This loads the slim version of tsparticles
     await loadSlim(engine);
   }, []);
 
@@ -93,13 +94,13 @@ export default function Apphero() {
       image: images.datascience,
       link: "#",
     },
-    {
-      title: "PHP Development",
-      description:
-        "We deliver robust web applications, CMS solutions, and dynamic websites tailored to your requirements.",
-      image: images.php,
-      link: "#",
-    },
+    // {
+    //   title: "PHP Development",
+    //   description:
+    //     "We deliver robust web applications, CMS solutions, and dynamic websites tailored to your requirements.",
+    //   image: images.php,
+    //   link: "#",
+    // },
     {
       title: "Web Designing",
       description:
@@ -151,14 +152,12 @@ export default function Apphero() {
       {/* --- HERO SECTION --- */}
       <section className={styles.heroSection}>
         <div className={styles.heroBackground}>
-          {/* The Particles component */}
           <Particles
             id="tsparticles"
             init={particlesInit}
             options={particlesConfig}
-            className={styles.particlesCanvas} // Add a class for styling
+            className={styles.particlesCanvas}
           />
-
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>Empowering Your Future</h1>
             <p className={styles.heroSubtitle}>
@@ -203,7 +202,7 @@ export default function Apphero() {
         </div>
       </section>
 
-      {/* OUR FEATURES */}
+      {/* --- MOTIVATIONAL INSIGHTS (NOW STYLED) --- */}
       <div className={styles.serviceFeature}>
         <div className={styles.pageWrapper}>
           <header className={styles.headerSection}>
@@ -214,124 +213,125 @@ export default function Apphero() {
           </header>
 
           <main className={styles.contentArea}>
-            <div className={styles.featurecontent}>
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>🏆</div>
-                <h2 className={styles.featureTitle}>Self-Confidence</h2>
-                <p className={styles.featureDescription}>
-                  Believe in yourself, embrace your strengths, and tackle
-                  challenges with courage.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>🏆</div>
+              <h2 className={styles.featureTitle}>Self-Confidence</h2>
+              <p className={styles.featureDescription}>
+                Believe in yourself, embrace your strengths, and tackle
+                challenges with courage.
+              </p>
+            </div>
 
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>🌟</div>
-                <h2 className={styles.featureTitle}>Goal Setting</h2>
-                <p className={styles.featureDescription}>
-                  Set clear goals, plan your journey, and stay focused on what
-                  truly matters to achieve success.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>🌟</div>
+              <h2 className={styles.featureTitle}>Goal Setting</h2>
+              <p className={styles.featureDescription}>
+                Set clear goals, plan your journey, and stay focused on what
+                truly matters to achieve success.
+              </p>
+            </div>
 
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>🔥</div>
-                <h2 className={styles.featureTitle}>Persistence</h2>
-                <p className={styles.featureDescription}>
-                  Keep going even when the path is tough. Every step forward
-                  brings you closer to your dreams.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>🔥</div>
+              <h2 className={styles.featureTitle}>Persistence</h2>
+              <p className={styles.featureDescription}>
+                Keep going even when the path is tough. Every step forward
+                brings you closer to your dreams.
+              </p>
+            </div>
 
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>🌈</div>
-                <h2 className={styles.featureTitle}>Positive Mindset</h2>
-                <p className={styles.featureDescription}>
-                  Cultivate positivity in your thoughts and actions to attract
-                  success and happiness.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>🌈</div>
+              <h2 className={styles.featureTitle}>Positive Mindset</h2>
+              <p className={styles.featureDescription}>
+                Cultivate positivity in your thoughts and actions to attract
+                success and happiness.
+              </p>
+            </div>
 
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>🚀</div>
-                <h2 className={styles.featureTitle}>Ambition</h2>
-                <p className={styles.featureDescription}>
-                  Dream big, take bold steps, and strive to reach new heights in
-                  every area of your life.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>🚀</div>
+              <h2 className={styles.featureTitle}>Ambition</h2>
+              <p className={styles.featureDescription}>
+                Dream big, take bold steps, and strive to reach new heights in
+                every area of your life.
+              </p>
+            </div>
 
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>🧘‍♂️</div>
-                <h2 className={styles.featureTitle}>Resilience</h2>
-                <p className={styles.featureDescription}>
-                  Bounce back from setbacks stronger than before and turn
-                  challenges into opportunities.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>🧘‍♂️</div>
+              <h2 className={styles.featureTitle}>Resilience</h2>
+              <p className={styles.featureDescription}>
+                Bounce back from setbacks stronger than before and turn
+                challenges into opportunities.
+              </p>
+            </div>
 
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>🎯</div>
-                <h2 className={styles.featureTitle}>Focus</h2>
-                <p className={styles.featureDescription}>
-                  Concentrate on what matters most, minimize distractions, and
-                  achieve your goals efficiently.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>🎯</div>
+              <h2 className={styles.featureTitle}>Focus</h2>
+              <p className={styles.featureDescription}>
+                Concentrate on what matters most, minimize distractions, and achieve your goals efficiently.
+              </p>
+            </div>
 
-              <div className={styles.featureBox}>
-                <div className={styles.featureIcon}>💡</div>
-                <h2 className={styles.featureTitle}>Creativity</h2>
-                <p className={styles.featureDescription}>
-                  Think outside the box, innovate, and approach challenges with
-                  fresh, inspiring ideas.
-                </p>
-              </div>
+            <div className={styles.featureBox}>
+              <div className={styles.featureIcon}>💡</div>
+              <h2 className={styles.featureTitle}>Creativity</h2>
+              <p className={styles.featureDescription}>
+                Think outside the box, innovate, and approach challenges with fresh, inspiring ideas.
+              </p>
             </div>
           </main>
         </div>
       </div>
 
-      <section className={styles.appThird}>
-        <div className={styles.leftPanel}>
-          <button className={styles.joinBtn} onClick={() => setShowForm(true)}>
-            LET'S JOIN
-          </button>
-          <h1 className={styles.heading}>It’s Time to Hire</h1>
-          <h2 className={styles.subheading}>AI Customer Services</h2>
-          <p className={styles.description}>
-            Hiring an AI Customer services it's easy, you just need to know your
-            needs and the business very well.
-          </p>
-          <div className={styles.buttonsGroup}>
-            <button
-              className={styles.learnMore}
-              onClick={() => setShowForm(true)}
-            >
-              Learn More
-            </button>
-            <button
-              className={styles.signUpNow}
-              onClick={() => setShowForm(true)}
-            >
-              Contact Us
-            </button>
-          </div>
-        </div>
-
-        <div className={styles.rightPanel}>
-          {steps.map((step, index) => (
-            <div className={styles.stepBox} key={index}>
-              <div className={styles.stepNumber}>{`0${index + 1}`}</div>
-              <div className={styles.stepContent}>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </div>
+      {/* --- PROCESS/JOIN SECTION (This is the correct one) --- */}
+      <section className={styles.processSection}>
+        <div className={styles.processGrid}>
+          <div className={styles.processLeftPanel}>
+            <span className={styles.categoryLabel}>START YOUR JOURNEY</span>
+            <h1 className={styles.processHeading}>Begin Your Career With Us</h1>
+            <h2 className={styles.processSubheading}>
+              Simple Steps to Get Started
+            </h2>
+            <p className={styles.processDescription}>
+              Follow these simple steps to enroll in our industry-leading
+              training programs and unlock your potential.
+            </p>
+            <div className={styles.processButtonsGroup}>
+              <button
+                className={styles.buttonPrimary}
+                onClick={() => navigate("/allcourses")}
+              >
+                View Courses
+              </button>
+              <button
+                className={styles.buttonOutline}
+                onClick={() => setShowForm(true)}
+              >
+                Contact Us
+              </button>
             </div>
-          ))}
+          </div>
+
+          <div className={styles.processRightPanel}>
+            {steps.map((step, index) => (
+              <div className={styles.processStep} key={index}>
+                <div className={styles.processStepNumber}>{`0${
+                  index + 1
+                }`}</div>
+                <div className={styles.processStepContent}>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* SERVICES GRID SECTION */}
+      {/* --- SERVICES GRID SECTION --- */}
       <section className={styles.servicesGridSection}>
         <div className={styles.servicesGridHeader}>
           <h1 className={styles.sectionTitle}>
@@ -354,10 +354,7 @@ export default function Apphero() {
                 <div className={styles.serviceCardTextContent}>
                   <h2>{service.title}</h2>
                   <p>{service.description}</p>
-                  <a
-                    href={service.link}
-                    className={styles.serviceCardMoreLink}
-                  >
+                  <a href={service.link} className={styles.serviceCardMoreLink}>
                     Read More ↗
                   </a>
                 </div>
@@ -367,7 +364,7 @@ export default function Apphero() {
         </div>
       </section>
 
-      {/* CUSTOMER TESTIMONIALS SECTION */}
+      {/* --- CUSTOMER TESTIMONIALS (NOW STYLED) --- */}
       <section className={styles.clientReviewsSection}>
         <div className={styles.clientHeader}>
           <h1>
@@ -378,55 +375,24 @@ export default function Apphero() {
         </div>
         <ReviewsSection />
       </section>
-      {/* --- PROCESS/JOIN SECTION (Content Updated) --- */}
-      <section className={styles.processSection}>
-        <div className={styles.processGrid}>
-          <div className={styles.processLeftPanel}>
-            <span className={styles.categoryLabel}>START YOUR JOURNEY</span>
-            <h1 className={styles.processHeading}>Begin Your Career With Us</h1>
-            <h2 className={styles.processSubheading}>
-              Simple Steps to Get Started
-            </h2>
-            <p className={styles.processDescription}>
-              Follow these simple steps to enroll in our industry-leading
-              training programs and unlock your potential.
-            </p>
-            <div className={styles.processButtonsGroup}>
-              <button className={styles.buttonPrimary}>View Courses</button>
-              <button className={styles.buttonOutline}>Contact Us</button>
-            </div>
-          </div>
-
-          <div className={styles.processRightPanel}>
-            {steps.map((step, index) => (
-              <div className={styles.processStep} key={index}>
-                <div className={styles.processStepNumber}>{`0${
-                  index + 1
-                }`}</div>
-                <div className={styles.processStepContent}>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- REVIEWS SECTION --- */}
-      <ReviewsSection />
 
       {/* --- FOOTER --- */}
       <Footer />
-      
-      {/* Modal for Form */}
+
+      {/* --- Modal for Form --- */}
       {showForm && (
         <div className={styles.modalOverlay} onClick={() => setShowForm(false)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeModal} type="button" onClick={(e) => {
-              e.stopPropagation();
-              setShowForm(false);
-            }}>×</button>
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={styles.closeModal}
+              type="button"
+              onClick={() => setShowForm(false)} // Simplified
+            >
+              ×
+            </button>
             <Form closeForm={() => setShowForm(false)} />
           </div>
         </div>
