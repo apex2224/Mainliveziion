@@ -192,7 +192,7 @@ import seaborn from "./allcourses/datascience/seaborn.png";
 // placement //
 
 import nisha from "./placementImages/nisha.jpeg";
-import nishaRani from "./placementImages/nisharani.jpeg";
+import NishaRani from "./placementImages/nisharani.jpeg";
 import parmeet from "./placementImages/parmeet.jpeg";
 import raghav from "./placementImages/raghav.jpeg";
 import rupal from "./placementImages/rupal.jpeg";
@@ -579,14 +579,14 @@ const images = {
   // manroop,
   // muskan,
   // niketa,
-  // nisha,
-  // nisharani,
-  // parmeet,
-  // raghav,
+  nisha,
+  NishaRani,
+  parmeet,
+  raghav,
   // rubalpreet,
-  // rupal,
-  // shubham,
-  // simranjeet,
+  rupal,
+  shubham,
+  simranjeet,
   // simrat,
   // taranveer,
   // vansh,
