@@ -226,10 +226,10 @@ const Webdesigning = () => {
       <section className={styles.toolsMain}>
         <h1>Tools</h1>
         <div className={styles.webdevtoolsContainer}>
-          <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+          <div className={styles["feature-card"]}>
+            <div>
               <h3 className={styles.title}>HTML</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 HTML (HyperText Markup Language) provides the basic structure of
                 web pages, using elements like headings, paragraphs, links, and
                 images.
@@ -244,7 +244,7 @@ const Webdesigning = () => {
             </div>
           </div>
 
-          <div className={styles.webdevtools}>
+          <div className={styles["feature-card"]}>
             <div className={styles.webdevtoolsFeature}>
               <img
                 src={images.css}
@@ -252,9 +252,9 @@ const Webdesigning = () => {
                 className={styles.webdevtoolsFeatureImg}
               />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>CSS</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 CSS (Cascading Style Sheets) styles the layout and design of web
                 pages—controlling colors, spacing, fonts, and responsive
                 behavior.
@@ -262,10 +262,10 @@ const Webdesigning = () => {
             </div>
           </div>
 
-          <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+          <div className={styles["feature-card"]}>
+            <div>
               <h3 className={styles.title}>JavaScript</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 JavaScript adds dynamic behavior to websites, enabling
                 interactive features like sliders, form validation, and
                 real-time updates.
@@ -280,7 +280,7 @@ const Webdesigning = () => {
             </div>
           </div>
 
-          <div className={styles.webdevtools}>
+          <div className={styles["feature-card"]}>
             <div className={styles.webdevtoolsFeature}>
               <img
                 src={images.react}
@@ -288,9 +288,9 @@ const Webdesigning = () => {
                 className={styles.webdevtoolsFeatureImg}
               />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>React</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 React is a popular JavaScript library for building user
                 interfaces using reusable components and efficient state
                 management.
@@ -298,10 +298,10 @@ const Webdesigning = () => {
             </div>
           </div>
 
-          <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+          <div className={styles["feature-card"]}>
+            <div>
               <h3 className={styles.title}>Shopify</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Shopify is a leading eCommerce platform that enables individuals
                 and businesses to create online stores with customizable
                 templates.
@@ -316,7 +316,7 @@ const Webdesigning = () => {
             </div>
           </div>
 
-          <div className={styles.webdevtools}>
+          <div className={styles["feature-card"]}>
             <div className={styles.webdevtoolsFeature}>
               <img
                 src={images.wordpress}
@@ -324,9 +324,9 @@ const Webdesigning = () => {
                 className={styles.webdevtoolsFeatureImg}
               />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>WordPress</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 WordPress is a content management system (CMS) used for building
                 websites and blogs, known for its ease of use and plugin
                 ecosystem.
@@ -334,10 +334,10 @@ const Webdesigning = () => {
             </div>
           </div>
 
-          <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+          <div className={styles["feature-card"]}>
+            <div>
               <h3 className={styles.title}>Bootstrap</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Bootstrap is a responsive front-end framework offering prebuilt
                 UI components and grid systems for rapid web design and layout.
               </p>
@@ -351,7 +351,7 @@ const Webdesigning = () => {
             </div>
           </div>
 
-          <div className={styles.webdevtools}>
+          <div className={styles["feature-card"]}>
             <div className={styles.webdevtoolsFeature}>
               <img
                 src={images.nestjs}
@@ -359,9 +359,9 @@ const Webdesigning = () => {
                 className={styles.webdevtoolsFeatureImg}
               />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>NestJS</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 NestJS is a scalable Node.js framework built with TypeScript,
                 offering a modular architecture for building efficient
                 server-side apps.
@@ -370,7 +370,7 @@ const Webdesigning = () => {
           </div>
         </div>
         <button
-          className={`${styles.herobutton} ${styles.toolsBtn}`}
+          className={styles.herobutton}
           onClick={() => setShowForm(true)}
         >
           Talk to us
@@ -732,7 +732,7 @@ const Webdesigning = () => {
         </section>
       </div>
 
-      {/* certificate section */}
+      {/* achievers section */}
 
       <section className={styles.achieversSection}>
         <div className={styles.achieversInner}>

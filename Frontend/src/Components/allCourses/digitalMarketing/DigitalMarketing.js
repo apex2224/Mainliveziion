@@ -235,9 +235,9 @@ const DigitalMarketing = () => {
         <div className={styles.webdevtoolsContainer}>
 
           <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>Analytics</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Analytics tools help track, measure, and optimize website and campaign performance.
                 They provide insights into user behavior, traffic sources, and conversions — enabling
                 smarter data-driven decisions.
@@ -252,9 +252,9 @@ const DigitalMarketing = () => {
             <div className={styles.webdevtoolsFeature}>
               <img src={images.datahandling} alt="Data Handling" className={styles.webdevtoolsFeatureImg} />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>Data Handling</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Data handling ensures structured storage, cleaning, and processing of information.
                 Effective handling allows businesses to extract insights, maintain accuracy,
                 and scale digital solutions seamlessly.
@@ -263,9 +263,9 @@ const DigitalMarketing = () => {
           </div>
 
           <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>Keywords</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Keywords form the backbone of SEO and content marketing strategies.
                 They connect user intent with business offerings, making them vital
                 for search rankings and targeted traffic generation.
@@ -280,9 +280,9 @@ const DigitalMarketing = () => {
             <div className={styles.webdevtoolsFeature}>
               <img src={images.seo} alt="SEO" className={styles.webdevtoolsFeatureImg} />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>SEO</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Search Engine Optimization (SEO) improves visibility in search results
                 through on-page, off-page, and technical strategies. It’s the key to driving
                 organic traffic and building long-term online authority.
@@ -291,9 +291,9 @@ const DigitalMarketing = () => {
           </div>
 
           <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>Search</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Search technology powers information discovery, from Google queries
                 to advanced in-site search engines. Effective search optimization
                 ensures users quickly find the most relevant results.
@@ -308,9 +308,9 @@ const DigitalMarketing = () => {
             <div className={styles.webdevtoolsFeature}>
               <img src={images.tag} alt="Tag Management" className={styles.webdevtoolsFeatureImg} />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>Tag Management</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Tags are essential for organizing content, tracking events, and
                 managing marketing scripts. Tag management systems streamline
                 how businesses deploy analytics and marketing tools.
@@ -319,9 +319,9 @@ const DigitalMarketing = () => {
           </div>
 
           <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>Uber Case Study</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Uber showcases the power of scalable technology, leveraging
                 real-time data, geolocation, and AI to deliver seamless user
                 experiences in ride-sharing and beyond.
@@ -336,9 +336,9 @@ const DigitalMarketing = () => {
             <div className={styles.webdevtoolsFeature}>
               <img src={images.screaming} alt="Screaming Frog SEO" className={styles.webdevtoolsFeatureImg} />
             </div>
-            <div className={styles.textBlock}>
+            <div>
               <h3 className={styles.title}>Screaming Frog</h3>
-              <p className={styles.toolDescription}>
+              <p className={styles.description}>
                 Screaming Frog is a powerful SEO tool used for crawling websites,
                 auditing technical SEO issues, analyzing metadata, and uncovering
                 optimization opportunities for better rankings.
@@ -709,7 +709,7 @@ const DigitalMarketing = () => {
 
     <p className={styles.achieversSubtitle}>
       From <span className={styles.highlight}>classroom</span> to{" "}
-      <span className={styles.certificateHighlight}>career</span> — turning ambition into offers at leading companies.
+      <span className={styles.highlight}>career</span> — turning ambition into offers at leading companies.
     </p>
   </div>
 
