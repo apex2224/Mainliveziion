@@ -1,527 +1,553 @@
-.integrationWrapper {
-  position: relative;
-  width: 100%;
-  min-height: 100vh; /* full section */
-  overflow: hidden;
-  background-color: #1a1a2e;
-  font-family: Arial, sans-serif;
-  color: #fff;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* --- 1. Root Variables (Light & Professional Theme) --- */
+:root {
+  --color-primary: #2563eb; /* Royal Blue */
+  --color-primary-light: #dbeafe; /* Very light blue for badges */
+  --color-secondary: #f97316; /* Orange */
+  --gradient-primary: linear-gradient(135deg, #2563eb, #f97316);
+  --color-text-primary: #0f172a; /* Dark Slate - Main Text */
+  --color-text-secondary: #64748b; /* Slate Gray - Subtext */
+  --color-bg-white: #ffffff;
+  --color-bg-soft: #f8fafc; /* Very light gray for sections */
+  --color-bg-dark: #0f172a; /* Keep dark for specific accents if needed */
+  --color-border: #e2e8f0; /* Light gray border */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --transition-all: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Text container */
-.integrationContent {
-  position: relative;
-  z-index: 2;
+.pageContainer {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-white);
+  color: var(--color-text-secondary);
+  overflow-x: hidden;
+}
+
+/* --- 2. Re-usable Section Headers --- */
+.sectionHeader {
   text-align: center;
-  padding: 20px;
-  max-width: 90%;
-  margin: 0 auto;
+  max-width: 800px;
+  margin: 5rem auto 4rem auto;
+  padding: 0 1rem;
 }
 
-.integrationTitle {
-  margin: 0;
-  line-height: 1.2;
+.categoryLabel {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
 }
 
-/* Individual parts */
-.integrationPart1 {
-  color: #ffffff; 
-  -webkit-text-stroke: 2px #ffffff;
-  font-size: clamp(2.5rem, 6vw, 9rem); /* responsive scaling */
-  display: block;
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
-.integrationPart2 {
-  color: #f7c6f1;
-  font-size: clamp(2rem, 5vw, 7rem);
-  display: block;
-  margin-top: 0.5rem;
+.sectionSubtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
 }
 
-.integrationPart3 {
-  color: #ffffff; 
-  -webkit-text-stroke: 1px #fff;
-  font-size: clamp(2rem, 5vw, 7rem);
-  display: block;
-  margin-top: 0.5rem;
-}
-
-/* Background image */
-.integrationBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.integrationImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ✅ makes it cover fully */
-  opacity: 0.4; /* background feel */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .integrationTitle {
-    font-size: 2rem;
-  }
-  .integrationWrapper{
-    clip-path: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .integrationTitle {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-  }
-}
-
-
-
-  /* integration next section */
-  .integrationNext{
-    background-color: #0e0e0e;
-
-  }
-
-  .pageLayout {
-    min-height: 100vh;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .headerSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .titleIcon {
-    font-size: 1.5rem;
-    color: white;
-    margin-right: 10px;
-  }
-  
-  .mainTitle {
-    font-size: 2.5rem;
-    margin: 0;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  .contentArea {
-    margin: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .projectPanel {
-    width: 98%;
-    padding: 1rem;
-    overflow: hidden;
-    display: flex;
-    gap: 2rem;
-    justify-content: space-evenly;
-    flex-direction: column;
-  }
-  
-  .projectDetails {
-    height: auto;
-    width: 100%;
-    margin: auto;
-  }
-  
-  .dateLabel {
-    font-size: 0.9rem;
-    color: white;
-  }
-  
-  .projectHeading {
-    font-size: 1.8rem;
-    margin: 10px 0;
-    color: white;
-  }
-  
-  .projectText {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    color: white;
-  }
-  
-
-  .projectVisual{
-    width: 70%;
-    height: auto;
-    border-radius: 12px;
-    z-index: 3;
-  }
-  .projectVisual:hover,
-  .projectVisual:active{
-    animation: move 500ms ease-in forwards;
-  }
-  @keyframes move{
-    0%{
-      transform: rotateZ(0)
-    }
-    100%{
-      transform: rotateZ(20deg);
-    }
-  }
-  
-  /* Responsive Adjustments */
-  @media (min-width: 768px) {
-    .mainTitle {
-      font-size: 3rem;
-    }
-    .projectPanel {
-      flex-direction: row;
-      width: 98%;
-    }
-    .projectDetails {
-      width: 60%;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .pageLayout {
-      padding: 40px;
-    }
-    .mainTitle {
-      font-size: 3.5rem;
-    }
-    .projectPanel {
-      width: 98%;
-    }
-    .projectDetails {
-      width: 55%;
-    }
-  }
-
-  /* integrtaion next section */
-.integrationSection {
-  background-color: #000;
-  color: #fff;
-  padding: 4rem 2rem;
-  display: flex;
-  flex-direction: column;
+/* --- 3. Hero Section (Professional Light Theme) --- */
+.heroSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 3rem;
-}
-
-.statsContainer {
-  display: flex;
   gap: 4rem;
-  justify-content: start;
-  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 10rem auto 4rem auto; /* Spacing for fixed navbar */
+  padding: 2rem;
+  background-color: var(--color-bg-white);
 }
 
-.statBox h1 {
-  font-size: 3rem;
-  background: linear-gradient(to right, #ff6ec4, #7873f5);
+.heroContent {
+  padding-right: 1rem;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.heroHighlight {
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
-.statBox p {
-  font-size: 1rem;
-  text-align: center;
+.heroSubtitle {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  max-width: 500px;
 }
 
-.mainContent {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 3rem;
-}
-
-.imageBox {
+/* --- 3D Neural Network Styles --- */
+.neuralNetworkContainer {
   position: relative;
-  max-width: 350px;
-  border-radius: 1rem;
-  overflow: hidden;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  perspective: 1000px; /* Essential for 3D effect */
 }
 
-.imageBox img {
+.neuralNetwork {
+  position: relative;
   width: 100%;
-  border-radius: 1rem;
-  display: block;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: spinNetwork 20s infinite linear;
 }
 
-.labelBox {
-  width: 10rem;
+/* The Core Node */
+.coreNode {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.textBox {
-  max-width: 600px;
-}
-
-.aboutBtn {
-  background-color: #111;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-.hTwo {
-  font-size: 2rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-
-.arrowSection {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.arrowIcon {
+  top: 50%;
+  left: 50%;
   width: 40px;
   height: 40px;
-  background: linear-gradient(to right, #ff6ec4, #7873f5);
-  /* mask: url('/icons/arrow-right.svg') no-repeat center;
-  -webkit-mask: url('/icons/arrow-right.svg') no-repeat center;
-  mask-size: cover; */
-  /* -webkit-mask-size: cover; */
-  transition: transform 0.3s ease;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+  z-index: 10;
 }
 
-.arrowSection:hover .arrowIcon {
-  transform: translateX(10px);
+/* Satellite Nodes */
+.node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--node-color, var(--color-primary));
+  border-radius: 50%;
+  /* Start from center, move out based on vars */
+  transform: translate3d(
+    calc(-50% + var(--x)),
+    calc(-50% + var(--y)),
+    var(--z)
+  );
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.arrowSection p {
-  font-size: 1rem;
-  color: #ccc;
+/* Connecting Lines */
+.connection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--width);
+  height: 1px; /* Very thin line */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-primary),
+    transparent
+  );
+  opacity: 0.4;
+  transform-origin: center left;
+  transform: translate(-50%, -50%) rotateX(var(--rot-x)) rotateY(var(--rot-y))
+    rotateZ(var(--rot-z));
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .mainContent {
-    flex-direction: column;
-    align-items: center;
+@keyframes spinNetwork {
+  0% {
+    transform: rotateY(0deg) rotateX(10deg);
   }
-
-  .textBox h2 {
-    font-size: 1.5rem;
-  }
-
-  .statsContainer {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-
-
-
-/* gallery section */
-.gallery {
-  column-count: 3;
-  column-gap: 1rem;
-  padding: 1rem;
-}
-
-.galleryItem {
-  break-inside: avoid;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background: white;
-  transition: transform 0.3s;
-}
-
-.galleryItem:hover {
-  transform: scale(1.03);
-}
-
-.image {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-/* Responsive tweaks */
-@media (max-width: 1024px) {
-  .gallery {
-    column-count: 2;
+  100% {
+    transform: rotateY(360deg) rotateX(10deg);
   }
 }
 
-@media (max-width: 600px) {
-  .gallery {
-    column-count: 1;
-  }
+/* --- 4. "Bright Stars" Section --- */
+.starsSection {
+  padding: 6rem 2rem;
+  background-color: var(--color-bg-soft); /* Slight gray contrast */
 }
 
-
-
-
-
-
-
-/* college */
-/* Section Title */
-.featuresSection{
-  background-color: #0e0e0e;
-  padding: 5rem 2rem;
-}
-.title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  color: white;
-  position: relative;
-}
-
-/* Optional underline effect */
-.title::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: #007bff; /* change color if needed */
-  margin: 0.6rem auto 0;
-  border-radius: 2px;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-align: center;
-  color: #666;
-  margin-bottom: 2.5rem;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .title {
-    font-size: 1.8rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 1.6rem;
-  }
-
-  .subtitle {
-    font-size: 0.95rem;
-  }
-}
-
-.grid {
+.starsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
 }
 
-/* Feature Card */
-.card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.starCard {
+  background: var(--color-bg-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition-all);
+  display: flex;
+  flex-direction: column;
+}
+
+.starCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.starImageWrapper {
+  width: 100%;
+  height: 240px;
+  background: #f1f5f9;
+}
+
+.starImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.starContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.starDate {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.starName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.starTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.starDescription {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  flex-grow: 1;
+}
+
+/* --- 5. College Partnership Section --- */
+.collegeSection {
+  padding: 6rem 2rem;
+  background-color: var(--color-bg-white);
+}
+
+.collegeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.collegeCard {
+  background: var(--color-bg-white);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+.collegeCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
 }
 
-/* Image Container */
-.icon img {
-  width: 60px;
+.collegeIcon {
+  height: 60px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.collegeIcon img {
+  width: 100%;
   height: 60px;
   object-fit: contain;
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
+  filter: grayscale(100%); /* Professional look: grayscale until hover */
+  opacity: 0.7;
+  transition: all 0.3s ease;
 }
 
-.card:hover .icon img {
-  transform: scale(1.1);
+.collegeCard:hover .collegeIcon img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
 }
 
-/* Text */
-.card p {
-  font-size: 1rem;
-  color: #444;
+.collegeCard p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
   font-weight: 500;
   line-height: 1.4;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .grid {
-    gap: 1.5rem;
+.collegeCard:hover p {
+  color: var(--color-text-primary);
+}
+
+/* --- 6. Stats Section --- */
+.statsSection {
+  padding: 6rem 2rem;
+  background-color: var(--color-bg-soft);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.statsImageWrapper {
+  position: relative;
+  max-width: 500px;
+}
+
+.statsImage {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: block;
+}
+
+.statsLabel {
+  position: absolute;
+  bottom: -2rem;
+  left: -2rem;
+  background: var(--color-bg-white);
+  color: var(--color-text-primary);
+  padding: 1.25rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 1.125rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+}
+
+.statsContent {
+  padding-left: 2rem;
+}
+
+.sectionHeading {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.sectionDescription {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: var(--color-text-secondary);
+}
+
+.statsCounter {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.statNumber {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--color-primary); /* Solid color is more readable on light bg */
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.statText {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.statsHighlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.statsHighlightIcon {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.statsHighlight p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* --- 7. Responsive Design --- */
+@media (max-width: 1024px) {
+  .heroSection,
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .card {
-    padding: 1.5rem 1rem;
+  .heroContent {
+    text-align: center;
+    padding: 0;
   }
 
-  .icon img {
-    width: 50px;
-    height: 50px;
+  .heroSubtitle {
+    margin: 0 auto;
   }
 
-  .card p {
-    font-size: 0.95rem;
+  .neuralNetworkContainer {
+    /* Scale down slightly for tablet */
+    transform: scale(0.8);
+    margin-top: 2rem;
+  }
+
+  .statsImageWrapper {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .statsContent {
+    padding: 0;
   }
 }
 
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .heroTitle,
+  .sectionTitle,
+  .sectionHeading {
+    font-size: 2rem;
   }
 
-  .card {
-    padding: 1.2rem;
+  .starsSection,
+  .collegeSection,
+  .statsSection,
+  .heroSection {
+    padding: 3rem 1.5rem;
   }
 
-  .icon img {
-    width: 45px;
-    height: 45px;
+  /* On mobile, we might want to hide the complex 3D element or simplify it 
+     to avoid layout shifting, or just scale it down significantly */
+  .neuralNetworkContainer {
+    transform: scale(0.6);
+    height: 300px;
+    width: 300px;
   }
 
-  .card p {
-    font-size: 0.9rem;
+  .statsLabel {
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    transform: none;
   }
+
+  .statsCounter {
+    gap: 2rem;
+  }
+
+  .statNumber {
+    font-size: 2.5rem;
+  }
+}
+
+/* Legacy Classes (Hidden) */
+.integrationWrapper,
+.integrationContent,
+.integrationTitle,
+.integrationPart1,
+.integrationPart2,
+.integrationPart3,
+.integrationBackground,
+.integrationImage,
+.integrationNext,
+.pageLayout,
+.headerSection,
+.titleIcon,
+.mainTitle,
+.contentArea,
+.projectPanel,
+.projectDetails,
+.dateLabel,
+.projectHeading,
+.projectText,
+.projectVisual,
+.integrationimage,
+.integrationSection,
+.statsContainer,
+.mainContent,
+.imageBox,
+.labelBox,
+.textBox,
+.aboutBtn,
+.hTwo,
+.arrowSection,
+.arrowIcon,
+.gallery,
+.galleryItem,
+.image,
+.heroImageContainer,
+.heroImage {
+  display: none;
 }
