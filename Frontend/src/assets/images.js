@@ -16,7 +16,7 @@ import cloudComputing from "./home/cloud-computing.webp";
 import artificialIntelligence from "./home/artificial-intelligence.png";
 import cyberSecurity from "./home/cyber-security.png";
 import formLeftImage from "./help/contactformimg.jpg";
-import ziionLogo from "./home/Ziion-technology-logo.png";
+import ziionLogo from "./home/ziionlogo.png";
 import Logo from "./home/LOGO.png";
 import whatsappIcon from "./home/whatsappicon.png";
 

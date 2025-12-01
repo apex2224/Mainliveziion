@@ -84,7 +84,7 @@
   background: #ffffff;
   color: #1f2937;
   border: 2px solid transparent;
-  background-image: linear-gradient(#ffffff, #ffffff), 
+  background-image: linear-gradient(#ffffff, #ffffff),
                     linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
   background-origin: border-box;
   background-clip: padding-box, border-box;
@@ -94,7 +94,7 @@
 .sendBtn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(44, 82, 190, 0.25);
-  background-image: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%), 
+  background-image: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%),
                     linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
   color: #ffffff;
 }
