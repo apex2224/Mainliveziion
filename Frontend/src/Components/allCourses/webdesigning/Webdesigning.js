@@ -11,12 +11,24 @@ import {
   chooseUsLeftItems,
   chooseUsRightItems,
   careerOpportunities,
-  projectData,
   syllabusData,
   faqQuestions,
   leftScrollCards,
 } from "./webDesigningData";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiReact,
+  SiBootstrap,
+  SiWordpress,
+  SiShopify,
+  SiNestjs,
+} from "react-icons/si";
 import ReviewsSection from "../../reviews/ReviewsSection";
+import StudentCarousel from "../../placement/StudentCarousel";
+import SecondForm from "../../secondForm/SecondForm";
 
 const rightScrollCards = [
   { image: images.raghav },
@@ -50,7 +62,7 @@ const useCustomTypewriter = (phrasesArray) => {
       );
 
       if (!isDeleting && text === currentPhrase) {
-        setTimeout(() => setIsDeleting(true), 1200); // pause before deleting
+        setTimeout(() => setIsDeleting(true), 1200);
       } else if (isDeleting && text === "") {
         setIsDeleting(false);
         setCurrentPhraseIndex((prev) => (prev + 1) % phrasesArray.length);
@@ -63,13 +75,18 @@ const useCustomTypewriter = (phrasesArray) => {
   return text;
 };
 
+// --- Helper to prepare syllabus data ---
+const getSyllabusColumns = () => {
+  const allTopics = Object.keys(syllabusData);
+  const midpoint = Math.ceil(allTopics.length / 2);
+  const leftTopics = allTopics.slice(0, midpoint);
+  const rightTopics = allTopics.slice(midpoint);
+  return { leftTopics, rightTopics };
+};
+
 const Webdesigning = () => {
   const [showForm, setShowForm] = useState(false);
   const typedOutput = useCustomTypewriter(phrases);
-  const [selected, setSelected] = useState(Object.keys(syllabusData)[0] || "");
-
-  // certificate //
-  const [active, setActive] = useState(null);
 
   // FAQ toggle
   const [openIndex, setOpenIndex] = useState(null);
@@ -79,20 +96,35 @@ const Webdesigning = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // placement //
-  // Top (left → right)
+  useEffect(() => {
+    faqRefs.current.forEach((ref, i) => {
+      if (ref) {
+        if (i === openIndex) {
+          ref.classList.add(styles.openBody);
+        } else {
+          ref.classList.remove(styles.openBody);
+        }
+      }
+    });
+  }, [openIndex]);
+
+  // --- Syllabus Accordion State ---
+  const [openSyllabusTopic, setOpenSyllabusTopic] = useState(null);
+
+  const toggleSyllabus = (topic) => {
+    setOpenSyllabusTopic(openSyllabusTopic === topic ? null : topic);
+  };
+
+  const { leftTopics, rightTopics } = getSyllabusColumns();
+
+  // Placement Carousels
   const [topIndex, setTopIndex] = useState(0);
   const [topTransition, setTopTransition] = useState(true);
-
-  // Bottom (right → left)
   const [bottomIndex, setBottomIndex] = useState(0);
   const [bottomTransition, setBottomTransition] = useState(true);
-
-  // Carousel play/pause state
   const [isTopPaused, setIsTopPaused] = useState(false);
   const [isBottomPaused, setIsBottomPaused] = useState(false);
 
-  // Auto move top carousel
   useEffect(() => {
     if (isTopPaused) return;
     const id = setInterval(() => {
@@ -101,7 +133,6 @@ const Webdesigning = () => {
     return () => clearInterval(id);
   }, [isTopPaused]);
 
-  // Auto move bottom carousel
   useEffect(() => {
     if (isBottomPaused) return;
     const id = setInterval(() => {
@@ -110,7 +141,6 @@ const Webdesigning = () => {
     return () => clearInterval(id);
   }, [isBottomPaused]);
 
-  // Reset loop for top
   useEffect(() => {
     if (topIndex >= rightScrollCards.length) {
       setTimeout(() => {
@@ -121,7 +151,6 @@ const Webdesigning = () => {
     }
   }, [topIndex]);
 
-  // Reset loop for bottom
   useEffect(() => {
     if (bottomIndex >= leftScrollCards.length) {
       setTimeout(() => {
@@ -132,14 +161,11 @@ const Webdesigning = () => {
     }
   }, [bottomIndex]);
 
-  // Pause on hover handlers
   const handleTopMouseEnter = () => setIsTopPaused(true);
   const handleTopMouseLeave = () => setIsTopPaused(false);
-
   const handleBottomMouseEnter = () => setIsBottomPaused(true);
   const handleBottomMouseLeave = () => setIsBottomPaused(false);
 
-  // Manual buttons
   const handleTopPrev = () => {
     setTopIndex((prev) =>
       prev === 0 ? rightScrollCards.length - 1 : prev - 1
@@ -150,7 +176,6 @@ const Webdesigning = () => {
       prev === rightScrollCards.length - 1 ? 0 : prev + 1
     );
   };
-
   const handleBottomPrev = () => {
     setBottomIndex((prev) =>
       prev === 0 ? leftScrollCards.length - 1 : prev - 1
@@ -167,19 +192,19 @@ const Webdesigning = () => {
       <Navbar />
       <section className={styles.webDesigningHeroSection}>
         <div className={styles.overlay}>
-          <img src={images.html} alt="html" className={styles.html} />
-          <img src={images.css} alt="css" className={styles.css} />
-          <img src={images.js} alt="js" className={styles.js} />
-          <img src={images.react} alt="react" className={styles.react} />
+          <SiHtml5 className={styles.html} color="#E34F26" />
+          <SiCss3 className={styles.css} color="#1572B6" />
+          <SiJavascript className={styles.js} color="#F7DF1E" />
+          <SiReact className={styles.react} color="#61DAFB" />
+          <SiBootstrap className={styles.bootstrap} color="#7952B3" />
+        </div>
+        <div className={styles.webDesigning}>
           <img
-            src={images.Bootstrap}
-            alt="bootstrap"
-            className={styles.bootstrap}
+            src={images.knowledgeHeroImage}
+            alt="background"
+            className={styles.webDesigningBgImage}
           />
         </div>
-        {/* <div className={styles.webDesigning}>
-          <img src={images.knowledgeHeroImage} alt="background" className={styles.webDesigningBgImage} />
-        </div> */}
 
         <div className={styles.webDesigningContent}>
           <h1 className={styles.webDesigningTitle}>
@@ -195,8 +220,7 @@ const Webdesigning = () => {
             Our Web Designing Course offers immersive, hands-on training in
             HTML, CSS, JavaScript, Bootstrap, WordPress, and more. You'll master
             the skills to design and develop responsive, visually appealing, and
-            user-friendly websites. The course emphasizes industry best
-            practices, ensuring you're job-ready from day one.
+            user-friendly websites.
           </h2>
           <button
             className={styles.herobutton}
@@ -205,10 +229,9 @@ const Webdesigning = () => {
             Talk to us
           </button>
         </div>
-        {showForm && <Form closeForm={() => setShowForm(false)} />}
       </section>
 
-      {/* stat section */}
+      {/* Stat Section */}
       <div className={styles.statsWrapper}>
         {statsData.map((stat, index) => (
           <div className={styles.statCircle} key={index}>
@@ -221,150 +244,130 @@ const Webdesigning = () => {
         ))}
       </div>
 
-      {/* tools section */}
-
+      {/* Tool Section */}
       <section className={styles.toolsMain}>
         <h1>Tools</h1>
         <div className={styles.webdevtoolsContainer}>
-          <div className={styles["feature-card"]}>
-            <div>
-              <h3 className={styles.title}>HTML</h3>
+          <div className={styles.webdevtools}>
+            <div className={styles.textBlock}>
+              <h3 className={styles.title}>HTML5</h3>
               <p className={styles.description}>
-                HTML (HyperText Markup Language) provides the basic structure of
-                web pages, using elements like headings, paragraphs, links, and
-                images.
+                HTML provides the basic structure of web pages, using elements
+                like headings, paragraphs, and links.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.html}
-                alt="HTML"
-                className={styles.webdevtoolsFeatureImg}
-              />
+              <SiHtml5 size={60} color="#E34F26" className={styles.toolName} />
             </div>
           </div>
 
-          <div className={styles["feature-card"]}>
+          <div className={styles.webdevtools}>
             <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.css}
-                alt="CSS"
-                className={styles.webdevtoolsFeatureImg}
-              />
+              <SiCss3 size={60} color="#1572B6" className={styles.toolName} />
             </div>
-            <div>
-              <h3 className={styles.title}>CSS</h3>
+            <div className={styles.textBlock}>
+              <h3 className={styles.title}>CSS3</h3>
               <p className={styles.description}>
-                CSS (Cascading Style Sheets) styles the layout and design of web
-                pages—controlling colors, spacing, fonts, and responsive
-                behavior.
+                CSS styles the layout and design of web pages—controlling
+                colors, spacing, fonts, and responsiveness.
               </p>
             </div>
           </div>
 
-          <div className={styles["feature-card"]}>
-            <div>
+          <div className={styles.webdevtools}>
+            <div className={styles.textBlock}>
               <h3 className={styles.title}>JavaScript</h3>
               <p className={styles.description}>
                 JavaScript adds dynamic behavior to websites, enabling
-                interactive features like sliders, form validation, and
-                real-time updates.
+                interactive features and real-time updates.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.js}
-                alt="JavaScript"
-                className={styles.webdevtoolsFeatureImg}
+              <SiJavascript
+                size={60}
+                color="#F7DF1E"
+                className={styles.toolName}
               />
             </div>
           </div>
 
-          <div className={styles["feature-card"]}>
+          <div className={styles.webdevtools}>
             <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.react}
-                alt="React"
-                className={styles.webdevtoolsFeatureImg}
-              />
+              <SiReact size={60} color="#61DAFB" className={styles.toolName} />
             </div>
-            <div>
+            <div className={styles.textBlock}>
               <h3 className={styles.title}>React</h3>
               <p className={styles.description}>
-                React is a popular JavaScript library for building user
-                interfaces using reusable components and efficient state
-                management.
+                React is a popular library for building user interfaces using
+                reusable components and efficient state management.
               </p>
             </div>
           </div>
 
-          <div className={styles["feature-card"]}>
-            <div>
-              <h3 className={styles.title}>Shopify</h3>
-              <p className={styles.description}>
-                Shopify is a leading eCommerce platform that enables individuals
-                and businesses to create online stores with customizable
-                templates.
-              </p>
-            </div>
-            <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.shopify}
-                alt="Shopify"
-                className={styles.webdevtoolsFeatureImg}
-              />
-            </div>
-          </div>
-
-          <div className={styles["feature-card"]}>
-            <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.wordpress}
-                alt="WordPress"
-                className={styles.webdevtoolsFeatureImg}
-              />
-            </div>
-            <div>
-              <h3 className={styles.title}>WordPress</h3>
-              <p className={styles.description}>
-                WordPress is a content management system (CMS) used for building
-                websites and blogs, known for its ease of use and plugin
-                ecosystem.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles["feature-card"]}>
-            <div>
+          <div className={styles.webdevtools}>
+            <div className={styles.textBlock}>
               <h3 className={styles.title}>Bootstrap</h3>
               <p className={styles.description}>
                 Bootstrap is a responsive front-end framework offering prebuilt
-                UI components and grid systems for rapid web design and layout.
+                UI components and grid systems.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.Bootstrap}
-                alt="Bootstrap"
-                className={styles.webdevtoolsFeatureImg}
+              <SiBootstrap
+                size={60}
+                color="#7952B3"
+                className={styles.toolName}
               />
             </div>
           </div>
 
-          <div className={styles["feature-card"]}>
+          <div className={styles.webdevtools}>
             <div className={styles.webdevtoolsFeature}>
-              <img
-                src={images.nestjs}
-                alt="NestJS"
-                className={styles.webdevtoolsFeatureImg}
+              <SiWordpress
+                size={60}
+                color="#21759B"
+                className={styles.toolName}
               />
             </div>
-            <div>
+            <div className={styles.textBlock}>
+              <h3 className={styles.title}>WordPress</h3>
+              <p className={styles.description}>
+                WordPress is a CMS used for building websites and blogs, known
+                for its ease of use and plugin ecosystem.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.webdevtools}>
+            <div className={styles.textBlock}>
+              <h3 className={styles.title}>Shopify</h3>
+              <p className={styles.description}>
+                Shopify is a leading eCommerce platform that enables businesses
+                to create online stores.
+              </p>
+            </div>
+            <div className={styles.webdevtoolsFeature}>
+              <SiShopify
+                size={60}
+                color="#96BF48"
+                className={styles.toolName}
+              />
+            </div>
+          </div>
+
+          <div className={styles.webdevtools}>
+            <div className={styles.webdevtoolsFeature}>
+              <SiNestjs
+                size={60}
+                color="#E0234E"
+                className={styles.toolName}
+              />
+            </div>
+            <div className={styles.textBlock}>
               <h3 className={styles.title}>NestJS</h3>
               <p className={styles.description}>
                 NestJS is a scalable Node.js framework built with TypeScript,
-                offering a modular architecture for building efficient
-                server-side apps.
+                offering a modular architecture.
               </p>
             </div>
           </div>
@@ -377,18 +380,16 @@ const Webdesigning = () => {
         </button>
       </section>
 
-      {/* what will you learn */}
+      {/* What Will You Learn */}
       <div className={styles.container}>
         <h1 className={styles.whatHeading}>
           Who Can Join Our Web Designing Course?
         </h1>
         <p className={styles.subheading}>
-          Our <strong>Web Designing course</strong> Whether you're a 10th or
-          12th pass student exploring career options, a graduate seeking
-          in-demand skills, a job seeker aiming to stand out, a freelancer ready
-          to expand your portfolio, or an entrepreneur building a digital brand
-          — this course is made for you. No prior experience needed, just your
-          willingness to learn and grow.
+          Our <strong>Web Designing course</strong> is designed for everyone.
+          Whether you're a student, a graduate looking for skills, a job seeker,
+          or an entrepreneur — this course is your stepping stone into
+          professional web design.
         </p>
 
         <div className={styles.roadmapBox}>
@@ -404,8 +405,7 @@ const Webdesigning = () => {
                     <strong>Students (10th/12th Pass)</strong>
                     <br />
                     Turn your curiosity into a career! Get early exposure to
-                    real-world tech skills and unlock internships or junior
-                    roles in web, design, or digital sectors.
+                    real-world tech skills and unlock internships.
                   </div>
                 </li>
 
@@ -414,9 +414,8 @@ const Webdesigning = () => {
                   <div>
                     <strong>Graduates / Job Seekers</strong>
                     <br />
-                    Bridge the gap between education and employment. Master
-                    job-relevant tools and confidently apply for high-demand
-                    roles in tech, marketing, or business.
+                    Master job-relevant tools and confidently apply for
+                    high-demand roles in tech and marketing.
                   </div>
                 </li>
 
@@ -425,20 +424,18 @@ const Webdesigning = () => {
                   <div>
                     <strong>Freelancers & Entrepreneurs</strong>
                     <br />
-                    Transform your ideas into income. Learn to build websites,
-                    promote your brand online, and scale your freelance services
-                    or startup with digital excellence.
+                    Transform your ideas into income. Learn to build websites
+                    and promote your brand online.
                   </div>
                 </li>
 
                 <li className={styles.pointItem}>
                   <span className={styles.arrow}>→</span>
                   <div>
-                    <strong>Working Professionals (Upskilling)</strong>
+                    <strong>Working Professionals</strong>
                     <br />
-                    Future-proof your career. Stay ahead in your field, shift
-                    into trending tech roles, or gain the edge for promotions
-                    and leadership opportunities.
+                    Future-proof your career. Add design skills to your
+                    portfolio and shift into trending tech roles.
                   </div>
                 </li>
               </ul>
@@ -457,19 +454,15 @@ const Webdesigning = () => {
 
       <EnrollProcess />
 
-      {/* placemnet */}
+      {/* Placement Section */}
       <div>
         <h1 className={styles.storyHeading}>Our Success Story</h1>
-
-        {/* 🔹 Bottom: videos, right → left */}
         <div className={styles.leftCarouselWrapper}>
           <div
             className={styles.leftCarousel}
             style={{
               transform: `translateX(-${bottomIndex * VIDEO_WIDTH}px)`,
-              transition: bottomTransition
-                ? "transform 0.8s ease-in-out"
-                : "none",
+              transition: bottomTransition ? "transform 0.8s ease-in-out" : "none",
             }}
             onMouseEnter={handleBottomMouseEnter}
             onMouseLeave={handleBottomMouseLeave}
@@ -499,12 +492,10 @@ const Webdesigning = () => {
           </div>
         </div>
 
-        {/* 🔹 Top: images, left → right */}
         <div className={styles.carouselWrapper}>
           <div
             className={styles.carousel}
             style={{
-              // Start far left, move towards 0
               transform: `translateX(${
                 -rightScrollCards.length * CARD_WIDTH + topIndex * CARD_WIDTH
               }px)`,
@@ -534,60 +525,96 @@ const Webdesigning = () => {
         </div>
       </div>
 
-      {/* sylabus */}
-      <div className={styles.syllabusContainer}>
-        <h1>What Will Our Trainees Learn In Web Designing Training</h1>
-        <p>
-          Explore our <strong>Web Designing training course</strong> curriculum
-          to know exactly what skills you will gain. Ziion Technology is one of
-          India’s leading industrial training institutes, offering comprehensive
-          training to our <strong>trainees</strong> in HTML, CSS, JavaScript,
-          responsive design, and modern UI/UX practices.
+      <StudentCarousel />
+
+      {/* Syllabus Section (Accordion Style) */}
+      <section className={styles.syllabusSection}>
+        <h1 className={styles.syllabusTitle}>Web Designing Course Syllabus</h1>
+        <p className={styles.syllabusSubtitle}>
+          Our curriculum is designed by industry experts to build your skills
+          from the ground up, covering everything from HTML, CSS, and JavaScript
+          fundamentals to advanced React, WordPress, and UI/UX design.
         </p>
 
-        <div className={styles.syllabusWrapper}>
-          {/* Left side - topic list */}
-          <div className={styles.topicList}>
-            <ul className={styles.syllabusList}>
-              {Object.keys(syllabusData).map((topic) => (
-                <li
-                  key={topic}
-                  className={`${styles.topicItem} ${
-                    selected === topic ? styles.active : ""
-                  }`}
-                  onClick={() => setSelected(topic)}
+        <div className={styles.syllabusGrid}>
+          {/* Left Column */}
+          <div className={styles.syllabusColumn}>
+            <h2 className={styles.columnTitle}>Frontend Basics</h2>
+            {leftTopics.map((topic, index) => (
+              <div className={styles.accordionItem} key={topic}>
+                <div
+                  className={styles.accordionHeader}
+                  onClick={() => toggleSyllabus(topic)}
                 >
-                  {topic}
-                </li>
-              ))}
-            </ul>
+                  <span className={styles.accordionTitle}>
+                    {`${index + 1}. ${topic}`}
+                  </span>
+                  <div
+                    className={`${styles.accordionIcon} ${
+                      openSyllabusTopic === topic ? styles.open : ""
+                    }`}
+                  >
+                    <span>▼</span>
+                  </div>
+                </div>
+                {openSyllabusTopic === topic && (
+                  <div className={styles.accordionBody}>
+                    <ul className={styles.syllabusList}>
+                      {syllabusData[topic].map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
 
-          {/* Right side - topic details */}
-          <div className={styles.topicDetails}>
-            <h3>{selected}:</h3>
-            <ul className={styles.syllabusList}>
-              {syllabusData[selected]?.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
+          {/* Right Column */}
+          <div className={styles.syllabusColumn}>
+            <h2 className={styles.columnTitle}>Advanced Design</h2>
+            {rightTopics.map((topic, index) => (
+              <div className={styles.accordionItem} key={topic}>
+                <div
+                  className={styles.accordionHeader}
+                  onClick={() => toggleSyllabus(topic)}
+                >
+                  <span className={styles.accordionTitle}>
+                    {`${index + 1}. ${topic}`}
+                  </span>
+                  <div
+                    className={`${styles.accordionIcon} ${
+                      openSyllabusTopic === topic ? styles.open : ""
+                    }`}
+                  >
+                    <span>▼</span>
+                  </div>
+                </div>
+                {openSyllabusTopic === topic && (
+                  <div className={styles.accordionBody}>
+                    <ul className={styles.syllabusList}>
+                      {syllabusData[topic].map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* project */}
+      {/* Projects */}
       <div className={styles.projectBackModal}>
         <section className={styles.projectSection}>
-          {/* Heading */}
           <div className={styles.projectSectionHeader}>
             <h2 className={styles.projectSectionHeading}>
               Web Designing Projects Highlighting Creativity
             </h2>
           </div>
 
-          {/* Grid */}
           <div className={styles.projectSectionGrid}>
-            {/* Project 1 */}
             <div className={`${styles.projectSectionCard} ${styles.project1}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🎨</div>
@@ -598,12 +625,11 @@ const Webdesigning = () => {
                 </h3>
                 <p className={styles.projectSectionDesc}>
                   Designed a modern, minimal portfolio with custom layouts and
-                  interactive animations for better user experience.
+                  interactive animations.
                 </p>
               </div>
             </div>
 
-            {/* Project 2 */}
             <div className={`${styles.projectSectionCard} ${styles.project2}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🖌️</div>
@@ -611,13 +637,11 @@ const Webdesigning = () => {
               <div className={styles.projectSectionContent}>
                 <h3 className={styles.projectSectionTitle}>UI/UX Redesign</h3>
                 <p className={styles.projectSectionDesc}>
-                  Revamped an outdated website design with modern UI/UX
-                  practices, improving navigation and accessibility.
+                  Revamped an outdated website design with modern UI/UX practices.
                 </p>
               </div>
             </div>
 
-            {/* Project 3 */}
             <div className={`${styles.projectSectionCard} ${styles.project3}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>📱</div>
@@ -628,12 +652,11 @@ const Webdesigning = () => {
                 </h3>
                 <p className={styles.projectSectionDesc}>
                   Created pixel-perfect responsive designs with CSS Grid and
-                  Flexbox, ensuring seamless mobile-first experiences.
+                  Flexbox.
                 </p>
               </div>
             </div>
 
-            {/* Project 4 */}
             <div className={`${styles.projectSectionCard} ${styles.project4}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🖼️</div>
@@ -643,13 +666,11 @@ const Webdesigning = () => {
                   Landing Page Design
                 </h3>
                 <p className={styles.projectSectionDesc}>
-                  Designed high-conversion landing pages with engaging visuals,
-                  custom icons, and strong calls-to-action.
+                  Designed high-conversion landing pages with engaging visuals.
                 </p>
               </div>
             </div>
 
-            {/* Project 5 */}
             <div className={`${styles.projectSectionCard} ${styles.project5}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🎬</div>
@@ -659,72 +680,19 @@ const Webdesigning = () => {
                   Interactive Prototypes
                 </h3>
                 <p className={styles.projectSectionDesc}>
-                  Built interactive prototypes in Figma and Adobe XD to
-                  demonstrate user flows and animations before development.
+                  Built interactive prototypes in Figma to demonstrate user flows.
                 </p>
               </div>
             </div>
 
-            {/* Project 6 */}
             <div className={`${styles.projectSectionCard} ${styles.project6}`}>
-              <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>🔤</div>
-              </div>
-              <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Typography & Branding
-                </h3>
-                <p className={styles.projectSectionDesc}>
-                  Created consistent branding with typography, color schemes,
-                  and icon sets for a unified digital identity.
-                </p>
-              </div>
-            </div>
-
-            {/* Project 7 */}
-            <div className={`${styles.projectSectionCard} ${styles.project7}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🛒</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  E-Commerce UI Design
-                </h3>
+                <h3 className={styles.projectSectionTitle}>E-Commerce UI</h3>
                 <p className={styles.projectSectionDesc}>
-                  Designed sleek product pages, shopping carts, and checkout
-                  flows with an emphasis on usability and conversions.
-                </p>
-              </div>
-            </div>
-
-            {/* Project 8 */}
-            <div className={`${styles.projectSectionCard} ${styles.project8}`}>
-              <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>🧭</div>
-              </div>
-              <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Navigation & Wireframing
-                </h3>
-                <p className={styles.projectSectionDesc}>
-                  Designed intuitive navigation structures and wireframes to
-                  improve user journey mapping and content placement.
-                </p>
-              </div>
-            </div>
-
-            {/* Project 9 */}
-            <div className={`${styles.projectSectionCard} ${styles.project9}`}>
-              <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>✨</div>
-              </div>
-              <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Micro-interactions & Animations
-                </h3>
-                <p className={styles.projectSectionDesc}>
-                  Added subtle animations, hover effects, and micro-interactions
-                  to enhance user engagement and design polish.
+                  Designed sleek product pages and shopping carts for conversion.
                 </p>
               </div>
             </div>
@@ -732,179 +700,7 @@ const Webdesigning = () => {
         </section>
       </div>
 
-      {/* achievers section */}
-
-      <section className={styles.achieversSection}>
-        <div className={styles.achieversInner}>
-          <h2 id="achievers-title" className={styles.achieversTitle}>
-            <span className={styles.shimmer}>Our Achievers</span>
-          </h2>
-
-          <p className={styles.achieversSubtitle}>
-            From <span className={styles.highlight}>classroom</span> to{" "}
-            <span className={styles.highlight}>career</span> — turning ambition
-            into offers at leading companies.
-          </p>
-        </div>
-        <div className={styles.appFeatureContainer}>
-          {/* Nisha */}
-          <div
-            className={`${styles.appFeatureCard} ${
-              active === "nisha" ? styles.active : ""
-            }`}
-            onMouseEnter={() => setActive("nisha")}
-            onMouseLeave={() => setActive(null)}
-          >
-            <img
-              src={images.nisha}
-              className={styles.appFeatureImage}
-              alt="Nisha"
-            />
-            <div className={styles.appFeatureOverlay}>
-              {active === "nisha" && (
-                <p className={styles.appFeatureText}>
-                  “Dream big, work hard — success will follow.”
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Parmeet */}
-          <div
-            className={`${styles.appFeatureCard} ${
-              active === "parmeet" ? styles.active : ""
-            }`}
-            onMouseEnter={() => setActive("parmeet")}
-            onMouseLeave={() => setActive(null)}
-          >
-            <img
-              src={images.parmeet}
-              className={styles.appFeatureImage}
-              alt="Parmeet"
-            />
-            <div className={styles.appFeatureOverlay}>
-              {active === "parmeet" && (
-                <p className={styles.appFeatureText}>
-                  “Consistency is the key to turning dreams into reality.”
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Raghav */}
-          <div
-            className={`${styles.appFeatureCard} ${
-              active === "raghav" ? styles.active : ""
-            }`}
-            onMouseEnter={() => setActive("raghav")}
-            onMouseLeave={() => setActive(null)}
-          >
-            <img
-              src={images.raghav}
-              className={styles.appFeatureImage}
-              alt="Raghav"
-            />
-            <div className={styles.appFeatureOverlay}>
-              {active === "raghav" && (
-                <p className={styles.appFeatureText}>
-                  “Every step forward, no matter how small, counts toward
-                  success.”
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Rupalpreet */}
-          <div
-            className={`${styles.appFeatureCard} ${
-              active === "rupalpreet" ? styles.active : ""
-            }`}
-            onMouseEnter={() => setActive("rupalpreet")}
-            onMouseLeave={() => setActive(null)}
-          >
-            <img
-              src={images.rupal}
-              className={styles.appFeatureImage}
-              alt="Rupalpreet"
-            />
-            <div className={styles.appFeatureOverlay}>
-              {active === "rupalpreet" && (
-                <p className={styles.appFeatureText}>
-                  “Success is not final, failure is not fatal — keep moving
-                  forward.”
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Shubham */}
-          <div
-            className={`${styles.appFeatureCard} ${
-              active === "shubham" ? styles.active : ""
-            }`}
-            onMouseEnter={() => setActive("shubham")}
-            onMouseLeave={() => setActive(null)}
-          >
-            <img
-              src={images.shubham}
-              className={styles.appFeatureImage}
-              alt="Shubham"
-            />
-            <div className={styles.appFeatureOverlay}>
-              {active === "shubham" && (
-                <p className={styles.appFeatureText}>
-                  “Hard work beats talent when talent doesn’t work hard.”
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div
-            className={`${styles.appFeatureCard} ${
-              active === "app" ? styles.active : ""
-            }`}
-            onMouseEnter={() => setActive("app")}
-            onMouseLeave={() => setActive(null)}
-          >
-            <img
-              src={images.arunesh}
-              className={styles.appFeatureImage}
-              alt="Mobile App Development"
-            />
-            <div className={styles.appFeatureOverlay}>
-              {active === "app" && (
-                <p className={styles.appFeatureText}>
-                  “Innovate, create, and build for the future.”
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Digital Marketing */}
-          <div
-            className={`${styles.appFeatureCard} ${
-              active === "marketing" ? styles.active : ""
-            }`}
-            onMouseEnter={() => setActive("marketing")}
-            onMouseLeave={() => setActive(null)}
-          >
-            <img
-              src={images.harleen}
-              className={styles.appFeatureImage}
-              alt="Digital Marketing"
-            />
-            <div className={styles.appFeatureOverlay}>
-              {active === "marketing" && (
-                <p className={styles.appFeatureText}>
-                  “Your passion and persistence define your brand.”
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* career oportunities */}
+      {/* Career Opportunities */}
       <div className={styles.carerrOpportunities}>
         <h2 className={styles.opportunitiesheading}>
           💼 Career <span> Opportunities</span> After This Course.
@@ -923,25 +719,24 @@ const Webdesigning = () => {
             </div>
           ))}
         </div>
-
-        <button className={styles.herobutton} onClick={() => setShowForm(true)}>
+        <button
+          className={styles.herobutton}
+          onClick={() => setShowForm(true)}
+        >
           Talk to us
         </button>
       </div>
 
-      {/* why choose us section  */}
-
+      {/* Why Choose Us */}
       <section className={styles.whychooseusSection}>
         <div className={styles.whychooseusTitleBlock}>
           <p className={styles.whychooseusTagline}>MASTER NEW SKILLS</p>
           <h2 className={styles.whychooseusHeading}>
-            Why Choose <span>Ziion Technology</span> For Web Designing Course In
-            Mohali?
+            Why Choose <span>Ziion Technology</span> For Web Designing?
           </h2>
           <p className={styles.whychooseusSubtitle}>
             Ziion Technology enables every student to develop exceptional skills
-            in <strong>Digital Marketing Training</strong> and guarantees 100%
-            job assistance in the industry.
+            in <strong>Web Design</strong> and guarantees 100% job assistance.
           </p>
         </div>
 
@@ -972,13 +767,11 @@ const Webdesigning = () => {
 
       <ReviewsSection />
 
-      {/* faq section */}
-
+      {/* FAQ */}
       <div className={styles.faqContainer}>
         <div className={styles.faqContent}>
           <div className={styles.faqLeft}>
             <h1 className={styles.faqHeading}>Frequently Asked Questions</h1>
-
             <div className={styles.faqFaqs}>
               {faqQuestions.map((item, index) => (
                 <div key={index} className={styles.faqFaqCard}>
@@ -1008,46 +801,24 @@ const Webdesigning = () => {
         </div>
       </div>
 
-      {/* certificate */}
-      <section className={styles.certificateSection}>
-        <div className={styles.mainContainer}>
-          <div className={styles.certificateImage}>
-            <img src={images.certificatehero} alt="Ziion Certificate" />
-          </div>
-
-          <div className={styles.certificateContent}>
-            <h2>WHAT BENEFITS AWAIT YOU AT ZIION TECHNOLOGY?</h2>
-            <p className={styles.highlight}>
-              Highly Acclaimed Program Over the Years, We've Educated Over
-              35,000+ Learners & Supported Them in Landing Their Initial IT
-              Sector Role.
-            </p>
-            <p className={styles.description}>
-              We Provide Fully Career-Focused Courses for Professionals,
-              Entrepreneurs, High School Graduates, University Students, Small
-              Business Owners, Marketing Experts & Career Changers at Reasonable
-              Costs. We Empower Driven Individuals Like You to Shape Their
-              Future by Teaching Skills That Every Sector Seeks.
-            </p>
-            <p className={styles.showcase}>
-              <strong>Showcase Your Success</strong>
-              <br />
-              Post it on LinkedIn, Twitter, and Facebook to enhance your
-              profile. Highlight your accomplishment and share the news with
-              peers and coworkers.
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.certificateGallery}>
-          <img src={images.nisha} alt="Certificate Sample1" />
-          <img src={images.arunesh} alt="Certificate Sample2" />
-          <img src={images.raghav} alt="Certificate Sample3" />
-          <img src={images.nishaRani} alt="Certificate Sample4" />
-        </div>
-      </section>
-
+      <SecondForm />
       <Footer />
+
+      {showForm && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            zIndex: 99999,
+            backgroundColor: "rgba(0,0,0,0.5)",
+          }}
+        >
+          <Form closeForm={() => setShowForm(false)} />
+        </div>
+      )}
     </div>
   );
 };

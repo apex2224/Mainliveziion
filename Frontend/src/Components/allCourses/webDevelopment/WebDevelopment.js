@@ -8,6 +8,7 @@ import EnrollProcess from "../ProcessSection/EnrollProcess";
 import Form from "../../form/Form";
 import ReviewsSection from "../../reviews/ReviewsSection";
 import SecondForm from "../../secondForm/SecondForm";
+import tenplustwo from "./../../../assets/NewCoursesImages/10+2.png"
 import {
   heroPhrases,
   statsData,
@@ -440,78 +441,137 @@ ToolsSection.propTypes = {
   onShowForm: PropTypes.func.isRequired,
 };
 
-const LearningSection = () => (
-  <div className={styles.learncontainer}>
-    <h1 className={styles.whatHeading}>
-      Who Can Join Our Web Development Course?
-    </h1>
-    <p className={styles.subheading}>
-      Explore our <strong>Web Development training course</strong> curriculum to
-      discover the essential skills you'll gain. Certiwise is one of India's
-      leading industrial training institutes, offering practical, job-ready
-      training to our <strong>trainees</strong>.
-    </p>
+const LearningSection = () => {
+  const [activeAudience, setActiveAudience] = useState("students");
 
-    <div className={styles.roadmapBox}>
-      <div className={styles.leftSection}>
-        <div className={styles.whoCanJoinSection}>
-          <h2 className={styles.sectionTitle}>
-            Who Can Join & What You'll Gain
-          </h2>
-          <ul className={styles.pointsList}>
-            <li className={styles.pointItem}>
-              <span className={styles.arrow}>→</span>
+  const audienceData = {
+    students: {
+      title: "Students (10th/12th Pass)",
+      description:
+        "Build your foundation in HTML, CSS, and JavaScript. Start your journey toward a tech career early and gain skills to create your first website.",
+      icon: "🎓",
+      subtitle: "Start your web journey",
+    },
+    graduates: {
+      title: "Graduates / Job Seekers",
+      description:
+        "Get industry-ready with full-stack skills and portfolio projects. Secure job roles like front-end developer, web designer, or junior developer.",
+      icon: "💼",
+      subtitle: "Launch your tech career",
+    },
+    freelancers: {
+      title: "Freelancers & Entrepreneurs",
+      description:
+        "Build and manage your own websites or client projects. Launch your business online and promote your services through a strong web presence.",
+      icon: "💻",
+      subtitle: "Build your business online",
+    },
+    professionals: {
+      title: "Working Professionals (Upskilling)",
+      description:
+        "Add web development to your skillset to shift into tech roles or manage websites and web apps within your current organization.",
+      icon: "📈",
+      subtitle: "Upgrade your skills",
+    },
+  };
+
+  const activeContent = audienceData[activeAudience];
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.whatHeading}>
+        Who Can Join Our Web Development Course?
+      </h1>
+      <p className={styles.subheading}>
+        Explore our <strong>Web Development training course</strong> curriculum
+        to discover the essential skills you'll gain. Certiwise is one of
+        India's leading industrial training institutes, offering practical,
+        job-ready training to our <strong>trainees</strong>.
+      </p>
+
+      <div className={styles.roadmapBox}>
+        {/* LEFT SECTION: Tab Navigation */}
+        <div className={styles.leftSection}>
+          <div className={styles.audienceNav}>
+            <button
+              className={`${styles.audienceTab} ${
+                activeAudience === "students" ? styles.active : ""
+              }`}
+              onClick={() => setActiveAudience("students")}
+            >
+              <span className={styles.tabIcon}>🎓</span>
+
               <div>
                 <strong>Students (10th/12th Pass)</strong>
-                <br />
-                Build your foundation in HTML, CSS, and JavaScript. Start your
-                journey toward a tech career early and gain skills to create
-                your first website.
+                <span className={styles.tabSubtext}>
+                  Start your web journey
+                </span>
               </div>
-            </li>
-            <li className={styles.pointItem}>
-              <span className={styles.arrow}>→</span>
+            </button>
+
+            <button
+              className={`${styles.audienceTab} ${
+                activeAudience === "graduates" ? styles.active : ""
+              }`}
+              onClick={() => setActiveAudience("graduates")}
+            >
+              <span className={styles.tabIcon}>💼</span>
               <div>
                 <strong>Graduates / Job Seekers</strong>
-                <br />
-                Get industry-ready with full-stack skills and portfolio
-                projects. Secure job roles like front-end developer, web
-                designer, or junior developer.
+                <span className={styles.tabSubtext}>
+                  Launch your tech career
+                </span>
               </div>
-            </li>
-            <li className={styles.pointItem}>
-              <span className={styles.arrow}>→</span>
+            </button>
+
+            <button
+              className={`${styles.audienceTab} ${
+                activeAudience === "freelancers" ? styles.active : ""
+              }`}
+              onClick={() => setActiveAudience("freelancers")}
+            >
+              <span className={styles.tabIcon}>💻</span>
               <div>
                 <strong>Freelancers & Entrepreneurs</strong>
-                <br />
-                Build and manage your own websites or client projects. Launch
-                your business online and promote your services through a strong
-                web presence.
+                <span className={styles.tabSubtext}>
+                  Build your business online
+                </span>
               </div>
-            </li>
-            <li className={styles.pointItem}>
-              <span className={styles.arrow}>→</span>
+            </button>
+
+            <button
+              className={`${styles.audienceTab} ${
+                activeAudience === "professionals" ? styles.active : ""
+              }`}
+              onClick={() => setActiveAudience("professionals")}
+            >
+              <span className={styles.tabIcon}>📈</span>
               <div>
-                <strong>Working Professionals (Upskilling)</strong>
-                <br />
-                Add web development to your skillset to shift into tech roles or
-                manage websites and web apps within your current organization.
+                <strong>Working Professionals</strong>
+                <span className={styles.tabSubtext}>Upgrade your skills</span>
               </div>
-            </li>
-          </ul>
+            </button>
+          </div>
+        </div>
+
+        {/* RIGHT SECTION: Tab Content */}
+        <div className={styles.rightSection}>
+          <div className={styles.audienceContentPane} key={activeAudience}>
+            <img
+              src={tenplustwo}
+              alt={activeContent.title}
+              className={styles.whatlearnimg}
+            />
+            <h3 className={styles.contentTitle}>{activeContent.title}</h3>
+            <p className={styles.contentDescription}>
+              {activeContent.description}
+            </p>
+          </div>
         </div>
       </div>
-
-      <div className={styles.rightSection}>
-        <img
-          src={images.willGet}
-          alt="Web Development Roadmap"
-          className={styles.whatlearnimg}
-        />
-      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Carousel = ({ items, config, renderItem }) => {
   const carousel = useCarousel(items, config.interval, config.width);
@@ -562,48 +622,105 @@ Carousel.propTypes = {
   renderItem: PropTypes.func.isRequired,
 };
 
+// --- NEW Syllabus Accordion State ---
 const SyllabusSection = ({ syllabusData }) => {
-  const [selected, setSelected] = useState(Object.keys(syllabusData)[0] || "");
+  // --- Helper to prepare syllabus data ---
+  const getSyllabusColumns = () => {
+    const allTopics = Object.keys(syllabusData);
+    const midpoint = Math.ceil(allTopics.length / 2);
+    const leftTopics = allTopics.slice(0, midpoint);
+    const rightTopics = allTopics.slice(midpoint);
+    return { leftTopics, rightTopics };
+  };
+
+  // --- NEW Syllabus Accordion State ---
+  const [openSyllabusTopic, setOpenSyllabusTopic] = useState(null);
+
+  // Toggle function for syllabus accordion
+  const toggleSyllabus = (topic) => {
+    setOpenSyllabusTopic(openSyllabusTopic === topic ? null : topic);
+  };
+
+  // Prepare the syllabus columns
+  const { leftTopics, rightTopics } = getSyllabusColumns();
 
   return (
-    <div className={styles.syllabusContainer}>
-      <h1>What Will Our Trainees Learn In Web Development Training</h1>
-      <p>
-        Explore our <strong>Web Development training course</strong> curriculum
-        to know exactly what skills you will gain. Ziion Technology is one of
-        India's leading industrial training institutes, offering comprehensive
-        training to our <strong>trainees</strong> in front-end and back-end
-        development, databases, frameworks, and building dynamic full-stack
-        applications.
+    <section className={styles.syllabusSection}>
+      <h1 className={styles.syllabusTitle}>Web Development Course Syllabus</h1>
+      <p className={styles.syllabusSubtitle}>
+        Our curriculum is designed by industry experts to build your skills from the ground up,
+        covering everything from HTML, CSS, and JavaScript fundamentals to advanced React, Node.js,
+        and full-stack application development.
       </p>
 
-      <div className={styles.syllabusWrapper}>
-        <div className={styles.topicList}>
-          <ul className={styles.syllabusList}>
-            {Object.keys(syllabusData).map((topic) => (
-              <li
-                key={topic}
-                className={`${styles.topicItem} ${
-                  selected === topic ? styles.active : ""
-                }`}
-                onClick={() => setSelected(topic)}
+      <div className={styles.syllabusGrid}>
+        {/* --- Left Column --- */}
+        <div className={styles.syllabusColumn}>
+          <h2 className={styles.columnTitle}>Frontend & Core Skills</h2>
+          {leftTopics.map((topic, index) => (
+            <div className={styles.accordionItem} key={topic}>
+              <div
+                className={styles.accordionHeader}
+                onClick={() => toggleSyllabus(topic)}
               >
-                {topic}
-              </li>
-            ))}
-          </ul>
+                <span className={styles.accordionTitle}>
+                  {`${index + 1}. ${topic}`}
+                </span>
+                <div
+                  className={`${styles.accordionIcon} ${
+                    openSyllabusTopic === topic ? styles.open : ""
+                  }`}
+                >
+                  <span>▼</span>
+                </div>
+              </div>
+              {openSyllabusTopic === topic && (
+                <div className={styles.accordionBody}>
+                  <ul className={styles.syllabusList}>
+                    {syllabusData[topic].map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
-        <div className={styles.topicDetails}>
-          <h3>{selected}:</h3>
-          <ul className={styles.syllabusList}>
-            {syllabusData[selected]?.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
+        {/* --- Right Column --- */}
+        <div className={styles.syllabusColumn}>
+          <h2 className={styles.columnTitle}>Backend & Full-Stack Skills</h2>
+          {rightTopics.map((topic, index) => (
+            <div className={styles.accordionItem} key={topic}>
+              <div
+                className={styles.accordionHeader}
+                onClick={() => toggleSyllabus(topic)}
+              >
+                <span className={styles.accordionTitle}>
+                  {`${index + leftTopics.length + 1}. ${topic}`}
+                </span>
+                <div
+                  className={`${styles.accordionIcon} ${
+                    openSyllabusTopic === topic ? styles.open : ""
+                  }`}
+                >
+                  <span>▼</span>
+                </div>
+              </div>
+              {openSyllabusTopic === topic && (
+                <div className={styles.accordionBody}>
+                  <ul className={styles.syllabusList}>
+                    {syllabusData[topic].map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

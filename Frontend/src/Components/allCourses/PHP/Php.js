@@ -14,8 +14,6 @@ import {
   leftScrollCards,
 } from "./PhpData";
 import EnrollProcess from "../ProcessSection/EnrollProcess";
-import Certification from "../../Certification/Certification";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Form from "../../form/Form";
 import {
   SiPhp,
@@ -38,9 +36,7 @@ const rightScrollCards = [
   { image: images.arshdeepSinghMl },
   { image: images.devagyaPy },
   { image: images.gurshanPy },
-  // { image: images.simranjeet },
   { image: images.simratMl },
-  // { image: images.abhishek },
 ];
 
 const CARD_WIDTH = 300; // px
@@ -76,20 +72,10 @@ const useCustomTypewriter = (phrasesArray) => {
   return text;
 };
 
-// --- Helper to prepare syllabus data ---
-// Takes the large syllabusData object and splits it for the 2-column layout
-const getSyllabusColumns = () => {
-  const allTopics = Object.keys(syllabusData);
-  // Splitting 19 topics into 10 and 9
-  const leftTopics = allTopics.slice(0, 10);
-  const rightTopics = allTopics.slice(10);
-  return { leftTopics, rightTopics };
-};
-
 const Php = () => {
   const [showForm, setShowForm] = useState(false);
-
   const typedOutput = useCustomTypewriter(heroPhrases);
+  const [active, setActive] = useState(null);
 
   // FAQ toggle
   const [openIndex, setOpenIndex] = useState(null);
@@ -111,29 +97,63 @@ const Php = () => {
     });
   }, [openIndex]);
 
-  // --- NEW Syllabus Accordion State ---
-  // We use the topic string (e.g., "Introduction to PHP") as the unique key
-  const [openSyllabusTopic, setOpenSyllabusTopic] = useState(null);
+  // --- NEW: 'Who Can Join' Interactive Tabs State ---
+  const [activeAudience, setActiveAudience] = useState("students");
 
-  // Toggle function for syllabus accordion
+  // Content for the tabs (Customized for PHP)
+  const audienceData = {
+    students: {
+      title: "Aspiring Web Developers",
+      description:
+        "Beginners looking to master server-side scripting and build dynamic websites.",
+      image: images.developer, // Use relevant image
+    },
+    graduates: {
+      title: "CS/IT Graduates",
+      description:
+        "Graduates wanting to specialize in Backend Development with PHP & Laravel.",
+      image: images.datascientist,
+    },
+    freelancers: {
+      title: "Freelancers",
+      description:
+        "Individuals wanting to build and sell custom websites or manage WordPress clients.",
+      image: images.workingproffessional,
+    },
+    entrepreneurs: {
+      title: "Entrepreneurs",
+      description:
+        "Business owners who want to control their own e-commerce platforms and CMS.",
+      image: images.analyst,
+    },
+  };
+
+  const activeContent = audienceData[activeAudience];
+
+  // --- NEW: Syllabus Accordion Logic ---
+  const getSyllabusColumns = () => {
+    const allTopics = Object.keys(syllabusData);
+    // Splitting broadly for 2 columns
+    const midpoint = Math.ceil(allTopics.length / 2);
+    const leftTopics = allTopics.slice(0, midpoint);
+    const rightTopics = allTopics.slice(midpoint);
+    return { leftTopics, rightTopics };
+  };
+
+  const [openSyllabusTopic, setOpenSyllabusTopic] = useState(null);
   const toggleSyllabus = (topic) => {
     setOpenSyllabusTopic(openSyllabusTopic === topic ? null : topic);
   };
 
-  // Prepare the syllabus columns
-  const { leftTopics, rightTopics } = getSyllabusColumns(); // Top (left → right)
+  const { leftTopics, rightTopics } = getSyllabusColumns();
 
-  // (Your existing placement/carousel hooks remain unchanged)
-  // ... (placement hooks) ...
-  // placement //
+  // --- Placement Carousel Logic ---
   const [topIndex, setTopIndex] = useState(0);
-  const [topTransition, setTopTransition] = useState(true); // Bottom (right → left)
-
+  const [topTransition, setTopTransition] = useState(true);
   const [bottomIndex, setBottomIndex] = useState(0);
-  const [bottomTransition, setBottomTransition] = useState(true); // Carousel play/pause state
-
+  const [bottomTransition, setBottomTransition] = useState(true);
   const [isTopPaused, setIsTopPaused] = useState(false);
-  const [isBottomPaused, setIsBottomPaused] = useState(false); // Auto move top carousel
+  const [isBottomPaused, setIsBottomPaused] = useState(false);
 
   useEffect(() => {
     if (isTopPaused) return;
@@ -141,7 +161,7 @@ const Php = () => {
       setTopIndex((prev) => prev + 1);
     }, 2000);
     return () => clearInterval(id);
-  }, [isTopPaused]); // Auto move bottom carousel
+  }, [isTopPaused]);
 
   useEffect(() => {
     if (isBottomPaused) return;
@@ -149,7 +169,7 @@ const Php = () => {
       setBottomIndex((prev) => prev + 1);
     }, 2200);
     return () => clearInterval(id);
-  }, [isBottomPaused]); // Reset loop for top
+  }, [isBottomPaused]);
 
   useEffect(() => {
     if (topIndex >= rightScrollCards.length) {
@@ -159,7 +179,7 @@ const Php = () => {
         requestAnimationFrame(() => setTopTransition(true));
       }, 800);
     }
-  }, [topIndex]); // Reset loop for bottom
+  }, [topIndex]);
 
   useEffect(() => {
     if (bottomIndex >= leftScrollCards.length) {
@@ -169,53 +189,39 @@ const Php = () => {
         requestAnimationFrame(() => setBottomTransition(true));
       }, 800);
     }
-  }, [bottomIndex]); // Pause on hover handlers
+  }, [bottomIndex]);
 
   const handleTopMouseEnter = () => setIsTopPaused(true);
   const handleTopMouseLeave = () => setIsTopPaused(false);
-
   const handleBottomMouseEnter = () => setIsBottomPaused(true);
-  const handleBottomMouseLeave = () => setIsBottomPaused(false); // Manual buttons
+  const handleBottomMouseLeave = () => setIsBottomPaused(false);
 
   const handleTopPrev = () => {
-    setTopIndex((prev) =>
-      prev === 0 ? rightScrollCards.length - 1 : prev - 1
-    );
+    setTopIndex((prev) => (prev === 0 ? rightScrollCards.length - 1 : prev - 1));
   };
   const handleTopNext = () => {
-    setTopIndex((prev) =>
-      prev === rightScrollCards.length - 1 ? 0 : prev + 1
-    );
+    setTopIndex((prev) => (prev === rightScrollCards.length - 1 ? 0 : prev + 1));
   };
-
   const handleBottomPrev = () => {
-    setBottomIndex((prev) =>
-      prev === 0 ? leftScrollCards.length - 1 : prev - 1
-    );
+    setBottomIndex((prev) => (prev === 0 ? leftScrollCards.length - 1 : prev - 1));
   };
   const handleBottomNext = () => {
-    setBottomIndex((prev) =>
-      prev === leftScrollCards.length - 1 ? 0 : prev + 1
-    );
+    setBottomIndex((prev) => (prev === leftScrollCards.length - 1 ? 0 : prev + 1));
   };
 
   return (
     <div>
       <Navbar />
+
+      {/* --- HERO SECTION --- */}
       <section className={styles.webDesigningHeroSection}>
         <div className={styles.overlay}>
+          {/* Floating Icons using React Icons but positioned via CSS classes */}
           <SiPhp className={styles.html} color="#777BB4" />
           <SiLaravel className={styles.css} color="#FF2D20" />
           <SiComposer className={styles.js} color="#885630" />
           <SiMysql className={styles.react} color="#4479A1" />
           <SiApache className={styles.bootstrap} color="#D22128" />
-        </div>
-        <div className={styles.webDesigning}>
-          <img
-            src={images.knowledgeHeroImage}
-            alt="background"
-            className={styles.webDesigningBgImage}
-          />
         </div>
 
         <div className={styles.webDesigningContent}>
@@ -223,15 +229,16 @@ const Php = () => {
             <span
               className={`${styles.webDesigningFalldown} ${styles.gradientText}`}
             >
-              PHP Course in Chandigarh <br />
+              PHP Course in Chandigarh
+              <br />
               <span className={styles.typedText}>{typedOutput}</span>
               <span className={styles.cursor}>|</span>
             </span>
           </h1>
           <h2 className={styles.webDesigningSubtitle}>
-            Our PHP Development Course is crafted to turn beginners into backend
-            experts by focusing on server-side scripting, databases, and
-            frameworks like Laravel.
+            Master backend development with our advanced PHP training. Learn to
+            build dynamic, secure, and scalable web applications using PHP, MySQL,
+            and the Laravel framework.
           </h2>
           <button
             className={styles.herobutton}
@@ -239,14 +246,15 @@ const Php = () => {
           >
             Talk to us
           </button>
+          {showForm && <Form closeForm={() => setShowForm(false)} />}
         </div>
       </section>
 
-      {/*Stat Section*/}
+      {/* --- STATS SECTION --- */}
       <div className={styles.statsWrapper}>
         {statsData.map((stat, index) => (
           <div className={styles.statCircle} key={index}>
-            <div className={styles.rotatingRing}></div> {/* Fixed class name */}
+            <div className={styles.statsrotatingRing}></div>
             <div className={styles.statContent}>
               <h2 className={styles.statValue}>{stat.value}</h2>
               <p className={styles.statLabel}>{stat.label}</p>
@@ -255,36 +263,32 @@ const Php = () => {
         ))}
       </div>
 
-      {/* Tool Section - PHP Focused */}
+      {/* --- TOOLS SECTION --- */}
       <section className={styles.toolsMain}>
-        <h1>Tools</h1>
+        <h1>Tools You Will Master</h1>
         <div className={styles.webdevtoolsContainer}>
           <div className={styles.webdevtools}>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>PHP</h3>
               <p className={styles.description}>
-                PHP is a widely-used open-source scripting language especially
-                suited for web development and server-side scripting.
+                The core scripting language for creating dynamic and interactive
+                web pages.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
-              <SiPhp size={60} color="#777BB4" className={styles.toolName} />
+              <SiPhp size={60} color="#777BB4" className={styles.toolIcon} />
             </div>
           </div>
 
           <div className={styles.webdevtools}>
             <div className={styles.webdevtoolsFeature}>
-              <SiLaravel
-                size={60}
-                color="#FF2D20"
-                className={styles.toolName}
-              />
+              <SiLaravel size={60} color="#FF2D20" className={styles.toolIcon} />
             </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>Laravel</h3>
               <p className={styles.description}>
-                Laravel is a PHP framework with elegant syntax, providing tools
-                for routing, authentication, and more for modern web apps.
+                A robust PHP framework for building modern, secure, and scalable
+                web applications.
               </p>
             </div>
           </div>
@@ -293,88 +297,47 @@ const Php = () => {
             <div className={styles.textBlock}>
               <h3 className={styles.title}>Composer</h3>
               <p className={styles.description}>
-                Composer is a dependency manager for PHP that allows you to
-                manage project libraries and autoloading efficiently.
+                A dependency manager for PHP to manage libraries and packages
+                efficiently.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
-              <SiComposer
-                size={60}
-                color="#885630"
-                className={styles.toolName}
-              />
+              <SiComposer size={60} color="#885630" className={styles.toolIcon} />
             </div>
           </div>
 
           <div className={styles.webdevtools}>
             <div className={styles.webdevtoolsFeature}>
-              <SiMysql size={60} color="#4479A1" className={styles.toolName} />
+              <SiMysql size={60} color="#4479A1" className={styles.toolIcon} />
             </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>MySQL</h3>
               <p className={styles.description}>
-                MySQL is a popular open-source relational database management
-                system used for storing and managing website data.
+                A powerful relational database management system for storing application data.
               </p>
             </div>
           </div>
 
           <div className={styles.webdevtools}>
-            <div className={styles.textBlock}>
-              <h3 className={styles.title}>Apache</h3>
-              <p className={styles.description}>
-                Apache is a widely-used web server software that allows PHP
-                applications to run on local or live servers.
-              </p>
-            </div>
-            <div className={styles.webdevtoolsFeature}>
-              <SiApache size={60} color="#D42029" className={styles.toolName} />
-            </div>
-          </div>
-
-          <div className={styles.webdevtools}>
-            <div className={styles.webdevtoolsFeature}>
-              <SiXampp size={60} color="#FB7A24" className={styles.toolName} />
-            </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>XAMPP</h3>
               <p className={styles.description}>
-                XAMPP is a local server package that includes Apache, MySQL,
-                PHP, and Perl for testing and development purposes.
+                A local server environment for testing and developing PHP applications.
               </p>
+            </div>
+            <div className={styles.webdevtoolsFeature}>
+              <SiXampp size={60} color="#FB7A24" className={styles.toolIcon} />
             </div>
           </div>
 
           <div className={styles.webdevtools}>
+            <div className={styles.webdevtoolsFeature}>
+              <SiWordpress size={60} color="#21759B" className={styles.toolIcon} />
+            </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>WordPress</h3>
               <p className={styles.description}>
-                WordPress is a content management system built on PHP and MySQL,
-                ideal for creating websites and blogs easily.
-              </p>
-            </div>
-            <div className={styles.webdevtoolsFeature}>
-              <SiWordpress
-                size={60}
-                color="#21759B"
-                className={styles.toolName}
-              />
-            </div>
-          </div>
-
-          <div className={styles.webdevtools}>
-            <div className={styles.webdevtoolsFeature}>
-              <SiCodeigniter
-                size={60}
-                color="#EE4623"
-                className={styles.toolName}
-              />
-            </div>
-            <div className={styles.textBlock}>
-              <h3 className={styles.title}>CodeIgniter</h3>
-              <p className={styles.description}>
-                CodeIgniter is a powerful PHP framework with a small footprint,
-                known for speed and performance in backend development.
+                The world's most popular CMS, built on PHP, allowing for rapid site creation.
               </p>
             </div>
           </div>
@@ -384,90 +347,93 @@ const Php = () => {
         </button>
       </section>
 
-      {/* what will you learn */}
+      {/* --- WHO CAN JOIN (Interactive Tabs) --- */}
       <div className={styles.container}>
-        <h1 className={styles.whatHeading}>
-          Who Can Join Our PHP Development Course?
-        </h1>
+        <h1 className={styles.whatHeading}>Who is this PHP Course For?</h1>
         <p className={styles.subheading}>
-          Our <strong>PHP course</strong> is designed for absolute beginners and
-          intermediate learners. Whether you're a student, a graduate looking
-          for backend skills, a job seeker aiming for full-stack roles, or an
-          entrepreneur wanting to manage your own website — this course is your
-          stepping stone into professional web development.
+          Whether you're a complete beginner or a professional looking to upskill
+          in backend technologies, our PHP training provides the roadmap to success.
         </p>
 
         <div className={styles.roadmapBox}>
+          {/* LEFT: Navigation */}
           <div className={styles.leftSection}>
-            <div className={styles.whoCanJoinSection}>
-              <h2 className={styles.sectionTitle}>
-                Who Can Join & What You'll Gain
-              </h2>
-              <ul className={styles.pointsList}>
-                <li className={styles.pointItem}>
-                  <span className={styles.arrow}>→</span>
-                  <div>
-                    <strong>Students (10th/12th Pass)</strong>
-                    <br />
-                    Begin your coding journey early! Learn to create dynamic
-                    websites and gain internship-ready skills in backend
-                    development.
-                  </div>
-                </li>
-
-                <li className={styles.pointItem}>
-                  <span className={styles.arrow}>→</span>
-                  <div>
-                    <strong>Graduates / Job Seekers</strong>
-                    <br />
-                    Become job-ready with in-demand PHP, MySQL, and Laravel
-                    skills — ideal for web development, CMS integration, and
-                    backend roles.
-                  </div>
-                </li>
-
-                <li className={styles.pointItem}>
-                  <span className={styles.arrow}>→</span>
-                  <div>
-                    <strong>Freelancers & Entrepreneurs</strong>
-                    <br />
-                    Build, launch, and manage your own websites or client
-                    projects. Take control of your digital presence with
-                    hands-on backend control.
-                  </div>
-                </li>
-
-                <li className={styles.pointItem}>
-                  <span className={styles.arrow}>→</span>
-                  <div>
-                    <strong>Working Professionals (Upskilling)</strong>
-                    <br />
-                    Add backend development to your skill set. Seamlessly
-                    integrate with front-end teams or transition into full-stack
-                    developer roles.
-                  </div>
-                </li>
-              </ul>
+            <div className={styles.audienceNav}>
+              <button
+                className={`${styles.audienceTab} ${
+                  activeAudience === "students" ? styles.active : ""
+                }`}
+                onClick={() => setActiveAudience("students")}
+              >
+                <span className={styles.tabIcon}>🎓</span>
+                <div>
+                  <strong>Students</strong>
+                  <span className={styles.tabSubtext}>Start your web career</span>
+                </div>
+              </button>
+              <button
+                className={`${styles.audienceTab} ${
+                  activeAudience === "graduates" ? styles.active : ""
+                }`}
+                onClick={() => setActiveAudience("graduates")}
+              >
+                <span className={styles.tabIcon}>👨‍🎓</span>
+                <div>
+                  <strong>Graduates</strong>
+                  <span className={styles.tabSubtext}>Specialize in Backend</span>
+                </div>
+              </button>
+              <button
+                className={`${styles.audienceTab} ${
+                  activeAudience === "freelancers" ? styles.active : ""
+                }`}
+                onClick={() => setActiveAudience("freelancers")}
+              >
+                <span className={styles.tabIcon}>💻</span>
+                <div>
+                  <strong>Freelancers</strong>
+                  <span className={styles.tabSubtext}>Build custom sites</span>
+                </div>
+              </button>
+              <button
+                className={`${styles.audienceTab} ${
+                  activeAudience === "entrepreneurs" ? styles.active : ""
+                }`}
+                onClick={() => setActiveAudience("entrepreneurs")}
+              >
+                <span className={styles.tabIcon}>🚀</span>
+                <div>
+                  <strong>Entrepreneurs</strong>
+                  <span className={styles.tabSubtext}>Manage your tech</span>
+                </div>
+              </button>
             </div>
           </div>
 
+          {/* RIGHT: Content */}
           <div className={styles.rightSection}>
-            <img
-              src={images.willGet}
-              alt="PHP Training Roadmap"
-              className={styles.whatlearnimg}
-            />
+            <div className={styles.audienceContentPane} key={activeAudience}>
+              <img
+                src={activeContent.image}
+                alt={activeContent.title}
+                className={styles.whatlearnimg}
+              />
+              <h3 className={styles.contentTitle}>{activeContent.title}</h3>
+              <p className={styles.contentDescription}>
+                {activeContent.description}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       <EnrollProcess />
 
-      {/* placemnet */}
+      {/* --- SUCCESS STORIES --- */}
       <div>
         <h1 className={styles.storyHeading}>Our Success Story</h1>
 
-        {/* 🔹 Bottom: videos, right → left */}
+        {/* Bottom: Videos */}
         <div className={styles.leftCarouselWrapper}>
           <div
             className={styles.leftCarousel}
@@ -486,7 +452,7 @@ const Php = () => {
                   src={item.iframe}
                   className={styles.leftIframe}
                   title={`video-${i}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
                 />
@@ -505,12 +471,11 @@ const Php = () => {
           </div>
         </div>
 
-        {/* 🔹 Top: images, left → right */}
+        {/* Top: Images */}
         <div className={styles.carouselWrapper}>
           <div
             className={styles.carousel}
             style={{
-              // Start far left, move towards 0
               transform: `translateX(${
                 -rightScrollCards.length * CARD_WIDTH + topIndex * CARD_WIDTH
               }px)`,
@@ -542,21 +507,19 @@ const Php = () => {
 
       <StudentCarousel />
 
-      {/* --- NEW SYLLABUS SECTION --- */}
+      {/* --- SYLLABUS SECTION (Accordion) --- */}
       <section className={styles.syllabusSection}>
         <h1 className={styles.syllabusTitle}>PHP Course Syllabus In Mohali</h1>
         <p className={styles.syllabusSubtitle}>
-          Our <strong>PHP Course in Mohali</strong> is designed and curated by
-          industry experts who have over 20+ years of experience working as
-          Backend Developers. That's why, by enrolling in this training program,
-          you can build a solid foundation for all the core components of PHP
-          Development, plus gain proficiency in MySQL, Laravel, and more.
+          From core PHP syntax to advanced Laravel features and database
+          management, our syllabus covers everything you need to become a backend
+          expert.
         </p>
 
         <div className={styles.syllabusGrid}>
-          {/* --- Left Column --- */}
+          {/* Left Column */}
           <div className={styles.syllabusColumn}>
-            <h2 className={styles.columnTitle}>PHP SYLLABUS</h2>
+            <h2 className={styles.columnTitle}>Core PHP & Database</h2>
             {leftTopics.map((topic, index) => (
               <div className={styles.accordionItem} key={topic}>
                 <div
@@ -587,9 +550,9 @@ const Php = () => {
             ))}
           </div>
 
-          {/* --- Right Column --- */}
+          {/* Right Column */}
           <div className={styles.syllabusColumn}>
-            <h2 className={styles.columnTitle}>ADVANCE PHP</h2>
+            <h2 className={styles.columnTitle}>Advanced Frameworks</h2>
             {rightTopics.map((topic, index) => (
               <div className={styles.accordionItem} key={topic}>
                 <div
@@ -597,7 +560,7 @@ const Php = () => {
                   onClick={() => toggleSyllabus(topic)}
                 >
                   <span className={styles.accordionTitle}>
-                    {`${index + 1}. ${topic}`}
+                    {`${index + leftTopics.length + 1}. ${topic}`}
                   </span>
                   <div
                     className={`${styles.accordionIcon} ${
@@ -621,156 +584,91 @@ const Php = () => {
           </div>
         </div>
       </section>
-      {/* --- END NEW SYLLABUS SECTION --- */}
 
-      {/* projects */}
+      {/* --- PROJECTS SECTION --- */}
       <div className={styles.projectBackModal}>
         <section className={styles.projectSection}>
-          {/* Heading */}
           <div className={styles.projectSectionHeader}>
             <h2 className={styles.projectSectionHeading}>
-              PHP Solutions For Your Web Development
+              Real-World PHP Projects
             </h2>
           </div>
 
-          {/* Grid */}
           <div className={styles.projectSectionGrid}>
-            {/* Block 1 */}
             <div className={`${styles.projectSectionCard} ${styles.project1}`}>
-              <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>🌐</div>
-              </div>
-              <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Custom Web Applications
-                </h3>
-                <p className={styles.projectSectionDesc}>
-                  Build scalable and secure web applications tailored to your
-                  business needs using PHP frameworks.
-                </p>
-              </div>
-            </div>
-
-            {/* Block 2 */}
-            <div className={`${styles.projectSectionCard} ${styles.project2}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🛒</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  E-commerce Development
-                </h3>
+                <h3 className={styles.projectSectionTitle}>E-commerce Platform</h3>
                 <p className={styles.projectSectionDesc}>
-                  Develop feature-rich e-commerce platforms with payment gateway
-                  integration and inventory management.
+                  Build a full-featured online store with product listings, cart
+                  functionality, and payment gateways.
                 </p>
               </div>
             </div>
 
-            {/* Block 3 */}
+            <div className={`${styles.projectSectionCard} ${styles.project2}`}>
+              <div className={styles.projectSectionIconWrapper}>
+                <div className={styles.projectSectionIcon}>📝</div>
+              </div>
+              <div className={styles.projectSectionContent}>
+                <h3 className={styles.projectSectionTitle}>Content Management System</h3>
+                <p className={styles.projectSectionDesc}>
+                  Create a custom CMS like WordPress to manage posts, pages, and
+                  users dynamically.
+                </p>
+              </div>
+            </div>
+
             <div className={`${styles.projectSectionCard} ${styles.project3}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>⚡</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>API Development</h3>
+                <h3 className={styles.projectSectionTitle}>RESTful API</h3>
                 <p className={styles.projectSectionDesc}>
-                  Create secure RESTful APIs in PHP to enable seamless
-                  integration with third-party services and applications.
+                  Develop secure APIs for mobile apps and third-party integrations
+                  using Laravel.
                 </p>
               </div>
             </div>
 
-            {/* Block 4 */}
             <div className={`${styles.projectSectionCard} ${styles.project4}`}>
               <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>🗄️</div>
+                <div className={styles.projectSectionIcon}>👥</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>CMS Solutions</h3>
+                <h3 className={styles.projectSectionTitle}>CRM System</h3>
                 <p className={styles.projectSectionDesc}>
-                  Develop and customize content management systems like
-                  WordPress, Drupal, or Joomla using PHP.
+                  Build a Customer Relationship Management tool to track leads,
+                  sales, and client interactions.
                 </p>
               </div>
             </div>
 
-            {/* Block 5 */}
             <div className={`${styles.projectSectionCard} ${styles.project5}`}>
               <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>🔧</div>
+                <div className={styles.projectSectionIcon}>💬</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Maintenance & Support
-                </h3>
+                <h3 className={styles.projectSectionTitle}>Chat Application</h3>
                 <p className={styles.projectSectionDesc}>
-                  Ensure your PHP applications run smoothly with ongoing
-                  support, bug fixes, and performance optimization.
+                  Create a real-time chat application using PHP websockets and
+                  database storage.
                 </p>
               </div>
             </div>
 
-            {/* Block 6 */}
             <div className={`${styles.projectSectionCard} ${styles.project6}`}>
               <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>📱</div>
+                <div className={styles.projectSectionIcon}>📅</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Responsive Websites
-                </h3>
+                <h3 className={styles.projectSectionTitle}>Booking System</h3>
                 <p className={styles.projectSectionDesc}>
-                  Build mobile-friendly, responsive websites powered by PHP to
-                  ensure seamless user experiences.
-                </p>
-              </div>
-            </div>
-
-            {/* Block 7 */}
-            <div className={`${styles.projectSectionCard} ${styles.project7}`}>
-              <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>☁️</div>
-              </div>
-              <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Cloud Integration
-                </h3>
-                <p className={styles.projectSectionDesc}>
-                  Integrate PHP applications with cloud platforms for
-                  scalability, flexibility, and enhanced performance.
-                </p>
-              </div>
-            </div>
-
-            {/* Block 8 */}
-            <div className={`${styles.projectSectionCard} ${styles.project8}`}>
-              <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>🔒</div>
-              </div>
-              <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Security Solutions
-                </h3>
-                <p className={styles.projectSectionDesc}>
-                  Implement advanced PHP security practices to safeguard your
-                  web apps against threats and vulnerabilities.
-                </p>
-              </div>
-            </div>
-
-            {/* Block 9 */}
-            <div className={`${styles.projectSectionCard} ${styles.project9}`}>
-              <div className={styles.projectSectionIconWrapper}>
-                <div className={styles.projectSectionIcon}>🚀</div>
-              </div>
-              <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>
-                  Performance Optimization
-                </h3>
-                <p className={styles.projectSectionDesc}>
-                  Optimize PHP applications for speed, scalability, and
-                  efficient database interactions.
+                  Develop an appointment booking system for hotels or clinics with
+                  calendar integration.
                 </p>
               </div>
             </div>
@@ -778,43 +676,99 @@ const Php = () => {
         </section>
       </div>
 
-      {/* career oportunities */}
-
-      <div className={styles.carerrOpportunities}>
-        <h2 className={styles.opportunitiesheading}>
-          💼 Career <span> Opportunities</span> After This Course.
-        </h2>
-        <div className={styles.careerOpportunitiesGrid}>
-          {careerOpportunities.map((service, index) => (
-            <div
-              key={index}
-              className={`${styles.careerCard} ${styles.curveTopRight} ${styles.curveBottomLeft}`}
-            >
-              <div className={styles.careerCardContent}>
-                <div className={styles.careerIcon}></div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
-            </div>
-          ))}
+      {/* --- ACHIEVERS SECTION --- */}
+      <section className={styles.achieversSection}>
+        <div className={styles.achieversInner}>
+          <h2 id="achievers-title" className={styles.achieversTitle}>
+            <span className={styles.shimmer}>Our Achievers</span>
+          </h2>
+          <p className={styles.achieversSubtitle}>
+            From <span className={styles.highlight}>classroom</span> to{" "}
+            <span className={styles.highlight}>career</span> — turning ambition
+            into offers at leading companies.
+          </p>
         </div>
-        <button className={styles.herobutton} onClick={() => setShowForm(true)}>
-          Talk to us
-        </button>
-      </div>
 
-      {/* why choose us section  */}
+        <div className={styles.appFeatureContainer}>
+          <div
+            className={`${styles.appFeatureCard} ${
+              active === "one" ? styles.active : ""
+            }`}
+            onMouseEnter={() => setActive("one")}
+            onMouseLeave={() => setActive(null)}
+          >
+            <img
+              src={images.arshdeepMl}
+              className={styles.appFeatureImage}
+              alt="Student"
+            />
+            <div className={styles.appFeatureOverlay}>
+              {active === "one" && (
+                <p className={styles.appFeatureText}>
+                  "Learning Laravel transformed my career. I can now build complex
+                  web apps with ease."
+                </p>
+              )}
+            </div>
+          </div>
 
+          <div
+            className={`${styles.appFeatureCard} ${
+              active === "two" ? styles.active : ""
+            }`}
+            onMouseEnter={() => setActive("two")}
+            onMouseLeave={() => setActive(null)}
+          >
+            <img
+              src={images.simratMl}
+              className={styles.appFeatureImage}
+              alt="Student"
+            />
+            <div className={styles.appFeatureOverlay}>
+              {active === "two" && (
+                <p className={styles.appFeatureText}>
+                  "The hands-on projects gave me the confidence to handle backend
+                  challenges in my job."
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div
+            className={`${styles.appFeatureCard} ${
+              active === "three" ? styles.active : ""
+            }`}
+            onMouseEnter={() => setActive("three")}
+            onMouseLeave={() => setActive(null)}
+          >
+            <img
+              src={images.harnoorMl}
+              className={styles.appFeatureImage}
+              alt="Student"
+            />
+            <div className={styles.appFeatureOverlay}>
+              {active === "three" && (
+                <p className={styles.appFeatureText}>
+                  "From PHP basics to API development, the curriculum was
+                  perfectly structured."
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- WHY CHOOSE US --- */}
       <section className={styles.whychooseusSection}>
         <div className={styles.whychooseusTitleBlock}>
           <p className={styles.whychooseusTagline}>MASTER NEW SKILLS</p>
           <h2 className={styles.whychooseusHeading}>
-            Why Choose <span>Ziion Technology</span> For PHP Training In Mohali?
+            Why Choose <span>Ziion Technology</span> For PHP Training?
           </h2>
           <p className={styles.whychooseusSubtitle}>
             Ziion Technology enables every student to develop exceptional skills
             in <strong>PHP Development</strong> and guarantees 100% job
-            assistance in the industry.
+            assistance.
           </p>
         </div>
 
@@ -827,11 +781,9 @@ const Php = () => {
               </div>
             ))}
           </div>
-
           <div className={styles.whychooseusImage}>
-            <img src={images.whyChooseImg} alt="Graduate Illustration" />
+            <img src={images.whyChooseImg} alt="Why Choose Us" />
           </div>
-
           <div className={styles.whychooseusList}>
             {chooseUsRightItems.map((item, index) => (
               <div className={styles.whychooseusItem} key={index}>
@@ -845,23 +797,11 @@ const Php = () => {
 
       <ReviewsSection />
 
-      {/* certificate */}
-      {/* <section className={styles.certificateSection}>
-     <div className={styles.mainContainer}>
-   . . . (certificate content) . . .
-     </div>
-   </section> */}
-
-      {/* faq section */}
+      {/* --- FAQ SECTION --- */}
       <div className={styles.faqContainer}>
         <div className={styles.faqContent}>
           <div className={styles.faqLeft}>
             <h1 className={styles.faqHeading}>Frequently Asked Questions</h1>
-            {/* <p className={styles.faqDescription}>
-         Blandit nunc sapien orci egestas scelerisque mattis. Pulvinar pellentesque cursus ornare neque non mi pellentesque adipiscing mollis.
-   . . .
-         </p> */}
-
             <div className={styles.faqFaqs}>
               {faqQuestions.map((item, index) => (
                 <div key={index} className={styles.faqFaqCard}>
@@ -890,6 +830,38 @@ const Php = () => {
           </div>
         </div>
       </div>
+
+      {/* --- CERTIFICATE --- */}
+      <section className={styles.certificateSection}>
+        <div className={styles.mainContainer}>
+          <div className={styles.certificateImage}>
+            <img src={images.certificatehero} alt="Ziion Certificate" />
+          </div>
+          <div className={styles.certificateContent}>
+            <h2>WHAT BENEFITS AWAIT YOU AT ZIION TECHNOLOGY?</h2>
+            <p className={styles.highlight}>
+              Highly Acclaimed Program Over the Years, We've Educated Over
+              35,000+ Learners & Supported Them in Landing Their Initial IT Role.
+            </p>
+            <p className={styles.description}>
+              We Provide Fully Career-Focused Courses for Professionals,
+              Entrepreneurs, and Students at Reasonable Costs.
+            </p>
+            <p className={styles.showcase}>
+              <strong>Showcase Your Success</strong>
+              <br />
+              Post it on LinkedIn to enhance your profile and share your
+              accomplishment with peers.
+            </p>
+          </div>
+        </div>
+        <div className={styles.certificateGallery}>
+          <img src={images.simratMl} alt="Certificate 1" />
+          <img src={images.harnoorMl} alt="Certificate 2" />
+          <img src={images.arshdeepMl} alt="Certificate 3" />
+          <img src={images.devagyaPy} alt="Certificate 4" />
+        </div>
+      </section>
 
       <SecondForm />
       <Footer />
