@@ -38,21 +38,21 @@
 }
 
 .left img {
-  width: 70%;
-  height: 5rem;
+  width: 60%;
+  height: 4rem;
   object-fit: contain;
   filter: drop-shadow(-2px 0 5px rgba(0, 0, 0, 0.7));
 }
 
 @media (max-width: 768px) {
   .left img {
-    width: 150px;
+    width: 140px;
   }
 }
 
 @media (max-width: 480px) {
   .left img {
-    width: 100px;
+    width: 95px;
   }
 }
 
@@ -181,8 +181,8 @@
   left: 0;
   z-index: 1001;
   /* This padding creates the space but keeps the area hoverable */
-  padding-top: 8px; 
-  /* The width and visual styles (bg, shadow, etc.) 
+  padding-top: 8px;
+  /* The width and visual styles (bg, shadow, etc.)
      are now handled by the .furtherMenu class in FurtherNav.module.css */
 }
 
@@ -274,10 +274,10 @@
   .right {
     display: none;
   }
-  
-  /* This rule was pointing to a non-existent class, 
-     but the mobile styles in FurtherNav.module.css handle this anyway. 
-     You can safely remove .mobileFurtherNav, .mobileSubMenuList, etc. 
+
+  /* This rule was pointing to a non-existent class,
+     but the mobile styles in FurtherNav.module.css handle this anyway.
+     You can safely remove .mobileFurtherNav, .mobileSubMenuList, etc.
      from this file if they exist. */
 
   /* Mobile Navbar Scrolled State */
@@ -304,9 +304,9 @@
   .mobileSubMenuList
   .mobileSubMenuList .mainMenuItem
   .mobileSubMenuList .link
-  
-  These classes are not used in your Navbar.js or FurtherNav.js. 
-  The mobile styling for the submenu is correctly handled by the 
+
+  These classes are not used in your Navbar.js or FurtherNav.js.
+  The mobile styling for the submenu is correctly handled by the
   @media (max-width: 768px) block inside FurtherNav.module.css.
   I have removed them to avoid confusion.
 */

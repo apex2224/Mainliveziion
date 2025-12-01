@@ -17,7 +17,7 @@
 
 /* Logo inside loader */
 .loaderWrapper .logo {
-  width: 50%;
+  width: 45%;
   height: auto;
   margin-bottom: 1rem;
 }
@@ -50,8 +50,8 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .loaderWrapper .logo {
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
   }
   .loaderWrapper p {
     font-size: 1rem;
@@ -60,8 +60,8 @@
 
 @media (max-width: 480px) {
   .loaderWrapper .logo {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
   }
   .loaderWrapper p {
     font-size: 0.9rem;
