@@ -19,9 +19,32 @@
   padding: 120px 24px 80px;
   background: #ffffff;
   overflow: hidden;
+  color: #0f172a;
+  text-align: center;
 }
 
-/* Re-using your overlay div for the background elements */
+.webDesigningSubtitle {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #64748b;
+  margin-bottom: 40px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+  margin-top: 2rem;
+}
+
+.webDesigningBgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  object-fit: cover;
+}
+
 .overlay {
   position: absolute;
   inset: 0;
@@ -34,73 +57,14 @@
   opacity: 0.5;
 }
 
-/* Gradient Orbs (mapped to your icon class names) */
-.mongo {
-  position: absolute;
-  top: 80px;
-  left: 40px;
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(
-    135deg,
-    rgba(59, 130, 246, 0.1),
-    rgba(147, 51, 234, 0.1)
-  );
-  border-radius: 50%;
-  filter: blur(80px);
-  animation: pulse 4s ease-in-out infinite;
-}
-
-.express {
-  position: absolute;
-  bottom: 80px;
-  right: 40px;
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(
-    135deg,
-    rgba(34, 197, 94, 0.1),
-    rgba(59, 130, 246, 0.1)
-  );
-  border-radius: 50%;
-  filter: blur(80px);
-  animation: pulse 4s ease-in-out infinite 1s;
-}
-
-/* Hiding the other icons */
-.html,
-.js,
-.css {
-  display: none;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(0.95);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
 .webDesigningContent {
+  position: relative;
   z-index: 2;
+  max-width: 900px;
   width: 80%;
   margin: auto;
-  text-align: center;
-}
-.webDesigningTitle {
-  font-size: 4rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  color: #0f172a;
 }
 
-/* Gradient text for the main part */
 .gradientText {
   display: inline-block;
   position: relative;
@@ -108,10 +72,9 @@
   color: #0f172a;
 }
 
-/* Gradient text for the typed part */
 .typedText {
   font-weight: 800;
-  font-size: 4rem;
+  font-size: clamp(2rem, 6vw, 4rem);
   text-align: center;
   display: inline-block;
   background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
@@ -119,12 +82,17 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   position: relative;
+  animation: upward 1s ease-in-out;
+}
+
+.typedText::after {
+  display: none;
 }
 
 .cursor {
   display: inline-block;
   font-weight: 800;
-  font-size: 4rem;
+  font-size: clamp(2rem, 6vw, 4rem);
   width: 0.5rem;
   background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
   -webkit-background-clip: text;
@@ -143,15 +111,248 @@
   }
 }
 
-.webDesigningSubtitle {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #64748b;
-  margin-bottom: 40px;
-  max-width: 680px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 400;
+@keyframes upward {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Hero Icons (for webDevelopment.js) --- */
+/* These classes style the <img> tags */
+.html {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  width: 60px;
+  height: auto;
+  z-index: 1;
+  animation: wave 10s infinite ease-in-out;
+}
+
+.css {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  z-index: 1;
+  top: 70%;
+  left: 80%;
+  animation: wave2 20s infinite ease;
+}
+
+.js {
+  position: absolute;
+  top: 18%;
+  left: 10%;
+  width: 60px;
+  height: auto;
+  border-radius: 20px;
+  animation: wave3 5s infinite ease-in-out;
+}
+
+.react {
+  position: absolute;
+  top: 40%;
+  left: 15%;
+  opacity: 0.6;
+  width: 60px;
+  height: auto;
+  animation: wave4 8s infinite ease-in-out;
+}
+
+.bootstrap {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 60px;
+  height: auto;
+  animation: comment 10s infinite ease-in-out;
+}
+
+.mongo {
+  position: absolute;
+  top: 80px;
+  left: 40px;
+  width: 60px;  /* Reduced from 300px */
+  height: auto;
+  z-index: 1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.express {
+  position: absolute;
+  bottom: 80px;
+  right: 40px;
+  width: 60px;  /* Reduced from 300px */
+  height: auto;
+  z-index: 1;
+  animation: pulse 4s ease-in-out infinite 1s;
+}
+
+/* Keyframes for icons */
+@keyframes wave {
+  0% {
+    transform: translateX(10%);
+  }
+  20% {
+    transform: translateX(-50%);
+  }
+  40% {
+    transform: translateY(-50%);
+  }
+  60% {
+    transform: translateX(-50%);
+  }
+  70% {
+    transform: translateX(-100%);
+  }
+  80% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes wave2 {
+  0% {
+    transform: translateX(10%);
+  }
+  20% {
+    transform: translateX(-50%);
+  }
+  40% {
+    transform: translateY(-50%);
+  }
+  60% {
+    transform: translateX(-50%);
+  }
+  70% {
+    transform: translateX(-100%);
+  }
+  80% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes wave3 {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+@keyframes wave4 {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+@keyframes comment {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .webDesigningHeroSection {
+    flex-direction: column;
+    height: auto;
+    padding: 80px 16px 60px;
+    text-align: center;
+  }
+  .webDesigningContent {
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    padding-top: 2rem;
+  }
+  .gradientText,
+  .typedText,
+  .cursor {
+    font-size: 2.5rem;
+  }
+  .webDesigningSubtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .html,
+  .css,
+  .js,
+  .react,
+  .bootstrap {
+    width: 50px;
+    opacity: 0.5;
+  }
+  .html {
+    top: 70%;
+    left: 5%;
+  }
+  .css {
+    top: 80%;
+    left: 85%;
+  }
+  .js {
+    top: 15%;
+    left: 5%;
+  }
+  .react {
+    top: 10%;
+    left: 80%;
+  }
+  .bootstrap {
+    display: none;
+  }
+  .webDesigningHerobutton {
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .gradientText,
+  .typedText,
+  .cursor {
+    font-size: 2.5rem;
+  }
+  .webDesigningSubtitle {
+    font-size: 1rem;
+  }
+  .webDesigningHerobutton {
+    font-size: 0.9rem;
+  }
 }
 
 /* --- stat section (from example) --- */
@@ -265,8 +466,8 @@
   max-width: 400px;
 }
 
-/* --- what will you learn --- */
-.learncontainer {
+/* --- what will you learn (Interactive Tabs) --- */
+.container {
   width: 90%;
   margin: auto;
   padding: 4rem 1rem;
@@ -293,69 +494,187 @@
 }
 
 .roadmapBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 40px;
-  padding: 0 10px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Tabs on left, content on right */
+  align-items: flex-start;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .leftSection {
-  flex: 1 1 48%;
-  max-width: 48%;
+  /* This holds the navigation tabs */
+  position: sticky;
+  top: 100px; /* Sticks nav while scrolling */
+}
+
+/* This class is in your JS */
+.whoCanJoinSection {
+  width: 100%;
 }
 
 .rightSection {
-  flex: 1 1 48%;
-  max-width: 48%;
+  /* This holds the content pane */
+  min-height: 400px;
+}
+
+.audienceNav {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.audienceTab {
+  display: flex;
   align-items: center;
-}
-
-.whatlearnimg {
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  object-fit: contain;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
-}
-
-.sectionTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 25px;
+  background: #fff;
   text-align: left;
-  color: #0f172a;
-  border-left: 4px solid #2c52be;
-  padding-left: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
-.pointsList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 25px;
+.audienceTab:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-.pointItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  color: #64748b;
-  line-height: 1.6;
-}
-.pointItem strong {
-  color: #334155;
+.audienceTab.active {
+  background: #eef2ff; /* Light blue */
+  border-color: #2c52be; /* Primary Accent */
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+  transform: translateY(-2px);
 }
 
-.arrow {
-  font-size: 20px;
-  color: #2c52be;
-  margin-top: 4px;
+.tabIcon {
+  font-size: 2rem;
   flex-shrink: 0;
+  line-height: 1;
+}
+
+.audienceTab div {
+  display: flex;
+  flex-direction: column;
+}
+
+.audienceTab strong {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.tabSubtext {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.audienceContentPane {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+/* === THIS IS THE FIX === */
+.whatlearnimg {
+  display: block; /* Allows for horizontal centering */
+  max-width: 100%; /* Ensures image is not wider than its container */
+  height: 250px; /* Maintain the fixed height */
+  object-fit: contain; /* Ensures the whole image fits, no stretching/cropping */
+  border-radius: 8px;
+  margin: 0 auto 1.5rem auto; /* Center the image */
+  /* border: 1px solid #e2e8f0; */ /* Removing border, looks better with 'contain' */
+}
+/* === END OF FIX === */
+
+.contentTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.contentDescription {
+  font-size: 1.05rem;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* We don't need these old classes anymore */
+.pointsList,
+.pointItem,
+.arrow,
+.sectionTitle {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .roadmapBox {
+    grid-template-columns: 1fr 1fr; /* Stack 1:1 */
+    gap: 2rem;
+  }
+  .leftSection {
+    position: static; /* Un-stick */
+    animation: none;
+  }
+  .rightSection {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .roadmapBox {
+    grid-template-columns: 1fr; /* Stack vertically */
+    gap: 1.5rem;
+  }
+
+  .audienceNav {
+    /* Create a horizontal scrolling row for tabs on mobile */
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .audienceTab {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    min-width: 150px; /* Give tabs a minimum width */
+  }
+
+  .tabIcon {
+    font-size: 1.5rem;
+  }
+
+  .audienceTab strong {
+    font-size: 0.9rem;
+  }
+  .tabSubtext {
+    font-size: 0.8rem;
+  }
+
+  .audienceContentPane {
+    padding: 1.5rem;
+  }
+  .whatlearnimg {
+    height: 200px;
+  }
+  .contentTitle {
+    font-size: 1.25rem;
+  }
+  .contentDescription {
+    font-size: 0.95rem;
+  }
 }
 
 /* --- career opportunities --- */
@@ -825,6 +1144,8 @@ button:hover {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem; /* Add margin from top */
+  justify-content: center; /* Center horizontally */
 }
 
 .herobutton:hover,
@@ -834,6 +1155,26 @@ button:hover {
   box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
   color: white;
   border: none;
+}
+
+/* Center the button when it's in a container */
+.toolsMain .herobutton {
+  display: block;
+  margin: 2rem auto 0; /* Center with top margin */
+  width: max-content;
+}
+
+.carerrOpportunities .herobutton {
+  display: block;
+  margin: 3rem auto 0; /* Center with top margin */
+  width: max-content;
+}
+
+/* Center button in certificate section */
+.certificateSection .herobutton {
+  margin: 2rem auto 0;
+  display: block;
+  width: max-content;
 }
 
 /* --- placement --- */
@@ -1289,5 +1630,525 @@ button:hover {
   }
   .appFeatureCard {
     width: 90%;
+  }
+}
+/* --- Modern SaaS Theme --- */
+/* Add these new styles to your existing CSS file */
+
+/* --- NEW: Syllabus Accordion Styles --- */
+.syllabusSection {
+  width: 100%;
+  padding: 5rem 2rem;
+  color: #334155;
+  font-family: sans-serif;
+  background: #fff;
+  text-align: center;
+}
+
+.syllabusTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.syllabusSubtitle {
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  color: #64748b;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.syllabusGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.syllabusColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.columnTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #2c52be;
+}
+
+.accordionItem {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordionItem:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: background 0.3s ease;
+}
+
+.accordionHeader:hover {
+  background: #eef2ff;
+}
+
+.accordionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.accordionIcon {
+  font-size: 0.875rem;
+  color: #64748b;
+  transition: transform 0.3s ease;
+}
+
+.accordionIcon.open {
+  transform: rotate(180deg);
+}
+
+.accordionBody {
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- REPLACE old .syllabusContainer styles --- */
+.syllabusContainer {
+  width: 100%;
+  padding: 5rem 2rem;
+  color: #334155;
+  font-family: sans-serif;
+  background: #fff;
+  text-align: center;
+}
+
+.syllabusContainer h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.syllabusContainer p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #64748b;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Remove old .syllabusWrapper and .topicList/.topicDetails styles */
+/* They're no longer needed with the accordion design */
+
+/* --- FIX: Career Opportunities heading class --- */
+.opportunitiesHeading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.opportunitiesHeading span {
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Responsive Design Updates --- */
+@media (max-width: 992px) {
+  .syllabusGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .columnTitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .syllabusSection {
+    padding: 3rem 1rem;
+  }
+
+  .syllabusTitle {
+    font-size: 2rem;
+  }
+
+  .syllabusSubtitle {
+    font-size: 1rem;
+  }
+
+  .accordionTitle {
+    font-size: 0.9rem;
+  }
+
+  .accordionHeader {
+    padding: 0.875rem 1rem;
+  }
+
+  .accordionBody {
+    padding: 0.875rem 1rem;
+  }
+}
+
+
+/* --- Modern SaaS Theme --- */
+/* Add these new styles to your existing CSS file */
+
+/* --- NEW: Syllabus Accordion Styles --- */
+.syllabusSection {
+  width: 100%;
+  padding: 5rem 2rem;
+  color: #334155;
+  font-family: sans-serif;
+  background: #fff;
+  text-align: center;
+}
+
+.syllabusTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.syllabusSubtitle {
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  color: #64748b;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.syllabusGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.syllabusColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.columnTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #2c52be;
+}
+
+.accordionItem {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordionItem:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: background 0.3s ease;
+}
+
+.accordionHeader:hover {
+  background: #eef2ff;
+}
+
+.accordionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.accordionIcon {
+  font-size: 0.875rem;
+  color: #64748b;
+  transition: transform 0.3s ease;
+}
+
+.accordionIcon.open {
+  transform: rotate(180deg);
+}
+
+.accordionBody {
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- REPLACE old .syllabusContainer styles --- */
+.syllabusContainer {
+  width: 100%;
+  padding: 5rem 2rem;
+  color: #334155;
+  font-family: sans-serif;
+  background: #fff;
+  text-align: center;
+}
+
+.syllabusContainer h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.syllabusContainer p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #64748b;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Remove old .syllabusWrapper and .topicList/.topicDetails styles */
+/* They're no longer needed with the accordion design */
+
+/* --- FIX: Career Opportunities heading class --- */
+.opportunitiesHeading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.opportunitiesHeading span {
+  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- IMPROVED Who Can Join Section --- */
+.learncontainer {
+  width: 90%;
+  margin: auto;
+  padding: 4rem 1rem;
+  background-color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+.whatHeading {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.subheading {
+  text-align: center;
+  font-size: 1.1rem;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.roadmapBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 0 10px;
+}
+
+.leftSection {
+  flex: 1 1 55%;
+  max-width: 55%;
+}
+
+.rightSection {
+  flex: 1 1 40%;
+  max-width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whatlearnimg {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.whoCanJoinSection {
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: left;
+  color: #0f172a;
+  border-left: 4px solid #2c52be;
+  padding-left: 12px;
+}
+
+.pointsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pointItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  line-height: 1.7;
+}
+
+.pointItem:hover {
+  background: #fff;
+  border-color: #cbd5e1;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.pointItem strong {
+  color: #1e40af;
+  font-size: 1.05rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.pointItem div {
+  color: #64748b;
+  flex: 1;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #2c52be;
+  margin-top: 4px;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+/* --- Responsive Design Updates --- */
+@media (max-width: 992px) {
+  .syllabusGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .columnTitle {
+    font-size: 1.3rem;
+  }
+
+  .whoCanJoinTitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .syllabusSection {
+    padding: 3rem 1rem;
+  }
+
+  .syllabusTitle {
+    font-size: 2rem;
+  }
+
+  .syllabusSubtitle {
+    font-size: 1rem;
+  }
+
+  .accordionTitle {
+    font-size: 0.9rem;
+  }
+
+  .accordionHeader {
+    padding: 0.875rem 1rem;
+  }
+
+  .accordionBody {
+    padding: 0.875rem 1rem;
   }
 }
