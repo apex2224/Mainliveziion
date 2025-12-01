@@ -11,6 +11,8 @@ import DataAnalytics from './DataAnalytics/DataAnalytics';
 import MobileAppDevelopment from './Mobileapp/MobileApp';
 import PHP from './PHP/Php';
 import GraphicDesigning from './graphic/Graphic';
+import CloudComputing from './CloudComputing/CC';
+import Devops from './DevOps/Devops';
 import Inprogress from '../inprogress/Inprogress';
 
 const CourseDetail = () => {
@@ -29,8 +31,8 @@ const CourseDetail = () => {
     'mobileapp': <MobileAppDevelopment />,
     'php': <PHP />,
     'graphic': <GraphicDesigning />,
-    'devops': <Inprogress />,
-    'cloud-computing': <Inprogress />
+    'devops': <Devops />,
+    'cloud-computing': <CloudComputing />
   };
 
   // Update document title
