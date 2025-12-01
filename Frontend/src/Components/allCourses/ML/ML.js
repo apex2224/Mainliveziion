@@ -9,6 +9,11 @@ import EnrollProcess from "../ProcessSection/EnrollProcess";
 import ReviewsSection from "../../reviews/ReviewsSection";
 import StudentCarousel from "../../placement/StudentCarousel";
 
+import tenplustwoImage from "../../../assets/NewCoursesImages/10+2.png";
+import jobImage from "../../../assets/NewCoursesImages/Job.png";
+import freelancerImage from "../../../assets/NewCoursesImages/freelancer.png";
+import workingProfessionalImage from "../../../assets/NewCoursesImages/workingproffessional.png";
+
 // Import your ML data here
 import {
   heroPhrases,
@@ -116,24 +121,25 @@ const MachineLearning = () => {
       title: "Aspiring AI Engineers",
       description:
         "Beginners and students eager to build the future with Artificial Intelligence.",
-      image: images.datascientist, // Use relevant ML image
+      image: tenplustwoImage, // Use relevant ML image
     },
     developers: {
       title: "Software Developers",
-      description: "Coders looking to transition into high-growth AI and ML roles.",
-      image: images.developer, // Use relevant ML image
+      description:
+        "Coders looking to transition into high-growth AI and ML roles.",
+      image: jobImage, // Use relevant ML image
     },
     analysts: {
       title: "Data Analysts",
       description:
         "Professionals wanting to move from analyzing past data to predicting future trends.",
-      image: images.analyst, // Use relevant ML image
+      image: freelancerImage, // Use relevant ML image
     },
     professionals: {
       title: "Business Professionals",
       description:
         "Leaders wanting to leverage Machine Learning for data-driven decision making.",
-      image: images.workingproffessional, // Use relevant ML image
+      image: workingProfessionalImage, // Use relevant ML image
     },
   };
 
@@ -205,16 +211,24 @@ const MachineLearning = () => {
   const handleBottomMouseLeave = () => setIsBottomPaused(false);
 
   const handleTopPrev = () => {
-    setTopIndex((prev) => (prev === 0 ? rightScrollCards.length - 1 : prev - 1));
+    setTopIndex((prev) =>
+      prev === 0 ? rightScrollCards.length - 1 : prev - 1
+    );
   };
   const handleTopNext = () => {
-    setTopIndex((prev) => (prev === rightScrollCards.length - 1 ? 0 : prev + 1));
+    setTopIndex((prev) =>
+      prev === rightScrollCards.length - 1 ? 0 : prev + 1
+    );
   };
   const handleBottomPrev = () => {
-    setBottomIndex((prev) => (prev === 0 ? leftScrollCards.length - 1 : prev - 1));
+    setBottomIndex((prev) =>
+      prev === 0 ? leftScrollCards.length - 1 : prev - 1
+    );
   };
   const handleBottomNext = () => {
-    setBottomIndex((prev) => (prev === leftScrollCards.length - 1 ? 0 : prev + 1));
+    setBottomIndex((prev) =>
+      prev === leftScrollCards.length - 1 ? 0 : prev + 1
+    );
   };
 
   return (
@@ -229,7 +243,7 @@ const MachineLearning = () => {
             <SiPython size={60} color="#3776AB" />
           </div>
           <div className={styles.css}>
-             <SiTensorflow size={80} color="#FF6F00" />
+            <SiTensorflow size={80} color="#FF6F00" />
           </div>
           <div className={styles.js}>
             <SiKeras size={70} color="#D00000" />
@@ -252,9 +266,9 @@ const MachineLearning = () => {
             </span>
           </h1>
           <h2 className={styles.heroSubtitle}>
-            Master the algorithms that drive the future. From predictive models to
-            deep neural networks, build the core skills essential for AI with our 
-            top-rated Machine Learning course.
+            Master the algorithms that drive the future. From predictive models
+            to deep neural networks, build the core skills essential for AI with
+            our top-rated Machine Learning course.
           </h2>
           <button
             className={styles.herobutton}
@@ -262,9 +276,11 @@ const MachineLearning = () => {
           >
             Talk to us
           </button>
-          {showForm && <Form closeForm={() => setShowForm(false)} />}
         </div>
       </section>
+
+      {/* Render the form as a modal at the component level */}
+      {showForm && <Form closeForm={() => setShowForm(false)} />}
 
       {/* --- STATS SECTION --- */}
       <div className={styles.statsWrapper}>
@@ -283,12 +299,12 @@ const MachineLearning = () => {
       <section className={styles.toolsMain}>
         <h1>Tools You Will Master</h1>
         <div className={styles.webdevtoolsContainer}>
-          
           <div className={styles.webdevtools}>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>Python</h3>
               <p className={styles.toolDescription}>
-                The #1 language for ML, known for its simplicity and vast ecosystem of data libraries.
+                The #1 language for ML, known for its simplicity and vast
+                ecosystem of data libraries.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
@@ -297,13 +313,18 @@ const MachineLearning = () => {
           </div>
 
           <div className={styles.webdevtools}>
-             <div className={styles.webdevtoolsFeature}>
-              <SiTensorflow size={60} color="#FF6F00" className={styles.toolIcon} />
+            <div className={styles.webdevtoolsFeature}>
+              <SiTensorflow
+                size={60}
+                color="#FF6F00"
+                className={styles.toolIcon}
+              />
             </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>TensorFlow</h3>
               <p className={styles.toolDescription}>
-                Google's open-source framework for building and deploying robust ML and Deep Learning models.
+                Google's open-source framework for building and deploying robust
+                ML and Deep Learning models.
               </p>
             </div>
           </div>
@@ -312,7 +333,8 @@ const MachineLearning = () => {
             <div className={styles.textBlock}>
               <h3 className={styles.title}>Keras</h3>
               <p className={styles.toolDescription}>
-                A high-level neural networks API enabling fast experimentation and prototyping.
+                A high-level neural networks API enabling fast experimentation
+                and prototyping.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
@@ -321,13 +343,14 @@ const MachineLearning = () => {
           </div>
 
           <div className={styles.webdevtools}>
-             <div className={styles.webdevtoolsFeature}>
+            <div className={styles.webdevtoolsFeature}>
               <SiNumpy size={60} color="#013243" className={styles.toolIcon} />
             </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>NumPy</h3>
               <p className={styles.toolDescription}>
-                The fundamental package for scientific computing, powering efficient array and matrix operations.
+                The fundamental package for scientific computing, powering
+                efficient array and matrix operations.
               </p>
             </div>
           </div>
@@ -336,7 +359,8 @@ const MachineLearning = () => {
             <div className={styles.textBlock}>
               <h3 className={styles.title}>Pandas</h3>
               <p className={styles.toolDescription}>
-                 Fast, flexible, and expressive data structures designed to make working with relational data easy.
+                Fast, flexible, and expressive data structures designed to make
+                working with relational data easy.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
@@ -344,18 +368,22 @@ const MachineLearning = () => {
             </div>
           </div>
 
-           <div className={styles.webdevtools}>
-             <div className={styles.webdevtoolsFeature}>
-              <SiScikitlearn size={60} color="#F7931E" className={styles.toolIcon} />
+          <div className={styles.webdevtools}>
+            <div className={styles.webdevtoolsFeature}>
+              <SiScikitlearn
+                size={60}
+                color="#F7931E"
+                className={styles.toolIcon}
+              />
             </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>Scikit-Learn</h3>
               <p className={styles.toolDescription}>
-                Simple and efficient tools for predictive data analysis, built on NumPy, SciPy, and matplotlib.
+                Simple and efficient tools for predictive data analysis, built
+                on NumPy, SciPy, and matplotlib.
               </p>
             </div>
           </div>
-
         </div>
         <button className={styles.herobutton} onClick={() => setShowForm(true)}>
           Talk to us
@@ -366,9 +394,9 @@ const MachineLearning = () => {
       <div className={styles.container}>
         <h1 className={styles.whatHeading}>Who is this ML Course For?</h1>
         <p className={styles.subheading}>
-          Our Machine Learning training is designed for anyone ready to innovate.
-          Whether you're a student, a developer, or an analyst, we provide the
-          blueprint to become an AI specialist.
+          Our Machine Learning training is designed for anyone ready to
+          innovate. Whether you're a student, a developer, or an analyst, we
+          provide the blueprint to become an AI specialist.
         </p>
 
         <div className={styles.roadmapBox}>
@@ -384,7 +412,9 @@ const MachineLearning = () => {
                 <span className={styles.tabIcon}>🎓</span>
                 <div>
                   <strong>Aspiring AI Engineers</strong>
-                  <span className={styles.tabSubtext}>Start your AI journey</span>
+                  <span className={styles.tabSubtext}>
+                    Start your AI journey
+                  </span>
                 </div>
               </button>
               <button
@@ -396,7 +426,9 @@ const MachineLearning = () => {
                 <span className={styles.tabIcon}>💻</span>
                 <div>
                   <strong>Software Developers</strong>
-                  <span className={styles.tabSubtext}>Transition into AI roles</span>
+                  <span className={styles.tabSubtext}>
+                    Transition into AI roles
+                  </span>
                 </div>
               </button>
               <button
@@ -408,7 +440,9 @@ const MachineLearning = () => {
                 <span className={styles.tabIcon}>📊</span>
                 <div>
                   <strong>Data Analysts</strong>
-                  <span className={styles.tabSubtext}>Master predictive modeling</span>
+                  <span className={styles.tabSubtext}>
+                    Master predictive modeling
+                  </span>
                 </div>
               </button>
               <button
@@ -420,7 +454,9 @@ const MachineLearning = () => {
                 <span className={styles.tabIcon}>📈</span>
                 <div>
                   <strong>Business Professionals</strong>
-                  <span className={styles.tabSubtext}>Drive data decisions</span>
+                  <span className={styles.tabSubtext}>
+                    Drive data decisions
+                  </span>
                 </div>
               </button>
             </div>
@@ -448,14 +484,16 @@ const MachineLearning = () => {
       {/* --- SUCCESS STORIES --- */}
       <div>
         <h1 className={styles.storyHeading}>Our Success Story</h1>
-        
+
         {/* Videos Bottom */}
         <div className={styles.leftCarouselWrapper}>
           <div
             className={styles.leftCarousel}
             style={{
               transform: `translateX(-${bottomIndex * VIDEO_WIDTH}px)`,
-              transition: bottomTransition ? "transform 0.8s ease-in-out" : "none",
+              transition: bottomTransition
+                ? "transform 0.8s ease-in-out"
+                : "none",
             }}
             onMouseEnter={handleBottomMouseEnter}
             onMouseLeave={handleBottomMouseLeave}
@@ -476,8 +514,12 @@ const MachineLearning = () => {
             ))}
           </div>
           <div className={styles.carouselButtons}>
-            <button onClick={handleBottomPrev} className={styles.carouselBtn}>◀️</button>
-            <button onClick={handleBottomNext} className={styles.carouselBtn}>▶️</button>
+            <button onClick={handleBottomPrev} className={styles.carouselBtn}>
+              ◀️
+            </button>
+            <button onClick={handleBottomNext} className={styles.carouselBtn}>
+              ▶️
+            </button>
           </div>
         </div>
 
@@ -486,7 +528,9 @@ const MachineLearning = () => {
           <div
             className={styles.carousel}
             style={{
-              transform: `translateX(${-rightScrollCards.length * CARD_WIDTH + topIndex * CARD_WIDTH}px)`,
+              transform: `translateX(${
+                -rightScrollCards.length * CARD_WIDTH + topIndex * CARD_WIDTH
+              }px)`,
               transition: topTransition ? "transform 0.8s ease-in-out" : "none",
             }}
             onMouseEnter={handleTopMouseEnter}
@@ -503,8 +547,12 @@ const MachineLearning = () => {
             ))}
           </div>
           <div className={styles.carouselButtons}>
-            <button onClick={handleTopPrev} className={styles.carouselBtn}>◀️</button>
-            <button onClick={handleTopNext} className={styles.carouselBtn}>▶️</button>
+            <button onClick={handleTopPrev} className={styles.carouselBtn}>
+              ◀️
+            </button>
+            <button onClick={handleTopNext} className={styles.carouselBtn}>
+              ▶️
+            </button>
           </div>
         </div>
       </div>
@@ -513,10 +561,12 @@ const MachineLearning = () => {
 
       {/* --- SYLLABUS SECTION (Accordion) --- */}
       <section className={styles.syllabusSection}>
-        <h1 className={styles.syllabusTitle}>Machine Learning Course Syllabus</h1>
+        <h1 className={styles.syllabusTitle}>
+          Machine Learning Course Syllabus
+        </h1>
         <p className={styles.syllabusSubtitle}>
-          Our curriculum is crafted by industry leaders to take you from Python basics
-          to advanced Deep Learning and Neural Networks.
+          Our curriculum is crafted by industry leaders to take you from Python
+          basics to advanced Deep Learning and Neural Networks.
         </p>
 
         <div className={styles.syllabusGrid}>
@@ -603,9 +653,12 @@ const MachineLearning = () => {
                 <div className={styles.projectSectionIcon}>🤖</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>Recommendation Systems</h3>
+                <h3 className={styles.projectSectionTitle}>
+                  Recommendation Systems
+                </h3>
                 <p className={styles.projectSectionDesc}>
-                  Build a system like Netflix or Amazon using collaborative filtering to suggest products.
+                  Build a system like Netflix or Amazon using collaborative
+                  filtering to suggest products.
                 </p>
               </div>
             </div>
@@ -617,7 +670,8 @@ const MachineLearning = () => {
               <div className={styles.projectSectionContent}>
                 <h3 className={styles.projectSectionTitle}>Stock Prediction</h3>
                 <p className={styles.projectSectionDesc}>
-                  Use LSTM and time-series analysis to forecast market trends and stock prices.
+                  Use LSTM and time-series analysis to forecast market trends
+                  and stock prices.
                 </p>
               </div>
             </div>
@@ -627,21 +681,25 @@ const MachineLearning = () => {
                 <div className={styles.projectSectionIcon}>🚗</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>Autonomous Driving</h3>
+                <h3 className={styles.projectSectionTitle}>
+                  Autonomous Driving
+                </h3>
                 <p className={styles.projectSectionDesc}>
-                  Implement computer vision to detect lanes and signs for self-driving logic.
+                  Implement computer vision to detect lanes and signs for
+                  self-driving logic.
                 </p>
               </div>
             </div>
 
-             <div className={`${styles.projectSectionCard} ${styles.project7}`}>
+            <div className={`${styles.projectSectionCard} ${styles.project7}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🛡️</div>
               </div>
               <div className={styles.projectSectionContent}>
                 <h3 className={styles.projectSectionTitle}>Fraud Detection</h3>
                 <p className={styles.projectSectionDesc}>
-                  Create classification models to identify fraudulent bank transactions in real-time.
+                  Create classification models to identify fraudulent bank
+                  transactions in real-time.
                 </p>
               </div>
             </div>
@@ -651,21 +709,27 @@ const MachineLearning = () => {
                 <div className={styles.projectSectionIcon}>💬</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>Sentiment Analysis</h3>
+                <h3 className={styles.projectSectionTitle}>
+                  Sentiment Analysis
+                </h3>
                 <p className={styles.projectSectionDesc}>
-                  Use NLP to analyze social media text and determine public sentiment.
+                  Use NLP to analyze social media text and determine public
+                  sentiment.
                 </p>
               </div>
             </div>
 
-             <div className={`${styles.projectSectionCard} ${styles.project5}`}>
+            <div className={`${styles.projectSectionCard} ${styles.project5}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🏥</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>Disease Prediction</h3>
+                <h3 className={styles.projectSectionTitle}>
+                  Disease Prediction
+                </h3>
                 <p className={styles.projectSectionDesc}>
-                  Predict the likelihood of diseases based on patient medical history using classification.
+                  Predict the likelihood of diseases based on patient medical
+                  history using classification.
                 </p>
               </div>
             </div>
@@ -695,62 +759,81 @@ const MachineLearning = () => {
             onMouseEnter={() => setActive("one")}
             onMouseLeave={() => setActive(null)}
           >
-            <img src={images.rubalPreetKaurMl} className={styles.appFeatureImage} alt="Student" />
-             <div className={styles.appFeatureOverlay}>
+            <img
+              src={images.rubalPreetKaurMl}
+              className={styles.appFeatureImage}
+              alt="Student"
+            />
+            <div className={styles.appFeatureOverlay}>
               {active === "one" && (
                 <p className={styles.appFeatureText}>
-                  "Machine Learning gave me the power to predict the future with code."
+                  "Machine Learning gave me the power to predict the future with
+                  code."
                 </p>
               )}
             </div>
           </div>
 
-           <div
+          <div
             className={`${styles.appFeatureCard} ${
               active === "two" ? styles.active : ""
             }`}
             onMouseEnter={() => setActive("two")}
             onMouseLeave={() => setActive(null)}
           >
-            <img src={images.muskanMl} className={styles.appFeatureImage} alt="Student" />
-             <div className={styles.appFeatureOverlay}>
+            <img
+              src={images.muskanMl}
+              className={styles.appFeatureImage}
+              alt="Student"
+            />
+            <div className={styles.appFeatureOverlay}>
               {active === "two" && (
                 <p className={styles.appFeatureText}>
-                  "From algorithms to AI applications, the journey was incredible."
+                  "From algorithms to AI applications, the journey was
+                  incredible."
                 </p>
               )}
             </div>
           </div>
 
-           <div
+          <div
             className={`${styles.appFeatureCard} ${
               active === "three" ? styles.active : ""
             }`}
             onMouseEnter={() => setActive("three")}
             onMouseLeave={() => setActive(null)}
           >
-            <img src={images.jashandeepMl} className={styles.appFeatureImage} alt="Student" />
-             <div className={styles.appFeatureOverlay}>
+            <img
+              src={images.jashandeepMl}
+              className={styles.appFeatureImage}
+              alt="Student"
+            />
+            <div className={styles.appFeatureOverlay}>
               {active === "three" && (
                 <p className={styles.appFeatureText}>
-                   "The practical projects really prepared me for the industry."
+                  "The practical projects really prepared me for the industry."
                 </p>
               )}
             </div>
           </div>
 
-           <div
+          <div
             className={`${styles.appFeatureCard} ${
               active === "four" ? styles.active : ""
             }`}
             onMouseEnter={() => setActive("four")}
             onMouseLeave={() => setActive(null)}
           >
-            <img src={images.harnoorMl} className={styles.appFeatureImage} alt="Student" />
-             <div className={styles.appFeatureOverlay}>
+            <img
+              src={images.harnoorMl}
+              className={styles.appFeatureImage}
+              alt="Student"
+            />
+            <div className={styles.appFeatureOverlay}>
               {active === "four" && (
                 <p className={styles.appFeatureText}>
-                   "Learning Neural Networks opened a new world of possibilities."
+                  "Learning Neural Networks opened a new world of
+                  possibilities."
                 </p>
               )}
             </div>
@@ -765,10 +848,10 @@ const MachineLearning = () => {
         </h2>
         <div className={styles.careerOpportunitiesGrid}>
           {careerOpportunities.map((service, index) => {
-             const icons = ["📊", "🔬", "🤖", "📈", "🔧", "🧠"];
-             const icon = icons[index] || "💼";
-             
-             return (
+            const icons = ["📊", "🔬", "🤖", "📈", "🔧", "🧠"];
+            const icon = icons[index] || "💼";
+
+            return (
               <div
                 key={index}
                 className={`${styles.careerCard} ${styles.curveTopRight} ${styles.curveBottomLeft}`}
@@ -795,7 +878,7 @@ const MachineLearning = () => {
             Why Choose <span>Ziion Technology</span> For ML Training?
           </h2>
           <p className={styles.whychooseusSubtitle}>
-            We enable every student to develop exceptional skills in 
+            We enable every student to develop exceptional skills in
             <strong> Machine Learning</strong> and guarantee job assistance.
           </p>
         </div>
@@ -869,7 +952,8 @@ const MachineLearning = () => {
             <h2>WHAT BENEFITS AWAIT YOU AT ZIION TECHNOLOGY?</h2>
             <p className={styles.highlight}>
               Highly Acclaimed Program Over the Years, We've Educated Over
-              35,000+ Learners & Supported Them in Landing Their Initial IT Role.
+              35,000+ Learners & Supported Them in Landing Their Initial IT
+              Role.
             </p>
             <p className={styles.description}>
               We Provide Fully Career-Focused Courses for Professionals,

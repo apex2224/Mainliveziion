@@ -3,6 +3,11 @@ import styles from "./Php.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
 import Footer from "../../footer/Footer";
+
+import tenplustwoImage from "../../../assets/NewCoursesImages/10+2.png";
+import jobImage from "../../../assets/NewCoursesImages/Job.png";
+import freelancerImage from "../../../assets/NewCoursesImages/freelancer.png";
+import workingProfessionalImage from "../../../assets/NewCoursesImages/workingproffessional.png";
 import {
   heroPhrases,
   statsData,
@@ -106,25 +111,25 @@ const Php = () => {
       title: "Aspiring Web Developers",
       description:
         "Beginners looking to master server-side scripting and build dynamic websites.",
-      image: images.developer, // Use relevant image
+      image: tenplustwoImage, // Use relevant image
     },
     graduates: {
       title: "CS/IT Graduates",
       description:
         "Graduates wanting to specialize in Backend Development with PHP & Laravel.",
-      image: images.datascientist,
+      image: jobImage,
     },
     freelancers: {
       title: "Freelancers",
       description:
         "Individuals wanting to build and sell custom websites or manage WordPress clients.",
-      image: images.workingproffessional,
+      image: freelancerImage,
     },
     entrepreneurs: {
       title: "Entrepreneurs",
       description:
         "Business owners who want to control their own e-commerce platforms and CMS.",
-      image: images.analyst,
+      image: workingProfessionalImage,
     },
   };
 
@@ -197,16 +202,24 @@ const Php = () => {
   const handleBottomMouseLeave = () => setIsBottomPaused(false);
 
   const handleTopPrev = () => {
-    setTopIndex((prev) => (prev === 0 ? rightScrollCards.length - 1 : prev - 1));
+    setTopIndex((prev) =>
+      prev === 0 ? rightScrollCards.length - 1 : prev - 1
+    );
   };
   const handleTopNext = () => {
-    setTopIndex((prev) => (prev === rightScrollCards.length - 1 ? 0 : prev + 1));
+    setTopIndex((prev) =>
+      prev === rightScrollCards.length - 1 ? 0 : prev + 1
+    );
   };
   const handleBottomPrev = () => {
-    setBottomIndex((prev) => (prev === 0 ? leftScrollCards.length - 1 : prev - 1));
+    setBottomIndex((prev) =>
+      prev === 0 ? leftScrollCards.length - 1 : prev - 1
+    );
   };
   const handleBottomNext = () => {
-    setBottomIndex((prev) => (prev === leftScrollCards.length - 1 ? 0 : prev + 1));
+    setBottomIndex((prev) =>
+      prev === leftScrollCards.length - 1 ? 0 : prev + 1
+    );
   };
 
   return (
@@ -237,8 +250,8 @@ const Php = () => {
           </h1>
           <h2 className={styles.webDesigningSubtitle}>
             Master backend development with our advanced PHP training. Learn to
-            build dynamic, secure, and scalable web applications using PHP, MySQL,
-            and the Laravel framework.
+            build dynamic, secure, and scalable web applications using PHP,
+            MySQL, and the Laravel framework.
           </h2>
           <button
             className={styles.herobutton}
@@ -246,9 +259,11 @@ const Php = () => {
           >
             Talk to us
           </button>
-          {showForm && <Form closeForm={() => setShowForm(false)} />}
         </div>
       </section>
+
+      {/* Render the form as a modal at the component level */}
+      {showForm && <Form closeForm={() => setShowForm(false)} />}
 
       {/* --- STATS SECTION --- */}
       <div className={styles.statsWrapper}>
@@ -282,7 +297,11 @@ const Php = () => {
 
           <div className={styles.webdevtools}>
             <div className={styles.webdevtoolsFeature}>
-              <SiLaravel size={60} color="#FF2D20" className={styles.toolIcon} />
+              <SiLaravel
+                size={60}
+                color="#FF2D20"
+                className={styles.toolIcon}
+              />
             </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>Laravel</h3>
@@ -302,7 +321,11 @@ const Php = () => {
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
-              <SiComposer size={60} color="#885630" className={styles.toolIcon} />
+              <SiComposer
+                size={60}
+                color="#885630"
+                className={styles.toolIcon}
+              />
             </div>
           </div>
 
@@ -313,7 +336,8 @@ const Php = () => {
             <div className={styles.textBlock}>
               <h3 className={styles.title}>MySQL</h3>
               <p className={styles.description}>
-                A powerful relational database management system for storing application data.
+                A powerful relational database management system for storing
+                application data.
               </p>
             </div>
           </div>
@@ -322,7 +346,8 @@ const Php = () => {
             <div className={styles.textBlock}>
               <h3 className={styles.title}>XAMPP</h3>
               <p className={styles.description}>
-                A local server environment for testing and developing PHP applications.
+                A local server environment for testing and developing PHP
+                applications.
               </p>
             </div>
             <div className={styles.webdevtoolsFeature}>
@@ -332,12 +357,17 @@ const Php = () => {
 
           <div className={styles.webdevtools}>
             <div className={styles.webdevtoolsFeature}>
-              <SiWordpress size={60} color="#21759B" className={styles.toolIcon} />
+              <SiWordpress
+                size={60}
+                color="#21759B"
+                className={styles.toolIcon}
+              />
             </div>
             <div className={styles.textBlock}>
               <h3 className={styles.title}>WordPress</h3>
               <p className={styles.description}>
-                The world's most popular CMS, built on PHP, allowing for rapid site creation.
+                The world's most popular CMS, built on PHP, allowing for rapid
+                site creation.
               </p>
             </div>
           </div>
@@ -351,8 +381,9 @@ const Php = () => {
       <div className={styles.container}>
         <h1 className={styles.whatHeading}>Who is this PHP Course For?</h1>
         <p className={styles.subheading}>
-          Whether you're a complete beginner or a professional looking to upskill
-          in backend technologies, our PHP training provides the roadmap to success.
+          Whether you're a complete beginner or a professional looking to
+          upskill in backend technologies, our PHP training provides the roadmap
+          to success.
         </p>
 
         <div className={styles.roadmapBox}>
@@ -368,7 +399,9 @@ const Php = () => {
                 <span className={styles.tabIcon}>🎓</span>
                 <div>
                   <strong>Students</strong>
-                  <span className={styles.tabSubtext}>Start your web career</span>
+                  <span className={styles.tabSubtext}>
+                    Start your web career
+                  </span>
                 </div>
               </button>
               <button
@@ -380,7 +413,9 @@ const Php = () => {
                 <span className={styles.tabIcon}>👨‍🎓</span>
                 <div>
                   <strong>Graduates</strong>
-                  <span className={styles.tabSubtext}>Specialize in Backend</span>
+                  <span className={styles.tabSubtext}>
+                    Specialize in Backend
+                  </span>
                 </div>
               </button>
               <button
@@ -512,8 +547,8 @@ const Php = () => {
         <h1 className={styles.syllabusTitle}>PHP Course Syllabus In Mohali</h1>
         <p className={styles.syllabusSubtitle}>
           From core PHP syntax to advanced Laravel features and database
-          management, our syllabus covers everything you need to become a backend
-          expert.
+          management, our syllabus covers everything you need to become a
+          backend expert.
         </p>
 
         <div className={styles.syllabusGrid}>
@@ -600,7 +635,9 @@ const Php = () => {
                 <div className={styles.projectSectionIcon}>🛒</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>E-commerce Platform</h3>
+                <h3 className={styles.projectSectionTitle}>
+                  E-commerce Platform
+                </h3>
                 <p className={styles.projectSectionDesc}>
                   Build a full-featured online store with product listings, cart
                   functionality, and payment gateways.
@@ -613,7 +650,9 @@ const Php = () => {
                 <div className={styles.projectSectionIcon}>📝</div>
               </div>
               <div className={styles.projectSectionContent}>
-                <h3 className={styles.projectSectionTitle}>Content Management System</h3>
+                <h3 className={styles.projectSectionTitle}>
+                  Content Management System
+                </h3>
                 <p className={styles.projectSectionDesc}>
                   Create a custom CMS like WordPress to manage posts, pages, and
                   users dynamically.
@@ -628,8 +667,8 @@ const Php = () => {
               <div className={styles.projectSectionContent}>
                 <h3 className={styles.projectSectionTitle}>RESTful API</h3>
                 <p className={styles.projectSectionDesc}>
-                  Develop secure APIs for mobile apps and third-party integrations
-                  using Laravel.
+                  Develop secure APIs for mobile apps and third-party
+                  integrations using Laravel.
                 </p>
               </div>
             </div>
@@ -667,8 +706,8 @@ const Php = () => {
               <div className={styles.projectSectionContent}>
                 <h3 className={styles.projectSectionTitle}>Booking System</h3>
                 <p className={styles.projectSectionDesc}>
-                  Develop an appointment booking system for hotels or clinics with
-                  calendar integration.
+                  Develop an appointment booking system for hotels or clinics
+                  with calendar integration.
                 </p>
               </div>
             </div>
@@ -705,8 +744,8 @@ const Php = () => {
             <div className={styles.appFeatureOverlay}>
               {active === "one" && (
                 <p className={styles.appFeatureText}>
-                  "Learning Laravel transformed my career. I can now build complex
-                  web apps with ease."
+                  "Learning Laravel transformed my career. I can now build
+                  complex web apps with ease."
                 </p>
               )}
             </div>
@@ -727,8 +766,8 @@ const Php = () => {
             <div className={styles.appFeatureOverlay}>
               {active === "two" && (
                 <p className={styles.appFeatureText}>
-                  "The hands-on projects gave me the confidence to handle backend
-                  challenges in my job."
+                  "The hands-on projects gave me the confidence to handle
+                  backend challenges in my job."
                 </p>
               )}
             </div>
@@ -841,7 +880,8 @@ const Php = () => {
             <h2>WHAT BENEFITS AWAIT YOU AT ZIION TECHNOLOGY?</h2>
             <p className={styles.highlight}>
               Highly Acclaimed Program Over the Years, We've Educated Over
-              35,000+ Learners & Supported Them in Landing Their Initial IT Role.
+              35,000+ Learners & Supported Them in Landing Their Initial IT
+              Role.
             </p>
             <p className={styles.description}>
               We Provide Fully Career-Focused Courses for Professionals,

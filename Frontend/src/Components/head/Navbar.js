@@ -46,10 +46,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (e) => {
       // Updated ref check to be safer
-      if (
-        navWrapperRef.current &&
-        !navWrapperRef.current.contains(e.target)
-      ) {
+      if (navWrapperRef.current && !navWrapperRef.current.contains(e.target)) {
         setShowFurtherNav(false);
         setMenuOpen(false);
       }
@@ -127,7 +124,6 @@ const Navbar = () => {
                     <FurtherNav />
                   </div>
                 )}
-                
                 {/* === FIX 2: ADDED MOBILE RENDER === */}
                 {/* Mobile Dropdown (appears inside menu) */}
                 {isMobile && showFurtherNav && <FurtherNav />}

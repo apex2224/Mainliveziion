@@ -8,7 +8,7 @@ import StudentCarousel from "../placement/StudentCarousel";
 import useCustom from "../customHook/useCustom";
 import placementassist from "../../assets/NewCoursesImages/placementassist.png";
 
-// --- Data Arrays (Keep your existing data here) ---
+// --- Data Arrays (Keeping the originals) ---
 const brightStarsData = [
   {
     image: images.nisha,
@@ -113,12 +113,64 @@ const Integration = () => {
     animateCounter(20, setIndustryCount);
   }, []);
 
+  // New constants for dynamic 3D elements
+  const NUM_CUBES = 8;
+  const NUM_LIGHT_TRAILS = 10;
+
+  // Helper function to generate dynamic style values for 3D elements
+  const generateCubeStyle = (i) => ({
+    "--top": `${10 + ((i * 10) % 80)}%`,
+    "--left": `${5 + ((i * 15) % 85)}%`,
+    "--size": `${40 + (i % 3) * 15}px`,
+    "--delay": `${i * 1.2}s`,
+    "--duration": `${20 + (i % 4) * 4}s`,
+    "--color":
+      i % 2 === 0 ? "var(--cube-base-color)" : "var(--cube-highlight-color)",
+  });
+
+  const generateTrailStyle = (i) => ({
+    "--z-offset": `${Math.random() * 80 - 40}px`,
+    "--delay": `${i * 0.7}s`,
+    "--duration": `${Math.random() * 10 + 15}s`,
+    "--x-start": `${Math.random() * 100}vw`,
+    "--y-start": `${Math.random() * 100}vh`,
+  });
+
   return (
     <div className={styles.pageContainer}>
       <Navbar />
 
-      {/* --- Hero Section with 3D Neural Network (Light Theme) --- */}
+      {/* ---------------------------------------------------- */}
+      {/* --- HERO SECTION: INTEGRATED SKILL MATRIX --- */}
+      {/* ---------------------------------------------------- */}
       <section className={styles.heroSection}>
+        {/* 1. Full-Page Network Background (Subtle Grid) */}
+        <div className={styles.networkBackground}></div>
+
+        {/* 2. Floating Animated 3D Elements (Knowledge Cubes) */}
+        <div className={styles.floatingObjectsContainer}>
+          {/* Floating Cubes */}
+          {[...Array(NUM_CUBES)].map((_, i) => (
+            <div
+              key={`cube-${i}`}
+              className={styles.floatingCube}
+              style={generateCubeStyle(i)}
+            >
+              <div className={styles.cubeInner}></div>
+            </div>
+          ))}
+
+          {/* Soft Light Trails for Data Flow */}
+          {[...Array(NUM_LIGHT_TRAILS)].map((_, i) => (
+            <div
+              key={`light-trail-${i}`}
+              className={styles.lightTrail}
+              style={generateTrailStyle(i)}
+            />
+          ))}
+        </div>
+
+        {/* 3. Hero Content (Frosted Glass Card) */}
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
             Learn With Us, <br />
@@ -131,47 +183,6 @@ const Integration = () => {
             between education and industry, ensuring our students are placing in
             top-tier roles.
           </p>
-        </div>
-
-        {/* --- 3D Neural Network Visual --- */}
-        <div className={styles.neuralNetworkContainer}>
-          <div className={styles.neuralNetwork}>
-            {/* Center Core Node */}
-            <div className={`${styles.node} ${styles.coreNode}`}></div>
-
-            {/* Satellite Nodes */}
-            {[...Array(18)].map((_, i) => (
-              <div
-                key={`node-${i}`}
-                className={styles.node}
-                style={{
-                  "--x": Math.cos((i / 18) * 2 * Math.PI) * 120 + "px", // Circular distribution X
-                  "--y": Math.sin((i / 18) * 2 * Math.PI) * 120 + "px", // Circular distribution Y
-                  "--z": Math.random() * 100 - 50 + "px", // Random Z depth
-                  "--delay": i * 0.2 + "s",
-                  "--node-color":
-                    i % 2 === 0
-                      ? "var(--color-primary)"
-                      : "var(--color-secondary)",
-                }}
-              ></div>
-            ))}
-
-            {/* Connections (Lines) */}
-            {[...Array(12)].map((_, i) => (
-              <div
-                key={`link-${i}`}
-                className={styles.connection}
-                style={{
-                  "--rot-x": Math.random() * 360 + "deg",
-                  "--rot-y": Math.random() * 360 + "deg",
-                  "--rot-z": Math.random() * 360 + "deg",
-                  "--width": Math.random() * 100 + 100 + "px", // 100-200px length
-                  "--delay": i * 0.5 + "s",
-                }}
-              ></div>
-            ))}
-          </div>
         </div>
       </section>
 

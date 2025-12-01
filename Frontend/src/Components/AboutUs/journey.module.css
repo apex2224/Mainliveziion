@@ -2,7 +2,8 @@
 .aboutContainer {
   padding: 5rem 2rem;
   background-color: #ffffff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   overflow: hidden; /* Prevents horizontal scroll overlapping */
 }
 
@@ -104,7 +105,7 @@
 
 /* Central Line */
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   top: 0;
@@ -140,7 +141,7 @@
 
 /* The Dot on the Line */
 .card::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 5px; /* Align with top text */
   width: 16px;
@@ -202,14 +203,14 @@
   }
 
   /* Reset Odd/Even specifics */
-  .card:nth-child(odd), 
+  .card:nth-child(odd),
   .card:nth-child(even) {
     align-self: flex-start;
     text-align: left;
   }
 
   /* Move dots to the left line */
-  .card:nth-child(odd)::after, 
+  .card:nth-child(odd)::after,
   .card:nth-child(even)::after {
     left: 11px;
     right: auto;
