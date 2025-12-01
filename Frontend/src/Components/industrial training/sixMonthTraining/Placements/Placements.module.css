@@ -1,84 +1,73 @@
-/* CSS Variables for a Modern & Professional Theme */
+/* Placements.module.css */
+
+/* --- CSS Variables --- */
 :root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1e40af;
-  --color-text-heading: #111827; /* This is the "black" color we'll use */
+  --color-text-heading: #111827;
   --color-text-body: #374151;
   --color-background: #ffffff;
   --color-background-offset: #f9fafb;
   --color-border: #e5e7eb;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  --radius-md: 12px;
+
+  /* Gradient Colors extracted from your image */
+  --grad-start: #ff8c37; /* Orange */
+  --grad-end: #3b5bdb; /* Blue/Purpleish */
+
+  --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
   --radius-lg: 16px;
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- General Page & Section Styles --- */
+/* --- General Page Styles --- */
 .placementsPage {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   color: var(--color-text-body);
-  padding: 40px 0;
+  padding: 60px 0;
   background-color: var(--color-background);
   overflow-x: hidden;
 }
-.gradientText {
-  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
 .sectionTitle {
   text-align: center;
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 4rem auto 3rem;
+  margin: 0 auto 4rem;
   max-width: 800px;
+  letter-spacing: -0.03em;
   line-height: 1.2;
-  letter-spacing: -0.025em;
 }
 
-/* --- NEW CLASS TO OVERRIDE GRADIENT --- */
 .blackText {
-  background: none; /* Remove gradient background */
-  -webkit-background-clip: initial; /* Reset clipping */
-  background-clip: initial; /* Reset clipping */
-  -webkit-text-fill-color: var(--color-text-heading); /* Apply theme's heading color */
-  color: var(--color-text-heading); /* Fallback */
+  color: var(--color-text-heading);
 }
 
+.gradientText {
+  background: linear-gradient(
+    90deg,
+    var(--grad-end) 0%,
+    var(--grad-start) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- MARQUEE SECTIONS --- */
 .marqueeSection {
   width: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
+  position: relative;
 }
 
-/* --- SECTION 1: Placed Students Image Marquee --- */
-@keyframes scrollImages {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.imageMarqueeContainer {
+/* Container for the sliding track */
+.imageMarqueeContainer,
+.videoMarqueeWrapper {
   width: 100%;
   overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+  /* Fade effect on sides */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent,
@@ -95,276 +84,213 @@
   );
 }
 
-.imageTrack {
+/* --- THE BUTTONS (Styled exactly like your image) --- */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px; /* Slightly larger for professional feel */
+  height: 64px;
+  border-radius: 50%;
+  z-index: 50;
+  cursor: pointer;
   display: flex;
-  width: fit-content;
-  animation: scrollImages 80s linear infinite;
-  will-change: transform;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+
+  /* THE TRICK: Creates the gradient border with white inside */
+  border: 2px solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+    /* Inner white circle */
+      linear-gradient(135deg, var(--grad-start), var(--grad-end)) border-box; /* Outer gradient ring */
 }
 
-.imageMarqueeContainer:hover .imageTrack {
+/* Hover Effects */
+.navButton:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: var(--shadow-hover);
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Arrow Icon Styling */
+.navButton svg {
+  width: 28px;
+  height: 28px;
+  stroke: #111; /* Sharp black arrow */
+  stroke-width: 2.5px;
+  transition: transform 0.3s ease;
+}
+
+/* Positioning */
+.prevButton {
+  left: 2%;
+}
+
+.prevButton:hover svg {
+  transform: translateX(-3px);
+}
+
+.nextButton {
+  right: 2%;
+}
+
+.nextButton:hover svg {
+  transform: translateX(3px);
+}
+
+/* --- TRACK ANIMATIONS --- */
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.imageTrack,
+.videoTrack,
+.mouMarqueeContent {
+  display: flex;
+  width: fit-content;
+  gap: 30px; /* Consistent spacing */
+  animation: scrollLeft 60s linear infinite;
+  padding-left: 30px; /* Start buffer */
+}
+
+/* Pause on hover (applied to container) */
+.marqueeSection:hover .imageTrack,
+.marqueeSection:hover .videoTrack,
+.marqueeSection:hover .mouMarqueeContent {
   animation-play-state: paused;
 }
 
+/* --- CARDS & IMAGES --- */
 .imageSlide {
-  width: 320px;
-  padding: 0 15px;
+  width: 300px;
   flex-shrink: 0;
   text-align: center;
   transition: var(--transition-smooth);
 }
 
 .imageSlide:hover {
-  transform: scale(1.05);
-  z-index: 10;
+  transform: translateY(-10px);
 }
 
 .placementImage {
   width: 100%;
-  height: 320px;
+  height: 300px;
   border-radius: var(--radius-lg);
   object-fit: cover;
-  box-shadow: var(--shadow-lg);
-  border: 4px solid var(--color-background);
-  display: block;
-  content-visibility: auto; /* Performance boost */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border for clean definition */
 }
 
 .studentName {
-  margin-top: 1.2rem;
-  font-size: 1.25rem;
+  margin-top: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text-heading);
-  text-align: center; /* Keep center alignment for student names */
 }
 
-/* --- SECTION 2: Video Testimonials Marquee --- */
-@keyframes scrollVideo {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.videoMarqueeWrapper {
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 8%,
-    black 92%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 8%,
-    black 92%,
-    transparent
-  );
-}
-
-.videoTrack {
-  display: flex;
-  width: fit-content;
-  animation: scrollVideo 90s linear infinite;
-  will-change: transform;
-}
-
-.videoMarqueeWrapper:hover .videoTrack {
-  animation-play-state: paused;
-}
-
+/* --- VIDEO SLIDES --- */
 .videoSlide {
+  width: 450px;
   flex-shrink: 0;
-  width: 480px;
-  padding: 0 20px;
   transition: var(--transition-smooth);
 }
-
 .videoSlide:hover {
-  transform: translateY(-8px) scale(1.03);
-  z-index: 10;
+  transform: scale(1.02);
 }
-
 .videoSlide iframe {
   width: 100%;
-  height: 270px;
+  height: 255px;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  border: 2px solid var(--color-background);
-  pointer-events: auto;
-  display: block;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: none;
 }
 
-/* --- SECTION 3: MOU Section --- */
+/* --- MOU SECTION --- */
 .mouSection {
-  padding: 60px 30px;
-  background-color: var(--color-background-offset);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  padding: 80px 0;
+  background: var(--color-background-offset);
 }
 
 .mouMainImages {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   margin-bottom: 4rem;
-  flex-wrap: wrap;
+  padding: 0 20px;
 }
 
 .mouPrimaryImage {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
+  height: 300px;
+  width: auto;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  border: 4px solid var(--color-background);
-  transition: var(--transition-smooth);
-}
-
-.mouPrimaryImage:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-}
-
-@keyframes scrollMou {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.mouMarqueeWrapper {
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-}
-
-.mouMarqueeContent {
-  display: flex;
-  width: fit-content;
-  animation: scrollMou 60s linear infinite;
-  will-change: transform;
-}
-
-.mouMarqueeWrapper:hover .mouMarqueeContent {
-  animation-play-state: paused;
+  box-shadow: var(--shadow-soft);
 }
 
 .mouGalleryItem {
-  flex-shrink: 0;
-  margin: 0 20px;
-  width: 280px;
-  transition: var(--transition-smooth);
-}
-
-.mouGalleryItem:hover {
-  transform: translateY(-8px);
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mouGalleryImage {
-  width: 100%;
-  height: 200px;
-  object-fit: contain; /* Use contain to show full logos */
-  display: block;
-  filter: grayscale(80%);
-  opacity: 0.8;
-  transition: var(--transition-smooth);
+  max-width: 100%;
+  max-height: 120px;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
 }
 
 .mouGalleryItem:hover .mouGalleryImage {
-  filter: grayscale(0%);
+  filter: grayscale(0);
   opacity: 1;
+  transform: scale(1.1);
 }
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 1024px) {
-  .sectionTitle {
-    font-size: 2.3rem;
-  }
-}
-
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2rem;
   }
+  .navButton {
+    width: 48px;
+    height: 48px;
+  }
+  .navButton svg {
+    width: 20px;
+    height: 20px;
+  }
+
   .imageSlide {
-    width: 260px;
+    width: 240px;
   }
   .placementImage {
-    height: 260px;
+    height: 240px;
   }
+
   .videoSlide {
-    width: 380px;
-    padding: 0 15px;
+    width: 320px;
   }
   .videoSlide iframe {
-    height: 213px;
+    height: 180px;
   }
-  .mouSection {
-    padding: 50px 20px;
-  }
-}
 
-@media (max-width: 480px) {
-  .sectionTitle {
-    font-size: 1.8rem;
+  .mouMainImages {
+    flex-direction: column;
+    align-items: center;
   }
-  .imageSlide {
-    width: 220px;
-    padding: 0 10px;
-  }
-  .placementImage {
-    height: 220px;
-  }
-  .videoSlide {
-    width: 300px;
-    padding: 0 10px;
-  }
-  .videoSlide iframe {
-    height: 169px;
-  }
-  .mouGalleryItem {
-    width: 200px;
-    margin: 0 15px;
-  }
-  .mouGalleryImage {
-    height: 150px;
-  }
-}
-
-/* Accessibility: Reduce motion if user prefers it */
-@media (prefers-reduced-motion: reduce) {
-  .imageTrack,
-  .videoTrack,
-  .mouMarqueeContent {
-    animation: none;
-  }
-  .imageSlide,
-  .videoSlide,
-  .mouPrimaryImage,
-  .mouGalleryItem {
-    transition: none;
+  .mouPrimaryImage {
+    width: 100%;
+    height: auto;
   }
 }

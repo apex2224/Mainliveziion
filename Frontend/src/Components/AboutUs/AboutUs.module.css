@@ -4,18 +4,23 @@
 .pricingHeroSection {
   width: 100%;
   /* FIXED: Large top padding prevents Navbar overlap */
-  padding-top: 180px; 
+  padding-top: 180px;
   padding-bottom: 100px;
   min-height: 85vh;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  
+
   background-color: #ffffff;
   /* 3D Spotlight Effect Background */
-  background-image: radial-gradient(circle at 50% 30%, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+  background-image: radial-gradient(
+    circle at 50% 30%,
+    #ffffff 0%,
+    #f1f5f9 60%,
+    #e2e8f0 100%
+  );
   position: relative;
   overflow: hidden;
   perspective: 1000px; /* Enables 3D space */
@@ -32,26 +37,19 @@
 }
 
 .pricingHeroTitle {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 800;
-  font-size: clamp(3rem, 6vw, 5.5rem); 
+  font-size: clamp(3rem, 6vw, 5.5rem);
   line-height: 1.1;
   color: #0f172a;
   margin-bottom: 1.5rem;
   letter-spacing: -0.04em;
-  
+
   /* 3D Text Shadow */
-  text-shadow: 
-    0 1px 0 #ccc, 
-    0 2px 0 #c9c9c9, 
-    0 3px 0 #bbb, 
-    0 4px 0 #b9b9b9, 
-    0 5px 0 #aaa, 
-    0 6px 1px rgba(0,0,0,.1), 
-    0 0 5px rgba(0,0,0,.1), 
-    0 1px 3px rgba(0,0,0,.3), 
-    0 3px 5px rgba(0,0,0,.2), 
-    0 5px 10px rgba(0,0,0,.25);
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
+    0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .pricingHeroSubtitle {
@@ -66,8 +64,9 @@
 }
 
 /* Remove old image */
-.pricingBack { display: none; }
-
+.pricingBack {
+  display: none;
+}
 
 /* =========================================
    2. PRICING CARDS (Floating 3D Effect)
@@ -96,12 +95,12 @@
   padding: 3.5rem 2.5rem;
   border-radius: 24px;
   border: 1px solid #f1f5f9;
-  
+
   /* Initial State */
   transform: rotateX(0deg) translateY(0);
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -110,9 +109,7 @@
 /* 3D Hover Effect */
 .pricingCard:hover {
   transform: translateY(-15px) rotateX(5deg);
-  box-shadow: 
-    0 20px 40px rgba(0,0,0,0.1),
-    0 0 0 1px #3b82f6 inset; /* Blue inner glow border */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px #3b82f6 inset; /* Blue inner glow border */
   z-index: 5;
 }
 
@@ -157,12 +154,12 @@
 }
 
 .features li::before {
-  content: '✓';
+  content: "✓";
   position: absolute;
   left: 0;
   color: #3b82f6; /* Bright Blue */
   font-weight: 900;
-  filter: drop-shadow(0 2px 4px rgba(59,130,246,0.3));
+  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
 }
 
 .priceButton {
@@ -176,7 +173,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .priceButton:hover {
@@ -184,7 +181,6 @@
   transform: scale(1.02);
   box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
 }
-
 
 /* =========================================
    3. FOUNDER SECTION (Clean & Modern)
@@ -210,7 +206,7 @@
 
 /* Highlight underline effect */
 .highlight::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 5px;
   left: -5px;
@@ -243,7 +239,9 @@
   }
 }
 
-.contentLeft { flex: 1; }
+.contentLeft {
+  flex: 1;
+}
 
 .founder-imageSection {
   flex: 1;
@@ -270,7 +268,7 @@
   padding: 0.8rem 1.5rem;
   border-radius: 50px;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   border: 1px solid #e2e8f0;
 }
 
@@ -299,7 +297,6 @@
   letter-spacing: 1px;
 }
 
-
 /* =========================================
    4. GALLERY (3D Glassmorphism Cards)
    ========================================= */
@@ -320,12 +317,12 @@
   position: relative;
   /* 3D Transform setup */
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .aiChatbotImageBlock:hover {
   transform: scale(1.05) translateY(-10px);
-  box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
   z-index: 10;
 }
 
@@ -359,12 +356,11 @@
   font-weight: 700;
   font-size: 1.1rem;
   text-align: center;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
 
 /* =========================================
    5. ANIMATIONS & RESPONSIVE
@@ -382,26 +378,204 @@
 }
 
 @media (max-width: 1024px) {
-  .aiChatbotImageContainer { column-count: 3; }
-  .pricingHeroTitle { font-size: 4rem; }
+  .aiChatbotImageContainer {
+    column-count: 3;
+  }
+  .pricingHeroTitle {
+    font-size: 4rem;
+  }
 }
 
 @media (max-width: 768px) {
   .pricingHeroSection {
     padding-top: 150px; /* Slightly less padding on mobile */
   }
-  
-  .pricingHeroTitle { font-size: 3rem; }
-  
+
+  .pricingHeroTitle {
+    font-size: 3rem;
+  }
+
   .pricingStats {
     flex-direction: column;
     gap: 1.5rem;
   }
-  
-  .aiChatbotImageContainer { column-count: 2; }
+
+  .aiChatbotImageContainer {
+    column-count: 2;
+  }
 }
 
 @media (max-width: 480px) {
-  .aiChatbotImageContainer { column-count: 1; }
-  .pricingHeroSection { padding-top: 130px; }
+  .aiChatbotImageContainer {
+    column-count: 1;
+  }
+  .pricingHeroSection {
+    padding-top: 130px;
+  }
+}
+
+/* 3D About Ziion Section */
+.threeDAboutSection {
+  perspective: 1500px;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+  margin: 80px 0;
+}
+
+.threeDAboutBackground {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 40%),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.1) 0%, transparent 40%);
+  z-index: 1;
+}
+
+.threeDAboutContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+.threeDAboutTitle {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateZ(50px);
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+.threeDAboutTitle span {
+  display: block;
+  transform: translateZ(70px);
+}
+
+.threeDAboutSubtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+  transform: translateZ(30px);
+  font-weight: 300;
+}
+
+/* 3D Floating Cards */
+.threeDCardsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  perspective: 1000px;
+  margin-top: 4rem;
+  transform: translateZ(100px);
+}
+
+.threeDAboutCard {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  min-width: 250px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transform: rotateX(5deg) rotateY(-5deg);
+}
+
+.threeDAboutCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.threeDAboutCard:hover {
+  transform: translateY(-15px) rotateX(8deg) rotateY(-8deg) translateZ(20px);
+  box-shadow: 0 35px 60px rgba(0, 0, 0, 0.3);
+}
+
+.threeDAboutCard:hover::before {
+  opacity: 0.1;
+}
+
+.threeDAboutCardContent {
+  position: relative;
+  z-index: 2;
+  color: #0f172a;
+}
+
+.threeDAboutCard h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.threeDAboutCard p {
+  color: #64748b;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Floating elements animation */
+.threeDElement {
+  position: absolute;
+  opacity: 0.1;
+  animation: floatRotate 15s infinite linear;
+  z-index: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  width: 100px;
+  height: 100px;
+}
+
+.element1 {
+  top: 10%;
+  left: 5%;
+  animation-duration: 20s;
+  width: 80px;
+  height: 80px;
+}
+
+.element2 {
+  bottom: 15%;
+  right: 10%;
+  animation-duration: 25s;
+  width: 120px;
+  height: 120px;
+}
+
+.element3 {
+  top: 40%;
+  right: 20%;
+  animation-duration: 18s;
+  width: 60px;
+  height: 60px;
+}
+
+@keyframes floatRotate {
+  0% {
+    transform: rotate(0deg) translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
 }

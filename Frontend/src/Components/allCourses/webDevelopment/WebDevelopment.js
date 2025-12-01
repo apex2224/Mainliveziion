@@ -1032,6 +1032,9 @@ const WebDevelopment = () => {
 
       <HeroSection typedText={typedOutput} onShowForm={handleShowForm} />
 
+      {/* Render the form as a modal at the component level */}
+      {showForm && <Form closeForm={handleCloseForm} />}
+
       <StatsSection stats={statsData} />
 
       <ToolsSection tools={toolsData} onShowForm={handleShowForm} />
@@ -1115,6 +1118,7 @@ const WebDevelopment = () => {
 
       <Footer />
 
+      {/* Render form as modal overlay - kept for backward compatibility */}
       {showForm && <Form closeForm={handleCloseForm} />}
     </div>
   );

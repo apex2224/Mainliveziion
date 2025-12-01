@@ -19,6 +19,12 @@ import ReviewsSection from "../../reviews/ReviewsSection";
 import SecondForm from "../../secondForm/SecondForm";
 import StudentCarousel from "../../placement/StudentCarousel";
 
+// CORRECTED: Standardized variable names to lowercase and clear camelCase
+import tenplustwoImage from "../../../assets/NewCoursesImages/10+2.png";
+import jobImage from "../../../assets/NewCoursesImages/Job.png";
+import freelancerImage from "../../../assets/NewCoursesImages/freelancer.png";
+import workingProfessionalImage from "../../../assets/NewCoursesImages/workingproffessional.png";
+
 const rightScrollCards = [
   { image: images.vartika },
   { image: images.himanshu },
@@ -44,13 +50,13 @@ const useCustomTypewriter = (phrasesArray) => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentPhrase = phrasesArray[currentPhraseIndex];
+    const currentPhrase = phrasesArray[currentPhraseIndex] || "";
     let typingSpeed = isDeleting ? 50 : 100;
 
     const timeout = setTimeout(() => {
       setText((prev) =>
         isDeleting
-          ? currentPhrase.substring(0, prev.length - 1)
+          ? currentPhrase.substring(0, Math.max(0, prev.length - 1))
           : currentPhrase.substring(0, prev.length + 1)
       );
 
@@ -63,6 +69,7 @@ const useCustomTypewriter = (phrasesArray) => {
     }, typingSpeed);
 
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, isDeleting, currentPhraseIndex, phrasesArray]);
 
   return text;
@@ -70,7 +77,7 @@ const useCustomTypewriter = (phrasesArray) => {
 
 // --- Helper to prepare syllabus data ---
 const getSyllabusColumns = () => {
-  const allTopics = Object.keys(syllabusData);
+  const allTopics = Object.keys(syllabusData || {});
   const midpoint = Math.ceil(allTopics.length / 2);
   const leftTopics = allTopics.slice(0, midpoint);
   const rightTopics = allTopics.slice(midpoint);
@@ -104,34 +111,35 @@ const DigitalMarketing = () => {
   // --- NEW State for 'Who Can Join' tabs ---
   const [activeAudience, setActiveAudience] = useState("students");
 
+  // FIXED: Directly using the imported image variables for audienceData
   const audienceData = {
     students: {
       title: "Aspiring Marketers",
       description:
         "Students looking to build a creative career in the booming digital space.",
-      image: images.marketingStudent || images.vartika, // Fallback image
+      image: tenplustwoImage, // CORRECTED: Used local import
     },
     jobseekers: {
       title: "Graduates & Job Seekers",
       description:
         "Individuals wanting to master high-demand skills like SEO and PPC to land top jobs.",
-      image: images.jobSeeker || images.sharanjeet,
+      image: jobImage, // CORRECTED: Used local import
     },
     entrepreneurs: {
       title: "Business Owners",
       description:
         "Entrepreneurs who want to scale their business and build a brand online.",
-      image: images.entrepreneur || images.manish,
+      image: freelancerImage, // CORRECTED: Used local import
     },
     professionals: {
       title: "Marketing Professionals",
       description:
         "Traditional marketers looking to upskill in digital tools and analytics.",
-      image: images.professional || images.himanshu,
+      image: workingProfessionalImage, // CORRECTED: Used local import
     },
   };
 
-  const activeContent = audienceData[activeAudience];
+  const activeContent = audienceData[activeAudience] || audienceData.students;
 
   // --- NEW Syllabus Accordion State ---
   const [openSyllabusTopic, setOpenSyllabusTopic] = useState(null);
@@ -264,9 +272,11 @@ const DigitalMarketing = () => {
           >
             Talk to us
           </button>
-          {showForm && <Form closeForm={() => setShowForm(false)} />}
         </div>
       </section>
+
+      {/* Render the form as a modal at the component level */}
+      {showForm && <Form closeForm={() => setShowForm(false)} />}
 
       {/* stat section */}
       <div className={styles.statsWrapper}>
@@ -421,10 +431,8 @@ const DigitalMarketing = () => {
             </div>
           </div>
         </div>
-        <button
-          className={styles.herobutton}
-          onClick={() => setShowForm(true)}
-        >
+
+        <button className={styles.herobutton} onClick={() => setShowForm(true)}>
           Talk to us
         </button>
       </section>
@@ -694,9 +702,7 @@ const DigitalMarketing = () => {
           </div>
 
           <div className={styles.projectSectionGrid}>
-            <div
-              className={`${styles.projectSectionCard} ${styles.project1}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project1}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>📢</div>
               </div>
@@ -711,9 +717,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project2}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project2}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>✉️</div>
               </div>
@@ -728,9 +732,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project3}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project3}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🔍</div>
               </div>
@@ -745,9 +747,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project4}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project4}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>💰</div>
               </div>
@@ -762,9 +762,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project5}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project5}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>📊</div>
               </div>
@@ -779,9 +777,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project6}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project6}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🎥</div>
               </div>
@@ -796,9 +792,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project7}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project7}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🛍️</div>
               </div>
@@ -813,9 +807,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project8}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project8}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>🤝</div>
               </div>
@@ -830,9 +822,7 @@ const DigitalMarketing = () => {
               </div>
             </div>
 
-            <div
-              className={`${styles.projectSectionCard} ${styles.project9}`}
-            >
+            <div className={`${styles.projectSectionCard} ${styles.project9}`}>
               <div className={styles.projectSectionIconWrapper}>
                 <div className={styles.projectSectionIcon}>📱</div>
               </div>
@@ -869,10 +859,7 @@ const DigitalMarketing = () => {
             </div>
           ))}
         </div>
-        <button
-          className={styles.herobutton}
-          onClick={() => setShowForm(true)}
-        >
+        <button className={styles.herobutton} onClick={() => setShowForm(true)}>
           Talk to us
         </button>
       </div>
@@ -894,9 +881,9 @@ const DigitalMarketing = () => {
             <p className={styles.description}>
               We Provide Fully Career-Focused Courses for Professionals,
               Entrepreneurs, High School Graduates, University Students, Small
-              Business Owners, Marketing Experts & Career Changers at
-              Reasonable Costs. We Empower Driven Individuals Like You to Shape
-              Their Future by Teaching Skills That Every Sector Seeks.
+              Business Owners, Marketing Experts & Career Changers at Reasonable
+              Costs. We Empower Driven Individuals Like You to Shape Their
+              Future by Teaching Skills That Every Sector Seeks.
             </p>
             <p className={styles.showcase}>
               <strong>Showcase Your Success</strong>
@@ -925,8 +912,8 @@ const DigitalMarketing = () => {
 
           <p className={styles.achieversSubtitle}>
             From <span className={styles.highlight}>classroom</span> to{" "}
-            <span className={styles.highlight}>career</span> — turning
-            ambition into offers at leading companies.
+            <span className={styles.highlight}>career</span> — turning ambition
+            into offers at leading companies.
           </p>
         </div>
 
@@ -1028,9 +1015,9 @@ const DigitalMarketing = () => {
             Course In Mohali?
           </h2>
           <p className={styles.whychooseusSubtitle}>
-            Ziion Technology enables every student to develop exceptional
-            skills in <strong>Digital Marketing Training</strong> and
-            guarantees 100% job assistance in the industry.
+            Ziion Technology enables every student to develop exceptional skills
+            in <strong>Digital Marketing Training</strong> and guarantees 100%
+            job assistance in the industry.
           </p>
         </div>
 

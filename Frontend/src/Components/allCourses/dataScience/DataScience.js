@@ -285,9 +285,11 @@ const DataScience = () => {
           >
             Talk to us
           </button>
-          {showForm && <Form closeForm={() => setShowForm(false)} />}
         </div>
       </section>
+
+      {/* Render the form as a modal at the component level */}
+      {showForm && <Form closeForm={() => setShowForm(false)} />}
 
       {/* stat section */}
       <div className={styles.statsWrapper}>
