@@ -5,7 +5,7 @@
   Page BG: #f8fafc (light gray)
   Primary Text: #0f172a (slate)
   Secondary Text: #64748b (gray)
-  Primary Accent (Gradient): #2c52be / #ff822b (Blue/Orange) 
+  Primary Accent (Gradient): #2c52be / #ff822b (Blue/Orange)
   Button Accent: #1e40af (Darker Blue)
   Border: #e2e8f0 (light gray)
 */
@@ -1113,7 +1113,7 @@
   padding: 0 1.25rem 1.25rem 1.25rem;
   border-top: 1px solid #e2e8f0;
   animation: fadeIn 0.3s ease;
-  display: none;
+  display: block;
 }
 
 .syllabusList {
