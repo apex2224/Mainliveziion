@@ -100,15 +100,15 @@ const topics = [
     color: "#7C3AED",
     images: PHP,
   },
-  // {
-  //   id: 10,
-  //   route: "graphic",
-  //   title: "Graphic Designing",
-  //   description:
-  //     "Master visual communication through branding, illustration, and digital design.",
-  //   color: "#DB2777",
-  //   images: DataScience,
-  // },
+  {
+    id: 10,
+    route: "graphic",
+    title: "Graphic Designing",
+    description:
+      "Master visual communication through branding, illustration, and digital design.",
+    color: "#DB2777",
+    images: DataScience,
+  },
   {
     id: 11,
     route: "cloud-computing",

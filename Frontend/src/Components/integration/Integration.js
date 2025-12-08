@@ -6,6 +6,7 @@ import Footer from "../footer/Footer";
 import ReviewsSection from "../reviews/ReviewsSection";
 import StudentCarousel from "../placement/StudentCarousel";
 import useCustom from "../customHook/useCustom";
+// Note: placementassist import is no longer used in the JSX below, replaced by high-res URL
 import placementassist from "../../assets/NewCoursesImages/placementassist.png";
 import ZiionPlaced from "../../assets/placementImages/ZiionPlaced.jpg";
 
@@ -271,8 +272,9 @@ const Integration = () => {
                 Tailored For You
               </p>
             </div>
+            {/* UPDATED IMAGE SOURCE BELOW */}
             <img
-              src={placementassist}
+              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop"
               alt="Placement Support"
               className={styles.statsImage}
             />

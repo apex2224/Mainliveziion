@@ -1,296 +1,163 @@
-/* Placements.module.css */
-
-/* --- CSS Variables --- */
 :root {
   --color-text-heading: #111827;
-  --color-text-body: #374151;
+  --color-text-body: #4b5563;
   --color-background: #ffffff;
-  --color-background-offset: #f9fafb;
-  --color-border: #e5e7eb;
-
-  /* Gradient Colors extracted from your image */
-  --grad-start: #ff8c37; /* Orange */
-  --grad-end: #3b5bdb; /* Blue/Purpleish */
-
-  --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
+  --grad-start: #ff8c37; 
+  --grad-end: #3b5bdb; 
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
   --radius-lg: 16px;
-  --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  --radius-md: 12px;
 }
 
-/* --- General Page Styles --- */
 .placementsPage {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--color-text-body);
-  padding: 60px 0;
   background-color: var(--color-background);
   overflow-x: hidden;
+  padding-bottom: 80px;
+}
+
+/* --- SHARED TYPOGRAPHY --- */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 20px;
 }
 
 .sectionTitle {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 800;
-  margin: 0 auto 4rem;
-  max-width: 800px;
-  letter-spacing: -0.03em;
+  margin: 4rem auto 1rem;
   line-height: 1.2;
 }
 
-.blackText {
-  color: var(--color-text-heading);
+.subText {
+  font-size: 1.1rem;
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
+.blackText { color: var(--color-text-heading); }
 .gradientText {
-  background: linear-gradient(
-    90deg,
-    var(--grad-end) 0%,
-    var(--grad-start) 100%
-  );
+  background: linear-gradient(90deg, var(--grad-end) 0%, var(--grad-start) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* --- MARQUEE SECTIONS --- */
-.marqueeSection {
-  width: 100%;
-  margin-bottom: 6rem;
-  position: relative;
+/* --- MARQUEE SECTIONS (Existing) --- */
+.marqueeSection { width: 100%; margin-bottom: 2rem; }
+.imageMarqueeContainer, .videoMarqueeWrapper { width: 100%; overflow: hidden; padding: 20px 0; }
+.imageTrack, .videoTrack { display: flex; gap: 30px; padding-left: 30px; animation: scrollLeft 60s linear infinite; }
+.imageSlide { width: 300px; flex-shrink: 0; text-align: center; }
+.placementImage { width: 100%; height: 300px; border-radius: var(--radius-lg); object-fit: cover; box-shadow: var(--shadow-card); }
+.studentName { margin-top: 1rem; font-weight: 600; color: var(--color-text-heading); }
+.videoSlide { width: 450px; flex-shrink: 0; }
+.videoSlide iframe { width: 100%; height: 255px; border-radius: var(--radius-lg); border: none; box-shadow: var(--shadow-card); }
+@keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* =========================================
+   SECTION 3: MOU VIDEO HIGHLIGHTS
+   ========================================= */
+.mouVideoSection {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #fff, #f3f4f6);
 }
 
-/* Container for the sliding track */
-.imageMarqueeContainer,
-.videoMarqueeWrapper {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 20px 0;
-  /* Fade effect on sides */
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Wider video cards */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* --- THE BUTTONS (Styled exactly like your image) --- */
-.navButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 64px; /* Slightly larger for professional feel */
-  height: 64px;
-  border-radius: 50%;
-  z-index: 50;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-soft);
-  transition: var(--transition-smooth);
-
-  /* THE TRICK: Creates the gradient border with white inside */
-  border: 2px solid transparent;
-  background: linear-gradient(#fff, #fff) padding-box,
-    /* Inner white circle */
-      linear-gradient(135deg, var(--grad-start), var(--grad-end)) border-box; /* Outer gradient ring */
+.localVideoCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover Effects */
-.navButton:hover {
-  transform: translateY(-50%) scale(1.1);
+.localVideoCard:hover {
+  transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
 }
 
-.navButton:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-/* Arrow Icon Styling */
-.navButton svg {
-  width: 28px;
-  height: 28px;
-  stroke: #111; /* Sharp black arrow */
-  stroke-width: 2.5px;
-  transition: transform 0.3s ease;
-}
-
-/* Positioning */
-.prevButton {
-  left: 2%;
-}
-
-.prevButton:hover svg {
-  transform: translateX(-3px);
-}
-
-.nextButton {
-  right: 2%;
-}
-
-.nextButton:hover svg {
-  transform: translateX(3px);
-}
-
-/* --- TRACK ANIMATIONS --- */
-@keyframes scrollLeft {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.imageTrack,
-.videoTrack,
-.mouMarqueeContent {
-  display: flex;
-  width: fit-content;
-  gap: 30px; /* Consistent spacing */
-  animation: scrollLeft 60s linear infinite;
-  padding-left: 30px; /* Start buffer */
-}
-
-/* Pause on hover (applied to container) */
-.marqueeSection:hover .imageTrack,
-.marqueeSection:hover .videoTrack,
-.marqueeSection:hover .mouMarqueeContent {
-  animation-play-state: paused;
-}
-
-/* --- CARDS & IMAGES --- */
-.imageSlide {
-  width: 300px;
-  flex-shrink: 0;
-  text-align: center;
-  transition: var(--transition-smooth);
-}
-
-.imageSlide:hover {
-  transform: translateY(-10px);
-}
-
-.placementImage {
+.videoPlayer {
   width: 100%;
-  height: 300px;
-  border-radius: var(--radius-lg);
-  object-fit: cover;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border for clean definition */
+  border-radius: var(--radius-md);
+  background: #000;
+  outline: none;
+  display: block; /* Removes bottom space */
 }
 
-.studentName {
-  margin-top: 1rem;
-  font-size: 1.1rem;
+.videoLabel {
+  padding: 15px 5px 5px;
   font-weight: 600;
   color: var(--color-text-heading);
+  font-size: 1.1rem;
+  text-align: center;
 }
 
-/* --- VIDEO SLIDES --- */
-.videoSlide {
-  width: 450px;
-  flex-shrink: 0;
-  transition: var(--transition-smooth);
+/* =========================================
+   SECTION 4: MOU IMAGE GALLERY (MASONRY)
+   This ensures full image size is shown
+   ========================================= */
+.mouGallerySection {
+  padding: 60px 20px;
+  background: #ffffff;
 }
-.videoSlide:hover {
+
+.imageMasonry {
+  /* This creates the Pinterest-style columns */
+  column-count: 3; 
+  column-gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galleryItem {
+  /* Prevents an image from being split between two columns */
+  break-inside: avoid; 
+  margin-bottom: 20px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease;
+  background: #f3f4f6; /* Placeholder color */
+}
+
+.galleryItem:hover {
   transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
 }
-.videoSlide iframe {
+
+.galleryImage {
   width: 100%;
-  height: 255px;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border: none;
+  height: auto; /* CRITICAL: Allows natural height so no cropping occurs */
+  display: block;
 }
 
-/* --- MOU SECTION --- */
-.mouSection {
-  padding: 80px 0;
-  background: var(--color-background-offset);
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+  .imageMasonry {
+    column-count: 2; /* 2 columns on tablets/small laptops */
+  }
 }
 
-.mouMainImages {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 4rem;
-  padding: 0 20px;
-}
-
-.mouPrimaryImage {
-  height: 300px;
-  width: auto;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-}
-
-.mouGalleryItem {
-  width: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mouGalleryImage {
-  max-width: 100%;
-  max-height: 120px;
-  filter: grayscale(100%);
-  opacity: 0.6;
-  transition: all 0.3s ease;
-}
-
-.mouGalleryItem:hover .mouGalleryImage {
-  filter: grayscale(0);
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .sectionTitle {
-    font-size: 2rem;
+  .sectionTitle { font-size: 2rem; margin-top: 2rem; }
+  
+  .videoGrid {
+    grid-template-columns: 1fr; 
   }
-  .navButton {
-    width: 48px;
-    height: 48px;
-  }
-  .navButton svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .imageSlide {
-    width: 240px;
-  }
-  .placementImage {
-    height: 240px;
-  }
-
-  .videoSlide {
-    width: 320px;
-  }
-  .videoSlide iframe {
-    height: 180px;
-  }
-
-  .mouMainImages {
-    flex-direction: column;
-    align-items: center;
-  }
-  .mouPrimaryImage {
-    width: 100%;
-    height: auto;
+  
+  .imageMasonry {
+    column-count: 1; /* 1 column on mobile (full width) */
   }
 }
