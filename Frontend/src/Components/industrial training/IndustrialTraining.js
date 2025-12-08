@@ -32,7 +32,6 @@ const IndustrialTraining = () => {
       const yRotate = xFactor * 10; // Max 10deg rotation
 
       // Apply the transform to the container.
-      // The children at different Z-depths will move at different rates.
       shapesContainerRef.current.style.transform = `
         perspective(1000px) 
         translateX(${xMove}px) 
@@ -49,7 +48,7 @@ const IndustrialTraining = () => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []); // Empty array ensures this runs only once on mount
+  }, []);
 
   return (
     <>
@@ -87,10 +86,19 @@ const IndustrialTraining = () => {
 
           {/* Graphic is now placed on top */}
           <div className={styles.conceptualGraphic}>
-            <div className={styles.sixWeekIcon}>6 Week</div>
+            {/* UPDATED: Changed from div to Link */}
+            <Link to="/six-week-training" className={styles.sixWeekIcon}>
+              6 Week
+            </Link>
+            
             <div className={styles.arrow}>→</div>
-            <div className={styles.sixMonthIcon}>6 Month</div>
+            
+            {/* UPDATED: Changed from div to Link */}
+            <Link to="/six-month-training" className={styles.sixMonthIcon}>
+              6 Month
+            </Link>
           </div>
+          
           {showForm && <Form closeForm={() => setShowForm(false)} />}
         </section>
 

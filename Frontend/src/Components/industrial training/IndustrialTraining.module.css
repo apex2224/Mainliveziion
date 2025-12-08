@@ -1,8 +1,5 @@
-/* FIX: Add margin to the main container to account for the fixed Navbar */
 .industrialTrainingContainer {
-  /* Adjust this value (e.g., 80px) to match the exact height of your Navbar.
-     This pushes all the content down so it doesn't hide under the header.
-  */
+  /* Adjust this value to match the exact height of your Navbar. */
   margin-top: 60px;
 }
 
@@ -162,9 +159,6 @@
   animation: slowDrift3 25s infinite alternate ease-in-out;
 }
 
-/* Keyframes for the 3D drift.
-  Each animation includes translateZ() to keep the shape in 3D space.
-*/
 @keyframes slowDrift1 {
   from {
     transform: translateZ(-300px) translate(0, 0) rotate(0deg);
@@ -217,9 +211,14 @@
   justify-content: center;
   box-shadow: var(--shadow-professional);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  cursor: default;
+  
+  /* UPDATED PROPERTIES FOR LINKS/BUTTONS */
+  cursor: pointer;
+  text-decoration: none;
   color: white;
+  user-select: none;
 }
+
 .sixWeekIcon {
   background: linear-gradient(
     135deg,
@@ -237,8 +236,13 @@
 
 .sixWeekIcon:hover,
 .sixMonthIcon:hover {
-  transform: translateY(-5px) scale(1.02);
+  transform: translateY(-5px) scale(1.05);
   box-shadow: var(--shadow-hover);
+}
+
+.sixWeekIcon:active,
+.sixMonthIcon:active {
+  transform: translateY(-2px) scale(0.98);
 }
 
 .arrow {
@@ -248,6 +252,7 @@
   opacity: 0;
   animation: popIn 0.5s ease-out 0.8s forwards;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -276,7 +281,6 @@
   border-top: 1px solid var(--color-border);
 }
 
-/* Section Headings */
 .sectionHeading {
   font-size: 2.75rem;
   font-weight: 700;
@@ -300,7 +304,7 @@
   margin: 0 auto;
 }
 
-/* --- MODERNIZED Training Card --- */
+/* --- Modern Training Card --- */
 .trainingCard {
   background-color: var(--color-bg-white);
   border-radius: var(--border-radius-large);
@@ -314,7 +318,6 @@
     border-color 0.3s ease-in-out;
 }
 
-/* Gradient border pseudo-element */
 .trainingCard::after {
   content: "";
   position: absolute;
@@ -330,22 +333,16 @@
       var(--color-grad-orange) 75.82%
     )
     border-box;
-  
-  /* ✅ Add both WebKit and standard mask properties for compatibility */
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
-
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
   z-index: 3;
 }
 
-
-/* Upgraded hover effect */
 .trainingCard:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08),
@@ -357,7 +354,6 @@
   opacity: 1;
 }
 
-/* Abstract Card Header */
 .cardHeader {
   padding: 2.5rem 2rem;
   text-align: center;
@@ -432,7 +428,7 @@
 }
 
 .featureItem::before {
-  content: "»"; /* Modern icon */
+  content: "»";
   color: var(--color-grad-blue);
   font-weight: bold;
   font-size: 1.25rem;
@@ -443,8 +439,8 @@
 }
 
 .trainingCard:hover .featureItem::before {
-  transform: translateX(5px); /* Slide right */
-  color: var(--color-grad-orange); /* Change to accent color */
+  transform: translateX(5px);
+  color: var(--color-grad-orange);
 }
 
 .trainingBtnLink {
@@ -456,7 +452,6 @@
   border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
 }
 
-/* --- Secondary (Outline) Button --- */
 .trainingBtn {
   width: 100%;
   background-color: transparent;
