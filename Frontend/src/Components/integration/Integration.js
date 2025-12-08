@@ -188,13 +188,18 @@ const Integration = () => {
         </div>
       </section>
 
+      {/* <StudentCarousel /> */}
+
       {/* --- Placement Overview Image --- */}
       <section className={styles.placementOverview}>
         <div className={styles.sectionHeader}>
           <span className={styles.categoryLabel}>Success Stories</span>
           <h1 className={styles.sectionTitle}>Our Placed Students</h1>
           <p className={styles.sectionSubtitle}>
-            Empowering careers through industry-aligned training. Our students have secured positions at leading companies across diverse sectors, showcasing the impact of quality education and dedicated placement support.
+            Empowering careers through industry-aligned training. Our students
+            have secured positions at leading companies across diverse sectors,
+            showcasing the impact of quality education and dedicated placement
+            support.
           </p>
         </div>
         <img
@@ -203,8 +208,6 @@ const Integration = () => {
           className={styles.overviewImage}
         />
       </section>
-
-      {/* <StudentCarousel /> */}
 
       {/* --- "Bright Stars" Section --- */}
       <section className={styles.starsSection}>
@@ -262,7 +265,7 @@ const Integration = () => {
       </section>
 
       {/* --- Placement Stats Section --- */}
-      {/* <section className={styles.statsSection}>
+      <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
           <div className={styles.statsImageWrapper}>
             <div className={styles.statsLabel}>
@@ -311,7 +314,7 @@ const Integration = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       <ReviewsSection />
       <Footer />
