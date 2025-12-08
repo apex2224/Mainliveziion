@@ -203,13 +203,41 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
   text-align: left;
   width: 100%;
+  color: #334155; /* Default text color */
 }
-.audienceTab:hover { background: #f8fafc; }
+/* Ensure title is always dark black */
+.audienceTab strong {
+  color: #0f172a;
+  display: block;
+  margin-bottom: 4px;
+}
+/* Ensure subtext is always dark gray */
+.audienceTab .tabSubtext {
+  color: #334155;
+}
 
-/* --- FIX: Force dark text on active tab --- */
-.audienceTab.active { border-color: #2c52be; background: #eef2ff; }
-.audienceTab.active strong { color: #0f172a !important; }
-.audienceTab.active .tabSubtext { color: #64748b !important; }
+.audienceTab:hover {
+  background: #f8fafc;
+}
+/* Explicitly set hover colors */
+.audienceTab:hover strong {
+  color: #0f172a;
+}
+.audienceTab:hover .tabSubtext {
+  color: #334155;
+}
+
+/* FIX: Force dark text on active tab with !important */
+.audienceTab.active {
+  border-color: #2c52be;
+  background: #eef2ff;
+}
+.audienceTab.active strong {
+  color: #0f172a !important;
+}
+.audienceTab.active .tabSubtext {
+  color: #334155 !important;
+}
 
 .tabIcon { font-size: 1.8rem; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
@@ -224,15 +252,126 @@
 .contentTitle { font-size: 1.8rem; color: #0f172a; margin-bottom: 16px; }
 .contentDescription { font-size: 1.1rem; line-height: 1.7; color: #64748b; }
 
-/* --- Syllabus --- */
-.syllabusSection { padding: 80px 20px; background: #fff; }
-.syllabusTitle { text-align: center; font-size: 2.5rem; color: #0f172a; margin-bottom: 1rem; }
-.syllabusGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
-.accordionItem { border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
-.accordionHeader { display: flex; justify-content: space-between; padding: 16px; background: #f8fafc; cursor: pointer; font-weight: 600; }
-.accordionBody { padding: 16px; background: #fff; border-top: 1px solid #e2e8f0; color: #64748b; }
-.syllabusList { padding-left: 20px; margin: 0; }
-.syllabusList li { margin-bottom: 8px; }
+/* --- Syllabus (New Styles for Two-Column Layout) --- */
+.syllabusSection {
+  padding: 80px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.syllabusTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.syllabusSubtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 900px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+}
+
+.syllabusGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.syllabusColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.columnHeader {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #2c52be; /* Blue underline */
+  display: inline-block;
+  width: 100%;
+}
+
+.accordionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accordionItem {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: all 0.3s ease;
+}
+
+.accordionItem:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+  border-color: #cbd5e1;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0f172a;
+  transition: background 0.2s;
+}
+
+.accordionHeader:hover {
+    background-color: #f8fafc;
+}
+
+.accordionTitle {
+  font-size: 1.1rem;
+}
+
+.accordionIcon {
+  font-size: 0.9rem;
+  color: #2c52be;
+  margin-left: 16px;
+}
+
+.accordionBody {
+  padding: 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.syllabusList {
+  padding-left: 25px;
+  margin: 0;
+}
+
+.syllabusList li {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/* Optional: Add custom bullets */
+.syllabusList li::before {
+    content: "•";
+    color: #2c52be;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
 
 /* --- FAQ --- */
 .faqContainer { padding: 80px 20px; background: #f8fafc; }
@@ -240,14 +379,11 @@
 .faqHeading { text-align: center; font-size: 2.5rem; color: #0f172a; margin-bottom: 40px; }
 .faqFaqCard { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 16px; overflow: hidden; }
 .faqFaqHeader { display: flex; justify-content: space-between; padding: 20px; cursor: pointer; font-weight: 600; color: #0f172a; align-items: center; }
-
-/* --- FIX: Icon on the right side --- */
 .faqIconCircle {
   color: #2c52be;
   font-size: 1.5rem;
-  margin-left: 16px; /* Space between text and icon */
+  margin-left: 16px;
 }
-
 .faqFaqBody { padding: 0 20px 20px 50px; color: #64748b; line-height: 1.6; border-top: 1px solid #f1f5f9; }
 
 /* --- Certificate --- */
@@ -266,7 +402,9 @@
   .rightSection { order: -1; }
   .mainContainer { grid-template-columns: 1fr; text-align: center; }
   .certificateContent { order: -1; }
-  .syllabusGrid { grid-template-columns: 1fr; }
+  /* Stack syllabus columns on smaller screens */
+  .syllabusGrid { grid-template-columns: 1fr; gap: 40px; }
+  .columnHeader { margin-top: 20px; }
 }
 
 @media screen and (max-width: 768px) {
