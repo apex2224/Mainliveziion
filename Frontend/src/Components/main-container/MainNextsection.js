@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainNextSection.module.css";
-import Homefeature from "./Homefeature";
+// import Homefeature from "./Homefeature";
 import images from "../../assets/images"; // Consider if this is still needed if `images` is not used elsewhere
 import Form from "../form/Form";
 import DataAnalytics from "../../assets/NewCoursesImages/DataAnalytics.png";
@@ -11,9 +11,12 @@ import DataScience from "../../assets/NewCoursesImages/DataScience.webp";
 import DigitalMarketing from "../../assets/NewCoursesImages/DigitalMarketing.png";
 
 // Import Font Awesome icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap, faChalkboardTeacher, faServer } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGraduationCap,
+  faChalkboardTeacher,
+  faServer,
+} from "@fortawesome/free-solid-svg-icons";
 
 const MainNextSection = () => {
   const [showForm, setShowForm] = useState(false);
@@ -23,39 +26,41 @@ const MainNextSection = () => {
     setSelectedCategory(category);
   };
 
-  const categoryContent = {
-    webdev: {
-      title: "Web Development Course",
-      description:
-        "Learn front-end and back-end web development, including HTML, CSS, JavaScript, and modern frameworks like React and Node.js.",
-      image: WebDevelopment,
-    },
-    digitalmarketing: {
-      title: "Digital Marketing Course",
-      description:
-        "Master the art of online marketing, including SEO, social media campaigns, email marketing, and Google Ads.",
-      image: DigitalMarketing,
-    },
-    datascience: {
-      title: "Data Science Course",
-      description:
-        "Gain skills in data analysis, machine learning, Python, R, and statistical modeling to make data-driven decisions.",
-      image: DataScience,
-    },
-    analytics: {
-      title: "Analytics Course",
-      description:
-        "Learn to analyze business data, create dashboards, and generate actionable insights using tools like Excel, Tableau, and Power BI.",
-      image: DataAnalytics,
-    },
-  };
+  // const categoryContent = {
+  //   webdev: {
+  //     title: "Web Development Course",
+  //     description:
+  //       "Learn front-end and back-end web development, including HTML, CSS, JavaScript, and modern frameworks like React and Node.js.",
+  //     image: WebDevelopment,
+  //   },
+  //   digitalmarketing: {
+  //     title: "Digital Marketing Course",
+  //     description:
+  //       "Master the art of online marketing, including SEO, social media campaigns, email marketing, and Google Ads.",
+  //     image: DigitalMarketing,
+  //   },
+  //   datascience: {
+  //     title: "Data Science Course",
+  //     description:
+  //       "Gain skills in data analysis, machine learning, Python, R, and statistical modeling to make data-driven decisions.",
+  //     image: DataScience,
+  //   },
+  //   analytics: {
+  //     title: "Analytics Course",
+  //     description:
+  //       "Learn to analyze business data, create dashboards, and generate actionable insights using tools like Excel, Tableau, and Power BI.",
+  //     image: DataAnalytics,
+  //   },
+  // };
 
   return (
     <div>
       {/* Cards Section */}
       <div className={styles.cardContainer}>
         <div className={styles.card}>
-          <div className={styles.cardIcon}> {/* New div for the icon */}
+          <div className={styles.cardIcon}>
+            {" "}
+            {/* New div for the icon */}
             <FontAwesomeIcon icon={faGraduationCap} size="3x" />
           </div>
           <div className={styles.cardContent}>
@@ -71,7 +76,9 @@ const MainNextSection = () => {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.cardIcon}> {/* New div for the icon */}
+          <div className={styles.cardIcon}>
+            {" "}
+            {/* New div for the icon */}
             <FontAwesomeIcon icon={faChalkboardTeacher} size="3x" />
           </div>
           <div className={styles.cardContent}>
@@ -88,7 +95,9 @@ const MainNextSection = () => {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.cardIcon}> {/* New div for the icon */}
+          <div className={styles.cardIcon}>
+            {" "}
+            {/* New div for the icon */}
             <FontAwesomeIcon icon={faServer} size="3x" />
           </div>
           <div className={styles.cardContent}>
@@ -109,7 +118,7 @@ const MainNextSection = () => {
       <div className={styles.heroThirdSection}>
         <div className={styles.industry}>
           {/* Sidebar */}
-          <div className={styles.sidebar}>
+          {/* <div className={styles.sidebar}>
             <div
               className={`${styles.category} ${
                 selectedCategory === "webdev" ? styles.active : ""
@@ -169,10 +178,10 @@ const MainNextSection = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Main content */}
-          <div className={styles.mainContent}>
+          {/* <div className={styles.mainContent}>
             <h1 className={styles.title}>
               {categoryContent[selectedCategory].title}
             </h1>
@@ -190,7 +199,7 @@ const MainNextSection = () => {
                 decoding="async"
               />
             </div>
-          </div>
+          </div> 
         </div>
       </div>
 
@@ -226,7 +235,7 @@ const MainNextSection = () => {
         {showForm && <Form closeForm={() => setShowForm(false)} />}
       </div>
 
-      <Homefeature />
+      {/* <Homefeature /> */}
     </div>
   );
 };
