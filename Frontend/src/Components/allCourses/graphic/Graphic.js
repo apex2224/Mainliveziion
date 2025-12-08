@@ -207,29 +207,59 @@ const LearningSection = () => {
   );
 };
 
+// --- NEW: Redesigned Syllabus Section ---
 const SyllabusSection = ({ syllabusData }) => {
   const [openTopic, setOpenTopic] = useState(null);
   const toggle = (topic) => setOpenTopic(openTopic === topic ? null : topic);
 
+  // Split data for the two columns
+  const topicKeys = Object.keys(syllabusData);
+  const midPoint = Math.ceil(topicKeys.length / 2);
+  const leftTopics = topicKeys.slice(0, midPoint);
+  const rightTopics = topicKeys.slice(midPoint);
+
+  // Helper function to render an accordion item
+  const renderAccordion = (topic, index, offset = 0) => (
+    <div key={topic} className={styles.accordionItem}>
+      <div className={styles.accordionHeader} onClick={() => toggle(topic)}>
+        {/* Add numbering like in the image */}
+        <span className={styles.accordionTitle}>{index + 1 + offset}. {topic}</span>
+        <span className={styles.accordionIcon}>{openTopic === topic ? "▲" : "▼"}</span>
+      </div>
+      {openTopic === topic && (
+        <div className={styles.accordionBody}>
+          <ul className={styles.syllabusList}>
+            {syllabusData[topic].map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <section className={styles.syllabusSection}>
-      <h1 className={styles.syllabusTitle}>Course Syllabus</h1>
+      {/* Title and Subtitle matching the image style */}
+      <h1 className={styles.syllabusTitle}>Graphic Designing Course Syllabus</h1>
+      <p className={styles.syllabusSubtitle}>
+        Our curriculum is designed by industry experts to build your skills from the ground up, covering everything from design principles to advanced tools like Photoshop, Illustrator, and Motion Graphics.
+      </p>
+
       <div className={styles.syllabusGrid}>
-        {Object.entries(syllabusData).map(([topic, items], index) => (
-          <div key={index} className={styles.accordionItem}>
-            <div className={styles.accordionHeader} onClick={() => toggle(topic)}>
-              <span>{topic}</span>
-              <span>{openTopic === topic ? "▲" : "▼"}</span>
-            </div>
-            {openTopic === topic && (
-              <div className={styles.accordionBody}>
-                <ul className={styles.syllabusList}>
-                  {items.map((item, i) => <li key={i}>{item}</li>)}
-                </ul>
-              </div>
-            )}
+        {/* Left Column */}
+        <div className={styles.syllabusColumn}>
+          <h3 className={styles.columnHeader}>Core Design Skills</h3>
+          <div className={styles.accordionGroup}>
+            {leftTopics.map((topic, index) => renderAccordion(topic, index))}
           </div>
-        ))}
+        </div>
+
+        {/* Right Column */}
+        <div className={styles.syllabusColumn}>
+          <h3 className={styles.columnHeader}>Advanced & Specialized Skills</h3>
+          <div className={styles.accordionGroup}>
+            {rightTopics.map((topic, index) => renderAccordion(topic, index, leftTopics.length))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -243,7 +273,6 @@ const FAQSection = ({ questions }) => {
         <h1 className={styles.faqHeading}>Frequently Asked Questions</h1>
         {questions.map((q, i) => (
           <div key={i} className={styles.faqFaqCard}>
-            {/* FIX: Question first, Icon second */}
             <div className={styles.faqFaqHeader} onClick={() => setOpenIndex(openIndex === i ? null : i)}>
               <span className={styles.faqQuestionText}>{q.question}</span>
               <span className={styles.faqIconCircle}>{openIndex === i ? "−" : "+"}</span>

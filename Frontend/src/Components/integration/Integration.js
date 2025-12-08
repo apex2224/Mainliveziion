@@ -7,8 +7,7 @@ import ReviewsSection from "../reviews/ReviewsSection";
 import StudentCarousel from "../placement/StudentCarousel";
 import useCustom from "../customHook/useCustom";
 // Note: placementassist import is no longer used in the JSX below, replaced by high-res URL
-import placementassist from "../../assets/NewCoursesImages/placementassist.png";
-import ZiionPlaced from "../../assets/placementImages/ZiionPlaced.jpg";
+// import placementassist from "../../assets/NewCoursesImages/placementassist.png"; 
 
 // --- Data Arrays (Keeping the originals) ---
 const brightStarsData = [
@@ -119,7 +118,7 @@ const Integration = () => {
   const NUM_CUBES = 8;
   const NUM_LIGHT_TRAILS = 10;
 
-  // Helper function to generate dynamic style values for 3D elements
+  // --- FIXED: Added backticks (`) around the strings ---
   const generateCubeStyle = (i) => ({
     "--top": `${10 + ((i * 10) % 80)}%`,
     "--left": `${5 + ((i * 15) % 85)}%`,
@@ -130,6 +129,7 @@ const Integration = () => {
       i % 2 === 0 ? "var(--cube-base-color)" : "var(--cube-highlight-color)",
   });
 
+  // --- FIXED: Added backticks (`) around the strings ---
   const generateTrailStyle = (i) => ({
     "--z-offset": `${Math.random() * 80 - 40}px`,
     "--delay": `${i * 0.7}s`,
@@ -154,6 +154,7 @@ const Integration = () => {
           {/* Floating Cubes */}
           {[...Array(NUM_CUBES)].map((_, i) => (
             <div
+              // --- FIXED: Added backticks to key ---
               key={`cube-${i}`}
               className={styles.floatingCube}
               style={generateCubeStyle(i)}
@@ -165,6 +166,7 @@ const Integration = () => {
           {/* Soft Light Trails for Data Flow */}
           {[...Array(NUM_LIGHT_TRAILS)].map((_, i) => (
             <div
+              // --- FIXED: Added backticks to key ---
               key={`light-trail-${i}`}
               className={styles.lightTrail}
               style={generateTrailStyle(i)}
@@ -188,23 +190,7 @@ const Integration = () => {
         </div>
       </section>
 
-      {/* --- Placement Overview Image --- */}
-      <section className={styles.placementOverview}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.categoryLabel}>Success Stories</span>
-          <h1 className={styles.sectionTitle}>Our Placed Students</h1>
-          <p className={styles.sectionSubtitle}>
-            Empowering careers through industry-aligned training. Our students have secured positions at leading companies across diverse sectors, showcasing the impact of quality education and dedicated placement support.
-          </p>
-        </div>
-        <img
-          src={ZiionPlaced}
-          alt="Ziion Placement Overview"
-          className={styles.overviewImage}
-        />
-      </section>
-
-      {/* <StudentCarousel /> */}
+      <StudentCarousel />
 
       {/* --- "Bright Stars" Section --- */}
       <section className={styles.starsSection}>
@@ -262,7 +248,7 @@ const Integration = () => {
       </section>
 
       {/* --- Placement Stats Section --- */}
-      {/* <section className={styles.statsSection}>
+      <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
           <div className={styles.statsImageWrapper}>
             <div className={styles.statsLabel}>
@@ -311,7 +297,7 @@ const Integration = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       <ReviewsSection />
       <Footer />

@@ -96,6 +96,7 @@
   width: 0.5rem;
   background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-left: 2px;
   animation: blink 1s infinite;
