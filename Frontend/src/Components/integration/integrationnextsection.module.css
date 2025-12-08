@@ -628,3 +628,39 @@
 .floatingObjectsContainer {
   display: block;
 }
+
+
+/* --- Placement Overview Section --- */
+.placementOverview {
+  width: 100%;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: var(--color-bg-soft);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overviewImage {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-all);
+}
+
+.overviewImage:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .placementOverview {
+    padding: 3rem 1rem;
+  }
+  
+  .overviewImage {
+    border-radius: var(--radius-md);
+  }
+}
