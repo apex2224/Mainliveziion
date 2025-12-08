@@ -191,6 +191,26 @@ const Integration = () => {
       </section>
 
       <StudentCarousel />
+      {/* <StudentCarousel /> */}
+
+      {/* --- Placement Overview Image --- */}
+      <section className={styles.placementOverview}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.categoryLabel}>Success Stories</span>
+          <h1 className={styles.sectionTitle}>Our Placed Students</h1>
+          <p className={styles.sectionSubtitle}>
+            Empowering careers through industry-aligned training. Our students
+            have secured positions at leading companies across diverse sectors,
+            showcasing the impact of quality education and dedicated placement
+            support.
+          </p>
+        </div>
+        <img
+          src={ZiionPlaced}
+          alt="Ziion Placement Overview"
+          className={styles.overviewImage}
+        />
+      </section>
 
       {/* --- "Bright Stars" Section --- */}
       <section className={styles.starsSection}>
