@@ -94,6 +94,8 @@ const sliderImages = [
   },
 ];
 
+
+
 const PlacedStudent = () => {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
   const [isSliderPaused, setSliderPaused] = useState(false);
