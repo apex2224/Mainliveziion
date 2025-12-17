@@ -468,6 +468,7 @@ const Integration = () => {
           </p>
         </div>
 
+        {/* eslint-disable-next-line */}
         <img
           src={ZiionPlaced}
           alt="Ziion Placement Overview"
