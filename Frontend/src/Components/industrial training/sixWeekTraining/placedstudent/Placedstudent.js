@@ -4,7 +4,7 @@ import styles from "./Placedstudent.module.css";
 import { FaArrowLeft, FaArrowRight, FaPlay } from "react-icons/fa";
 
 // --- (Image imports remain the same) ---
-
+import ZiionPlaced from "../../../../assets/placementImages/ZiionPlaced.jpg";
 import akash from "../../../../assets/placement-slider/akash.jpg";
 import hemant from "../../../../assets/placement-slider/hemant.jpg";
 import jatinder from "../../../../assets/placement-slider/jatinder.jpg";
@@ -93,8 +93,6 @@ const sliderImages = [
     course: "SEO Expert",
   },
 ];
-
-
 
 const PlacedStudent = () => {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
@@ -253,50 +251,23 @@ const PlacedStudent = () => {
         </div>
       </section>
 
-      {/* --- (Section Two remains the same) --- */}
-      <section className={styles.sectionTwo}>
-        <h2 className={styles.sliderTitle}>Glimpses of Our Achievers</h2>
-        <div className={styles.sliderOuterContainer}>
-          <button
-            className={`${styles.sliderButton} ${styles.prevButton}`}
-            onClick={handlePrev}
-            aria-label="Previous slide"
-          >
-            <FaArrowLeft />
-          </button>
+      {/* --- REPLACEMENT SECTION: Our Placed Students --- */}
+      <section className={styles.placementOverview}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.categoryLabel}>Success Stories</span>
 
-          <div
-            className={styles.sliderContainer}
-            ref={sliderRef}
-            onMouseEnter={() => setSliderPaused(true)}
-            onMouseLeave={() => setSliderPaused(false)}
-          >
-            <div className={styles.sliderWrapper}>
-              {sliderImages.map((student, index) => (
-                <div className={styles.slide} key={index}>
-                  <img
-                    src={student.img}
-                    alt={`Placed student ${student.name}`}
-                  />
-                  <div className={styles.studentInfo}>
-                    <h4 className={styles.studentName}>{student.name}</h4>
-                    <p className={styles.package}>Package: {student.package}</p>
-                    <p className={styles.company}>Company: {student.company}</p>
-                    <p className={styles.course}>Course: {student.course}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <button
-            className={`${styles.sliderButton} ${styles.nextButton}`}
-            onClick={handleNext}
-            aria-label="Next slide"
-          >
-            <FaArrowRight />
-          </button>
+          <p className={styles.sectionSubtitle}>
+            Empowering careers through industry-aligned training. Our students
+            have secured positions at leading companies across diverse sectors,
+            showcasing the impact of quality education and dedicated placement
+            support.
+          </p>
         </div>
+        <img
+          src={ZiionPlaced}
+          alt="Ziion Placement Overview"
+          className={styles.overviewImage}
+        />
       </section>
     </div>
   );

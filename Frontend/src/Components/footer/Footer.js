@@ -1,7 +1,8 @@
-// Footer.jsx
 import React, { useState } from "react";
 import styles from "./footer.module.css";
 import images from "../../assets/images";
+// Import icons from react-icons
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaPhone, FaEnvelopeOpen, FaChevronDown } from "react-icons/fa";
 
 const Footer = () => {
   // State for mobile accordions
@@ -18,7 +19,8 @@ const Footer = () => {
           <div className="row">
             <div className="col-xl-4 col-md-4 mb-30">
               <div className={`${styles.singleCta} ${styles.ctaAlignSmall}`}>
-                <i className="fas fa-map-marker-alt"></i>
+                {/* Replaced <i> with React Icon */}
+                <FaMapMarkerAlt className={styles.ctaIcon} />
                 <div className={styles.ctaText}>
                   <h4>Find us</h4>
                   <span>D-152, Phase 8, Industrial Area, Mohali</span>
@@ -28,7 +30,7 @@ const Footer = () => {
 
             <div className="col-xl-4 col-md-4 mb-30">
               <div className={styles.singleCta}>
-                <i className="fas fa-phone"></i>
+                <FaPhone className={styles.ctaIcon} />
                 <div className={styles.ctaText}>
                   <h4>Call us</h4>
                   <span>9878564224, 9779904224</span>
@@ -38,7 +40,7 @@ const Footer = () => {
 
             <div className="col-xl-4 col-md-4 mb-30">
               <div className={`${styles.singleCta} ${styles.mailFooter}`}>
-                <i className="far fa-envelope-open"></i>
+                <FaEnvelopeOpen className={styles.ctaIcon} />
                 <div className={styles.ctaText}>
                   <h4>Mail us</h4>
                   <span>ziiontechnology@gmail.com</span>
@@ -54,7 +56,7 @@ const Footer = () => {
             <div className="col-xl-4 col-lg-4 mb-50">
               <div className={styles.footerWidget}>
                 <div className={styles.footerLogo}>
-                  <img src={images.ziionLogo} alt="logo" />
+                  <img src={images.ziionTechLogo} alt="logo" />
                 </div>
                 <div className={styles.footerText}>
                   <p>
@@ -63,21 +65,37 @@ const Footer = () => {
                     digital marketing trainings in Chandigarh/Mohali.
                   </p>
                 </div>
+                
+                {/* --- UPDATED SOCIAL ICONS SECTION --- */}
                 <div className={styles.footerSocialIcon}>
                   <span>Follow us</span>
+                  
                   <a href="#">
-                    <i className={`fab fa-facebook-f ${styles.facebookBg}`}></i>
+                    <div className={`${styles.iconCircle} ${styles.facebookBg}`}>
+                      <FaFacebookF />
+                    </div>
                   </a>
+                  
                   <a href="#">
-                    <i className={`fab fa-twitter ${styles.twitterBg}`}></i>
+                    <div className={`${styles.iconCircle} ${styles.twitterBg}`}>
+                      <FaTwitter />
+                    </div>
                   </a>
+                  
                   <a href="https://www.linkedin.com/company/verma-programming-minds/">
-                    <i className={`fab fa-linkedin ${styles.linkedinBg}`}></i>
+                    <div className={`${styles.iconCircle} ${styles.linkedinBg}`}>
+                      <FaLinkedinIn />
+                    </div>
                   </a>
+                  
                   <a href="https://www.instagram.com/ziion_technology/?next=%2F&hl=en">
-                    <i className={`fab fa-instagram ${styles.instagramBg}`}></i>
+                    <div className={`${styles.iconCircle} ${styles.instagramBg}`}>
+                      <FaInstagram />
+                    </div>
                   </a>
                 </div>
+                {/* ------------------------------------ */}
+
               </div>
             </div>
 
@@ -89,49 +107,27 @@ const Footer = () => {
                   onClick={() => setQuickLinksOpen(!quickLinksOpen)}
                 >
                   <h3>Quick Links</h3>
-                  <i
-                    className={`fas fa-chevron-down ${styles.accordionIcon} ${
-                      quickLinksOpen ? styles.accordionIconOpen : ""
-                    }`}
-                  ></i>
+                  {/* Replaced Chevron <i> with React Icon */}
+                  <FaChevronDown 
+                    className={`${styles.accordionIcon} ${quickLinksOpen ? styles.accordionIconOpen : ""}`} 
+                  />
                 </div>
                 <ul
                   className={`
-                    ${styles.accordionContent} 
+                    ${styles.accordionContent}
                     ${quickLinksOpen ? styles.accordionContentOpen : ""}
                   `}
                 >
-                  <li>
-                    <a href="/web-development">Web Development</a>
-                  </li>
-                  <li>
-                    <a href="/graphic">Graphic Designing</a>
-                  </li>
-                  <li>
-                    <a href="/digital-marketing">Digital Marketing</a>
-                  </li>
-
-                  <li>
-                    <a href="/ai">AI</a>
-                  </li>
-                  <li>
-                    <a href="/ml">ML</a>
-                  </li>
-                  <li>
-                    <a href="/data-science">Data Science</a>
-                  </li>
-                  <li>
-                    <a href="/mobileapp">Mobile App Development</a>
-                  </li>
-                  <li>
-                    <a href="/php">PHP</a>
-                  </li>
-                  <li>
-                    <a href="/six-week-training">Six Week Training</a>
-                  </li>
-                  <li>
-                    <a href="/six-month-training">Six Month Training</a>
-                  </li>
+                  <li><a href="/web-development">Web Development</a></li>
+                  <li><a href="/graphic">Graphic Designing</a></li>
+                  <li><a href="/digital-marketing">Digital Marketing</a></li>
+                  <li><a href="/ai">AI</a></li>
+                  <li><a href="/ml">ML</a></li>
+                  <li><a href="/data-science">Data Science</a></li>
+                  <li><a href="/mobileapp">Mobile App Development</a></li>
+                  <li><a href="/php">PHP</a></li>
+                  <li><a href="/six-week-training">Six Week Training</a></li>
+                  <li><a href="/six-month-training">Six Month Training</a></li>
                 </ul>
               </div>
             </div>
@@ -144,39 +140,23 @@ const Footer = () => {
                   onClick={() => setUsefulLinksOpen(!usefulLinksOpen)}
                 >
                   <h3>Useful Links</h3>
-                  <i
-                    className={`fas fa-chevron-down ${styles.accordionIcon} ${
-                      usefulLinksOpen ? styles.accordionIconOpen : ""
-                    }`}
-                  ></i>
+                  <FaChevronDown 
+                    className={`${styles.accordionIcon} ${usefulLinksOpen ? styles.accordionIconOpen : ""}`} 
+                  />
                 </div>
                 <ul
                   className={`
-                    ${styles.accordionContent} 
+                    ${styles.accordionContent}
                     ${usefulLinksOpen ? styles.accordionContentOpen : ""}
                   `}
                 >
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>
-                    <a href="/services">Services</a>
-                  </li>
-                  <li>
-                    <a href="/placement">Placement</a>
-                  </li>
-                  <li>
-                    <a href="/about">About Us</a>
-                  </li>
-                  <li>
-                    <a href="#">Expert Team</a>
-                  </li>
-                  <li>
-                    <a href="/contact-us">Contact Us</a>
-                  </li>
-                  <li>
-                    <a href="#">Latest News</a>
-                  </li>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/services">Services</a></li>
+                  <li><a href="/placement">Placement</a></li>
+                  <li><a href="/about">About Us</a></li>
+                  <li><a href="#">Expert Team</a></li>
+                  <li><a href="/contact-us">Contact Us</a></li>
+                  <li><a href="#">Latest News</a></li>
                 </ul>
               </div>
             </div>
@@ -199,7 +179,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/* === END COPYRIGHT SECTION === */}
     </footer>
   );
 };

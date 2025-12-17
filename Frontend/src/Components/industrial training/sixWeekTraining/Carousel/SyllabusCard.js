@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./SyllabusCard.module.css";
-// CORRECT
 import Modal from "../../syllabusform/Syllabusmodal/Modal";
 import SyllabusForm from "../../syllabusform/SyllabusForm";
-// Import icons from react-icons
 import {
   FaCloud,
   FaMobileAlt,
@@ -13,6 +11,7 @@ import {
   FaInfinity,
   FaLock,
   FaRobot,
+  FaArrowRight, // Icon for the button
 } from "react-icons/fa";
 
 // Updated icons object to use React components
@@ -31,7 +30,7 @@ const SyllabusCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
-  // <-- ADDED STATE FOR MODAL -->
+  // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState("");
 
@@ -41,12 +40,16 @@ const SyllabusCard = () => {
       title: "Cloud Computing",
       subtitle: "Scalable Cloud Solutions",
       icon: icons.cloud,
-      formValue: "cloud-computing", // Value for the form
+      formValue: "cloud-computing",
       topics: [
-        "AWS, Azure, GCP",
+        "AWS, Azure, GCP Fundamentals",
         "Serverless Architecture",
         "CI/CD Pipelines",
         "Kubernetes & Docker",
+        "Cloud Security & Identity (IAM)",
+        "Database Services (RDS, DynamoDB)",
+        "Cloud Storage Solutions (S3)",
+        "Cost Optimization Strategies",
       ],
     },
     {
@@ -54,7 +57,7 @@ const SyllabusCard = () => {
       title: "Flutter",
       subtitle: "Native & Cross-Platform",
       icon: icons.mobile,
-      formValue: "mobile-app-development", // Matched form value
+      formValue: "mobile-app-development",
       topics: [
         "Dart Programming and Flutter Widgets",
         "State Management, Networking",
@@ -69,7 +72,7 @@ const SyllabusCard = () => {
       title: "Machine Learning",
       subtitle: "Intelligent Automation",
       icon: icons.brain,
-      formValue: "machine-learning", // Value for the form
+      formValue: "machine-learning",
       topics: [
         "Functions, File I/O, Exception Handling",
         "Data Visualization",
@@ -85,7 +88,7 @@ const SyllabusCard = () => {
       title: "Full Stack Development",
       subtitle: "Web Design Tools & Tech",
       icon: icons.code,
-      formValue: "full-stack-development", // Value for the form
+      formValue: "full-stack-development",
       topics: [
         "Web Design Tools and Technologies",
         "HTML, CSS, Responsive Web Design",
@@ -100,7 +103,7 @@ const SyllabusCard = () => {
       title: "Data Science",
       subtitle: "Actionable Business Insights",
       icon: icons.chart,
-      formValue: "data-science", // Value for the form
+      formValue: "data-science",
       topics: [
         "Data And Database",
         "Relational databases and SQL",
@@ -117,12 +120,16 @@ const SyllabusCard = () => {
       title: "DevOps",
       subtitle: "Streamline Your Operations",
       icon: icons.infinity,
-      formValue: "devops", // Value for the form
+      formValue: "devops",
       topics: [
-        "Continuous Integration",
-        "Continuous Deployment",
-        "Ansible, Terraform",
+        "Continuous Integration (CI)",
+        "Continuous Deployment (CD)",
+        "Ansible, Terraform (IaC)",
         "Monitoring & Logging",
+        "Git & Version Control Systems",
+        "Linux Administration & Bash",
+        "Prometheus & Grafana",
+        "DevSecOps Implementation",
       ],
     },
     {
@@ -130,7 +137,7 @@ const SyllabusCard = () => {
       title: "Artificial Intelligence",
       subtitle: "Future of Technology",
       icon: icons.ai,
-      formValue: "artificial-intelligence", // Value for the form
+      formValue: "artificial-intelligence",
       topics: [
         "Data Preprocessing",
         "Neural Networks",
@@ -147,7 +154,7 @@ const SyllabusCard = () => {
       title: "Digital Marketing",
       subtitle: "Protecting Your Digital Assets",
       icon: icons.lock,
-      formValue: "digital-marketing", // Value for the form
+      formValue: "digital-marketing",
       topics: [
         "Google Ads",
         "Onpage SEO Techniques",
@@ -176,15 +183,12 @@ const SyllabusCard = () => {
 
   useEffect(() => {
     if (!isAutoPlay) return;
-
     const interval = setInterval(() => {
       nextSlide();
     }, 3000);
-
     return () => clearInterval(interval);
   }, [currentIndex, isAutoPlay, nextSlide]);
 
-  // <-- ADDED MODAL HANDLERS -->
   const handleOpenModal = (courseValue) => {
     setSelectedCourse(courseValue);
     setIsModalOpen(true);
@@ -192,7 +196,7 @@ const SyllabusCard = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedCourse(""); // Clear selection on close
+    setSelectedCourse("");
   };
 
   const getCardStyle = (index) => {
@@ -218,7 +222,6 @@ const SyllabusCard = () => {
   };
 
   return (
-    // <-- ADDED WRAPPER DIV -->
     <div className={styles.pageContainer}>
       <div className={styles.carouselContainer}>
         <div className={styles.carouselHeader}>
@@ -231,14 +234,8 @@ const SyllabusCard = () => {
             onClick={prevSlide}
             onMouseEnter={() => setIsAutoPlay(false)}
             onMouseLeave={() => setIsAutoPlay(true)}
-            aria-label="Previous slide"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
@@ -249,7 +246,6 @@ const SyllabusCard = () => {
                 key={card.id}
                 className={styles.carouselCard}
                 style={getCardStyle(index)}
-                // Only go to slide if not the center card
                 onClick={() => index !== currentIndex && goToSlide(index)}
                 onMouseEnter={() => setIsAutoPlay(false)}
                 onMouseLeave={() => setIsAutoPlay(true)}
@@ -274,20 +270,21 @@ const SyllabusCard = () => {
                   ))}
                 </ul>
 
-                <p className={styles.detailsText}>
-                  Detailed Syllabus Available
-                </p>
+                <p className={styles.detailsText}>Detailed Syllabus Available</p>
 
                 <div className={styles.buttonWrapper}>
-                  {/* <-- UPDATED BUTTON ONCLICK --> */}
+                  {/* <-- THE NEW BUTTON STRUCTURE --> */}
                   <button
                     className={styles.cardButton}
                     onClick={(e) => {
-                      e.stopPropagation(); // Stop click from bubbling to the card
+                      e.stopPropagation();
                       handleOpenModal(card.formValue);
                     }}
                   >
-                    Read More
+                    <span className={styles.btnText}>Read More</span>
+                    <span className={styles.btnIconCircle}>
+                      <FaArrowRight />
+                    </span>
                   </button>
                 </div>
               </div>
@@ -299,21 +296,14 @@ const SyllabusCard = () => {
             onClick={nextSlide}
             onMouseEnter={() => setIsAutoPlay(false)}
             onMouseLeave={() => setIsAutoPlay(true)}
-            aria-label="Next slide"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
         </div>
       </div>
 
-      {/* <-- ADDED THE MODAL COMPONENT --> */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <SyllabusForm defaultCourse={selectedCourse} />
       </Modal>

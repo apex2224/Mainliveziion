@@ -56,7 +56,7 @@ function Form({ closeForm }) {
         {/* LEFT BANNER */}
         <div className={styles.leftBanner}>
           <img
-            src={images.ziionLogo}
+            src={images.ziionTechLogo}
             alt="Ziion Technology"
             className={styles.logo}
           />

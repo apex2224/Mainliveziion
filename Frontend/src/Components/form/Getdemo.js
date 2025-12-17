@@ -94,7 +94,7 @@
 // import emailjs from '@emailjs/browser';
 // import images from '../../assets/images';
 
-// function Form({ closeForm }) {  
+// function Form({ closeForm }) {
 //   const formData = useSelector(state => state.student);
 //   const dispatch = useDispatch();
 
@@ -115,7 +115,7 @@
 
 //       alert('Form submitted and email sent!');
 //       dispatch(resetForm());
-//       closeForm(); 
+//       closeForm();
 //     } catch (error) {
 //       console.error('EmailJS Error:', error);
 //       alert('Failed to send email.');
@@ -213,7 +213,7 @@ function Form({ closeForm }) {
         {/* LEFT BANNER */}
         <div className={styles.leftBanner}>
           <img
-            src={images.ziionLogo}
+            src={images.ziionTechLogo}
             alt="Ziion Technology"
             className={styles.logo}
           />
@@ -232,7 +232,7 @@ function Form({ closeForm }) {
         {/* RIGHT FORM */}
         <div className={styles.formContainer}>
           <h2>
- Get a <span className={styles.gradientText}>Demo</span> 
+ Get a <span className={styles.gradientText}>Demo</span>
 </h2>
 
           <form onSubmit={handleSubmit} className={styles.form}>
@@ -336,7 +336,6 @@ function Form({ closeForm }) {
 }
 
 export default Form;
-
 
 // import React from 'react';
 // import { useDispatch, useSelector } from 'react-redux';

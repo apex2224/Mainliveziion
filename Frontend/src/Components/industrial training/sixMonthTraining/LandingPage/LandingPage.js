@@ -155,7 +155,7 @@ const LandingPage = () => {
       {/* --- Other sections --- */}
       <section className={styles.partnersSection}>
         <h3>
-          Learn with the best{" "}
+          Learn with the Best{" "}
           <span className={styles.gradientText}>Technologies</span>
         </h3>
         <div className={styles.logoScroller}>

@@ -1,104 +1,103 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll } from "framer-motion";
 import styles from "./journey.module.css";
 
 const GrowthData = [
   {
     year: "2018",
-    title: "The Saint: The Origin",
+    title: "Inception",
     description:
-      "Began with a team of few people, providing basic web and IT services in the local market.",
+      "Established core operations with a focus on web architecture.",
   },
   {
     year: "2020",
-    title: "Construction of the Basis",
+    title: "Infrastructure",
     description:
-      "Retained clients, automated delivery process, and built a stable tech stack.",
+      "Implemented automated delivery pipelines and stabilized the tech stack.",
   },
   {
     year: "2021",
-    title: "New Additions",
-    description: "Added digital marketing, mobile apps, and cloud services.",
+    title: "Diversification",
+    description:
+      "Expanded service verticals to include Cloud Solutions and Mobile Dev.",
   },
   {
     year: "2022",
-    title: "Team Growth & Training",
+    title: "Scaling",
     description:
-      "Workforce doubled; started digital training for communities and clients.",
+      "Workforce capacity doubled; launched B2B digital training modules.",
   },
   {
     year: "2023",
-    title: "Branding",
+    title: "Consolidation",
     description:
-      "Invested in internal tools, brand redesign, and customer success model.",
+      "Strategic rebranding and deployment of proprietary internal tools.",
   },
   {
     year: "2024",
-    title: "International Presence",
-    description: "Started AI/ML services; got first foreign clients.",
+    title: "Global Entry",
+    description:
+      "Integrated AI/ML workflows and secured international partnerships.",
   },
   {
     year: "2025",
-    title: "Industry Recognition",
+    title: "Industry Leader",
     description:
-      "Gained fame for efficient, innovative end-to-end digital transformation services.",
-  },
-];
-
-const AboutCard = [
-  {
-    title: "Courses Completed",
-    description:
-      "25+ students completed Full Stack Development and UI/UX courses this month.",
-    icon: "📚",
-  },
-  {
-    title: "New Placements",
-    description: "10 students placed in top MNCs like Infosys, TCS, and Wipro.",
-    icon: "💼",
-  },
-  {
-    title: "Events Conducted",
-    description:
-      "We hosted 2 tech webinars and a hackathon with 100+ participants.",
-    icon: "🎉",
+      "Recognized for excellence in end-to-end digital transformation.",
   },
 ];
 
 const Journey = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end center"],
+  });
+
   return (
-    <>
-      <div className={styles.aboutContainer}>
-        <h1 className={styles.heading}>What's New This Month</h1>
-        <p className={styles.intro}>
-          We're excited to share what's happening this month at our institute.
-        </p>
-
-        <div className={styles.updateCards}>
-          {AboutCard.map((item, index) => (
-            <div className={styles.updateCard} key={index}>
-              <div className={styles.icon}>{item.icon}</div>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <p className={styles.cardDesc}>{item.description}</p>
-            </div>
-          ))}
+    <section className={styles.wrapper}>
+      <div className={styles.timelineWrapper} ref={ref}>
+        <div className={styles.header}>
+          <h2>Our Trajectory</h2>
+          <p>From humble beginnings to global impact.</p>
         </div>
-      </div>
 
-      <div className={styles.timelineContainer}>
-        <h2 className={styles.title}>Our Growth journey</h2>
-        <div className={styles.timeline}>
+        <div className={styles.timelineCenter}>
+          {/* Base Gray Line */}
+          <div className={styles.lineBase}></div>
+          {/* Animated Blue Fill Line */}
+          <motion.div
+            className={styles.lineFill}
+            style={{ scaleY: scrollYProgress }}
+          />
+
           {GrowthData.map((item, index) => (
-            <div className={styles.card} key={index}>
-              <div className={styles.year}>{item.year}</div>
-              <div className={styles.content}>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            </div>
+            <TimelineItem key={index} item={item} index={index} />
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
+
+const TimelineItem = ({ item, index }) => {
+  const isEven = index % 2 === 0;
+  return (
+    <motion.div
+      className={`${styles.row} ${isEven ? styles.rowLeft : styles.rowRight}`}
+      initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: 0.1 }}
+    >
+      <div className={styles.content}>
+        <span className={styles.year}>{item.year}</span>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </div>
+      <div className={styles.dot}></div>
+    </motion.div>
+  );
+};
+
 export default Journey;

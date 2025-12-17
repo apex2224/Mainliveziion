@@ -1,397 +1,442 @@
 /* --- 1. Root Variables (Light & Professional Theme) --- */
+
 :root {
   --color-primary: #2563eb; /* Royal Blue */
-  --color-primary-light: #dbeafe; /* Very light blue for badges */
-  --color-secondary: #f97316; /* Orange */
-  --gradient-primary: linear-gradient(135deg, #2563eb, #f97316);
-  --color-text-primary: #0f172a; /* Dark Slate - Main Text */
-  --color-text-secondary: #64748b; /* Slate Gray - Subtext */
-  --color-bg-white: #ffffff;
-  --color-bg-soft: #f8fafc;
-  --color-border: #e2e8f0;
-  --font-primary: "Inter", sans-serif;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  --radius-md: 8px;
-  --radius-lg: 16px;
-  --transition-all: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* NEW CONCEPT VARIABLES */
-  --cube-base-color: #3b82f6;
-  --cube-highlight-color: #f97316;
+  --color-primary-light: #dbeafe; /* Very light blue for badges */
+
+  --color-secondary: #f97316; /* Orange */
+
+  --gradient-primary: linear-gradient(135deg, #2563eb, #f97316);
+
+  --color-text-primary: #0f172a; /* Dark Slate - Main Text */
+
+  --color-text-secondary: #64748b; /* Slate Gray - Subtext */
+
+  --color-bg-white: #ffffff;
+
+  --color-bg-soft: #f8fafc;
+
+  --color-border: #e2e8f0;
+
+  --font-primary: "Inter", sans-serif;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+  --radius-md: 8px;
+
+  --radius-lg: 16px;
+
+  --transition-all: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pageContainer {
   font-family: var(--font-primary);
+
   background-color: var(--color-bg-white);
+
   color: var(--color-text-secondary);
+
   overflow-x: hidden;
 }
 
 /* --- 2. Re-usable Section Headers --- */
+
 .sectionHeader {
   text-align: center;
+
   max-width: 800px;
-  margin: 5rem auto 4rem auto;
+
+  margin: 2rem auto 4rem auto;
+
   padding: 0 1rem;
 }
 
 .categoryLabel {
   display: inline-block;
+
   padding: 0.5rem 1.5rem;
+
   background: var(--color-primary-light);
+
   color: var(--color-primary);
+
   border-radius: 50px;
+
   font-size: 0.875rem;
+
   font-weight: 600;
+
   letter-spacing: 0.05em;
+
   text-transform: uppercase;
+
   margin-bottom: 1.5rem;
 }
 
 .sectionTitle {
   font-size: 2.5rem;
+
   font-weight: 800;
+
   color: var(--color-text-primary);
+
   margin-bottom: 1rem;
+
   letter-spacing: -0.02em;
 }
 
 .sectionSubtitle {
   font-size: 1.125rem;
+
   color: var(--color-text-secondary);
+
   line-height: 1.7;
 }
 
 /* ------------------------------------------------------------------ */
-/* --- 3. HERO SECTION (Integrated Skill Matrix/Floating Geometry) ---*/
+
+/* --- 3. HERO SECTION (Three.js 3D Canvas) ---*/
+
 /* ------------------------------------------------------------------ */
+
 .heroSection {
   position: relative;
+
   width: 100vw;
+
   min-height: 100vh;
+
   overflow: hidden;
+
   margin: 0;
+
   padding: 0;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  /* Base background color/gradient */
-  background: radial-gradient(
-    circle at 50% 30%,
-    var(--color-bg-white) 0%,
-    #f1f5f9 60%,
-    #e2e8f0 100%
-  );
-  perspective: 1000px; /* Enable 3D space */
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+}
+
+/* Three.js Canvas Container */
+
+.threeCanvas {
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  z-index: 1;
 }
 
 .heroContent {
   position: relative;
-  z-index: 50; /* Ensure content is always visible */
+
+  z-index: 10;
+
   text-align: center;
-  max-width: 700px;
-  padding: 2.5rem;
 
-  /* Soft Glass Effect for professionalism and contrast */
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  max-width: 800px;
+
+  padding: 3rem 2rem;
+
+  /* White Glass Effect */
+
+  background: rgba(255, 255, 255, 0.85);
+
+  backdrop-filter: blur(20px) saturate(180%);
+
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.5);
 
-  /* Small lift animation on load */
+  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15),
+    0 0 0 1px rgba(37, 99, 235, 0.1) inset;
+
+  border: 1px solid rgba(37, 99, 235, 0.2);
+
   animation: contentFadeIn 1s ease-out 0.5s forwards;
+
   opacity: 0;
-  transform: translateY(20px);
+
+  transform: translateY(30px);
 }
 
 @keyframes contentFadeIn {
   to {
     opacity: 1;
+
     transform: translateY(0);
   }
 }
 
 .heroTitle {
   font-size: 3.5rem;
+
   font-weight: 900;
+
   line-height: 1.1;
-  margin-bottom: 1rem;
+
+  margin-bottom: 1.5rem;
+
   letter-spacing: -0.05em;
-  color: var(--color-text-primary);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  color: #0f172a;
+
+  text-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
 }
 
 .heroHighlight {
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #3b82f6, #f97316, #ec4899);
+
   -webkit-background-clip: text;
+
   -webkit-text-fill-color: transparent;
+
   background-clip: text;
+
+  animation: gradientShift 3s ease infinite;
+
+  background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .heroSubtitle {
   font-size: 1.125rem;
+
   line-height: 1.8;
-  color: var(--color-text-secondary);
-  max-width: 500px;
-  margin: 0.5rem auto 0;
+
+  color: #475569;
+
+  max-width: 600px;
+
+  margin: 0 auto;
 }
 
-/* --- Fixed Network Background (Grid) --- */
-.networkBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  /* Grid background effect */
-  background-image: linear-gradient(
-      to right,
-      var(--color-border) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
-  background-size: 60px 60px; /* Size of the grid cells */
-  opacity: 0.3;
-}
+/* --- 4. "Bright Stars" Section --- */
 
-/* --- Floating 3D Objects (Knowledge Blocks) and Light Trails Container --- */
-.floatingObjectsContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10; /* Below the content (z-index 50) */
-  transform-style: preserve-3d;
-}
-
-/* --- FLOATING CUBE STYLES --- */
-.floatingCube {
-  position: absolute;
-  /* Use CSS variables defined in JSX for unique position, size, duration, and delay */
-  top: var(--top);
-  left: var(--left);
-  width: var(--size);
-  height: var(--size);
-
-  transform-style: preserve-3d;
-
-  /* Initial rotation for 3D look */
-  transform: rotateX(45deg) rotateY(45deg);
-
-  /* Floating animation */
-  animation: floatRotate var(--duration) infinite ease-in-out var(--delay, 0s);
-}
-
-.cubeInner {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-
-  /* Translucent, glowing fill */
-  background: rgba(37, 99, 235, 0.2);
-  border: 1px solid rgba(37, 99, 235, 0.4);
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
-  backdrop-filter: blur(1px);
-  transition: var(--transition-all);
-}
-
-@keyframes floatRotate {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotateX(20deg) rotateY(30deg);
-  }
-  50% {
-    transform: translate3d(50px, -20px, 100px) rotateX(10deg) rotateY(40deg);
-  }
-}
-
-/* --- SOFT LIGHT TRAIL STYLES (Data Flow) --- */
-.lightTrail {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-secondary);
-  box-shadow: 0 0 5px var(--color-secondary), 0 0 10px rgba(249, 115, 22, 0.5);
-
-  /* Starting position set randomly in JS, and animated by CSS vars */
-  left: var(--x-start);
-  top: var(--y-start);
-
-  /* Animation definition */
-  animation: flow var(--duration) infinite linear var(--delay, 0s);
-  z-index: 10;
-}
-
-@keyframes flow {
-  0% {
-    transform: translate3d(0, 0, var(--z-offset)) scale(0);
-    opacity: 0.5;
-  }
-  10% {
-    transform: translate3d(0, 0, var(--z-offset)) scale(1);
-    opacity: 1;
-  }
-  80% {
-    /* Moves the trail across the screen, mimicking data flow */
-    transform: translate3d(var(--x-start), var(--y-start), var(--z-offset))
-      scale(0.5);
-    opacity: 0.2;
-  }
-  100% {
-    transform: translate3d(var(--x-start), var(--y-start), var(--z-offset))
-      scale(0);
-    opacity: 0;
-  }
-}
-
-/* --- 4. "Bright Stars" Section (Existing Styles) --- */
 .starsSection {
   padding: 6rem 2rem;
+
   background-color: var(--color-bg-soft);
 }
 
-/* ... (Remaining styles for sections 4, 5, 6 and media queries are unchanged, focusing on fixing the hero section) ... */
-
-/* --- 4. "Bright Stars" Section (Existing Styles) --- */
 .starsGrid {
   display: grid;
+
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
   gap: 2rem;
+
   max-width: 1200px;
+
   margin: 0 auto;
 }
 
 .starCard {
   background: var(--color-bg-white);
+
   border-radius: var(--radius-lg);
+
   border: 1px solid var(--color-border);
+
   box-shadow: var(--shadow-sm);
+
   overflow: hidden;
+
   transition: var(--transition-all);
+
   display: flex;
+
   flex-direction: column;
 }
 
 .starCard:hover {
   transform: translateY(-5px);
+
   box-shadow: var(--shadow-lg);
+
   border-color: var(--color-primary);
 }
 
 .starImageWrapper {
   width: 100%;
+
   height: 240px;
+
   background: #f1f5f9;
 }
 
 .starImage {
   width: 100%;
+
   height: 100%;
+
   object-fit: cover;
+
   object-position: center top;
 }
 
 .starContent {
   padding: 1.5rem;
+
   display: flex;
+
   flex-direction: column;
+
   flex-grow: 1;
 }
 
 .starDate {
   font-size: 0.8rem;
+
   font-weight: 600;
+
   color: var(--color-text-secondary);
+
   margin-bottom: 0.5rem;
+
   text-transform: uppercase;
+
   letter-spacing: 0.05em;
 }
 
 .starName {
   font-size: 1.25rem;
+
   font-weight: 700;
+
   color: var(--color-text-primary);
+
   margin-bottom: 0.25rem;
 }
 
 .starTitle {
   font-size: 0.95rem;
+
   font-weight: 600;
+
   color: var(--color-primary);
+
   margin-bottom: 1rem;
 }
 
 .starDescription {
   font-size: 0.95rem;
+
   line-height: 1.6;
+
   color: var(--color-text-secondary);
+
   flex-grow: 1;
 }
 
-/* --- 5. College Partnership Section (Existing Styles) --- */
+/* --- 5. College Partnership Section --- */
+
 .collegeSection {
   padding: 6rem 2rem;
+
   background-color: var(--color-bg-white);
 }
 
 .collegeGrid {
   display: grid;
+
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
   gap: 1.5rem;
+
   max-width: 1200px;
+
   margin: 0 auto;
 }
 
 .collegeCard {
   background: var(--color-bg-white);
+
   border-radius: var(--radius-md);
+
   padding: 1.5rem;
+
   border: 1px solid var(--color-border);
+
   text-align: center;
+
   transition: var(--transition-all);
+
   box-shadow: var(--shadow-sm);
 }
 
 .collegeCard:hover {
   transform: translateY(-5px);
+
   border-color: var(--color-primary);
+
   box-shadow: var(--shadow-md);
 }
 
 .collegeIcon {
   height: 60px;
+
   margin-bottom: 1rem;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 }
 
 .collegeIcon img {
   width: 100%;
+
   height: 60px;
+
   object-fit: contain;
+
   filter: grayscale(100%);
+
   opacity: 0.7;
+
   transition: all 0.3s ease;
 }
 
 .collegeCard:hover .collegeIcon img {
   filter: grayscale(0%);
+
   opacity: 1;
+
   transform: scale(1.05);
 }
 
 .collegeCard p {
   font-size: 0.9rem;
+
   color: var(--color-text-secondary);
+
   font-weight: 500;
+
   line-height: 1.4;
 }
 
@@ -399,45 +444,67 @@
   color: var(--color-text-primary);
 }
 
-/* --- 6. Stats Section (Existing Styles) --- */
+/* --- 6. Stats Section --- */
+
 .statsSection {
   padding: 6rem 2rem;
+
   background-color: var(--color-bg-soft);
 }
 
 .statsGrid {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 4rem;
+
   align-items: center;
+
   max-width: 1200px;
+
   margin: 0 auto;
 }
 
 .statsImageWrapper {
   position: relative;
+
   max-width: 500px;
 }
 
 .statsImage {
   width: 100%;
+
   height: auto;
+
   border-radius: var(--radius-lg);
+
   box-shadow: var(--shadow-lg);
+
   display: block;
 }
 
 .statsLabel {
   position: absolute;
+
   bottom: -2rem;
+
   left: -2rem;
+
   background: var(--color-bg-white);
+
   color: var(--color-text-primary);
+
   padding: 1.25rem 2rem;
+
   border-radius: var(--radius-md);
+
   font-weight: 700;
+
   font-size: 1.125rem;
+
   box-shadow: var(--shadow-lg);
+
   border: 1px solid var(--color-border);
 }
 
@@ -447,101 +514,275 @@
 
 .sectionHeading {
   font-size: 2.25rem;
+
   font-weight: 800;
+
   line-height: 1.3;
+
   color: var(--color-text-primary);
+
   margin-bottom: 1rem;
 }
 
 .sectionDescription {
   font-size: 1.125rem;
+
   line-height: 1.7;
+
   margin-bottom: 2rem;
+
   color: var(--color-text-secondary);
 }
 
 .statsCounter {
   display: flex;
+
   gap: 4rem;
+
   margin-bottom: 2.5rem;
+
   padding-bottom: 2.5rem;
+
   border-bottom: 1px solid var(--color-border);
 }
 
 .statBox {
   display: flex;
+
   flex-direction: column;
 }
 
 .statNumber {
   font-size: 3.5rem;
+
   font-weight: 800;
+
   color: var(--color-primary);
+
   line-height: 1;
+
   letter-spacing: -0.03em;
 }
 
 .statText {
   font-size: 1rem;
+
   font-weight: 600;
+
   margin-top: 0.5rem;
+
   color: var(--color-text-primary);
 }
 
 .statsHighlight {
   display: flex;
+
   align-items: flex-start;
+
   gap: 1rem;
 }
 
 .statsHighlightIcon {
   font-size: 1.25rem;
+
   font-weight: 700;
+
   color: var(--color-primary);
+
   background: var(--color-primary-light);
+
   width: 32px;
+
   height: 32px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   border-radius: 50%;
+
   flex-shrink: 0;
 }
 
 .statsHighlight p {
   font-size: 1rem;
+
   line-height: 1.6;
+
   color: var(--color-text-secondary);
 }
 
-/* --- 7. Responsive Design (Existing Styles) --- */
+/* ---------------------------------------------------- */
+
+/* --- PLACEMENT OVERVIEW SECTION (Ziion Image) --- */
+
+/* ---------------------------------------------------- */
+
+.placementOverview {
+  padding: 6rem 2rem 4rem 2rem;
+
+  background-color: var(--color-bg-white);
+
+  text-align: center;
+
+  position: relative;
+}
+
+.overviewImage {
+  display: block;
+
+  width: 100%;
+
+  max-width: 1100px;
+
+  height: auto;
+
+  margin: 3rem auto 0 auto;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-lg);
+
+  border: 1px solid var(--color-border);
+
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.overviewImage:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* ---------------------------------------------------- */
+
+/* --- YOUTUBE MARQUEE SECTION (Rolling Videos) --- */
+
+/* ---------------------------------------------------- */
+
+.marqueeSection {
+  padding: 4rem 0;
+
+  background: var(--color-bg-soft);
+
+  overflow: hidden;
+}
+
+.marqueeSection .sectionTitle {
+  text-align: center;
+
+  margin-bottom: 3rem;
+
+  padding: 0 1rem;
+}
+
+.blackText {
+  color: var(--color-text-primary);
+}
+
+.gradientText {
+  background: var(--gradient-primary);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+.videoMarqueeWrapper {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+
+  overflow: hidden;
+
+  mask-image: linear-gradient(
+    to right,
+
+    transparent,
+    black 10%,
+
+    black 90%,
+
+    transparent
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+
+    transparent,
+    black 10%,
+
+    black 90%,
+
+    transparent
+  );
+}
+
+.videoTrack {
+  display: flex;
+
+  gap: 2rem;
+
+  width: max-content;
+
+  animation: scrollMarquee 40s linear infinite;
+}
+
+.videoTrack:hover {
+  animation-play-state: paused;
+}
+
+.videoSlide {
+  width: 350px;
+
+  height: 200px;
+
+  flex-shrink: 0;
+
+  border-radius: var(--radius-md);
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow-md);
+
+  background: #000;
+}
+
+.videoSlide iframe {
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- 7. Responsive Design --- */
+
 @media (max-width: 1024px) {
   .heroSection {
-    grid-template-columns: 1fr;
-    padding-top: 5rem;
-  }
-
-  .heroContent {
-    text-align: center;
-    padding: 0;
-  }
-
-  .heroSubtitle {
-    margin: 0 auto;
-  }
-
-  /* Resetting old neural network classes */
-  .neuralNetworkContainer,
-  .neuralNetwork {
-    display: none;
-  }
-  /* Ensuring the new container is visible */
-  .floatingObjectsContainer {
-    display: block;
+    padding: 5rem 2rem;
   }
 
   .statsGrid {
     grid-template-columns: 1fr;
+
     gap: 3rem;
   }
 
@@ -551,7 +792,14 @@
 }
 
 @media (max-width: 768px) {
-  .heroTitle,
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroContent {
+    padding: 2rem 1.5rem;
+  }
+
   .sectionTitle,
   .sectionHeading {
     font-size: 2rem;
@@ -560,15 +808,19 @@
   .starsSection,
   .collegeSection,
   .statsSection,
-  .heroSection {
+  .placementOverview {
     padding: 3rem 1.5rem;
   }
 
   .statsLabel {
     position: static;
+
     margin-top: 1rem;
+
     width: 100%;
+
     text-align: center;
+
     transform: none;
   }
 
@@ -579,10 +831,20 @@
   .statNumber {
     font-size: 2.5rem;
   }
+
+  .videoSlide {
+    width: 280px;
+
+    height: 160px;
+  }
+
+  .overviewImage {
+    margin-top: 2rem;
+  }
 }
 
-/* Legacy Classes (Hidden) */
-/* Kept the cleanup section intact */
+/* Legacy Classes - Hidden */
+
 .integrationWrapper,
 .integrationContent,
 .integrationTitle,
@@ -619,11 +881,15 @@
 .image,
 .heroImageContainer,
 .heroImage,
-/* Added old neural network elements to display: none to ensure new design loads */
-.neuralNetworkContainer, .neuralNetwork, .node, .coreNode, .connection {
+.neuralNetworkContainer,
+.neuralNetwork,
+.node,
+.coreNode,
+.connection,
+.networkBackground,
+.floatingObjectsContainer,
+.floatingCube,
+.cubeInner,
+.lightTrail {
   display: none;
-}
-/* Overriding the display: none for the new floating container */
-.floatingObjectsContainer {
-  display: block;
 }
