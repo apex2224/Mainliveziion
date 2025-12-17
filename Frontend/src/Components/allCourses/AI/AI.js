@@ -293,7 +293,6 @@ const Ai = () => {
           <button className={styles.herob} onClick={() => setShowForm(true)}>
             Talk to us
           </button>
-          {showForm && <Form closeForm={() => setShowForm(false)} />}
         </div>
       </section>
 
@@ -1044,6 +1043,27 @@ const Ai = () => {
         <SecondForm />
         <Footer />
       </div>
+
+      {/* Modal Form Overlay */}
+      {showForm && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 99999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "auto",
+          }}
+        >
+          <Form closeForm={() => setShowForm(false)} />
+        </div>
+      )}
     </div>
   );
 };

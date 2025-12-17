@@ -106,10 +106,10 @@
 }
 
 /* Buttons */
-.herobutton {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.herobutton,
+.herob {
+  display: block;
+  margin: 1rem auto 0;
   padding: 16px 36px;
   font-size: 1rem;
   font-weight: 600;
@@ -120,25 +120,27 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin: 1rem auto 0;
-}
-
-.toolsMain .herobutton {
-  display: block;
-  margin: 2rem auto 0;
-  width: -moz-fit-content;
   width: fit-content;
 }
 
-.carerrOpportunities .herobutton {
+.toolsMain .herobutton,
+.toolsMain .herob {
+  display: block;
+  margin: 2rem auto 0;
+  width: fit-content;
+}
+
+.carerrOpportunities .herobutton,
+.carerrOpportunities .herob {
   display: block;
   margin: 3rem auto 0;
-  width: -moz-fit-content;
   width: fit-content;
 }
 
 .herobutton:hover,
-.herobutton:active {
+.herobutton:active,
+.herob:hover,
+.herob:active {
   background: #1e3a8a;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);

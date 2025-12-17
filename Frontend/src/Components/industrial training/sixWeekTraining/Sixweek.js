@@ -16,6 +16,7 @@ import ProjectShow from "../sixMonthTraining/ProjectShow/ProjectShow";
 import SyllabusCard from "./Carousel/SyllabusCard";
 import PlacedStudent from "./placedstudent/Placedstudent";
 import ReviewsSection from "../../reviews/ReviewsSection";
+import StudentCarousel from "../../placement/StudentCarousel";
 
 const Sixweek = () => {
   useCustom("Six Week Industrial Training | Ziion Technology");
@@ -25,6 +26,7 @@ const Sixweek = () => {
       <Navbar />
       <main>
         <HeroSection />
+        <StudentCarousel/>
         <PlacedStudent />
         <ProjectShow />
         <SyllabusCard />

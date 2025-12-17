@@ -8,6 +8,7 @@ import EnrollProcess from "../ProcessSection/EnrollProcess";
 import Form from "../../form/Form";
 import ReviewsSection from "../../reviews/ReviewsSection";
 import SecondForm from "../../secondForm/SecondForm";
+import StudentCarousel from "../../placement/StudentCarousel";
 import tenplustwo from "./../../../assets/NewCoursesImages/10+2.png"
 import {
   heroPhrases,
@@ -1091,6 +1092,8 @@ const WebDevelopment = () => {
           )}
         />
       </div>
+
+      <StudentCarousel />
 
       <SyllabusSection syllabusData={syllabusData} />
 

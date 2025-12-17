@@ -7,6 +7,7 @@ import EnrollProcess from "../ProcessSection/EnrollProcess";
 import Form from "../../form/Form";
 import ReviewsSection from "../../reviews/ReviewsSection";
 import SecondForm from "../../secondForm/SecondForm";
+import StudentCarousel from "../../placement/StudentCarousel";
 import tenplustwo from "./../../../assets/NewCoursesImages/10+2.png";
 
 // Import React Icons
@@ -324,6 +325,8 @@ const GraphicDesigning = () => {
       <ToolsSection tools={toolsData} onShowForm={() => setShowForm(true)} />
       <LearningSection />
       <EnrollProcess />
+      
+      <StudentCarousel />
       
       <SyllabusSection syllabusData={syllabusData} />
       <ReviewsSection />
