@@ -1,12 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Main.module.css";
 import NavBar from "../head/Navbar";
-import Conversationchatbot from "./Conversationchatbot";
-import MainNextSection from "./MainNextsection";
 import Form from "../form/Form";
-import Companies from "../tieupcompanies/Companies";
 import useCustom from "../customHook/useCustom";
+
+// Lazy load below-the-fold components
+const Conversationchatbot = React.lazy(() => import("./Conversationchatbot"));
+const MainNextSection = React.lazy(() => import("./MainNextsection"));
+const Companies = React.lazy(() => import("../tieupcompanies/Companies"));
+
+// Optimized wrapper to load component only when it enters viewport
+const LazySection = ({ children, minHeight = "400px" }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = React.useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }, // Early trigger for smoother UX
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ minHeight: isVisible ? "auto" : minHeight }}>
+      {isVisible ? <Suspense fallback={null}>{children}</Suspense> : null}
+    </div>
+  );
+};
 
 const Main = () => {
   useCustom("Home | Ziion Technology");
@@ -141,9 +169,17 @@ const Main = () => {
         </div>
       </section>
 
-      <Companies />
-      <MainNextSection />
-      <Conversationchatbot />
+      <LazySection minHeight="200px">
+        <Companies />
+      </LazySection>
+
+      <LazySection minHeight="500px">
+        <MainNextSection />
+      </LazySection>
+
+      <LazySection minHeight="800px">
+        <Conversationchatbot />
+      </LazySection>
 
       {showForm && <Form closeForm={() => setShowForm(false)} />}
     </>

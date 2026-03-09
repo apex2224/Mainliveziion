@@ -3,24 +3,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import styles from "./companies.module.css";
-import images from "../../assets/images";
+import placementImages from "../../assets/placementImages";
 
 const companies = [
-  { src: images.accenture, name: "Accenture" },
-  { src: images.appliedInformation, name: "Applied Information" },
-  { src: images.applify, name: "Applify" },
-  { src: images.bookMyShow, name: "BookMyShow" },
-  { src: images.capgemini, name: "Capgemini" },
-  { src: images.cloudFirst, name: "Cloud First" },
-  { src: images.cognization, name: "Cognizant" },
-  { src: images.firstCry, name: "FirstCry" },
-  { src: images.ibm, name: "IBM" },
-  { src: images.infosys, name: "Infosys" },
-  { src: images.nureca, name: "Nureca" },
-  { src: images.oracle, name: "Oracle" },
-  { src: images.persistance, name: "Persistent" },
-  { src: images.sanrai, name: "Sanrai" },
-  { src: images.tata, name: "Tata" },
+  { src: placementImages.accenture, name: "Accenture" },
+  { src: placementImages.appliedInformation, name: "Applied Information" },
+  { src: placementImages.applify, name: "Applify" },
+  { src: placementImages.bookMyShow, name: "BookMyShow" },
+  { src: placementImages.capgemini, name: "Capgemini" },
+  { src: placementImages.cloudFirst, name: "Cloud First" },
+  { src: placementImages.cognization, name: "Cognizant" },
+  { src: placementImages.firstCry, name: "FirstCry" },
+  { src: placementImages.ibm, name: "IBM" },
+  { src: placementImages.infosys, name: "Infosys" },
+  { src: placementImages.nureca, name: "Nureca" },
+  { src: placementImages.oracle, name: "Oracle" },
+  { src: placementImages.persistance, name: "Persistent" },
+  { src: placementImages.sanrai, name: "Sanrai" },
+  { src: placementImages.tata, name: "Tata" },
 ];
 
 export default function Companies() {
@@ -70,6 +70,7 @@ export default function Companies() {
                     alt={company.name}
                     className={styles.companyImage}
                     title={company.name}
+                    loading="lazy"
                   />
                 </div>
               </SwiperSlide>
