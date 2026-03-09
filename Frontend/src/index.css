@@ -1,5 +1,4 @@
-/* 1. Import the font at the very top */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* 1. Reset and Global Styles */
 
 /* 2. Modern CSS Reset */
 html {

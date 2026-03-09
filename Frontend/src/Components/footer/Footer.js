@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import styles from "./footer.module.css";
-import images from "../../assets/images";
+import homeImages from "../../assets/homeImages";
 // Import icons from react-icons
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaPhone, FaEnvelopeOpen, FaChevronDown } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaInstagram,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelopeOpen,
+  FaChevronDown,
+} from "react-icons/fa";
 
 const Footer = () => {
   // State for mobile accordions
@@ -56,7 +65,11 @@ const Footer = () => {
             <div className="col-xl-4 col-lg-4 mb-50">
               <div className={styles.footerWidget}>
                 <div className={styles.footerLogo}>
-                  <img src={images.ziionTechLogo} alt="logo" />
+                  <img
+                    src={homeImages.ziionTechLogo}
+                    alt="logo"
+                    loading="lazy"
+                  />
                 </div>
                 <div className={styles.footerText}>
                   <p>
@@ -65,37 +78,42 @@ const Footer = () => {
                     digital marketing trainings in Chandigarh/Mohali.
                   </p>
                 </div>
-                
+
                 {/* --- UPDATED SOCIAL ICONS SECTION --- */}
                 <div className={styles.footerSocialIcon}>
                   <span>Follow us</span>
-                  
-                  <a href="#">
-                    <div className={`${styles.iconCircle} ${styles.facebookBg}`}>
+
+                  <a href="/">
+                    <div
+                      className={`${styles.iconCircle} ${styles.facebookBg}`}
+                    >
                       <FaFacebookF />
                     </div>
                   </a>
-                  
-                  <a href="#">
+
+                  <a href="/">
                     <div className={`${styles.iconCircle} ${styles.twitterBg}`}>
                       <FaTwitter />
                     </div>
                   </a>
-                  
+
                   <a href="https://www.linkedin.com/company/verma-programming-minds/">
-                    <div className={`${styles.iconCircle} ${styles.linkedinBg}`}>
+                    <div
+                      className={`${styles.iconCircle} ${styles.linkedinBg}`}
+                    >
                       <FaLinkedinIn />
                     </div>
                   </a>
-                  
+
                   <a href="https://www.instagram.com/ziion_technology/?next=%2F&hl=en">
-                    <div className={`${styles.iconCircle} ${styles.instagramBg}`}>
+                    <div
+                      className={`${styles.iconCircle} ${styles.instagramBg}`}
+                    >
                       <FaInstagram />
                     </div>
                   </a>
                 </div>
                 {/* ------------------------------------ */}
-
               </div>
             </div>
 
@@ -108,8 +126,8 @@ const Footer = () => {
                 >
                   <h3>Quick Links</h3>
                   {/* Replaced Chevron <i> with React Icon */}
-                  <FaChevronDown 
-                    className={`${styles.accordionIcon} ${quickLinksOpen ? styles.accordionIconOpen : ""}`} 
+                  <FaChevronDown
+                    className={`${styles.accordionIcon} ${quickLinksOpen ? styles.accordionIconOpen : ""}`}
                   />
                 </div>
                 <ul
@@ -118,16 +136,36 @@ const Footer = () => {
                     ${quickLinksOpen ? styles.accordionContentOpen : ""}
                   `}
                 >
-                  <li><a href="/web-development">Web Development</a></li>
-                  <li><a href="/graphic">Graphic Designing</a></li>
-                  <li><a href="/digital-marketing">Digital Marketing</a></li>
-                  <li><a href="/ai">AI</a></li>
-                  <li><a href="/ml">ML</a></li>
-                  <li><a href="/data-science">Data Science</a></li>
-                  <li><a href="/mobileapp">Mobile App Development</a></li>
-                  <li><a href="/php">PHP</a></li>
-                  <li><a href="/six-week-training">Six Week Training</a></li>
-                  <li><a href="/six-month-training">Six Month Training</a></li>
+                  <li>
+                    <a href="/web-development">Web Development</a>
+                  </li>
+                  <li>
+                    <a href="/graphic">Graphic Designing</a>
+                  </li>
+                  <li>
+                    <a href="/digital-marketing">Digital Marketing</a>
+                  </li>
+                  <li>
+                    <a href="/ai">AI</a>
+                  </li>
+                  <li>
+                    <a href="/ml">ML</a>
+                  </li>
+                  <li>
+                    <a href="/data-science">Data Science</a>
+                  </li>
+                  <li>
+                    <a href="/mobileapp">Mobile App Development</a>
+                  </li>
+                  <li>
+                    <a href="/php">PHP</a>
+                  </li>
+                  <li>
+                    <a href="/six-week-training">Six Week Training</a>
+                  </li>
+                  <li>
+                    <a href="/six-month-training">Six Month Training</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -140,8 +178,8 @@ const Footer = () => {
                   onClick={() => setUsefulLinksOpen(!usefulLinksOpen)}
                 >
                   <h3>Useful Links</h3>
-                  <FaChevronDown 
-                    className={`${styles.accordionIcon} ${usefulLinksOpen ? styles.accordionIconOpen : ""}`} 
+                  <FaChevronDown
+                    className={`${styles.accordionIcon} ${usefulLinksOpen ? styles.accordionIconOpen : ""}`}
                   />
                 </div>
                 <ul
@@ -150,13 +188,27 @@ const Footer = () => {
                     ${usefulLinksOpen ? styles.accordionContentOpen : ""}
                   `}
                 >
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/services">Services</a></li>
-                  <li><a href="/placement">Placement</a></li>
-                  <li><a href="/about">About Us</a></li>
-                  <li><a href="#">Expert Team</a></li>
-                  <li><a href="/contact-us">Contact Us</a></li>
-                  <li><a href="#">Latest News</a></li>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>
+                    <a href="/services">Services</a>
+                  </li>
+                  <li>
+                    <a href="/placement">Placement</a>
+                  </li>
+                  <li>
+                    <a href="/about">About Us</a>
+                  </li>
+                  <li>
+                    <a href="/">Expert Team</a>
+                  </li>
+                  <li>
+                    <a href="/contact-us">Contact Us</a>
+                  </li>
+                  <li>
+                    <a href="/">Latest News</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -183,4 +235,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);

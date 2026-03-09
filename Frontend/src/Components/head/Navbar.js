@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import FurtherNav from "./FurtherNav";
-import images from "../../assets/images";
+import homeImages from "../../assets/homeImages";
 import Refrencenumber from "../refrenceNumber/Rerencenumber";
 
 const Navbar = () => {
@@ -77,7 +77,7 @@ const Navbar = () => {
         >
           <div className={styles.left}>
             <Link to="/" onClick={closeAllMenus}>
-              <img src={images.ziionLogo} alt="Logo" />
+              <img src={homeImages.ziionLogo} alt="Logo" />
             </Link>
           </div>
 
@@ -87,8 +87,8 @@ const Navbar = () => {
               className={styles.hamburger}
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              {images?.hamburger ? (
-                <img src={images.hamburger} alt="hamburger" />
+              {homeImages?.hamburger ? (
+                <img src={homeImages.hamburger} alt="hamburger" />
               ) : (
                 <span className={styles.hamburgerFallback}>☰</span>
               )}
@@ -111,7 +111,7 @@ const Navbar = () => {
             {isMobile && (
               <div className={styles.mobileMenuHeader}>
                 <div className={styles.mobileLogo}>
-                  <img src={images.ziionLogo} alt="Logo" />
+                  <img src={homeImages.ziionLogo} alt="Logo" />
                 </div>
               </div>
             )}
@@ -240,4 +240,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

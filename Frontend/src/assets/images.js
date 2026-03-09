@@ -200,8 +200,6 @@ import raghav from "./placementImages/raghav.jpeg";
 import rupal from "./placementImages/rupal.jpeg";
 import shubham from "./placementImages/shubham.jpeg";
 import simranjeet from "./placementImages/simranjeet.jpeg";
-import simrat from "./placementImages/simrat.jpeg";
-import abhishek from "./placementImages/abhishek.jpeg";
 import arunesh from "./placementImages/arunesh.jpeg";
 import harleen from "./placementImages/harleen.jpeg";
 
