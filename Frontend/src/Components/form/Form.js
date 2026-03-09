@@ -33,7 +33,7 @@ function Form({ closeForm }) {
           course: formData.course,
           preference: formData.category,
         },
-        "j6fsWCbZRRU2n1J4A"
+        "j6fsWCbZRRU2n1J4A",
       );
 
       dispatch(resetForm());
@@ -117,6 +117,22 @@ function Form({ closeForm }) {
               />
               <label htmlFor="email" className={styles.floatingLabel}>
                 Email*
+              </label>
+            </div>
+
+            {/* --- College Name Input --- */}
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="college"
+                id="college"
+                placeholder=" "
+                value={formData.college}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="college" className={styles.floatingLabel}>
+                College Name*
               </label>
             </div>
 

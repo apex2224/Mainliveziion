@@ -1,25 +1,26 @@
-
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const formSlice = createSlice({
-  name: 'student',
+  name: "student",
   initialState: {
-    name: '',
-    email: '',
-    phone: '',
-    course: ''
+    name: "",
+    email: "",
+    phone: "",
+    course: "",
+    college: "",
   },
   reducers: {
     FormFilled: (state, action) => {
       state[action.payload.field] = action.payload.value;
     },
     resetForm: () => ({
-      name: '',
-      email: '',
-      phone: '',
-      course: ''
-    })
-  }
+      name: "",
+      email: "",
+      phone: "",
+      course: "",
+      college: "",
+    }),
+  },
 });
 
 export const { FormFilled, resetForm } = formSlice.actions;
