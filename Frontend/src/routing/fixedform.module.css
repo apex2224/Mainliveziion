@@ -35,7 +35,7 @@
 .leftButtonContainer.whiteTheme {
   background: linear-gradient(to bottom, #ffffff, #f0f0f0);
   color: #333;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .leftButtonText.whiteThemeText {
@@ -50,8 +50,8 @@
 .popupOverlay {
   position: fixed;
   top: 25%;
-  left: 0;          /* Start at left of screen */
-  width: auto;      /* Width determined by popupFormBox */
+  left: 0; /* Start at left of screen */
+  width: auto; /* Width determined by popupFormBox */
   display: flex;
   align-items: flex-start; /* Align at top of overlay */
   justify-content: flex-start; /* Align left */
@@ -71,11 +71,11 @@
   color: white;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(233, 228, 228, 0.3);
-  width: 350px;         /* Fixed width for left panel */
-  max-width: 95%;       /* Responsive on small screens */
+  width: 350px; /* Fixed width for left panel */
+  max-width: 95%; /* Responsive on small screens */
   min-width: 300px;
-  position: fixed;      /* Fixed at left of screen */
-  left: 0;              /* Stick to left */
+  position: fixed; /* Fixed at left of screen */
+  left: 0; /* Stick to left */
   animation: slideInLeft 0.3s ease forwards;
   box-sizing: border-box;
 }
@@ -160,12 +160,12 @@
 /* Buttons side by side */
 .buttonRow {
   display: flex;
-  gap: 10px;       /* Space between buttons */
-  flex-wrap: wrap;  /* Wrap on very small screens */
+  gap: 10px; /* Space between buttons */
+  flex-wrap: wrap; /* Wrap on very small screens */
 }
 
 .popupSubmitBtn {
-  flex: 1;             /* Take equal space */
+  flex: 1; /* Take equal space */
   padding: 12px;
   background-color: #007bff;
   color: white;
@@ -213,12 +213,67 @@
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 480px) {
-  .popupFormBox {
-    width: 95%;      /* Almost full width on mobile */
-    padding: 20px 15px;
+@media screen and (max-width: 768px) {
+  .leftButtonContainer {
+    top: auto;
+    bottom: 20px;
+    left: 20px;
+    transform: none;
+    writing-mode: horizontal-tb;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
+
+  .leftButtonIcon {
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+
+  .leftButtonText {
+    flex-direction: row;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .leftButtonContainer {
+    left: 10px;
+    bottom: 15px;
+    padding: 8px 16px;
+  }
+
+  .popupFormBox {
+    width: 95%;
+    padding: 20px 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: fadeInScale 0.3s ease forwards;
+  }
+
+  @keyframes fadeInScale {
+    from {
+      transform: translate(-50%, -40%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+
+  .popupOverlay {
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
   .buttonRow {
-    flex-direction: column; /* Stack buttons on small screens */
+    flex-direction: column;
   }
 }

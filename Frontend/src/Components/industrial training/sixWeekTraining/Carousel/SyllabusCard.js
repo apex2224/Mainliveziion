@@ -34,6 +34,12 @@ const SyllabusCard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState("");
 
+  // Swipe State
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const minSwipeDistance = 50;
+
   const cards = [
     {
       id: 1,
@@ -199,6 +205,28 @@ const SyllabusCard = () => {
     setSelectedCourse("");
   };
 
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
   const getCardStyle = (index) => {
     const diff = index - currentIndex;
     const totalCards = cards.length;
@@ -229,18 +257,12 @@ const SyllabusCard = () => {
         </div>
 
         <div className={styles.carouselWrapper}>
-          <button
-            className={`${styles.navButton} ${styles.navButtonLeft}`}
-            onClick={prevSlide}
-            onMouseEnter={() => setIsAutoPlay(false)}
-            onMouseLeave={() => setIsAutoPlay(true)}
+          <div
+            className={styles.carouselTrack}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-
-          <div className={styles.carouselTrack}>
             {cards.map((card, index) => (
               <div
                 key={card.id}
@@ -270,7 +292,9 @@ const SyllabusCard = () => {
                   ))}
                 </ul>
 
-                <p className={styles.detailsText}>Detailed Syllabus Available</p>
+                <p className={styles.detailsText}>
+                  Detailed Syllabus Available
+                </p>
 
                 <div className={styles.buttonWrapper}>
                   {/* <-- THE NEW BUTTON STRUCTURE --> */}
@@ -290,17 +314,6 @@ const SyllabusCard = () => {
               </div>
             ))}
           </div>
-
-          <button
-            className={`${styles.navButton} ${styles.navButtonRight}`}
-            onClick={nextSlide}
-            onMouseEnter={() => setIsAutoPlay(false)}
-            onMouseLeave={() => setIsAutoPlay(true)}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
         </div>
       </div>
 

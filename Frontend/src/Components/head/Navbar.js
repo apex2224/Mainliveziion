@@ -3,20 +3,16 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import FurtherNav from "./FurtherNav";
 import images from "../../assets/images";
-import StudentSearch from "../admin/Studentform";
 import Refrencenumber from "../refrenceNumber/Rerencenumber";
-import Help from "../help/Help";
 
 const Navbar = () => {
   const [showFurtherNav, setShowFurtherNav] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [refrenceForm, setRefrenceForm] = useState(false);
-  const [showDashboard, setShowDashboard] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navWrapperRef = useRef(null);
-  const furtherNavRef = useRef(null); // This ref might not be strictly needed anymore
 
   // Scroll detection for glassmorphism effect
   useEffect(() => {
@@ -99,12 +95,27 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* Main menu */}
+          {/* Overlay Background for Mobile Menu */}
+          <div
+            className={`${styles.menuOverlay} ${menuOpen ? styles.showOverlay : ""}`}
+            onClick={() => setMenuOpen(false)}
+          ></div>
+
+          {/* Main menu container */}
           <div
             className={`${styles.mainMenuContainer} ${
               menuOpen ? styles.showMenu : ""
             }`}
           >
+            {/* Mobile Menu Header with Logo */}
+            {isMobile && (
+              <div className={styles.mobileMenuHeader}>
+                <div className={styles.mobileLogo}>
+                  <img src={images.ziionLogo} alt="Logo" />
+                </div>
+              </div>
+            )}
+
             <ul className={styles.mainMenuList}>
               <Link to="/" className={styles.link} onClick={closeAllMenus}>
                 <li className={styles.mainMenuItem}>Home</li>
@@ -160,7 +171,6 @@ const Navbar = () => {
                 onClick={closeAllMenus}
               >
                 <li className={styles.mainMenuItem}>Contact Us</li>
-                {showDashboard && <Help />}
               </Link>
 
               {/* Mobile-only Download button inside menu */}
@@ -174,6 +184,32 @@ const Navbar = () => {
                     }}
                   >
                     Download Certificate
+                  </button>
+                </li>
+              )}
+
+              {/* Mobile Close Button at Bottom */}
+              {isMobile && (
+                <li className={styles.mobileCloseItem}>
+                  <button
+                    className={styles.bottomCloseBtn}
+                    onClick={() => setMenuOpen(false)}
+                    aria-label="Close menu"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span>Close Menu</span>
                   </button>
                 </li>
               )}

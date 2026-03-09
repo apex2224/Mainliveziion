@@ -8,8 +8,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 16px;
-  background-color: rgba(255, 255, 255, 0.95);
+  padding: 8px 32px; /* Reduced vertical padding, increased horizontal */
+  background-color: rgba(255, 255, 255, 0.98);
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@
   z-index: 1000;
   width: 100%;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
 }
 
@@ -92,18 +92,20 @@
 .mainMenuList {
   display: flex;
   list-style: none;
-  gap: 32px;
+  gap: 24px; /* Reduced gap from 32px to fit better */
   padding: 0;
   margin: 0;
+  align-items: center;
 }
 
 .mainMenuItem {
   cursor: pointer;
   color: #334155;
   font-weight: 500;
-  font-size: 0.938rem;
+  font-size: 0.9rem; /* Slightly smaller to prevent wrap */
   transition: color 0.2s ease;
   position: relative;
+  white-space: nowrap; /* Fix: Prevent item text from wrapping */
 }
 
 .mainMenuItem:hover {
@@ -134,6 +136,7 @@
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  align-items: center; /* Center button vertically */
 }
 
 /* Header Button */
@@ -143,13 +146,17 @@
   border: 1.5px solid #1e40af;
   color: #1e40af;
   background-color: transparent;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-size: 0.938rem;
+  padding: 6px 16px; /* Reduced vertical padding more */
+  border-radius: 6px; /* Slightly sharper corners */
+  font-size: 0.85rem; /* Slightly smaller font */
   font-weight: 600;
   cursor: pointer;
-  z-index: 0;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
+  height: 34px; /* Fixed height for perfect centering */
 }
 
 .headerBtn::before {
@@ -201,57 +208,96 @@
 }
 
 /* === Mobile Styles === */
+/* Overlay for mobile menu */
+.menuOverlay {
+  display: none;
+}
+
+/* === Mobile Styles === */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
   }
 
-  .mainMenuContainer {
+  /* Overlay Background */
+  .menuOverlay {
     position: fixed;
-    top: 8%; /* Adjust this if your navbar height changes */
-    right: 0%;
-    width: 60%;
-    height: calc(100vh - 60px); /* Adjust 60px if navbar height changes */
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: none;
-    color: #334155;
-    flex-direction: column;
-    padding: 32px 24px;
-    z-index: 1000;
-    overflow-y: auto;
-    animation: slideIn 0.3s ease-out forwards;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-    border-left: 1px solid rgba(226, 232, 240, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    display: block;
   }
 
-  @keyframes slideIn {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
+  .menuOverlay.showOverlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Slide-out Drawer */
+  .mainMenuContainer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen */
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Fix: Start items from top */
+    padding: 0;
+    z-index: 2000;
+    overflow-y: auto;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 25px rgba(0, 0, 0, 0.12);
   }
 
   .showMenu {
+    right: 0; /* Slide in */
+  }
+
+  /* Mobile Drawer Header */
+  .mobileMenuHeader {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .mobileLogo img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
   }
 
   .mainMenuList {
     flex-direction: column;
     width: 100%;
     gap: 0;
+    padding: 12px 0 80px; /* Extra bottom padding for close button */
   }
 
   .mainMenuItem {
-    padding: 16px 0;
+    padding: 16px 24px;
     font-size: 1rem;
+    font-weight: 500;
     border-bottom: 1px solid rgba(226, 232, 240, 0.5);
     color: #334155;
+    display: flex;
+    flex-direction: column;
   }
 
   .mainMenuItem::after {
@@ -260,53 +306,71 @@
 
   .mainMenuItem:hover {
     color: #1e40af;
-    background: rgba(30, 64, 175, 0.05);
-    padding-left: 8px;
-    transition: all 0.2s ease;
+    background: rgba(30, 64, 175, 0.03);
   }
 
   .headerBtn {
-    width: 100%;
+    width: calc(100% - 48px);
     text-align: center;
-    margin-top: 16px;
+    margin: 24px auto;
+    padding: 14px 24px;
+    display: block;
+  }
+
+  .mobileCloseItem {
+    width: 100%;
+    padding: 24px;
+    margin-top: auto;
+    border-top: 1px solid rgba(226, 232, 240, 0.6);
+    background: #f8fafc;
+  }
+
+  .bottomCloseBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .bottomCloseBtn:hover {
+    background: #fecaca;
+    transform: translateY(-1px);
   }
 
   .right {
     display: none;
   }
 
-  /* This rule was pointing to a non-existent class,
-     but the mobile styles in FurtherNav.module.css handle this anyway.
-     You can safely remove .mobileFurtherNav, .mobileSubMenuList, etc.
-     from this file if they exist. */
+  .navbar {
+    padding: 12px 20px;
+    background: #ffffff;
+    position: fixed; /* Ensure sticky on mobile */
+  }
 
-  /* Mobile Navbar Scrolled State */
   .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 }
 
 @media (max-width: 480px) {
   .mainMenuContainer {
-    width: 75%;
-    padding: 24px 20px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .navbar {
     padding: 12px 16px;
   }
 }
-
-/* NOTE: The original file had styles for:
-  .mobileFurtherNav
-  .mobileSubMenuList
-  .mobileSubMenuList .mainMenuItem
-  .mobileSubMenuList .link
-
-  These classes are not used in your Navbar.js or FurtherNav.js.
-  The mobile styling for the submenu is correctly handled by the
-  @media (max-width: 768px) block inside FurtherNav.module.css.
-  I have removed them to avoid confusion.
-*/

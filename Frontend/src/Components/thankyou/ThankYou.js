@@ -1,57 +1,49 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import { Check } from "lucide-react";
 import styles from "./thankyou.module.css";
-import images from "../../assets/images";
-
 
 export default function ThankYou() {
   const location = useLocation();
   const { name = "" } = location.state || {};
 
   return (
-     <div className={styles.thankyouwrapper}>
-         <section className={styles.thankyouContainer}>
-        {/* Left: Image */}
-        <div className={styles.thankyouLeft}>
-          <img
-            src={images.thankYou}
-            alt="Submission successful"
-            className={styles.thankyouImage}
-          />
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        {/* Icon */}
+        <div className={styles.iconWrapper}>
+          <Check className={styles.icon} strokeWidth={2} />
         </div>
 
-        {/* Right: Content */}
-        <div className={styles.thankyouRight}>
-          <h1 className={styles.thankyouTitle}>
-            Thank you{ name ? `, ${name}` : "" }! 🎉
-          </h1>
-          <p className={styles.thankyouSubtitle}>
-            Your form has been submitted successfully.
-          </p>
+        {/* Heading */}
+        <h1 className={styles.heading}>Thank You{name ? `, ${name}` : ""}</h1>
 
-          <div className={styles.thankyouCard}>
-            <p className={styles.thankyouMessage}>
-              We’ve received your details and our team is already on it.
-            </p>
-            <ul className={styles.thankyouList}>
-              <li>✔ A confirmation email has been sent to your inbox.</li>
-              <li>✔ We’ll get back to you within 24–48 hours.</li>
-              <li>✔ Need to update something? Just reply to the email.</li>
-            </ul>
-          </div>
+        {/* Subtitle / Content */}
+        <div className={styles.subtitleWrapper}>
+          <p>Your inquiry has been successfully submitted;</p>
+          <p>our team will contact you shortly.</p>
 
-          <div className={styles.thankyouActions}>
-            <a href="/" className={styles.thankyouButton}>Back to Home</a>
-           
-          </div>
-
-          <p className={styles.thankyouNote}>
-            Tip: Save this page or your email for your records.
-          </p>
+          <ul className={styles.listWrapper}>
+            <li className={styles.listItem}>
+              <span className={styles.checkIcon}>✔</span>
+              <span>A confirmation email has been sent to your inbox.</span>
+            </li>
+            <li className={styles.listItem}>
+              <span className={styles.checkIcon}>✔</span>
+              <span>We’ll get back to you within 24–48 hours.</span>
+            </li>
+            <li className={styles.listItem}>
+              <span className={styles.checkIcon}>✔</span>
+              <span>Need to update something? Just reply to the email.</span>
+            </li>
+          </ul>
         </div>
-      </section>
 
-     </div>
-    
+        {/* Button */}
+        <Link to="/" className={styles.homeButton}>
+          Go to Home
+        </Link>
+      </div>
+    </div>
   );
 }
