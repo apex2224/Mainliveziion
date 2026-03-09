@@ -88,7 +88,8 @@
 .gridPattern {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
   background-size: 50px 50px;
   opacity: 0.5;
@@ -300,10 +301,10 @@
   /* bottom: 40px; */
   /* left: 50%; */
   /* transform: translateX(-50%); */
-  
+
   /* --- ADDED MARGIN FOR SPACING --- */
   margin-top: 48px;
-  
+
   /* --- KEPT THESE FOR CENTERING ITS OWN CHILDREN --- */
   display: flex;
   flex-direction: column;
@@ -426,10 +427,6 @@
 }
 
 @media (max-width: 768px) {
-  .heroSection {
-    padding: 120px 16px 60px; /* Increased top padding */
-  }
-
   .mainTitle {
     font-size: 2.5rem;
   }
@@ -465,7 +462,7 @@
     width: 300px;
     height: 300px;
   }
-  
+
   .trustBadge {
     /* margin-bottom: 90px; <-- REMOVED */
   }
@@ -477,12 +474,20 @@
 }
 
 @media (max-width: 480px) {
+  .heroSection {
+    padding: 100px 12px 40px;
+  }
+
   .mainTitle {
-    font-size: 2rem;
+    font-size: 1.85rem;
+    line-height: 1.2;
+    margin-bottom: 16px;
   }
 
   .subtitle {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    margin-bottom: 32px;
+    padding: 0 10px;
   }
 
   .badge {

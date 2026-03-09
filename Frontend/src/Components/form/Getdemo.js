@@ -36,7 +36,6 @@
 // //   //   }
 // //   // };
 
-
 // // const handleSubmit = async (e) => {
 // //   e.preventDefault();
 
@@ -84,8 +83,6 @@
 // // }
 
 // // export default Form;
-
-
 
 // import React from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -155,18 +152,17 @@
 
 // export default Form;
 
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FormFilled, resetForm } from '../../store/studentSlice';
-import styles from './form.module.css';
-import emailjs from '@emailjs/browser';
-import images from '../../assets/images';
-import { useNavigate } from 'react-router-dom';
-import { FaInstagram, FaLinkedin } from 'react-icons/fa';
-
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FormFilled, resetForm } from "../../store/studentSlice";
+import styles from "./form.module.css";
+import emailjs from "@emailjs/browser";
+import images from "../../assets/images";
+import { useNavigate } from "react-router-dom";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
 function Form({ closeForm }) {
-  const formData = useSelector(state => state.student);
+  const formData = useSelector((state) => state.student);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -181,8 +177,8 @@ function Form({ closeForm }) {
     setLoading(true);
     try {
       await emailjs.send(
-        'service_4zv8d5l',
-        'template_7lt1pb6',
+        "service_4zv8d5l",
+        "template_7lt1pb6",
         {
           name: formData.name,
           email: formData.email,
@@ -190,14 +186,14 @@ function Form({ closeForm }) {
           course: formData.course,
           preference: formData.category,
         },
-        'j6fsWCbZRRU2n1J4A'
+        "j6fsWCbZRRU2n1J4A",
       );
 
       dispatch(resetForm());
       closeForm();
-      navigate('/thank-you');
+      navigate("/thank-you");
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error("EmailJS Error:", error);
     } finally {
       setLoading(false);
     }
@@ -220,11 +216,19 @@ function Form({ closeForm }) {
           <h3>Delivering innovative IT strategies for real-world impact.</h3>
           <p>You can also find us here:</p>
           <div className={styles.socials}>
-           <a href="https://www.instagram.com/ziion_technology/?next=%2F&hl=en" target="_blank" rel="noreferrer">
-             <FaInstagram className={styles.formIcon}/>
-           </a>
-            <a href="https://www.linkedin.com/company/verma-programming-minds/" target="_blank" rel="noreferrer">
-              <FaLinkedin className={styles.formIcon}/>
+            <a
+              href="https://www.instagram.com/ziion_technology/?next=%2F&hl=en"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaInstagram className={styles.formIcon} />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/verma-programming-minds/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaLinkedin className={styles.formIcon} />
             </a>
           </div>
         </div>
@@ -232,8 +236,8 @@ function Form({ closeForm }) {
         {/* RIGHT FORM */}
         <div className={styles.formContainer}>
           <h2>
- Get a <span className={styles.gradientText}>Demo</span>
-</h2>
+            Get a <span className={styles.gradientText}>Demo</span>
+          </h2>
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <input
@@ -267,17 +271,22 @@ function Form({ closeForm }) {
               required
             >
               <option value="">Select Course*</option>
-<option value="Full Stack Development">Full Stack Development</option>
-<option value="Data Science">Data Science</option>
-<option value="Web Designing">Web Designing</option>
-<option value="Digital Marketing">Digital Marketing</option>
-<option value="Graphic Designing">Graphic Designing</option>
-<option value="PHP">PHP</option>
-<option value="Python">Python</option>
-<option value="Artificial Intelligence">Artificial Intelligence</option>
-<option value="Machine Learning">Machine Learning</option>
-<option value="Mobile App Development">Mobile App Development</option>
-
+              <option value="Full Stack Development">
+                Full Stack Development
+              </option>
+              <option value="Data Science">Data Science</option>
+              <option value="Web Designing">Web Designing</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Graphic Designing">Graphic Designing</option>
+              <option value="PHP">PHP</option>
+              <option value="Python">Python</option>
+              <option value="Artificial Intelligence">
+                Artificial Intelligence
+              </option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="Mobile App Development">
+                Mobile App Development
+              </option>
             </select>
 
             {/* Radio Options */}
@@ -287,10 +296,10 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="Working Professional"
-                  checked={formData.category === 'Working Professional'}
+                  checked={formData.category === "Working Professional"}
                   onChange={handleChange}
                   required
-                />{' '}
+                />{" "}
                 Working Professional
               </label>
               <label>
@@ -298,9 +307,9 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="College Student - Pursuing"
-                  checked={formData.category === 'College Student - Pursuing'}
+                  checked={formData.category === "College Student - Pursuing"}
                   onChange={handleChange}
-                />{' '}
+                />{" "}
                 College Student - Pursuing
               </label>
               <label>
@@ -308,9 +317,9 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="College Student - Final Year"
-                  checked={formData.category === 'College Student - Final Year'}
+                  checked={formData.category === "College Student - Final Year"}
                   onChange={handleChange}
-                />{' '}
+                />{" "}
                 College Student - Final Year
               </label>
               <label>
@@ -318,15 +327,15 @@ function Form({ closeForm }) {
                   type="radio"
                   name="category"
                   value="Others"
-                  checked={formData.category === 'Others'}
+                  checked={formData.category === "Others"}
                   onChange={handleChange}
-                />{' '}
+                />{" "}
                 Others
               </label>
             </div>
 
             <button type="submit" disabled={loading}>
-              {loading ? 'Submitting...' : 'Submit'}
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </form>
         </div>
