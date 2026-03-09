@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import styles from "./studentform.module.css";
-import {
-  User,
-  BookOpen,
-  Calendar,
-  Hash,
-  CheckCircle,
-  Loader,
-} from "lucide-react";
+import { User, BookOpen, Calendar, Hash, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const FIREBASE_URL = "https://studentdata-18fe7-default-rtdb.firebaseio.com/";
 
 const Studentform = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -44,6 +39,7 @@ const Studentform = () => {
 
       if (response.ok) {
         setSuccess(true);
+        navigate("/thank-you");
         setTimeout(() => {
           setFormData({
             referenceNumber: "",
@@ -53,7 +49,7 @@ const Studentform = () => {
             endDate: "",
           });
           setSuccess(false);
-        }, 3000);
+        }, 1000);
       } else {
         alert("❌ Failed to submit. Please try again.");
       }
