@@ -338,27 +338,20 @@ const SyllabusForm = ({ defaultCourse = "" }) => {
             required
           >
             <option value="" disabled>
-              Select Course
+              Select Course*
             </option>
-            <option value="full-stack-development">
-              Full Stack Development
-            </option>
-            <option value="data-science">Data Science</option>
-            <option value="web-designing">Web Designing</option>
-            <option value="digital-marketing">Digital Marketing</option>
-            <option value="php">PHP</option>
-            <option value="python">Python</option>
-            <option value="artificial-intelligence">
-              Artificial Intelligence
-            </option>
-            <option value="machine-learning">Machine Learning</option>
-            <option value="mobile-app-development">
-              Mobile App Development
-            </option>
-            {/* --- ADDED OPTIONS FROM CARDS --- */}
-            <option value="cloud-computing">Cloud Computing</option>
-            <option value="devops">DevOps</option>
-            <option value="cybersecurity">Cybersecurity</option>
+            <option value="Full Stack Development">Full Stack Development</option>
+            <option value="Web Designing">Web Designing</option>
+            <option value="Graphic Designing">Graphic Designing</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Data Science">Data Analytics</option>
+            <option value="Machine Learning">Machine Learning</option>
+            <option value="Artificial Intelligence">Artificial Intelligence</option>
+            <option value="Digital Marketing">Digital Marketing</option>
+            <option value="DevOps">DevOps</option>
+            <option value="Cloud Computing">Cloud Computing</option>
+            <option value="Mobile App Development">Mobile App Development</option>
+            <option value="Python">Python</option>
           </select>
           <label htmlFor="course" className={styles.formLabelSelect}>
             Course Interested

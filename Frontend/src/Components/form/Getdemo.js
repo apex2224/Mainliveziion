@@ -240,54 +240,90 @@ function Form({ closeForm }) {
           </h2>
 
           <form onSubmit={handleSubmit} className={styles.form}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name*"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email*"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number*"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-            <select
-              name="course"
-              value={formData.course}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Course*</option>
-              <option value="Full Stack Development">
-                Full Stack Development
-              </option>
-              <option value="Data Science">Data Science</option>
-              <option value="Web Designing">Web Designing</option>
-              <option value="Digital Marketing">Digital Marketing</option>
-              <option value="Graphic Designing">Graphic Designing</option>
-              <option value="PHP">PHP</option>
-              <option value="Python">Python</option>
-              <option value="Artificial Intelligence">
-                Artificial Intelligence
-              </option>
-              <option value="Machine Learning">Machine Learning</option>
-              <option value="Mobile App Development">
-                Mobile App Development
-              </option>
-            </select>
+            {/* --- Name Input --- */}
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder=" "
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="name" className={styles.floatingLabel}>
+                Full Name*
+              </label>
+            </div>
+
+            {/* --- Email Input --- */}
+            <div className={styles.inputGroup}>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder=" "
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="email" className={styles.floatingLabel}>
+                Email*
+              </label>
+            </div>
+
+            {/* --- Phone Input --- */}
+            <div className={styles.inputGroup}>
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                placeholder=" "
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="phone" className={styles.floatingLabel}>
+                Phone Number*
+              </label>
+            </div>
+
+            {/* --- Course Select --- */}
+            <div className={styles.inputGroup}>
+              <select
+                name="course"
+                id="course"
+                value={formData.course}
+                onChange={handleChange}
+                required
+                className={!formData.course ? styles.invalidSelect : ""}
+              >
+                <option value="" disabled>
+                  Select Course*
+                </option>
+                <option value="Full Stack Development">
+                  Full Stack Development
+                </option>
+                <option value="Web Designing">Web Designing</option>
+                <option value="Graphic Designing">Graphic Designing</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Data Science">Data Analytics</option>
+                <option value="Machine Learning">Machine Learning</option>
+                <option value="Artificial Intelligence">
+                  Artificial Intelligence
+                </option>
+                <option value="Digital Marketing">Digital Marketing</option>
+                <option value="DevOps">DevOps</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+                <option value="Mobile App Development">
+                  Mobile App Development
+                </option>
+                <option value="Python">Python</option>
+              </select>
+              <label htmlFor="course" className={styles.floatingLabel}>
+                Select Course*
+              </label>
+            </div>
 
             {/* Radio Options */}
             <div className={styles.radioGroup}>

@@ -157,6 +157,7 @@
   justify-content: center;
   transition: all 0.3s ease;
   height: 34px; /* Fixed height for perfect centering */
+  margin-left: 20px; /* added space to ensure no overlap in desktop */
 }
 
 .headerBtn::before {
@@ -300,6 +301,14 @@
     flex-direction: column;
   }
 
+  .mainMenuItem:nth-last-child(2) {
+    /* Make the button stick near the bottom, right above close btn */
+    border-bottom: none;
+    margin-top: auto !important;
+    padding-top: 30px;
+    padding-bottom: 24px;
+  }
+
   .mainMenuItem::after {
     display: none;
   }
@@ -312,7 +321,7 @@
   .headerBtn {
     width: calc(100% - 48px);
     text-align: center;
-    margin: 24px auto;
+    margin: 0 auto;
     padding: 14px 24px;
     display: block;
   }

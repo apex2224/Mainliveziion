@@ -93,18 +93,19 @@ const SecondForm = ({ closeForm }) => {
               onChange={handleChange}
               required
             >
-              <option value="">Select Course*</option>
-<option value="Full Stack Development">Full Stack Development</option>
-<option value="Data Science">Data Science</option>
-<option value="Web Designing">Web Designing</option>
-<option value="Digital Marketing">Digital Marketing</option>
-<option value="Graphic Designing">Graphic Designing</option>
-<option value="PHP">PHP</option>
-<option value="Python">Python</option>
-<option value="Artificial Intelligence">Artificial Intelligence</option>
-<option value="Machine Learning">Machine Learning</option>
-<option value="Mobile App Development">Mobile App Development</option>
-
+              <option value="" disabled>Select Course*</option>
+              <option value="Full Stack Development">Full Stack Development</option>
+              <option value="Web Designing">Web Designing</option>
+              <option value="Graphic Designing">Graphic Designing</option>
+              <option value="Data Science">Data Science</option>
+              <option value="Data Science">Data Analytics</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="Artificial Intelligence">Artificial Intelligence</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="DevOps">DevOps</option>
+              <option value="Cloud Computing">Cloud Computing</option>
+              <option value="Mobile App Development">Mobile App Development</option>
+              <option value="Python">Python</option>
             </select>
 
             <button type="submit" disabled={loading} className={styles.sendBtn}>
