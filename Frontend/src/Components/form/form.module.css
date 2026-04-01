@@ -1,7 +1,5 @@
-/* --- Global Resets & Smooth Easing --- */
 :root {
   --smooth-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
-  /* New Professional Color Palette */
   --pro-accent: #4a43d1;
   --pro-accent-dark: #4038b5;
   --pro-text-primary: #18191a;
@@ -10,7 +8,6 @@
   --pro-input-border: #e9ecef;
 }
 
-/* Fixes potential layout glitches */
 * {
   box-sizing: border-box;
 }
@@ -43,11 +40,13 @@
 .modalContent {
   background: #ffffff;
   display: flex;
-  border-radius: 20px;
+  flex-wrap: wrap;
+  border-radius: clamp(12px, 3vw, 20px);
   overflow: hidden; /* This is crucial for the slide-in */
   position: relative;
   max-width: 750px; /* Smaller width */
   width: 100%;
+  max-height: 90vh; /* Prevents modal from exceeding screen height */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05),
     0 20px 60px rgba(0, 0, 0, 0.1);
   will-change: transform, opacity;
@@ -87,7 +86,9 @@
   width: 36px;
   height: 36px;
   padding: 0;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .closeBtn:hover {
@@ -97,10 +98,10 @@
 
 /* --- Left Banner (Slides in from Left) --- */
 .leftBanner {
-  flex: 1;
+  flex: 1 1 250px;
   background: linear-gradient(170deg, #1e3a8a 0%, #3b0764 100%);
   color: white;
-  padding: 2rem; /* Shorter height */
+  padding: clamp(1.5rem, 4vw, 2rem); /* Auto scaling height/padding */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,9 +161,11 @@
 
 /* --- Right Form (Slides in from Right) --- */
 .formContainer {
-  flex: 1.5;
-  padding: 2rem 2.5rem; /* Shorter height */
+  flex: 2 1 350px;
+  padding: clamp(1.5rem, 4vw, 2.5rem); /* Auto scaling height/padding */
   overflow-y: auto;
+  min-height: 0; /* Crucial for flex child scrolling */
+  max-height: 100%;
   will-change: transform, opacity;
   /* This animation is symmetrical with the left side */
   animation: slideInRight 0.8s var(--smooth-ease) 0.3s backwards;
@@ -181,9 +184,9 @@
 }
 
 .formContainer h2 {
-  font-size: 1.6rem; /* Shorter height */
+  font-size: clamp(1.4rem, 5vw, 1.6rem); /* Auto height font */
   font-weight: 700;
-  margin-bottom: 20px; /* Shorter height */
+  margin-bottom: clamp(15px, 4vw, 20px); /* Auto height margin */
   color: var(--pro-text-primary);
 }
 
@@ -195,10 +198,25 @@
   display: inline-block;
 }
 
+/* Custom Scrollbar for Form Container */
+.formContainer::-webkit-scrollbar {
+  width: 6px;
+}
+.formContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+.formContainer::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.formContainer::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Shorter height */
+  gap: clamp(12px, 2.5vw, 16px); /* Auto gap */
 }
 
 /* --- Floating Label System --- */
@@ -208,9 +226,9 @@
 
 .floatingLabel {
   position: absolute;
-  top: 12px; /* Shorter height */
-  left: 14px;
-  font-size: 1rem;
+  top: clamp(8px, 2vw, 12px);
+  left: clamp(12px, 2vw, 14px);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   color: var(--pro-text-secondary);
   pointer-events: none;
   transition: all 0.3s var(--smooth-ease);
@@ -222,11 +240,11 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 20px 14px 8px 14px; /* Shorter height */
+  padding: clamp(16px, 3vw, 20px) 14px clamp(6px, 1.5vw, 8px) 14px;
   border-radius: 8px;
   background: var(--pro-input-bg);
   border: 1px solid var(--pro-input-border);
-  font-size: 0.95rem; /* Shorter height */
+  font-size: clamp(0.9rem, 1.5vw, 0.95rem);
   color: var(--pro-text-primary);
   transition: all 0.3s var(--smooth-ease);
   -webkit-appearance: none;
@@ -239,9 +257,9 @@
 .form input:not(:placeholder-shown) ~ .floatingLabel,
 .form select:focus ~ .floatingLabel,
 .form select:valid ~ .floatingLabel {
-  top: 5px; /* Shorter height */
-  left: 14px;
-  font-size: 0.75rem;
+  top: clamp(4px, 1vw, 5px);
+  left: clamp(12px, 2vw, 14px);
+  font-size: clamp(0.7rem, 1.2vw, 0.75rem);
   color: var(--pro-accent);
 }
 
@@ -284,13 +302,13 @@
 /* --- Custom Radio Buttons --- */
 .radioGroup {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem; /* Shorter height */
-  margin: 0; /* Shorter height */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(0.5rem, 1.5vw, 0.75rem); /* Auto scaling gap */
+  margin: 0;
 }
 
 .radioGroup label {
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 1.5vw, 0.9rem); /* Auto scaling font */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -305,7 +323,7 @@
   background: var(--pro-input-bg);
 }
 
-.form input[type='radio'] {
+.form input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;
   margin: 0;
@@ -313,40 +331,28 @@
   height: 1.15em;
   border: 2px solid var(--pro-input-border);
   border-radius: 50%;
-  display: grid;
-  place-items: center;
+  background: transparent;
   transition: all 0.2s var(--smooth-ease);
+  cursor: pointer;
 }
 
-.form input[type='radio']::before {
-  content: '';
-  width: 0.65em;
-  height: 0.65em;
-  border-radius: 50%;
-  background: var(--pro-accent);
-  transform: scale(0);
-  transition: transform 0.2s var(--smooth-ease);
-}
-
-.form input[type='radio']:checked {
+.form input[type="radio"]:checked {
   border-color: var(--pro-accent);
-}
-
-.form input[type='radio']:checked::before {
-  transform: scale(1);
+  background: var(--pro-accent);
+  box-shadow: inset 0 0 0 3px #fff;
 }
 
 /* --- Submit Button --- */
 .form button {
-  padding: 14px;
+  padding: clamp(12px, 2vw, 14px); /* Auto height */
   border: none;
   border-radius: 8px;
   background: var(--pro-accent);
   color: white;
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
   font-weight: 600;
   cursor: pointer;
-  margin-top: 8px; /* Shorter height */
+  margin-top: clamp(8px, 1.5vw, 12px); /* Auto scaling margin */
   transition: background-color 0.3s var(--smooth-ease); /* Clean transition */
   will-change: background-color, transform;
 }
@@ -365,38 +371,82 @@
   cursor: not-allowed;
 }
 
-/* --- REMOVED Staggered Form Animation --- */
-/* All the .formContainer h2, .form .inputGroup, etc.
-   animation rules have been deleted. */
-
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .modalContent {
-    flex-direction: column;
-    max-width: 450px;
-    width: 95%;
-  }
   .leftBanner {
     display: none;
   }
-  
-  /* On mobile, the right form is the only thing visible,
-     so we give it the slideUp animation */
+  .modalContent {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
   .formContainer {
-    padding: 2.5rem 2rem;
-    animation: slideUpFadeIn 0.7s var(--smooth-ease) 0.1s backwards;
+    max-height: 90vh; /* Force height boundary on mobile to trigger scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS touch */
   }
 }
 
 @media (max-width: 480px) {
   .formContainer {
-    padding: 2rem 1.5rem;
+    padding: 1.2rem;
   }
   .formContainer h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+    margin-bottom: 15px;
   }
   .radioGroup {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+  .form {
+    gap: 12px;
+  }
+  .form input,
+  .form select {
+    padding: 16px 12px 6px 12px;
+  }
+  .floatingLabel {
+    left: 12px;
+  }
+  .form input:focus ~ .floatingLabel,
+  .form input:not(:placeholder-shown) ~ .floatingLabel,
+  .form select:focus ~ .floatingLabel,
+  .form select:valid ~ .floatingLabel {
+    left: 12px;
+  }
+}
+
+/* --- Small Laptops / Short Screens --- */
+@media (max-height: 800px) and (min-width: 769px) {
+  .modalContent {
+    max-height: 95vh;
+  }
+  .formContainer {
+    padding: 1.25rem 2rem;
+  }
+  .formContainer h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  .form {
+    gap: 10px;
+  }
+  .form input,
+  .form select {
+    padding: 14px 14px 4px 14px;
+    font-size: 0.9rem;
+  }
+  .form button {
+    padding: 10px;
+    margin-top: 6px;
+  }
+  .floatingLabel {
+    top: 8px;
+  }
+  .form input:focus ~ .floatingLabel,
+  .form input:not(:placeholder-shown) ~ .floatingLabel,
+  .form select:focus ~ .floatingLabel,
+  .form select:valid ~ .floatingLabel {
+    top: 4px;
   }
 }

@@ -45,8 +45,7 @@ const rightScrollCards = [
   { image: images.rupal },
   { image: images.shubham },
   { image: images.simranjeet },
-  { image: images.simrat },
-  { image: images.abhishek },
+  { image: images.simratMl },
   { image: images.arunesh },
 ];
 

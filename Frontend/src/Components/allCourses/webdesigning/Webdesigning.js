@@ -32,14 +32,14 @@ import SecondForm from "../../secondForm/SecondForm";
 
 const rightScrollCards = [
   { image: images.raghav },
-  { image: images.nishaRani },
+  { image: images.NishaRani },
   { image: images.parmeet },
   { image: images.nisha },
   { image: images.rupal },
   { image: images.shubham },
   { image: images.simranjeet },
-  { image: images.simrat },
-  { image: images.abhishek },
+  { image: images.simratMl },
+  { image: images.arunesh },
 ];
 
 const CARD_WIDTH = 300; // px

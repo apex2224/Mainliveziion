@@ -4,14 +4,14 @@ import images from "../../assets/images";
 
 const rightScrollCards = [
     { image: images.raghav },
-    { image: images.nisharani },
+    { image: images.NishaRani },
     { image: images.parmeet },
     { image: images.nisha },
     { image: images.rupal },
     { image: images.shubham },
     { image: images.simranjeet },
-    { image: images.simrat },
-    { image: images.abhishek },
+    { image: images.simratMl },
+    { image: images.arunesh },
 ];
 
 const leftScrollCards = [

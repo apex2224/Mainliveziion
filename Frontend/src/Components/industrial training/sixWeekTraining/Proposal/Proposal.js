@@ -12,7 +12,7 @@ const Proposal = () => {
     email: "",
     phone: "",
     course: "",
-    category: "", // For the radio buttons
+    category: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ const Proposal = () => {
       email: formData.email,
       phone: formData.phone,
       course: formData.course,
-      preference: formData.category, // 'preference' is likely the variable in your email template
+      preference: formData.category,
     };
 
     try {
@@ -149,7 +149,7 @@ const Proposal = () => {
                 <option value="Web Designing">Web Designing</option>
                 <option value="Graphic Designing">Graphic Designing</option>
                 <option value="Data Science">Data Science</option>
-                <option value="Data Science">Data Analytics</option>
+                <option value="Data Analytics">Data Analytics</option>
                 <option value="Machine Learning">Machine Learning</option>
                 <option value="Artificial Intelligence">Artificial Intelligence</option>
                 <option value="Digital Marketing">Digital Marketing</option>
