@@ -13,8 +13,9 @@ import Footer from "../footer/Footer";
 import ReviewsSection from "../reviews/ReviewsSection";
 
 import StudentCarousel from "../placement/StudentCarousel";
+import PlacedImages from "../../assets/placementImages/PlacedImages.jpeg";
 
-import ZiionPlaced from "../../assets/placementImages/ZiionPlaced.jpg";
+// import ZiionPlaced from "../../assets/placementImages/ZiionPlaced.jpg";
 
 import useCustom from "../customHook/useCustom";
 
@@ -170,7 +171,7 @@ const Integration = () => {
 
       0.1,
 
-      1000
+      1000,
     );
 
     camera.position.z = 5;
@@ -202,7 +203,7 @@ const Integration = () => {
     particlesGeometry.setAttribute(
       "position",
 
-      new THREE.BufferAttribute(posArray, 3)
+      new THREE.BufferAttribute(posArray, 3),
     );
 
     const particlesMaterial = new THREE.PointsMaterial({
@@ -220,7 +221,7 @@ const Integration = () => {
     const particlesMesh = new THREE.Points(
       particlesGeometry,
 
-      particlesMaterial
+      particlesMaterial,
     );
 
     scene.add(particlesMesh);
@@ -251,7 +252,7 @@ const Integration = () => {
 
         (Math.random() - 0.5) * 10,
 
-        (Math.random() - 0.5) * 10
+        (Math.random() - 0.5) * 10,
       );
 
       cube.rotation.set(
@@ -259,7 +260,7 @@ const Integration = () => {
 
         Math.random() * Math.PI,
 
-        Math.random() * Math.PI
+        Math.random() * Math.PI,
       );
 
       cubes.push(cube);
@@ -409,7 +410,7 @@ const Integration = () => {
     if (!API_KEY) return;
 
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${PLAYLIST_ID}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${PLAYLIST_ID}&key=${API_KEY}`,
     )
       .then((res) => res.json())
 
@@ -470,7 +471,7 @@ const Integration = () => {
 
         {/* eslint-disable-next-line */}
         <img
-          src={ZiionPlaced}
+          src={PlacedImages}
           alt="Ziion Placement Overview"
           className={styles.overviewImage}
         />

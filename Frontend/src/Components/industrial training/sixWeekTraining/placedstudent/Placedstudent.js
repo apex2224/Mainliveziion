@@ -4,7 +4,7 @@ import styles from "./Placedstudent.module.css";
 import { FaArrowLeft, FaArrowRight, FaPlay } from "react-icons/fa";
 
 // --- (Image imports remain the same) ---
-import ZiionPlaced from "../../../../assets/placementImages/ZiionPlaced.jpg";
+import PlacedImages from "../../../../assets/placementImages/PlacedImages.jpeg";
 import akash from "../../../../assets/placement-slider/akash.jpg";
 import hemant from "../../../../assets/placement-slider/hemant.jpg";
 import jatinder from "../../../../assets/placement-slider/jatinder.jpg";
@@ -264,7 +264,7 @@ const PlacedStudent = () => {
           </p>
         </div>
         <img
-          src={ZiionPlaced}
+          src={PlacedImages}
           alt="Ziion Placement Overview"
           className={styles.overviewImage}
         />

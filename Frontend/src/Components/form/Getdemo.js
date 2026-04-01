@@ -182,6 +182,7 @@ function Form({ closeForm }) {
         {
           name: formData.name,
           email: formData.email,
+          college: formData.college,
           phone: formData.phone,
           course: formData.course,
           preference: formData.category,
@@ -200,8 +201,8 @@ function Form({ closeForm }) {
   };
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
+    <div className={styles.modalOverlay} onClick={closeForm}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeBtn} onClick={closeForm}>
           &times;
         </button>
@@ -272,6 +273,22 @@ function Form({ closeForm }) {
               </label>
             </div>
 
+            {/* --- College Name Input --- */}
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="college"
+                id="college"
+                placeholder=" "
+                value={formData.college}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="college" className={styles.floatingLabel}>
+                College Name
+              </label>
+            </div>
+
             {/* --- Phone Input --- */}
             <div className={styles.inputGroup}>
               <input
@@ -307,7 +324,7 @@ function Form({ closeForm }) {
                 <option value="Web Designing">Web Designing</option>
                 <option value="Graphic Designing">Graphic Designing</option>
                 <option value="Data Science">Data Science</option>
-                <option value="Data Science">Data Analytics</option>
+                <option value="Data Analytics">Data Analytics</option>
                 <option value="Machine Learning">Machine Learning</option>
                 <option value="Artificial Intelligence">
                   Artificial Intelligence

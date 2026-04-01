@@ -43,8 +43,8 @@ const rightScrollCards = [
   { image: images.devagyaPy },
   { image: images.gurshanPy },
   { image: images.simranjeet },
-  { image: images.simrat },
-  { image: images.abhishek },
+  { image: images.simratMl },
+  { image: images.arunesh },
 ];
 
 const useCustomTypewriter = (phrasesArray) => {

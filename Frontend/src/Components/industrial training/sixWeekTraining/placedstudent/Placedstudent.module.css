@@ -166,9 +166,9 @@
   background-clip: padding-box, border-box;
 
   /* --- ADJUST ALL THREE VALUES --- */
-  height: 4rem; /* Example: Increased button height */
-  width: 4rem; /* Example: Increased button width */
-  font-size: 4rem; /* Example: Large icon, but small enough to fit */
+  height: 4rem;
+  width: 4rem;
+  font-size: 1.1rem;
 
   border-radius: 50%;
   cursor: pointer;
@@ -433,7 +433,7 @@
   .studentButton {
     height: 3.6rem;
     width: 3.6rem;
-    font-size: 5rem;
+    font-size: 1rem;
   }
 
   .playButton {
