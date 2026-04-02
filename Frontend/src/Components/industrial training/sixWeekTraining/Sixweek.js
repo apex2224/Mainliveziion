@@ -28,7 +28,7 @@ const Sixweek = () => {
        
         <PlacedStudent />
         <ProjectShow />
-        <SyllabusCard />
+        <SyllabusCard isSixWeek={true} />
         <Courses />
         <Placements />
         <TieUpClg />

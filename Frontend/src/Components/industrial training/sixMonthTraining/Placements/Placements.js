@@ -5,6 +5,15 @@ import styles from "./Placements.module.css";
 import abhishek from "../../../../assets/placementImages copy/abhishek.jpeg";
 import anuj from "../../../../assets/placementImages copy/anuj.jpeg";
 import vansh from "../../../../assets/placementImages copy/vansh.jpeg";
+import taranveer from "../../../../assets/placementImages copy/taranveer.jpeg";
+import simrat from "../../../../assets/placementImages copy/simrat.jpeg";
+import simranjeet from "../../../../assets/placementImages copy/simranjeet.jpeg";
+import shubham from "../../../../assets/placementImages copy/shubham.jpeg";
+import nisha from "../../../../assets/placementImages copy/nisha.jpeg";
+import parmeet from "../../../../assets/placementImages copy/parmeet.jpeg";
+import rupal from "../../../../assets/placementImages copy/rupal.jpeg";
+import raghav from "../../../../assets/placementImages copy/raghav.jpeg";
+import nisharani from "../../../../assets/placementImages copy/nisharani.jpeg";
 
 // --- MOU ASSETS IMPORTS ---
 // Images
@@ -29,8 +38,17 @@ import Mou15 from "../../../../assets/MOUimages/Mou15.mp4";
 // --- DATA ---
 const placementData = [
   { image: abhishek, name: "Abhishek Sharma" },
-  { image: anuj, name: "Anuj Kumar" },
-  { image: vansh, name: "Vansh Kumar" },
+  { image: anuj, name: "Anuj Paimania" },
+  { image: vansh, name: "Vansh Soni" },
+  { image: taranveer, name: "Taranveer Singh" },
+  { image: simrat, name: "Simrat Kaur" },
+  { image: simranjeet, name: "Simranjeet Kaur" },
+  { image: shubham, name: "Shubham Goyal" },
+  { image: nisha, name: "Nisha" },
+  { image: parmeet, name: "Parmeet" },
+  { image: rupal, name: "Rupal" },
+  { image: raghav, name: "Raghav" },
+  { image: nisharani, name: "Nisha Rani" },
 ];
 
 const mouVideos = [
@@ -40,9 +58,18 @@ const mouVideos = [
 ];
 
 const mouImages = [
-  Mou1, Mou2, Mou3, Mou4, 
-  Mou5, Mou6, Mou7, Mou8, 
-  Mou9, Mou10, Mou11, Mou12
+  Mou1,
+  Mou2,
+  Mou3,
+  Mou4,
+  Mou5,
+  Mou6,
+  Mou7,
+  Mou8,
+  Mou9,
+  Mou10,
+  Mou11,
+  Mou12,
 ];
 
 const Placements = () => {
@@ -56,7 +83,7 @@ const Placements = () => {
     if (!API_KEY) return;
 
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${PLAYLIST_ID}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${PLAYLIST_ID}&key=${API_KEY}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -75,12 +102,19 @@ const Placements = () => {
         </h2>
         <div className={styles.imageMarqueeContainer}>
           <div className={styles.imageTrack}>
-            {[...placementData, ...placementData].map((student, index) => (
-              <div key={index} className={styles.imageSlide}>
-                <img src={student.image} alt={student.name} className={styles.placementImage} loading="lazy" />
-                <p className={styles.studentName}>{student.name}</p>
-              </div>
-            ))}
+            {[...placementData, ...placementData, ...placementData].map(
+              (student, index) => (
+                <div key={index} className={styles.imageSlide}>
+                  <img
+                    src={student.image}
+                    alt={student.name}
+                    className={styles.placementImage}
+                    loading="lazy"
+                  />
+                  <p className={styles.studentName}>{student.name}</p>
+                </div>
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -117,7 +151,8 @@ const Placements = () => {
             <span className={styles.gradientText}>Highlights</span>
           </h2>
           <p className={styles.subText}>
-            Watch the key moments from our strategic alliance ceremony with CGC Landran.
+            Watch the key moments from our strategic alliance ceremony with CGC
+            Landran.
           </p>
         </div>
 
@@ -155,9 +190,9 @@ const Placements = () => {
         <div className={styles.imageMasonry}>
           {mouImages.map((imgSrc, index) => (
             <div key={index} className={styles.galleryItem}>
-              <img 
-                src={imgSrc} 
-                alt={`MOU Event ${index + 1}`} 
+              <img
+                src={imgSrc}
+                alt={`MOU Event ${index + 1}`}
                 className={styles.galleryImage}
                 loading="lazy"
               />

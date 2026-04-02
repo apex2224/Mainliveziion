@@ -12,6 +12,8 @@ import {
   FaLock,
   FaRobot,
   FaArrowRight, // Icon for the button
+  FaLinux,
+  FaReact,
 } from "react-icons/fa";
 
 // Updated icons object to use React components
@@ -24,9 +26,11 @@ const icons = {
   infinity: <FaInfinity />,
   lock: <FaLock />,
   ai: <FaRobot />,
+  linux: <FaLinux />,
+  react: <FaReact />,
 };
 
-const SyllabusCard = () => {
+const SyllabusCard = ({ isSixWeek = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
@@ -40,7 +44,7 @@ const SyllabusCard = () => {
 
   const minSwipeDistance = 50;
 
-  const cards = [
+  const baseCards = [
     {
       id: 1,
       title: "Cloud Computing",
@@ -174,6 +178,62 @@ const SyllabusCard = () => {
       ],
     },
   ];
+
+  const sixWeekOnlyCards = [
+    {
+      id: 9,
+      title: "Linux",
+      subtitle: "Operating System",
+      icon: icons.linux,
+      formValue: "linux",
+      topics: [
+        "Linux Basics & Architecture",
+        "Shell Scripting & Commands",
+        "System Administration",
+        "Networking in Linux",
+        "Security & Permissions",
+        "Process & Service Management",
+        "Storage Configuration",
+        "Linux Automation (Cron Jobs)",
+      ],
+    },
+    {
+      id: 10,
+      title: "Frontend Analytics",
+      subtitle: "Data-Driven Web Decisions",
+      icon: icons.chart,
+      formValue: "frontend-analytics",
+      topics: [
+        "Google Analytics Integration",
+        "Event Tracking setup",
+        "User Behavior Analysis",
+        "Performance Metrics",
+        "Data Visualization in UI",
+        "A/B Testing Strategies",
+        "Conversion Rate Optimization",
+        "Custom Dashboards",
+      ],
+    },
+    {
+      id: 11,
+      title: "React Native",
+      subtitle: "Cross-platform Mobile Apps",
+      icon: icons.react,
+      formValue: "react-native",
+      topics: [
+        "React Native Fundamentals",
+        "UI Components & Styling",
+        "Navigation & Routing",
+        "Native Modules Integration",
+        "App Deployment",
+        "Hooks & State Management",
+        "API Integration",
+        "Publishing to App Stores",
+      ],
+    },
+  ];
+
+  const cards = isSixWeek ? [...baseCards, ...sixWeekOnlyCards] : baseCards;
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % cards.length);
