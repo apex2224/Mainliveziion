@@ -21,15 +21,29 @@ const studentData = [
     name: "MAYA",
     feedback:
       '"After completing my BCA, I joined the MERN stack internship here. The hands-on experience with technologies like React, Next.js, and MongoDB on live projects was invaluable. It directly led to my placement as a MERN Stack Developer at an MNC in Noida. I highly recommend this program for enhancing your skills."',
-    videoUrl: "https://www.youtube.com/embed/bplbcMwCec0?autoplay=1",
+    videoUrl: "https://www.youtube.com/embed/videoseries?list=PL35lLDct7CfqpzyHYH15dtZhwwND1pxgQ&index=0&autoplay=1",
     thumbnailUrl: "https://img.youtube.com/vi/bplbcMwCec0/hqdefault.jpg",
   },
   {
     name: "RAGHAV GULATI",
     feedback:
       '"I\'m pursuing a Data Science course here alongside my internship, and the experience has been fantastic. The mentors are highly experienced specialists in their fields. I found this program to be incredibly beneficial and would definitely recommend it to anyone looking for a company with strong mentorship."',
-    videoUrl: "https://www.youtube.com/embed/Tj_qRxJf7PM?autoplay=1",
-    thumbnailUrl: "https://img.youtube.com/vi/Tj_qRxJf7PM/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/videoseries?list=PL35lLDct7CfqpzyHYH15dtZhwwND1pxgQ&index=1&autoplay=1",
+    thumbnailUrl: "https://img.youtube.com/vi/jqavyDF02so/hqdefault.jpg",
+  },
+  {
+    name: "ADITI SHARMA",
+    feedback:
+      '"The training provided here is top-notch. I was able to learn practical, industry-relevant skills that helped me clear my interviews with flying colors. The placement support team is very dedicated and guided me thoroughly."',
+    videoUrl: "https://www.youtube.com/embed/videoseries?list=PL35lLDct7CfqpzyHYH15dtZhwwND1pxgQ&index=2&autoplay=1",
+    thumbnailUrl: "https://img.youtube.com/vi/HxV36qadGAw/hqdefault.jpg",
+  },
+  {
+    name: "DEEPIKA",
+    feedback:
+      '"My experience here has been transformative. It bridged the gap between academic learning and industry expectations. The hands-on projects and continuous feedback from mentors were the key to my success. Highly recommended!"',
+    videoUrl: "https://www.youtube.com/embed/videoseries?list=PL35lLDct7CfqpzyHYH15dtZhwwND1pxgQ&index=3&autoplay=1",
+    thumbnailUrl: "https://img.youtube.com/vi/8QS1LuyrLio/hqdefault.jpg",
   },
 ];
 // ------------------------------------
@@ -198,22 +212,24 @@ const PlacedStudent = () => {
           </blockquote>
 
           {/* --- Styled Manual Controls --- */}
-          <div className={styles.studentNav}>
-            <button
-              onClick={handlePrevStudent}
-              className={styles.studentButton}
-              aria-label="Previous testimonial"
-            >
-              <FaArrowLeft />
-            </button>
-            <button
-              onClick={handleNextStudent}
-              className={styles.studentButton}
-              aria-label="Next testimonial"
-            >
-              <FaArrowRight />
-            </button>
-          </div>
+          {studentData.length > 1 && (
+            <div className={styles.studentNav}>
+              <button
+                onClick={handlePrevStudent}
+                className={styles.studentButton}
+                aria-label="Previous testimonial"
+              >
+                <FaArrowLeft />
+              </button>
+              <button
+                onClick={handleNextStudent}
+                className={styles.studentButton}
+                aria-label="Next testimonial"
+              >
+                <FaArrowRight />
+              </button>
+            </div>
+          )}
           {/* ------------------------- */}
         </div>
 
