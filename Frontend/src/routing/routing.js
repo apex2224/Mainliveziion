@@ -80,6 +80,9 @@ const CardCarousel = lazy(
   () => import("../Components/placementcarousel/CardCarousel.jsx"),
 );
 const StudentForm = lazy(() => import("../Components/admin/Studentform"));
+const BlogList = lazy(() => import("../Components/blog/BlogList"));
+const BlogDetail = lazy(() => import("../Components/blog/BlogDetail"));
+const AdminBlog = lazy(() => import("../Components/admin/AdminBlog"));
 
 export const routes = [
   { path: "/", element: <Main /> },
@@ -122,4 +125,8 @@ export const routes = [
   { path: "/courses", element: <CoursesCard /> },
   { path: "/about", element: <AboutUs /> },
   { path: "/Studentform", element: <StudentForm /> },
+  // ── Blog Routes ──────────────────────────────
+  { path: "/blogs", element: <BlogList /> },
+  { path: "/blogs/:id", element: <BlogDetail /> },
+  { path: "/admin/blog", element: <AdminBlog /> },
 ];
