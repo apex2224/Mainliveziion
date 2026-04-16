@@ -4,7 +4,7 @@ import images from "../../assets/images"; // Note: This import seems unused in t
 import { Link } from "react-router-dom";
 import ReviewsSection from "../reviews/ReviewsSection";
 import StudentGallery from "./StudentGallery";
-
+import BlogPreview from "../blog/BlogPreview";
 import SecondForm from "../secondForm/SecondForm";
 
 const MainContent = () => {
@@ -274,6 +274,7 @@ const MainContent = () => {
 
       <ReviewsSection />
       <StudentGallery />
+      <BlogPreview />
       <SecondForm />
 
       {/* This is the FAQ section you provided in your original code.
