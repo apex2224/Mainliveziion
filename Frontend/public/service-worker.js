@@ -1,48 +1,75 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = "ziion-cache-v1";
-const URLS_TO_CACHE = ["/", "/index.html", "/static/js/bundle.js"];
+const CACHE_NAME = "ziion-cache-v2";
+const STATIC_ASSETS = ["/", "/index.html"];
 
+// Install: cache only the shell
 self.addEventListener("install", (event) => {
+  self.skipWaiting(); // activate immediately
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(URLS_TO_CACHE)),
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)),
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request).then((response) => {
-        if (!response || response.status !== 200 || response.type !== "basic") {
-          return response;
-        }
-        const responseToCache = response.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          if (event.request.method === "GET") {
-            cache.put(event.request, responseToCache);
-          }
-        });
-        return response;
-      });
-    }),
-  );
-});
-
+// Activate: clear old caches
 self.addEventListener("activate", (event) => {
-  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-          return Promise.resolve();
-        }),
-      );
-    }),
+    caches.keys().then((cacheNames) =>
+      Promise.all(
+        cacheNames
+          .filter((name) => name !== CACHE_NAME)
+          .map((name) => caches.delete(name)),
+      ),
+    ).then(() => self.clients.claim()), // take control of all open tabs
   );
+});
+
+// Fetch: SPA-friendly strategy
+self.addEventListener("fetch", (event) => {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Only handle same-origin requests
+  if (url.origin !== self.location.origin) return;
+
+  // ✅ KEY FIX: For navigation requests (page loads/direct URL), always serve index.html
+  // This enables SPA routing to work on refresh/direct navigation
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request).catch(() =>
+        caches.match("/index.html"),
+      ),
+    );
+    return;
+  }
+
+  // For static assets: cache-first strategy
+  if (
+    url.pathname.startsWith("/static/") ||
+    url.pathname.endsWith(".js") ||
+    url.pathname.endsWith(".css") ||
+    url.pathname.endsWith(".png") ||
+    url.pathname.endsWith(".jpg") ||
+    url.pathname.endsWith(".svg") ||
+    url.pathname.endsWith(".ico") ||
+    url.pathname.endsWith(".woff2")
+  ) {
+    event.respondWith(
+      caches.match(request).then(
+        (cached) =>
+          cached ||
+          fetch(request).then((response) => {
+            if (response && response.status === 200) {
+              const clone = response.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+            }
+            return response;
+          }),
+      ),
+    );
+    return;
+  }
+
+  // For everything else: network first
+  event.respondWith(fetch(request).catch(() => caches.match(request)));
 });

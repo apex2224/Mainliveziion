@@ -166,12 +166,14 @@ const BlogCard = ({ blog, onClick, featured = false }) => (
             <Typography sx={{ fontSize: "0.72rem", fontWeight: 600, color: "#374151", lineHeight: 1.2 }}>
               {blog.author}
             </Typography>
-            <Box sx={{ display: "flex", gap: 0.8, alignItems: "center" }}>
-              <CalendarTodayIcon sx={{ fontSize: "0.6rem", color: "#9ca3af" }} />
-              <Typography sx={{ fontSize: "0.65rem", color: "#9ca3af" }}>
-                {fmtDate(blog.createdAt)}
-              </Typography>
-            </Box>
+            {blog.showTimestamp !== false && (
+              <Box sx={{ display: "flex", gap: 0.8, alignItems: "center" }}>
+                <CalendarTodayIcon sx={{ fontSize: "0.6rem", color: "#9ca3af" }} />
+                <Typography sx={{ fontSize: "0.65rem", color: "#9ca3af" }}>
+                  {fmtDate(blog.createdAt)}
+                </Typography>
+              </Box>
+            )}
           </Box>
         </Box>
 

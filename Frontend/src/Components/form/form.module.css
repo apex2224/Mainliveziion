@@ -159,6 +159,50 @@
   transform: scale(1.1) translateY(-2px);
 }
 
+/* --- Office Address Section (inside left banner) --- */
+.addressSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 14px 0 6px;
+  text-align: left;
+}
+
+.addressItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.addressIcon {
+  color: #4fe262;
+  font-size: 14px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.officeLabel {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(79, 226, 98, 0.9);
+  margin-bottom: 2px;
+}
+
+.addressItem p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.4;
+}
+
 /* --- Right Form (Slides in from Right) --- */
 .formContainer {
   flex: 2 1 350px;

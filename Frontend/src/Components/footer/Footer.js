@@ -28,11 +28,17 @@ const Footer = () => {
           <div className="row">
             <div className="col-xl-4 col-md-4 mb-30">
               <div className={`${styles.singleCta} ${styles.ctaAlignSmall}`}>
-                {/* Replaced <i> with React Icon */}
                 <FaMapMarkerAlt className={styles.ctaIcon} />
                 <div className={styles.ctaText}>
-                  <h4>Find us</h4>
-                  <span>D-152, Phase 8, Industrial Area, Mohali</span>
+                  <h4>Our Offices</h4>
+                  <div className={styles.addressBlock}>
+                    <span className={styles.officeBadge}>Office 1</span>
+                    <span>D-152, Phase 8, Industrial Area, Mohali</span>
+                  </div>
+                  <div className={styles.addressBlock}>
+                    <span className={styles.officeBadge}>Office 2</span>
+                    <span>2970 Drew Rd, CANADA, ON L4T 0A6</span>
+                  </div>
                 </div>
               </div>
             </div>

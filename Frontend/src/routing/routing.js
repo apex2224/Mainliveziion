@@ -83,6 +83,9 @@ const StudentForm = lazy(() => import("../Components/admin/Studentform"));
 const BlogList = lazy(() => import("../Components/blog/BlogList"));
 const BlogDetail = lazy(() => import("../Components/blog/BlogDetail"));
 const AdminBlog = lazy(() => import("../Components/admin/AdminBlog"));
+const AdminPanel = lazy(() => import("../Components/admin/AdminPanel"));
+
+const AdminProtectedRoute = lazy(() => import("../Components/admin/AdminProtectedRoute"));
 
 export const routes = [
   { path: "/", element: <Main /> },
@@ -117,16 +120,17 @@ export const routes = [
   { path: "/industrial-training", element: <IndustrialTraining /> },
   { path: "/thank-you", element: <ThankYou /> },
   { path: "/map", element: <Map /> },
-  { path: "/admin", element: <StudentSearch /> },
+  { path: "/admin", element: <AdminProtectedRoute><StudentSearch /></AdminProtectedRoute> },
   { path: "/six-month-training", element: <Sixmonth /> },
   { path: "/six-week-training", element: <Sixweek /> },
   { path: "/card", element: <CardCarousel /> },
-  { path: "/search", element: <StudentSearch /> },
+  { path: "/search", element: <AdminProtectedRoute><StudentSearch /></AdminProtectedRoute> },
   { path: "/courses", element: <CoursesCard /> },
   { path: "/about", element: <AboutUs /> },
-  { path: "/Studentform", element: <StudentForm /> },
+  { path: "/Studentform", element: <AdminProtectedRoute><StudentForm /></AdminProtectedRoute> },
   // ── Blog Routes ──────────────────────────────
   { path: "/blogs", element: <BlogList /> },
   { path: "/blogs/:id", element: <BlogDetail /> },
-  { path: "/admin/blog", element: <AdminBlog /> },
+  { path: "/admin/blog", element: <AdminProtectedRoute><AdminBlog /></AdminProtectedRoute> },
+  { path: "/admin/panel", element: <AdminProtectedRoute><AdminPanel /></AdminProtectedRoute> },
 ];

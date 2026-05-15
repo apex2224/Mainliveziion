@@ -6,6 +6,7 @@ import NavBar from "../head/Navbar";
 import Footer from "../footer/Footer";
 import useCustom from "../customHook/useCustom";
 import Form from "../form/Form";
+import usePageContent from "../../customHook/usePageContent";
 
 import AI from "../../assets/NewCoursesImages/AI.png";
 import CC1 from "../../assets/NewCoursesImages/CC1.png";
@@ -129,18 +130,138 @@ const topics = [
   },
 ];
 
+const IMAGE_MAP = {
+  AI,
+  CC1,
+  DataAnalytics,
+  DataScience,
+  DevOps,
+  ML,
+  MobileAppDevelopment,
+  PHP,
+  CloudComputing,
+  WebDevelopment,
+};
+
 const CoursesCard = () => {
   useCustom("AllCourses | Ziion Technology");
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
-  const handleCardClick = (topic) => {
-    navigate(`/allcourses/${topic.route}`);
+  const handleNavigation = (route) => {
+    navigate(`/allcourses/${route}`);
   };
 
-  const handleGetStartedClick = () => {
-    setShowForm(true);
-  };
+  const { content } = usePageContent("courses-page", {
+    heroBadge: "Professional Training",
+    heroTitle: "All Courses",
+    heroSubtitle:
+      "Explore a wide range of technology courses designed to help you gain in-demand skills, from Web Development and Data Science to AI, Cloud Computing, and more.",
+    stats: [
+      { label: "10 Active Courses", dot: true },
+      { label: "Expert Instructors", dot: false },
+      { label: "Hands-on Projects", dot: false },
+    ],
+    sectionTitle: "Browse All Courses",
+    sectionSubtitle:
+      "Choose from our comprehensive curriculum and start your learning journey today",
+    ctaTitle: "Ready to Start Learning?",
+    ctaSubtitle:
+      "Join thousands of students advancing their careers with our expert-led courses",
+    ctaButtonText: "Get Started Today",
+    coursesList: [
+      {
+        id: 1,
+        route: "data-science",
+        title: "Data Science",
+        description:
+          "Master data manipulation, statistical analysis, and predictive modeling techniques.",
+        color: "#3B82F6",
+        imageKey: "DataScience",
+      },
+      {
+        id: 2,
+        route: "web-development",
+        title: "Web Development",
+        description:
+          "Build modern, responsive websites with frontend, backend, and fullstack technologies.",
+        color: "#8B5CF6",
+        imageKey: "WebDevelopment",
+      },
+      {
+        id: 3,
+        route: "web-designing",
+        title: "Web Designing",
+        description:
+          "Create stunning user experiences with UI/UX design principles and tools.",
+        color: "#F59E0B",
+        imageKey: "WebDevelopment",
+      },
+      {
+        id: 4,
+        route: "digital-marketing",
+        title: "Digital Marketing",
+        description:
+          "Master SEO, social media advertising, campaign analytics, and growth strategies.",
+        color: "#10B981",
+        imageKey: "DataAnalytics",
+      },
+      {
+        id: 5,
+        route: "ai",
+        title: "Artificial Intelligence",
+        description:
+          "Explore neural networks, deep learning, and cutting-edge AI applications.",
+        color: "#EF4444",
+        imageKey: "AI",
+      },
+      {
+        id: 6,
+        route: "ml",
+        title: "Machine Learning",
+        description:
+          "Build intelligent systems with supervised, unsupervised, and reinforcement learning.",
+        color: "#EC4899",
+        imageKey: "ML",
+      },
+      {
+        id: 7,
+        route: "data-analytics",
+        title: "Data Analytics",
+        description:
+          "Transform raw data into actionable insights with powerful analytics tools.",
+        color: "#F97316",
+        imageKey: "DataAnalytics",
+      },
+      {
+        id: 8,
+        route: "mobileapp",
+        title: "Mobile App Development",
+        description:
+          "Create native and cross-platform mobile applications for iOS and Android.",
+        color: "#06B6D4",
+        imageKey: "MobileAppDevelopment",
+      },
+      {
+        id: 9,
+        route: "php",
+        title: "PHP Development",
+        description:
+          "Master server-side scripting and build dynamic web applications with PHP.",
+        color: "#7C3AED",
+        imageKey: "PHP",
+      },
+      {
+        id: 10,
+        route: "graphic",
+        title: "Graphic Designing",
+        description:
+          "Master visual communication through branding, illustration, and digital design.",
+        color: "#DB2777",
+        imageKey: "DataAnalytics",
+      },
+    ],
+  });
 
   const closeForm = () => {
     setShowForm(false);
@@ -155,25 +276,17 @@ const CoursesCard = () => {
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
-              <span>Professional Training</span>
+              <span>{content?.heroBadge}</span>
             </div>
-            <h1 className={styles.heroTitle}>All Courses</h1>
-            <p className={styles.heroSubtitle}>
-              Explore a wide range of technology courses designed to help you
-              gain in-demand skills, from Web Development and Data Science to
-              AI, Cloud Computing, and more.
-            </p>
+            <h1 className={styles.heroTitle}>{content?.heroTitle}</h1>
+            <p className={styles.heroSubtitle}>{content?.heroSubtitle}</p>
             <div className={styles.heroStats}>
-              <div className={styles.statBadge}>
-                <span className={styles.statDot}></span>
-                <span>10 Active Courses</span>
-              </div>
-              <div className={styles.statBadge}>
-                <span>Expert Instructors</span>
-              </div>
-              <div className={styles.statBadge}>
-                <span>Hands-on Projects</span>
-              </div>
+              {content?.stats?.map((stat, i) => (
+                <div key={i} className={styles.statBadge}>
+                  {stat.dot && <span className={styles.statDot}></span>}
+                  <span>{stat.label}</span>
+                </div>
+              ))}
             </div>
           </div>
           <img
@@ -188,56 +301,55 @@ const CoursesCard = () => {
       <section className={styles.coursesSection}>
         <div className={styles.coursesContainer}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Browse All Courses</h2>
-            <p className={styles.sectionSubtitle}>
-              Choose from our comprehensive curriculum and start your learning
-              journey today
-            </p>
+            <h2 className={styles.sectionTitle}>{content?.sectionTitle}</h2>
+            <p className={styles.sectionSubtitle}>{content?.sectionSubtitle}</p>
           </div>
 
           <div className={styles.coursesGrid}>
-            {topics.map((topic) => (
+            {(content?.coursesList || []).map((topic) => (
               <div
                 key={topic.id}
                 className={styles.courseCard}
-                onClick={() => handleCardClick(topic)}
+                onClick={() => handleNavigation(topic.route)}
               >
                 <div
                   className={styles.cardIconWrapper}
-                  style={{ backgroundColor: topic.color }}
+                  style={{ backgroundColor: `${topic.color}15` }}
                 >
+                  <div
+                    className={styles.iconBackground}
+                    style={{ backgroundColor: topic.color }}
+                  ></div>
                   <img
-                    src={topic.images}
+                    src={IMAGE_MAP[topic.imageKey] || WebDevelopment}
                     alt={topic.title}
                     className={styles.cardIcon}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      borderRadius: "16px",
-                    }}
                   />
                 </div>
-                <h3 className={styles.cardTitle}>{topic.title}</h3>
-                <p className={styles.cardDescription}>{topic.description}</p>
-                <div
-                  className={styles.cardFooter}
-                  style={{ color: topic.color }}
-                >
-                  <span>Learn More</span>
-                  <svg
-                    className={styles.arrowIcon}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>{topic.title}</h3>
+                  <p className={styles.cardDescription}>{topic.description}</p>
+                </div>
+
+                <div className={styles.cardFooter}>
+                  <span
+                    className={styles.exploreLink}
+                    style={{ color: topic.color }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                    Explore Syllabus
+                    <svg
+                      className={styles.arrowIcon}
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </span>
                 </div>
               </div>
             ))}
@@ -248,13 +360,13 @@ const CoursesCard = () => {
       {/* CTA Section */}
       <section className={styles.ctaSection}>
         <div className={styles.ctaContainer}>
-          <h2 className={styles.ctaTitle}>Ready to Start Learning?</h2>
-          <p className={styles.ctaSubtitle}>
-            Join thousands of students advancing their careers with our
-            expert-led courses
-          </p>
-          <button className={styles.ctaButton} onClick={handleGetStartedClick}>
-            Get Started Today
+          <h2 className={styles.ctaTitle}>{content?.ctaTitle}</h2>
+          <p className={styles.ctaSubtitle}>{content?.ctaSubtitle}</p>
+          <button
+            className={styles.ctaButton}
+            onClick={() => setShowForm(true)}
+          >
+            {content?.ctaButtonText}
           </button>
         </div>
       </section>

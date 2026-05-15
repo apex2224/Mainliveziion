@@ -159,7 +159,7 @@ import styles from "./form.module.css";
 import emailjs from "@emailjs/browser";
 import images from "../../assets/images";
 import { useNavigate } from "react-router-dom";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
 
 function Form({ closeForm }) {
   const formData = useSelector((state) => state.student);
@@ -215,6 +215,25 @@ function Form({ closeForm }) {
             className={styles.logo}
           />
           <h3>Delivering innovative IT strategies for real-world impact.</h3>
+
+          {/* Office Addresses */}
+          <div className={styles.addressSection}>
+            <div className={styles.addressItem}>
+              <FaMapMarkerAlt className={styles.addressIcon} />
+              <div>
+                <span className={styles.officeLabel}>Office 1 — Mohali</span>
+                <p>D-152, Phase 8, Industrial Area, Mohali</p>
+              </div>
+            </div>
+            <div className={styles.addressItem}>
+              <FaMapMarkerAlt className={styles.addressIcon} />
+              <div>
+                <span className={styles.officeLabel}>Office 2 — CANADA</span>
+                <p>2970 Drew Rd, CANADA, ON L4T 0A6</p>
+              </div>
+            </div>
+          </div>
+
           <p>You can also find us here:</p>
           <div className={styles.socials}>
             <a

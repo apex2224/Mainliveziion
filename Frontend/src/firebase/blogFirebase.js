@@ -59,6 +59,28 @@ export const postBlog = async (blogData) => {
   return await res.json();
 };
 
+// ✅ Update (edit) an existing blog by ID
+export const updateBlog = async (id, blogData) => {
+  const payload = { ...blogData, updatedAt: new Date().toISOString() };
+  const res = await fetch(`${BLOG_DB_URL}/blogs/${id}.json`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error("Failed to update blog");
+  return await res.json();
+};
+
+// ✅ Toggle a single field on a blog (e.g. showTimestamp)
+export const patchBlogField = async (id, field, value) => {
+  const res = await fetch(`${BLOG_DB_URL}/blogs/${id}.json`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ [field]: value }),
+  });
+  if (!res.ok) throw new Error(`Failed to update ${field}`);
+};
+
 // ✅ Delete a blog by ID
 export const deleteBlog = async (id) => {
   const res = await fetch(`${BLOG_DB_URL}/blogs/${id}.json`, {

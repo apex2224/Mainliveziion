@@ -38,7 +38,7 @@ export default function FixedForm() {
       );
 
       dispatch(resetForm());
-      navigate('/thank-you');
+      navigate('/thank-you', { state: { name: formData.name, source: 'tracking' } });
     } catch (error) {
       console.error('EmailJS Error:', error);
     } finally {

@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const otpRoutes = require('./routes/otpRoutes');
 
 const session = require('express-session');
@@ -46,9 +47,18 @@ app.use("/api/plans", planRoutes);
 app.use("/api/visitor", visitorRoutes);
 app.use('/api', studentRoutes);
 
-// 404 for unknown routes
-app.use((req, res, next) => {
-  res.status(404).json({ success: false, message: 'Route not found' });
+// ✅ Serve React frontend static files (production)
+const frontendBuildPath = path.join(__dirname, '../../Frontend/build');
+app.use(express.static(frontendBuildPath));
+
+// ✅ SPA Fallback — all unknown routes serve index.html so React Router handles them
+// This fixes: direct navigation, page refresh on any route
+app.get('*', (req, res) => {
+  // Only fallback for non-API routes
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ success: false, message: 'API route not found' });
+  }
+  res.sendFile(path.join(frontendBuildPath, 'index.html'));
 });
 
 // Global error handler

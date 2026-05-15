@@ -13,7 +13,10 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setShowForm(true);
+      const path = window.location.pathname;
+      if (!path.startsWith('/admin') && !path.startsWith('/Studentform') && !path.startsWith('/search')) {
+        setShowForm(true);
+      }
     }, 200000);
     return () => clearInterval(interval);
   }, []);

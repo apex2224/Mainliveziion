@@ -15,6 +15,7 @@ import {
 
 import Form from "../../../form/Form";
 import GetdemoComponent from "../../../form/Getdemo";
+import usePageContent from "../../../../customHook/usePageContent";
 
 const Getdemo = GetdemoComponent;
 
@@ -43,6 +44,17 @@ const cubeIcons = techIcons.slice(0, 6);
 const HeroSection = () => {
   const [showForm, setShowForm] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
+
+  const { content } = usePageContent("six-week-hero", {
+    badgeText: "Join Ziion technology for a transformative experience",
+    headingMain: "Six Weeks",
+    headingGradient: "Industrial Training",
+    headingEnd: "in Chandigarh",
+    description:
+      "Ziion Technology is offering six-weeks industrial training at Chandigarh for students of B.Tech , MCA, M.Sc (IT), Diploma, and other graduate courses. During the training duration, students are working on actual industry projects where hands-on learning is promoted and technical skills are enhanced.",
+    button1Text: "Talk To Us",
+    button2Text: "Get a DEMO",
+  });
 
   const heroVisualRef = useRef(null);
   // Ref to hold the animation frame ID
@@ -95,32 +107,28 @@ const HeroSection = () => {
       <section className={styles.heroGrid}>
         <article className={styles.heroText}>
           <span className={`${styles.heroSubtitle} ${styles.animateFadeIn}`}>
-            Join Ziion technology for a transformative experience
+            {content?.badgeText}
           </span>
           <h1 className={styles.animateFadeIn}>
-            Six Weeks{" "}
-            <span className={styles.gradientText}>Industrial Training</span> in
-            Chandigarh
+            {content?.headingMain}{" "}
+            <span className={styles.gradientText}>{content?.headingGradient}</span>{" "}
+            {content?.headingEnd}
           </h1>
           <p className={styles.animateFadeIn}>
-            Ziion Technology is offering six-weeks industrial training at
-            Chandigarh for students of B.Tech , MCA, M.Sc (IT), Diploma, and
-            other graduate courses. During the training duration, students are
-            working on actual industry projects where hands-on learning is
-            promoted and technical skills are enhanced.
+            {content?.description}
           </p>
           <div className={`${styles.buttonContainer} ${styles.animateFadeIn}`}>
             <button
               className={`${styles.ctaButton} ${styles.ctaButtonPrimary}`}
               onClick={() => setShowForm(true)}
             >
-              Talk To Us
+              {content?.button1Text}
             </button>
             <button
               className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}
               onClick={() => setShowDemo(true)}
             >
-              Get a DEMO
+              {content?.button2Text}
             </button>
           </div>
         </article>
