@@ -126,10 +126,14 @@ const BlogDetail = () => {
           {/* Meta Info */}
           <div className={styles.metaBar}>
             <span className={styles.metaItem}>✍️ {blog.author}</span>
-            <span className={styles.metaDot}>•</span>
-            <span className={styles.metaItem}>
-              📅 {formatDate(blog.createdAt)}
-            </span>
+            {blog.showTimestamp !== false && (
+              <>
+                <span className={styles.metaDot}>•</span>
+                <span className={styles.metaItem}>
+                  📅 {formatDate(blog.createdAt)}
+                </span>
+              </>
+            )}
             <span className={styles.metaDot}>•</span>
             <span className={styles.metaItem}>⏱ {blog.readTime}</span>
           </div>

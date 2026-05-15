@@ -109,7 +109,7 @@ const BlogPreview = () => {
                     </p>
                     <div className={styles.footer}>
                       <span className={styles.date}>
-                        📅 {formatDate(blog.createdAt)}
+                        {blog.showTimestamp !== false ? `📅 ${formatDate(blog.createdAt)}` : ""}
                       </span>
                       <span className={styles.readMore}>Read More →</span>
                     </div>
