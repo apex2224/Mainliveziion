@@ -143,16 +143,17 @@ const IMAGE_MAP = {
   WebDevelopment,
 };
 
-const CoursesCard = () => {
+const CoursesCard = ({ previewData = null, isPreview = false }) => {
   useCustom("AllCourses | Ziion Technology");
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
   const handleNavigation = (route) => {
+    if (isPreview) return;
     navigate(`/allcourses/${route}`);
   };
 
-  const { content } = usePageContent("courses-page", {
+  const { content: fetchedContent } = usePageContent("courses-page", {
     heroBadge: "Professional Training",
     heroTitle: "All Courses",
     heroSubtitle:
@@ -263,13 +264,15 @@ const CoursesCard = () => {
     ],
   });
 
+  const content = previewData || fetchedContent;
+
   const closeForm = () => {
     setShowForm(false);
   };
 
   return (
     <div className={styles.coursesPage}>
-      <NavBar />
+      {!isPreview && <NavBar />}
 
       {/* Hero Section */}
       <section className={styles.heroSection}>
@@ -371,10 +374,10 @@ const CoursesCard = () => {
         </div>
       </section>
 
-      <Footer />
+      {!isPreview && <Footer />}
 
       {/* Form Modal */}
-      {showForm && <Form closeForm={closeForm} />}
+      {showForm && !isPreview && <Form closeForm={closeForm} />}
     </div>
   );
 };

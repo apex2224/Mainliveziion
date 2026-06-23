@@ -14,6 +14,7 @@ import {
 import { Save, RefreshCw, Plus, Trash2 } from "lucide-react";
 import { fetchPageContent, updatePageContent } from "../../../firebase/cmsFirebase";
 import { IconButton } from "@mui/material";
+import CoursesCard from "../../allCourses/CoursesCard";
 
 const DEFAULT_COURSES_DATA = {
   heroBadge: "Professional Training",
@@ -132,9 +133,10 @@ const CoursesPanel = () => {
   }
 
   return (
-    <Box maxWidth={800} sx={{ color: "#f1f5f9" }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={4}>
-        <Box>
+    <Box sx={{ display: "flex", gap: 4, height: "calc(100vh - 100px)", color: "#f1f5f9" }}>
+      <Box sx={{ flex: 1, overflowY: "auto", pr: 2, pb: 4, maxWidth: "600px" }}>
+        <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={4}>
+          <Box>
           <Typography variant="h5" fontWeight={700} color="#f1f5f9" mb={0.5}>
             Courses Page Content
           </Typography>
@@ -470,6 +472,33 @@ const CoursesPanel = () => {
           {snack.msg}
         </Alert>
       </Snackbar>
+      </Box>
+
+      {/* Right Column: Live Preview */}
+      <Box sx={{ flex: 1.2, borderLeft: "1px solid rgba(99,102,241,0.2)", pl: 4, overflowY: "auto", pb: 4 }}>
+        <Stack direction="row" alignItems="center" spacing={2} mb={3}>
+          <Typography variant="h6" fontWeight={600} color="#a5b4fc">
+            Live Preview
+          </Typography>
+          <Box sx={{ px: 1.5, py: 0.5, borderRadius: 1, backgroundColor: "rgba(16, 185, 129, 0.1)", color: "#10B981", fontSize: "0.75rem", fontWeight: 600 }}>
+            Updates as you type
+          </Box>
+        </Stack>
+        <Box
+          sx={{
+            border: "1px solid rgba(99,102,241,0.3)",
+            borderRadius: "12px",
+            overflow: "hidden",
+            background: "#fff",
+            position: "relative",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+            maxHeight: "80vh",
+            overflowY: "auto"
+          }}
+        >
+          <CoursesCard previewData={data} isPreview={true} />
+        </Box>
+      </Box>
     </Box>
   );
 };

@@ -744,9 +744,9 @@ const AdminBlog = () => {
                             fullWidth
                             size="small"
                             sx={{
-                              "& .MuiInputLabel-root": { color: "#64748b" },
-                              "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                              "& .MuiInputBase-input": { color: "#f1f5f9" },
+                              "& .MuiInputLabel-root": { color: "#6b7280" },
+                              "& .MuiOutlinedInput-notchedOutline": { borderColor: "#d1d5db" },
+                              "& .MuiInputBase-input": { color: "#111111" },
                             }}
                           />
                           <Button
@@ -769,7 +769,19 @@ const AdminBlog = () => {
                                 if (file) {
                                   const reader = new FileReader();
                                   reader.onloadend = () => {
-                                    setForm((p) => ({ ...p, thumbnail: reader.result }));
+                                    const img = new Image();
+                                    img.onload = () => {
+                                      const canvas = document.createElement("canvas");
+                                      const MAX_WIDTH = 800;
+                                      const scaleSize = MAX_WIDTH / img.width;
+                                      canvas.width = MAX_WIDTH;
+                                      canvas.height = img.height * scaleSize;
+                                      const ctx = canvas.getContext("2d");
+                                      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                                      const resizedBase64 = canvas.toDataURL("image/jpeg", 0.7);
+                                      setForm((p) => ({ ...p, thumbnail: resizedBase64 }));
+                                    };
+                                    img.src = reader.result;
                                   };
                                   reader.readAsDataURL(file);
                                 }
@@ -809,10 +821,10 @@ const AdminBlog = () => {
                         inputProps={{ maxLength: 150 }}
                         helperText={`${form.excerpt.length}/150`}
                         sx={{
-                          "& .MuiInputLabel-root": { color: "#64748b" },
-                          "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                          "& .MuiInputBase-input": { color: "#f1f5f9" },
-                          "& .MuiFormHelperText-root": { color: "#64748b" },
+                          "& .MuiInputLabel-root": { color: "#6b7280" },
+                          "& .MuiOutlinedInput-notchedOutline": { borderColor: "#d1d5db" },
+                          "& .MuiInputBase-input": { color: "#111111" },
+                          "& .MuiFormHelperText-root": { color: "#6b7280" },
                         }}
                       />
 
@@ -820,23 +832,23 @@ const AdminBlog = () => {
                       <Box>
                         <Typography
                           variant="caption"
-                          sx={{ color: "#94a3b8", mb: 0.5, display: "block", fontWeight: 500 }}
+                          sx={{ color: "text.secondary", mb: 0.5, display: "block", fontWeight: 500 }}
                         >
                           Full Article Content *
                         </Typography>
                         <Box
                           sx={{
-                            border: "1px solid rgba(99,102,241,0.2)",
+                            border: "1px solid #e5e7eb",
                             borderRadius: 2,
                             overflow: "hidden",
-                            background: "rgba(15,15,35,0.5)",
+                            background: "#ffffff",
                             "& .ql-toolbar": {
-                              borderBottom: "1px solid rgba(99,102,241,0.2)",
+                              borderBottom: "1px solid #e5e7eb",
                               borderTop: "none",
                               borderLeft: "none",
                               borderRight: "none",
-                              bgcolor: "rgba(26,26,46,0.5)",
-                              color: "#f1f5f9",
+                              bgcolor: "#fafafa",
+                              color: "#111111",
                             },
                             "& .ql-container": {
                               borderTop: "none",
@@ -846,12 +858,12 @@ const AdminBlog = () => {
                               fontSize: "0.95rem",
                               fontFamily: "'Inter', sans-serif",
                               minHeight: 320,
-                              backgroundColor: "rgba(15,15,35,0.3)",
+                              backgroundColor: "#ffffff",
                             },
-                            "& .ql-editor": { minHeight: 320, p: 2, color: "#f1f5f9" },
-                            "& .ql-stroke": { stroke: "#94a3b8" },
-                            "& .ql-fill": { fill: "#94a3b8" },
-                            "& .ql-picker": { color: "#f1f5f9" },
+                            "& .ql-editor": { minHeight: 320, p: 2, color: "#111111" },
+                            "& .ql-stroke": { stroke: "#555555" },
+                            "& .ql-fill": { fill: "#555555" },
+                            "& .ql-picker": { color: "#111111" },
                           }}
                         >
                           <ReactQuill
@@ -863,7 +875,7 @@ const AdminBlog = () => {
                             theme="snow"
                           />
                         </Box>
-                        <Typography variant="caption" color="#64748b" sx={{ mt: 0.5, display: "block" }}>
+                        <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: "block" }}>
                           Tip: Click the image icon in toolbar to insert an image via URL
                         </Typography>
                       </Box>
@@ -876,7 +888,7 @@ const AdminBlog = () => {
                           variant="text"
                           startIcon={<Eye size={15} />}
                           onClick={() => setActiveTab("preview")}
-                          sx={{ color: "#94a3b8", "&:hover": { color: "#a5b4fc" } }}
+                          sx={{ color: "#555555", "&:hover": { color: "#111111" } }}
                         >
                           Preview
                         </Button>
@@ -885,12 +897,12 @@ const AdminBlog = () => {
                           startIcon={<RotateCcw size={15} />}
                           onClick={resetForm}
                           sx={{
-                            color: "#94a3b8",
-                            borderColor: "rgba(99,102,241,0.3)",
+                            color: "#555555",
+                            borderColor: "#e5e7eb",
                             "&:hover": {
-                              borderColor: "#6366f1",
-                              backgroundColor: "rgba(99,102,241,0.1)",
-                              color: "#a5b4fc",
+                              borderColor: "#111111",
+                              backgroundColor: "#f3f4f6",
+                              color: "#111111",
                             },
                           }}
                         >
@@ -902,18 +914,21 @@ const AdminBlog = () => {
                           disabled={publishing}
                           startIcon={
                             publishing ? (
-                              <CircularProgress size={14} sx={{ color: "#fff" }} />
+                              <CircularProgress size={14} sx={{ color: "#111111" }} />
                             ) : (
                               <Send size={15} />
                             )
                           }
                           sx={{
-                            background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                            backgroundColor: "#111111",
+                            color: "#ffffff",
                             "&:hover": {
-                              boxShadow: "0 6px 20px rgba(99,102,241,0.4)",
+                              backgroundColor: "#333333",
+                              boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
                             },
                             "&:disabled": {
-                              background: "rgba(99,102,241,0.3)",
+                              backgroundColor: "#e5e7eb",
+                              color: "#9ca3af",
                             },
                           }}
                         >
@@ -932,7 +947,7 @@ const AdminBlog = () => {
             <Box>
               <Stack direction="row" alignItems="center" justifyContent="space-between" mb={4}>
                 <Box>
-                  <Typography variant="h5" fontWeight={700} color="#f1f5f9">
+                  <Typography variant="h5" fontWeight={700} color="text.primary">
                     All Blogs
                     <Chip
                       label={blogs.length}
@@ -941,13 +956,13 @@ const AdminBlog = () => {
                         ml: 1.5,
                         height: 22,
                         fontSize: 11,
-                        bgcolor: "rgba(99,102,241,0.2)",
-                        color: "#a5b4fc",
-                        border: "1px solid rgba(99,102,241,0.3)",
+                        bgcolor: "#f3f4f6",
+                        color: "#374151",
+                        border: "1px solid #e5e7eb",
                       }}
                     />
                   </Typography>
-                  <Typography variant="body2" color="#64748b">
+                  <Typography variant="body2" color="text.secondary">
                     Manage published blog posts
                   </Typography>
                 </Box>
@@ -957,12 +972,12 @@ const AdminBlog = () => {
                   startIcon={<RefreshCw size={14} />}
                   onClick={loadBlogs}
                   sx={{
-                    borderColor: "rgba(99,102,241,0.3)",
-                    color: "#94a3b8",
+                    borderColor: "#e5e7eb",
+                    color: "#555555",
                     "&:hover": {
-                      borderColor: "#6366f1",
-                      color: "#a5b4fc",
-                      backgroundColor: "rgba(99,102,241,0.1)",
+                      borderColor: "#111111",
+                      color: "#111111",
+                      backgroundColor: "#f3f4f6",
                     },
                   }}
                 >
@@ -971,18 +986,18 @@ const AdminBlog = () => {
               </Stack>
 
               {loadingBlogs ? (
-                <Box display="flex" alignItems="center" gap={1.5} py={4} color="#64748b">
-                  <CircularProgress size={20} sx={{ color: "#6366f1" }} />
+                <Box display="flex" alignItems="center" gap={1.5} py={4} color="text.secondary">
+                  <CircularProgress size={20} sx={{ color: "#111111" }} />
                   <Typography variant="body2">Loading blogs...</Typography>
                 </Box>
               ) : blogs.length === 0 ? (
-                <Box textAlign="center" py={8} color="#64748b">
+                <Box textAlign="center" py={8} color="text.secondary">
                   <Box
                     sx={{
                       width: 60,
                       height: 60,
                       borderRadius: 15,
-                      background: "rgba(99,102,241,0.1)",
+                      background: "#f3f4f6",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -990,17 +1005,18 @@ const AdminBlog = () => {
                       mb: 2,
                     }}
                   >
-                    <LayoutList size={32} strokeWidth={1.5} color="#6366f1" />
+                    <LayoutList size={32} strokeWidth={1.5} color="#111111" />
                   </Box>
-                  <Typography variant="body1" mb={2} color="#94a3b8">No blogs published yet.</Typography>
+                  <Typography variant="body1" mb={2} color="text.secondary">No blogs published yet.</Typography>
                   <Button
                     variant="contained"
                     onClick={() => setActiveTab("write")}
                     startIcon={<PenLine size={15} />}
                     sx={{
-                      background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                      backgroundColor: "#111111",
+                      color: "#ffffff",
                       "&:hover": {
-                        boxShadow: "0 6px 20px rgba(99,102,241,0.4)",
+                        backgroundColor: "#333333",
                       },
                     }}
                   >
@@ -1014,11 +1030,11 @@ const AdminBlog = () => {
                       key={blog.id}
                       elevation={0}
                       sx={{
-                        border: "1px solid rgba(99,102,241,0.15)",
-                        background: "rgba(26,26,46,0.4)",
+                        border: "1px solid #e5e7eb",
+                        background: "#ffffff",
                         "&:hover": {
-                          borderColor: "#6366f1",
-                          boxShadow: "0 4px 20px rgba(99,102,241,0.15)",
+                          borderColor: "#111111",
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
                           transform: "translateY(-2px)",
                         },
                         transition: "all 0.2s",
@@ -1037,7 +1053,7 @@ const AdminBlog = () => {
                               borderRadius: 2,
                               objectFit: "cover",
                               flexShrink: 0,
-                              border: "1px solid rgba(99,102,241,0.15)",
+                              border: "1px solid #e5e7eb",
                             }}
                             onError={(e) => (e.target.style.display = "none")}
                           />
@@ -1050,9 +1066,9 @@ const AdminBlog = () => {
                               sx={{
                                 height: 20,
                                 fontSize: 10,
-                                bgcolor: "rgba(99,102,241,0.15)",
-                                color: "#a5b4fc",
-                                border: "1px solid rgba(99,102,241,0.25)",
+                                bgcolor: "#f3f4f6",
+                                color: "#374151",
+                                border: "1px solid #e5e7eb",
                                 mb: 0.5,
                               }}
                             />
@@ -1060,11 +1076,11 @@ const AdminBlog = () => {
                               variant="body2"
                               fontWeight={600}
                               noWrap
-                              sx={{ mb: 0.5, color: "#f1f5f9" }}
+                              sx={{ mb: 0.5, color: "text.primary" }}
                             >
                               {blog.title}
                             </Typography>
-                            <Typography variant="caption" color="#64748b">
+                            <Typography variant="caption" color="text.secondary">
                               {blog.author} &nbsp;·&nbsp; {formatDate(blog.createdAt)} &nbsp;·&nbsp; {blog.readTime}
                             </Typography>
                           </Box>
@@ -1079,16 +1095,16 @@ const AdminBlog = () => {
                                   onChange={() => handleToggleTimestamp(blog.id, blog.showTimestamp !== false)}
                                   sx={{
                                     "& .MuiSwitch-switchBase.Mui-checked": {
-                                      color: "#6366f1",
+                                      color: "#111111",
                                     },
                                     "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-                                      backgroundColor: "#6366f1",
+                                      backgroundColor: "#111111",
                                     },
                                   }}
                                 />
                               }
                               label={
-                                <Typography variant="caption" sx={{ fontSize: '10px', color: "#64748b" }}>
+                                <Typography variant="caption" sx={{ fontSize: '10px', color: "text.secondary" }}>
                                   {blog.showTimestamp !== false ? "ON" : "OFF"}
                                 </Typography>
                               }
@@ -1099,8 +1115,8 @@ const AdminBlog = () => {
                               onClick={() => handleEdit(blog)}
                               title="Edit"
                               sx={{
-                                color: "#94a3b8",
-                                "&:hover": { color: "#a5b4fc", backgroundColor: "rgba(99,102,241,0.1)" },
+                                color: "#555555",
+                                "&:hover": { color: "#111111", backgroundColor: "#f3f4f6" },
                               }}
                             >
                               <Pencil size={16} />
@@ -1110,8 +1126,8 @@ const AdminBlog = () => {
                               onClick={() => window.open(`/blogs/${blog.id}`, "_blank")}
                               title="View"
                               sx={{
-                                color: "#94a3b8",
-                                "&:hover": { color: "#34d399", backgroundColor: "rgba(52,211,153,0.1)" },
+                                color: "#555555",
+                                "&:hover": { color: "#059669", backgroundColor: "#d1fae5" },
                               }}
                             >
                               <ExternalLink size={16} />
@@ -1122,12 +1138,12 @@ const AdminBlog = () => {
                               disabled={deletingId === blog.id}
                               title="Delete"
                               sx={{
-                                color: "#f87171",
-                                "&:hover": { color: "#fca5a5", backgroundColor: "rgba(248,113,113,0.1)" },
+                                color: "#dc2626",
+                                "&:hover": { color: "#b91c1c", backgroundColor: "#fee2e2" },
                               }}
                             >
                               {deletingId === blog.id ? (
-                                <CircularProgress size={14} sx={{ color: "#f87171" }} />
+                                <CircularProgress size={14} sx={{ color: "#dc2626" }} />
                               ) : (
                                 <Trash2 size={16} />
                               )}
@@ -1152,25 +1168,25 @@ const AdminBlog = () => {
                   startIcon={<ArrowLeft size={15} />}
                   onClick={() => setActiveTab("write")}
                   sx={{
-                    color: "#94a3b8",
-                    "&:hover": { color: "#a5b4fc", backgroundColor: "rgba(99,102,241,0.1)" },
+                    color: "#555555",
+                    "&:hover": { color: "#111111", backgroundColor: "#f3f4f6" },
                   }}
                 >
                   Back to Edit
                 </Button>
-                <Typography variant="h6" fontWeight={700} color="#f1f5f9">
+                <Typography variant="h6" fontWeight={700} color="text.primary">
                   Preview
                 </Typography>
               </Stack>
 
               {!form.title ? (
-                <Box textAlign="center" py={8} color="#64748b">
+                <Box textAlign="center" py={8} color="text.secondary">
                   <Box
                     sx={{
                       width: 60,
                       height: 60,
                       borderRadius: 15,
-                      background: "rgba(99,102,241,0.1)",
+                      background: "#f3f4f6",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -1178,14 +1194,14 @@ const AdminBlog = () => {
                       mb: 2,
                     }}
                   >
-                    <Eye size={32} strokeWidth={1.5} color="#6366f1" />
+                    <Eye size={32} strokeWidth={1.5} color="#111111" />
                   </Box>
-                  <Typography variant="body1" color="#94a3b8">
+                  <Typography variant="body1" color="text.secondary">
                     Nothing to preview yet. Write a blog first.
                   </Typography>
                 </Box>
               ) : (
-                <Card elevation={0} sx={{ border: "1px solid rgba(99,102,241,0.2)", overflow: "hidden", background: "rgba(26,26,46,0.6)" }}>
+                <Card elevation={0} sx={{ border: "1px solid #e5e7eb", overflow: "hidden", background: "#ffffff" }}>
                   {form.thumbnail && (
                     <CardMedia
                       component="img"
@@ -1200,16 +1216,16 @@ const AdminBlog = () => {
                       label={form.category}
                       size="small"
                       sx={{
-                        bgcolor: "rgba(99,102,241,0.15)",
-                        color: "#a5b4fc",
-                        border: "1px solid rgba(99,102,241,0.25)",
+                        bgcolor: "#f3f4f6",
+                        color: "#374151",
+                        border: "1px solid #e5e7eb",
                         mb: 1.5,
                       }}
                     />
-                    <Typography variant="h5" fontWeight={800} mb={1} color="#f1f5f9">
+                    <Typography variant="h5" fontWeight={800} mb={1} color="text.primary">
                       {form.title}
                     </Typography>
-                    <Typography variant="caption" color="#64748b">
+                    <Typography variant="caption" color="text.secondary">
                       {form.author} &nbsp;·&nbsp; {form.readTime}
                     </Typography>
 
@@ -1218,12 +1234,12 @@ const AdminBlog = () => {
                         sx={{
                           mt: 2,
                           p: "14px 18px",
-                          bgcolor: "rgba(99,102,241,0.1)",
-                          borderLeft: "4px solid #6366f1",
+                          bgcolor: "#f3f4f6",
+                          borderLeft: "4px solid #111111",
                           borderRadius: "0 8px 8px 0",
                         }}
                       >
-                        <Typography variant="body1" fontWeight={500} color="#94a3b8">
+                        <Typography variant="body1" fontWeight={500} color="text.secondary">
                           {form.excerpt}
                         </Typography>
                       </Box>
@@ -1235,17 +1251,17 @@ const AdminBlog = () => {
                       sx={{
                         "& .ql-editor": { padding: 0 },
                         "& img": { maxWidth: "100%", borderRadius: 1 },
-                        "& h1,h2,h3": { fontFamily: "'Inter',sans-serif", mb: 1, color: "#f1f5f9" },
-                        "& p": { lineHeight: 1.85, color: "#94a3b8", mb: 1.2 },
+                        "& h1,h2,h3": { fontFamily: "'Inter',sans-serif", mb: 1, color: "text.primary" },
+                        "& p": { lineHeight: 1.85, color: "text.secondary", mb: 1.2 },
                         "& ul,ol": { pl: 3, mb: 1.5 },
-                        "& blockquote": { borderLeft: "4px solid #6366f1", pl: 2, color: "#94a3b8", bgcolor: "rgba(99,102,241,0.1)", py: 1 },
-                        "& a": { color: "#6366f1" },
+                        "& blockquote": { borderLeft: "4px solid #111111", pl: 2, color: "text.secondary", bgcolor: "#f3f4f6", py: 1 },
+                        "& a": { color: "#111111" },
                       }}
                     >
                       <div
                         className="ql-editor"
                         dangerouslySetInnerHTML={{ __html: form.content }}
-                        style={{ padding: 0, fontFamily: "'Inter',sans-serif", color: "#94a3b8" }}
+                        style={{ padding: 0, fontFamily: "'Inter',sans-serif", color: "#555555" }}
                       />
                     </Box>
                   </CardContent>
@@ -1269,8 +1285,8 @@ const AdminBlog = () => {
           onClose={() => setSnack((p) => ({ ...p, open: false }))}
           sx={{
             borderRadius: 2,
-            boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
-            border: "1px solid rgba(99,102,241,0.2)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            border: "1px solid #e5e7eb",
           }}
         >
           {snack.msg}

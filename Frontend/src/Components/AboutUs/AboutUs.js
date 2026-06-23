@@ -145,7 +145,7 @@ const AboutUs = () => {
 
           <FounderBlock
             img={images.FounderImg1}
-            name="Mr. Phillip Verma"
+            name="Mr. Philip Verma"
             role="Director"
             text="Our mission is technical sovereignty. We engineer platforms that allow businesses to automate complex workflows and scale without friction."
             stats={[

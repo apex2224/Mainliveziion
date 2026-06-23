@@ -213,7 +213,7 @@ const Footer = () => {
                     <a href="/contact-us">Contact Us</a>
                   </li>
                   <li>
-                    <a href="/">Latest News</a>
+                    <a href="/blogs">Latest News</a>
                   </li>
                 </ul>
               </div>
@@ -229,7 +229,7 @@ const Footer = () => {
             <div className="col-12 text-center">
               <div className={styles.copyrightText}>
                 <p>
-                  Copyright &copy; 2025, All Right Reserved{" "}
+                  Copyright &copy; 2026, All Right Reserved{" "}
                   <a href="https://ziiontechnology.in/">Ziion Technology</a>
                 </p>
               </div>

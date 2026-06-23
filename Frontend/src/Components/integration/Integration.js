@@ -474,6 +474,7 @@ const Integration = () => {
           src={PlacedImages}
           alt="Ziion Placement Overview"
           className={styles.overviewImage}
+          loading="lazy"
         />
       </section>
 
@@ -522,7 +523,7 @@ const Integration = () => {
           {collegeFeatures.map((feature, index) => (
             <div key={index} className={styles.collegeCard}>
               <div className={styles.collegeIcon}>
-                <img src={feature.image} alt={feature.text} />
+                <img src={feature.image} alt={feature.text} loading="lazy" />
               </div>
 
               <p>{feature.text}</p>
@@ -548,6 +549,7 @@ const Integration = () => {
               src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop"
               alt="Placement Support"
               className={styles.statsImage}
+              loading="lazy"
             />
           </div>
 

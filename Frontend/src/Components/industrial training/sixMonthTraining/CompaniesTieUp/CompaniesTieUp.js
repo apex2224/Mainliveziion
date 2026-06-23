@@ -34,13 +34,13 @@ const CompaniesTieUp = () => {
           {/* Map the images once */}
           {imageSources.map((image, index) => (
             <div className={styles.logoContainer} key={index}>
-              <img src={image.src} alt={image.alt} className={styles.logo} />
+              <img src={image.src} alt={image.alt} className={styles.logo} loading="lazy" />
             </div>
           ))}
           {/* loop */}
           {imageSources.map((image, index) => (
             <div className={styles.logoContainer} key={`clone-${index}`}>
-              <img src={image.src} alt={image.alt} className={styles.logo} />
+              <img src={image.src} alt={image.alt} className={styles.logo} loading="lazy" />
             </div>
           ))}
         </div>

@@ -132,7 +132,13 @@ const SidebarContent = ({ activeTab, setActiveTab, collapsed, navigate }) => (
             >
               <ListItemButton
                 selected={isActive}
-                onClick={() => setActiveTab(item.id)}
+                onClick={() => {
+                  if (item.id === "blog") {
+                    window.open("/admin/blog", "_blank");
+                  } else {
+                    setActiveTab(item.id);
+                  }
+                }}
                 sx={{
                   borderRadius: "12px",
                   minHeight: 46,
@@ -261,7 +267,7 @@ const SidebarContent = ({ activeTab, setActiveTab, collapsed, navigate }) => (
 
 /* ─── Main Component ─── */
 const AdminPanel = () => {
-  const [activeTab, setActiveTab] = useState("blog");
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
@@ -272,7 +278,6 @@ const AdminPanel = () => {
 
   const renderContent = () => {
     switch (activeTab) {
-      case "blog":      return <AdminBlog isSubPanel />;
       case "courses":   return <CoursesPanel />;
       case "six-week":  return <SixWeekPanel />;
       case "six-month": return <SixMonthPanel />;
