@@ -112,6 +112,7 @@ export const routes = [
   { path: "/mobileapp", element: <MobileAppDevelopment /> },
   { path: "/php", element: <PHP /> },
   { path: "/graphic", element: <GraphicDesigning /> },
+  
   { path: "/aboutus", element: <AboutUs /> },
   { path: "/allcourses", element: <CoursesCard /> },
   { path: "/allcourses/:courseRoute", element: <CourseDetail /> },

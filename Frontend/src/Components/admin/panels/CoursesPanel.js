@@ -10,11 +10,29 @@ import {
   CircularProgress,
   Snackbar,
   Alert,
+  Chip,
+  Skeleton,
+  Fade,
+  IconButton,
 } from "@mui/material";
-import { Save, RefreshCw, Plus, Trash2 } from "lucide-react";
+import { Save, RefreshCw, Plus, Trash2, BookOpen, Layout, Layers, Sparkles, Check, Zap } from "lucide-react";
 import { fetchPageContent, updatePageContent } from "../../../firebase/cmsFirebase";
-import { IconButton } from "@mui/material";
 import CoursesCard from "../../allCourses/CoursesCard";
+
+const ACCENT = "#3b82f6";
+const ACCENT_LIGHT = "#60a5fa";
+const ACCENT_GRADIENT = "linear-gradient(135deg, #3b82f6, #2563eb)";
+
+const CATEGORY_MAP = {
+  DataScience: "Data Science",
+  WebDevelopment: "Web Dev",
+  MobileAppDevelopment: "Mobile",
+  DataAnalytics: "Analytics",
+  AI: "AI / ML",
+  ML: "AI / ML",
+  PHP: "Backend",
+  Graphic: "Design",
+};
 
 const DEFAULT_COURSES_DATA = {
   heroBadge: "Professional Training",
@@ -47,10 +65,64 @@ const DEFAULT_COURSES_DATA = {
   ],
 };
 
+/* Reusable text field styling with focus ring animation */
+const textFieldSx = {
+  "& .MuiInputLabel-root": {
+    color: "#94a3b8",
+    fontWeight: 500,
+    fontSize: "0.85rem",
+    letterSpacing: "0.01em",
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#e2e8f0",
+    transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+  },
+  "& .MuiInputBase-input": { color: "#0f172a" },
+  "& .MuiOutlinedInput-root": {
+    bgcolor: "#f8fafc",
+    transition: "all 0.3s ease",
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#3b82f6",
+    },
+    "&.Mui-focused": {
+      boxShadow: "0 0 0 3px rgba(59,130,246,0.15)",
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: `${ACCENT} !important`,
+    },
+  },
+};
+
+/* Reusable section card styling with gradient left border and hover lift */
+const sectionCardSx = {
+  border: "1px solid #e2e8f0",
+  background: "#ffffff",
+  position: "relative",
+  overflow: "visible",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  boxShadow: "none",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    left: 0,
+    top: 10,
+    bottom: 10,
+    width: "4px",
+    background: ACCENT_GRADIENT,
+    borderRadius: "0 4px 4px 0",
+  },
+  "&:hover": {
+    transform: "translateY(-2px)",
+    boxShadow: "0 4px 15px rgba(0,0,0,0.06)",
+    borderColor: "#3b82f6",
+  },
+};
+
 const CoursesPanel = () => {
   const [data, setData] = useState(DEFAULT_COURSES_DATA);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
   const [snack, setSnack] = useState({ open: false, msg: "", severity: "success" });
 
   const loadData = async () => {
@@ -103,9 +175,12 @@ const CoursesPanel = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     setSaving(true);
+    setSaveSuccess(false);
     try {
       await updatePageContent("courses-page", data);
       setSnack({ open: true, msg: "Content saved successfully!", severity: "success" });
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 2000);
     } catch (error) {
       setSnack({ open: true, msg: "Failed to save content.", severity: "error" });
     } finally {
@@ -113,371 +188,459 @@ const CoursesPanel = () => {
     }
   };
 
+  const courseCount = (data.coursesList || []).length;
+
+  /* Shimmer loading state */
   if (loading) {
     return (
-      <Box
-        display="flex"
-        alignItems="center"
-        gap={2}
-        p={4}
-        sx={{
-          minHeight: "400px",
-          background: "linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%)",
-          color: "#64748b",
-        }}
-      >
-        <CircularProgress size={24} sx={{ color: "#6366f1" }} />
-        <Typography>Loading Courses CMS...</Typography>
+      <Box sx={{ display: "flex", gap: 4, height: "calc(100vh - 100px)", color: "#0f172a" }}>
+        <style>{`
+          @keyframes shimmer {
+            0% { background-position: -400px 0; }
+            100% { background-position: 400px 0; }
+          }
+        `}</style>
+        <Box sx={{ flex: 1, overflowY: "auto", pr: 2, pb: 4, maxWidth: "600px" }}>
+          <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={4}>
+            <Box>
+              <Skeleton variant="text" width={260} height={40} sx={{ bgcolor: "#f1f5f9" }} />
+              <Skeleton variant="text" width={340} height={24} sx={{ bgcolor: "#f1f5f9" }} />
+            </Box>
+            <Skeleton variant="rounded" width={90} height={32} sx={{ bgcolor: "#f1f5f9", borderRadius: 1 }} />
+          </Stack>
+          {[1, 2, 3, 4].map((i) => (
+            <Box key={i} sx={{ mb: 3 }}>
+              <Skeleton
+                variant="rounded"
+                height={160}
+                sx={{
+                  bgcolor: "#f1f5f9",
+                  borderRadius: 2,
+                  "&::after": {
+                    background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.06), transparent)",
+                  },
+                }}
+              />
+            </Box>
+          ))}
+        </Box>
+        <Box sx={{ flex: 1.2, borderLeft: "1px solid #e2e8f0", pl: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Stack alignItems="center" spacing={2}>
+            <CircularProgress size={32} sx={{ color: "#3b82f6" }} />
+            <Typography variant="body2" color="#64748b">Loading courses...</Typography>
+          </Stack>
+        </Box>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ display: "flex", gap: 4, height: "calc(100vh - 100px)", color: "#f1f5f9" }}>
+    <Box sx={{ display: "flex", gap: 4, height: "calc(100vh - 100px)", color: "#0f172a" }}>
+      <style>{`
+        @keyframes coursesSavePulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.4); }
+          50% { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+        }
+        @keyframes coursesCheckPop {
+          0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+          50% { transform: scale(1.2) rotate(0deg); opacity: 1; }
+          100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+      `}</style>
+
       <Box sx={{ flex: 1, overflowY: "auto", pr: 2, pb: 4, maxWidth: "600px" }}>
+        {/* Header with icon and course count badge */}
         <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={4}>
           <Box>
-          <Typography variant="h5" fontWeight={700} color="#f1f5f9" mb={0.5}>
-            Courses Page Content
-          </Typography>
-          <Typography variant="body2" color="#64748b">
-            Manage text, headings, and CTA sections of the /allcourses page.
-          </Typography>
-        </Box>
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<RefreshCw size={16} />}
-          onClick={loadData}
-          sx={{
-            borderColor: "rgba(99,102,241,0.3)",
-            color: "#94a3b8",
-            "&:hover": {
-              borderColor: "#6366f1",
-              color: "#a5b4fc",
-              backgroundColor: "rgba(99,102,241,0.1)",
-            },
-          }}
-        >
-          Refresh
-        </Button>
-      </Stack>
-
-      <form onSubmit={handleSave}>
-        <Stack spacing={4}>
-          {/* Hero Section */}
-          <Card elevation={0} sx={{ border: "1px solid rgba(99,102,241,0.2)", background: "rgba(26,26,46,0.6)" }}>
-            <CardContent>
-              <Typography variant="h6" fontWeight={600} mb={2} color="#f1f5f9">
-                Hero Section
+            <Stack direction="row" alignItems="center" spacing={1.5} mb={0.5}>
+              <Layout size={22} color={ACCENT} />
+              <Typography variant="h5" fontWeight={700} color="#0f172a">
+                Courses Page Content
               </Typography>
-              <Stack spacing={2.5}>
-                <TextField
-                  label="Hero Badge Text"
-                  name="heroBadge"
-                  value={data.heroBadge}
-                  onChange={handleChange}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-                <TextField
-                  label="Hero Title (H1)"
-                  name="heroTitle"
-                  value={data.heroTitle}
-                  onChange={handleChange}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-                <TextField
-                  label="Hero Subtitle"
-                  name="heroSubtitle"
-                  value={data.heroSubtitle}
-                  onChange={handleChange}
-                  fullWidth
-                  multiline
-                  rows={3}
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-              </Stack>
-            </CardContent>
-          </Card>
-
-          {/* Grid Section Header */}
-          <Card elevation={0} sx={{ border: "1px solid rgba(99,102,241,0.2)", background: "rgba(26,26,46,0.6)" }}>
-            <CardContent>
-              <Typography variant="h6" fontWeight={600} mb={2} color="#f1f5f9">
-                Course Grid Header
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={1.5}>
+              <Typography variant="body2" color="#64748b">
+                Manage text, headings, and CTA sections of the /allcourses page.
               </Typography>
-              <Stack spacing={2.5}>
-                <TextField
-                  label="Section Title"
-                  name="sectionTitle"
-                  value={data.sectionTitle}
-                  onChange={handleChange}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-                <TextField
-                  label="Section Subtitle"
-                  name="sectionSubtitle"
-                  value={data.sectionSubtitle}
-                  onChange={handleChange}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-              </Stack>
-            </CardContent>
-          </Card>
+              <Chip
+                label={`${courseCount} courses`}
+                size="small"
+                icon={<BookOpen size={12} />}
+                sx={{
+                  bgcolor: "rgba(59,130,246,0.08)",
+                  color: "#3b82f6",
+                  fontWeight: 600,
+                  fontSize: "0.7rem",
+                  height: 22,
+                  "& .MuiChip-icon": { color: "#3b82f6" },
+                }}
+              />
+            </Stack>
+          </Box>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<RefreshCw size={16} />}
+            onClick={loadData}
+            sx={{
+              borderColor: "#e2e8f0",
+              color: "#64748b",
+              transition: "all 0.2s ease",
+              "&:hover": {
+                borderColor: "#3b82f6",
+                color: "#3b82f6",
+                backgroundColor: "rgba(59,130,246,0.04)",
+              },
+            }}
+          >
+            Refresh
+          </Button>
+        </Stack>
 
-          {/* CTA Section */}
-          <Card elevation={0} sx={{ border: "1px solid rgba(99,102,241,0.2)", background: "rgba(26,26,46,0.6)" }}>
-            <CardContent>
-              <Typography variant="h6" fontWeight={600} mb={2} color="#f1f5f9">
-                Bottom CTA Section
-              </Typography>
-              <Stack spacing={2.5}>
-                <TextField
-                  label="CTA Title"
-                  name="ctaTitle"
-                  value={data.ctaTitle}
-                  onChange={handleChange}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-                <TextField
-                  label="CTA Subtitle"
-                  name="ctaSubtitle"
-                  value={data.ctaSubtitle}
-                  onChange={handleChange}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-                <TextField
-                  label="Button Text"
-                  name="ctaButtonText"
-                  value={data.ctaButtonText}
-                  onChange={handleChange}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    "& .MuiInputLabel-root": { color: "#64748b" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                    "& .MuiInputBase-input": { color: "#f1f5f9" },
-                  }}
-                />
-              </Stack>
-            </CardContent>
-          </Card>
+        <form onSubmit={handleSave}>
+          <Stack spacing={4}>
+            {/* Hero Section */}
+            <Card elevation={0} sx={sectionCardSx}>
+              <CardContent>
+                <Stack direction="row" alignItems="center" spacing={1} mb={2}>
+                  <Sparkles size={18} color={ACCENT_LIGHT} />
+                  <Typography variant="h6" fontWeight={600} color="#0f172a">
+                    Hero Section
+                  </Typography>
+                </Stack>
+                <Stack spacing={2.5}>
+                  <TextField
+                    label="Hero Badge Text"
+                    name="heroBadge"
+                    value={data.heroBadge}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    placeholder="e.g. Professional Training"
+                    sx={textFieldSx}
+                  />
+                  <TextField
+                    label="Hero Title (H1)"
+                    name="heroTitle"
+                    value={data.heroTitle}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    placeholder="e.g. All Courses"
+                    sx={textFieldSx}
+                  />
+                  <TextField
+                    label="Hero Subtitle"
+                    name="heroSubtitle"
+                    value={data.heroSubtitle}
+                    onChange={handleChange}
+                    fullWidth
+                    multiline
+                    rows={3}
+                    placeholder="Brief description for the hero section"
+                    sx={textFieldSx}
+                  />
+                </Stack>
+              </CardContent>
+            </Card>
 
-          {/* Manage Courses List */}
-          <Card elevation={0} sx={{ border: "1px solid rgba(99,102,241,0.2)", background: "rgba(26,26,46,0.6)" }}>
-            <CardContent>
-              <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
-                <Typography variant="h6" fontWeight={600} color="#f1f5f9">Individual Courses</Typography>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  startIcon={<Plus size={16} />}
-                  onClick={addCourse}
-                  sx={{
-                    borderColor: "rgba(99,102,241,0.3)",
-                    color: "#94a3b8",
-                    "&:hover": {
-                      borderColor: "#6366f1",
-                      color: "#a5b4fc",
-                      backgroundColor: "rgba(99,102,241,0.15)",
-                    },
-                  }}
-                >
-                  Add Course
-                </Button>
-              </Stack>
+            {/* Grid Section Header */}
+            <Card elevation={0} sx={sectionCardSx}>
+              <CardContent>
+                <Stack direction="row" alignItems="center" spacing={1} mb={2}>
+                  <Layers size={18} color={ACCENT_LIGHT} />
+                  <Typography variant="h6" fontWeight={600} color="#0f172a">
+                    Course Grid Header
+                  </Typography>
+                </Stack>
+                <Stack spacing={2.5}>
+                  <TextField
+                    label="Section Title"
+                    name="sectionTitle"
+                    value={data.sectionTitle}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    placeholder="e.g. Browse All Courses"
+                    sx={textFieldSx}
+                  />
+                  <TextField
+                    label="Section Subtitle"
+                    name="sectionSubtitle"
+                    value={data.sectionSubtitle}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    placeholder="Brief subtitle below the title"
+                    sx={textFieldSx}
+                  />
+                </Stack>
+              </CardContent>
+            </Card>
 
-              <Stack spacing={3}>
-                {(data.coursesList || []).map((course, idx) => (
-                  <Box
-                    key={course.id || idx}
+            {/* CTA Section */}
+            <Card elevation={0} sx={sectionCardSx}>
+              <CardContent>
+                <Stack direction="row" alignItems="center" spacing={1} mb={2}>
+                  <Zap size={18} color={ACCENT_LIGHT} />
+                  <Typography variant="h6" fontWeight={600} color="#0f172a">
+                    Bottom CTA Section
+                  </Typography>
+                </Stack>
+                <Stack spacing={2.5}>
+                  <TextField
+                    label="CTA Title"
+                    name="ctaTitle"
+                    value={data.ctaTitle}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    placeholder="e.g. Ready to Start Learning?"
+                    sx={textFieldSx}
+                  />
+                  <TextField
+                    label="CTA Subtitle"
+                    name="ctaSubtitle"
+                    value={data.ctaSubtitle}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    placeholder="Compelling subtitle"
+                    sx={textFieldSx}
+                  />
+                  <TextField
+                    label="Button Text"
+                    name="ctaButtonText"
+                    value={data.ctaButtonText}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    placeholder="e.g. Get Started Today"
+                    sx={textFieldSx}
+                  />
+                </Stack>
+              </CardContent>
+            </Card>
+
+            {/* Manage Courses List */}
+            <Card elevation={0} sx={sectionCardSx}>
+              <CardContent>
+                <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <BookOpen size={18} color={ACCENT_LIGHT} />
+                    <Typography variant="h6" fontWeight={600} color="#0f172a">
+                      Individual Courses
+                    </Typography>
+                    <Chip
+                      label={courseCount}
+                      size="small"
+                      sx={{
+                        bgcolor: "rgba(59,130,246,0.08)",
+                        color: "#3b82f6",
+                        fontWeight: 700,
+                        fontSize: "0.7rem",
+                        height: 22,
+                        minWidth: 28,
+                      }}
+                    />
+                  </Stack>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    startIcon={<Plus size={16} />}
+                    onClick={addCourse}
                     sx={{
-                      p: 2.5,
-                      border: "1px solid rgba(99,102,241,0.2)",
-                      borderRadius: 2,
-                      position: "relative",
-                      background: "rgba(15,15,35,0.4)",
+                      borderColor: "#e2e8f0",
+                      color: "#64748b",
+                      transition: "all 0.2s ease",
                       "&:hover": {
-                        borderColor: "#6366f1",
-                        boxShadow: "0 4px 12px rgba(99,102,241,0.1)",
+                        borderColor: "#3b82f6",
+                        color: "#3b82f6",
+                        backgroundColor: "rgba(59,130,246,0.04)",
                       },
-                      transition: "all 0.2s",
                     }}
                   >
-                    <IconButton
-                      size="small"
-                      onClick={() => removeCourse(idx)}
-                      sx={{
-                        position: "absolute",
-                        top: 8,
-                        right: 8,
-                        color: "#f87171",
-                        "&:hover": {
-                          color: "#fca5a5",
-                          backgroundColor: "rgba(248,113,113,0.1)",
-                        },
-                      }}
-                    >
-                      <Trash2 size={16} />
-                    </IconButton>
-                    <Typography variant="subtitle2" color="#a5b4fc" mb={2} fontWeight={600}>
-                      Course #{idx + 1}
-                    </Typography>
-                    <Stack spacing={2}>
-                      <Stack direction="row" spacing={2}>
-                        <TextField
-                          label="Course Title"
-                          value={course.title}
-                          onChange={(e) => handleCourseChange(idx, "title", e.target.value)}
-                          fullWidth
-                          size="small"
-                          sx={{
-                            "& .MuiInputLabel-root": { color: "#64748b" },
-                            "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                            "& .MuiInputBase-input": { color: "#f1f5f9" },
-                          }}
-                        />
-                        <TextField
-                          label="URL Route (e.g. data-science)"
-                          value={course.route}
-                          onChange={(e) => handleCourseChange(idx, "route", e.target.value)}
-                          fullWidth
-                          size="small"
-                          sx={{
-                            "& .MuiInputLabel-root": { color: "#64748b" },
-                            "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                            "& .MuiInputBase-input": { color: "#f1f5f9" },
-                          }}
-                        />
-                      </Stack>
-                      <TextField
-                        label="Description"
-                        value={course.description}
-                        onChange={(e) => handleCourseChange(idx, "description", e.target.value)}
-                        fullWidth
-                        size="small"
-                        multiline
-                        rows={2}
+                    Add Course
+                  </Button>
+                </Stack>
+
+                <Stack spacing={3}>
+                  {(data.coursesList || []).map((course, idx) => (
+                    <Fade in key={course.id || idx} timeout={300}>
+                      <Box
                         sx={{
-                          "& .MuiInputLabel-root": { color: "#64748b" },
-                          "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                          "& .MuiInputBase-input": { color: "#f1f5f9" },
+                          p: 2.5,
+                          border: "1px solid #e2e8f0",
+                          borderRadius: 2,
+                          position: "relative",
+                          background: "#f8fafc",
+                          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                          "&:hover": {
+                            borderColor: "#3b82f6",
+                            boxShadow: "0 4px 15px rgba(0,0,0,0.06)",
+                            transform: "translateY(-1px)",
+                          },
                         }}
-                      />
-                      <Stack direction="row" spacing={2}>
-                        <TextField
-                          label="Color Hex (e.g. #3B82F6)"
-                          value={course.color}
-                          onChange={(e) => handleCourseChange(idx, "color", e.target.value)}
-                          fullWidth
+                      >
+                        <IconButton
                           size="small"
+                          onClick={() => removeCourse(idx)}
                           sx={{
-                            "& .MuiInputLabel-root": { color: "#64748b" },
-                            "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                            "& .MuiInputBase-input": { color: "#f1f5f9" },
+                            position: "absolute",
+                            top: 8,
+                            right: 8,
+                            color: "#f87171",
+                            transition: "all 0.2s ease",
+                            "&:hover": {
+                              color: "#fca5a5",
+                              backgroundColor: "rgba(248,113,113,0.1)",
+                              transform: "scale(1.1)",
+                            },
                           }}
-                        />
-                        <TextField
-                          label="Image Key (e.g. DataScience, WebDevelopment)"
-                          value={course.imageKey}
-                          onChange={(e) => handleCourseChange(idx, "imageKey", e.target.value)}
-                          fullWidth
-                          size="small"
-                          sx={{
-                            "& .MuiInputLabel-root": { color: "#64748b" },
-                            "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(99,102,241,0.3)" },
-                            "& .MuiInputBase-input": { color: "#f1f5f9" },
-                          }}
-                        />
-                      </Stack>
-                    </Stack>
-                  </Box>
-                ))}
-              </Stack>
-            </CardContent>
-          </Card>
+                        >
+                          <Trash2 size={16} />
+                        </IconButton>
 
-          {/* Save Button */}
-          <Box display="flex" justifyContent="flex-end">
-            <Button
-              type="submit"
-              variant="contained"
-              disabled={saving}
-              startIcon={saving ? <CircularProgress size={18} sx={{ color: "#fff" }} /> : <Save size={18} />}
-              sx={{
-                px: 4,
-                py: 1.2,
-                background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-                "&:hover": {
-                  boxShadow: "0 6px 20px rgba(99,102,241,0.4)",
-                },
-                "&:disabled": {
-                  background: "rgba(99,102,241,0.3)",
-                },
-              }}
-            >
-              {saving ? "Saving..." : "Save Changes"}
-            </Button>
-          </Box>
-        </Stack>
-      </form>
+                        {/* Course header with index and category badge */}
+                        <Stack direction="row" alignItems="center" spacing={1.5} mb={2}>
+                          <Typography variant="subtitle2" color="#3b82f6" fontWeight={600}>
+                            Course #{idx + 1}
+                          </Typography>
+                          <Chip
+                            label={CATEGORY_MAP[course.imageKey] || course.imageKey}
+                            size="small"
+                            sx={{
+                              bgcolor: `${course.color}22`,
+                              color: course.color,
+                              fontWeight: 600,
+                              fontSize: "0.65rem",
+                              height: 20,
+                              border: `1px solid ${course.color}44`,
+                            }}
+                          />
+                        </Stack>
 
-      <Snackbar
-        open={snack.open}
-        autoHideDuration={4000}
-        onClose={() => setSnack((p) => ({ ...p, open: false }))}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      >
-        <Alert severity={snack.severity} sx={{ width: "100%", borderRadius: 2, boxShadow: "0 8px 30px rgba(0,0,0,0.4)" }} variant="filled">
-          {snack.msg}
-        </Alert>
-      </Snackbar>
+                        <Stack spacing={2}>
+                          <Stack direction="row" spacing={2}>
+                            <TextField
+                              label="Course Title"
+                              value={course.title}
+                              onChange={(e) => handleCourseChange(idx, "title", e.target.value)}
+                              fullWidth
+                              size="small"
+                              sx={textFieldSx}
+                            />
+                            <TextField
+                              label="URL Route (e.g. data-science)"
+                              value={course.route}
+                              onChange={(e) => handleCourseChange(idx, "route", e.target.value)}
+                              fullWidth
+                              size="small"
+                              sx={textFieldSx}
+                            />
+                          </Stack>
+                          <TextField
+                            label="Description"
+                            value={course.description}
+                            onChange={(e) => handleCourseChange(idx, "description", e.target.value)}
+                            fullWidth
+                            size="small"
+                            multiline
+                            rows={2}
+                            sx={textFieldSx}
+                          />
+                          <Stack direction="row" spacing={2}>
+                            <TextField
+                              label="Color Hex (e.g. #3B82F6)"
+                              value={course.color}
+                              onChange={(e) => handleCourseChange(idx, "color", e.target.value)}
+                              fullWidth
+                              size="small"
+                              sx={textFieldSx}
+                            />
+                            <TextField
+                              label="Image Key (e.g. DataScience, WebDevelopment)"
+                              value={course.imageKey}
+                              onChange={(e) => handleCourseChange(idx, "imageKey", e.target.value)}
+                              fullWidth
+                              size="small"
+                              sx={textFieldSx}
+                            />
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Fade>
+                  ))}
+                </Stack>
+              </CardContent>
+            </Card>
+
+            {/* Save Button with pulse animation and success checkmark */}
+            <Box display="flex" justifyContent="flex-end">
+              <Button
+                type="submit"
+                variant="contained"
+                disabled={saving}
+                startIcon={
+                  saveSuccess ? (
+                    <Check size={18} style={{ animation: "coursesCheckPop 0.4s ease forwards" }} />
+                  ) : saving ? (
+                    <CircularProgress size={18} sx={{ color: "#fff" }} />
+                  ) : (
+                    <Save size={18} />
+                  )
+                }
+                sx={{
+                  px: 4,
+                  py: 1.2,
+                  fontWeight: 600,
+                  letterSpacing: "0.02em",
+                  background: saveSuccess
+                    ? "linear-gradient(135deg, #10b981, #059669)"
+                    : ACCENT_GRADIENT,
+                  transition: "all 0.3s ease",
+                  animation: saving ? "coursesSavePulse 1.5s ease-in-out infinite" : "none",
+                  "&:hover": {
+                    boxShadow: "0 6px 20px rgba(59,130,246,0.4)",
+                    transform: "translateY(-1px)",
+                  },
+                  "&:disabled": {
+                    background: saveSuccess
+                      ? "linear-gradient(135deg, #10b981, #059669)"
+                      : "rgba(59,130,246,0.3)",
+                  },
+                }}
+              >
+                {saveSuccess ? "Saved!" : saving ? "Saving..." : "Save Changes"}
+              </Button>
+            </Box>
+          </Stack>
+        </form>
+
+        <Snackbar
+          open={snack.open}
+          autoHideDuration={4000}
+          onClose={() => setSnack((p) => ({ ...p, open: false }))}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        >
+          <Alert
+            severity={snack.severity}
+            variant="filled"
+            sx={{
+              width: "100%",
+              borderRadius: 2,
+              boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
+            }}
+          >
+            {snack.msg}
+          </Alert>
+        </Snackbar>
       </Box>
 
       {/* Right Column: Live Preview */}
-      <Box sx={{ flex: 1.2, borderLeft: "1px solid rgba(99,102,241,0.2)", pl: 4, overflowY: "auto", pb: 4 }}>
+      <Box sx={{ flex: 1.2, borderLeft: "1px solid #e2e8f0", pl: 4, overflowY: "auto", pb: 4 }}>
         <Stack direction="row" alignItems="center" spacing={2} mb={3}>
-          <Typography variant="h6" fontWeight={600} color="#a5b4fc">
+          <Typography variant="h6" fontWeight={600} color="#0f172a">
             Live Preview
           </Typography>
           <Box sx={{ px: 1.5, py: 0.5, borderRadius: 1, backgroundColor: "rgba(16, 185, 129, 0.1)", color: "#10B981", fontSize: "0.75rem", fontWeight: 600 }}>
@@ -486,14 +649,18 @@ const CoursesPanel = () => {
         </Stack>
         <Box
           sx={{
-            border: "1px solid rgba(99,102,241,0.3)",
+            border: "1px solid #e2e8f0",
             borderRadius: "12px",
             overflow: "hidden",
-            background: "#fff",
+            background: "#ffffff",
             position: "relative",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+            boxShadow: "0 4px 15px rgba(0,0,0,0.06)",
             maxHeight: "80vh",
-            overflowY: "auto"
+            overflowY: "auto",
+            transition: "box-shadow 0.3s ease",
+            "&:hover": {
+              boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+            },
           }}
         >
           <CoursesCard previewData={data} isPreview={true} />

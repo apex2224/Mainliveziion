@@ -145,7 +145,7 @@ const AboutUs = () => {
 
           <FounderBlock
             img={images.FounderImg1}
-            name="Mr. Philip Verma"
+            name=" Philip Verma"
             role="Director"
             text="Our mission is technical sovereignty. We engineer platforms that allow businesses to automate complex workflows and scale without friction."
             stats={[
@@ -159,7 +159,7 @@ const AboutUs = () => {
 
           <FounderBlock
             img={images.FounderImg2}
-            name="Mrs. Rashmi Bansal"
+            name=" Rashmi Bansal"
             role="Director"
             text="True innovation lies in human capital. We foster an ecosystem where talent is nurtured, ensuring every technological leap is grounded in purpose."
             stats={[

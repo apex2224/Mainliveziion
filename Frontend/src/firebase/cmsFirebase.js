@@ -1,4 +1,44 @@
 const CMS_DB_URL = "https://ziionblogs-default-rtdb.firebaseio.com/";
+const STUDENT_DB_URL = "https://studentdata-18fe7-default-rtdb.firebaseio.com/";
+
+// Fetch student count
+export const fetchStudentCount = async () => {
+  try {
+    const res = await fetch(`${STUDENT_DB_URL}/studentData.json`);
+    if (!res.ok) return 0;
+    const data = await res.json();
+    if (!data) return 0;
+    return Object.keys(data).length;
+  } catch {
+    return 0;
+  }
+};
+
+// Fetch all students
+export const fetchAllStudents = async () => {
+  try {
+    const res = await fetch(`${STUDENT_DB_URL}/studentData.json`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    if (!data) return [];
+    return Object.entries(data).map(([id, student]) => ({ id, ...student }));
+  } catch {
+    return [];
+  }
+};
+
+// Fetch all page keys to count active CMS pages
+export const fetchAllPageKeys = async () => {
+  try {
+    const res = await fetch(`${CMS_DB_URL}/pages.json`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    if (!data) return [];
+    return Object.keys(data);
+  } catch {
+    return [];
+  }
+};
 
 // Fetch content for a specific page section
 export const fetchPageContent = async (pageKey) => {

@@ -14,6 +14,7 @@ import {
   Divider,
   Drawer,
   IconButton,
+  InputAdornment,
   InputLabel,
   List,
   ListItemButton,
@@ -50,6 +51,9 @@ import {
   RotateCcw,
   Pencil,
   Menu,
+  Shield,
+  Search,
+  Clock,
 } from "lucide-react";
 
 import {
@@ -179,6 +183,31 @@ const formatDate = (str) =>
     month: "short",
     year: "numeric",
   });
+
+// Category accent colors for left-border on manage cards
+const CATEGORY_COLORS = {
+  "Web Development": "#3b82f6",
+  "App Development": "#8b5cf6",
+  "UI/UX Design": "#ec4899",
+  "Digital Marketing": "#f59e0b",
+  "SEO": "#10b981",
+  "E-Commerce": "#ef4444",
+  "Cloud Computing": "#06b6d4",
+  "AI & Machine Learning": "#6366f1",
+  "Cybersecurity": "#dc2626",
+  "General": "#6b7280",
+};
+
+const getCategoryColor = (category) => CATEGORY_COLORS[category] || "#6b7280";
+
+// Estimate read time from HTML content
+const estimateReadTime = (html) => {
+  const text = (html || "").replace(/<[^>]*>/g, "").trim();
+  if (!text) return "0 min read";
+  const words = text.split(/\s+/).length;
+  const mins = Math.max(1, Math.round(words / 200));
+  return `${mins} min read`;
+};
 
 // ═══════════════════════════════════════════════════════════════
 const AdminBlog = () => {
@@ -378,16 +407,32 @@ const AdminBlog = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            bgcolor: "background.default",
+            background: "linear-gradient(135deg, #e8f0fe 0%, #f5f7fa 40%, #ffffff 100%)",
             p: 2,
             position: "relative",
+            overflow: "hidden",
           }}
         >
+          {/* Floating decorative circles */}
+          <Box sx={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: "rgba(17,17,17,0.03)", pointerEvents: "none" }} />
+          <Box sx={{ position: "absolute", bottom: -40, left: -40, width: 160, height: 160, borderRadius: "50%", background: "rgba(17,17,17,0.025)", pointerEvents: "none" }} />
+          <Box sx={{ position: "absolute", top: "30%", left: "10%", width: 80, height: 80, borderRadius: "50%", background: "rgba(59,130,246,0.04)", pointerEvents: "none" }} />
+          <Box sx={{ position: "absolute", bottom: "20%", right: "12%", width: 120, height: 120, borderRadius: "50%", background: "rgba(17,17,17,0.02)", pointerEvents: "none" }} />
+
           <Card
             sx={{
               width: "100%",
               maxWidth: 420,
               p: 3,
+              position: "relative",
+              zIndex: 1,
+              border: "1px solid #e5e7eb",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+              transition: "box-shadow 0.3s, border-color 0.3s",
+              "&:hover": {
+                boxShadow: "0 12px 40px rgba(0,0,0,0.12)",
+                borderColor: "rgba(17,17,17,0.15)",
+              },
             }}
           >
             <CardContent>
@@ -397,11 +442,11 @@ const AdminBlog = () => {
                     width: 56,
                     height: 56,
                     borderRadius: 14,
-                    background: "#111111",
+                    background: "linear-gradient(135deg, #111111 0%, #333333 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
                   }}
                 >
                   <Lock size={24} color="#fff" />
@@ -412,6 +457,12 @@ const AdminBlog = () => {
                 <Typography variant="body2" color="text.secondary">
                   Mainliveziion Blog Management
                 </Typography>
+                <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5 }}>
+                  <Shield size={13} color="#6b7280" />
+                  <Typography variant="caption" color="#6b7280" fontWeight={500}>
+                    Secure Admin Access
+                  </Typography>
+                </Stack>
               </Stack>
 
               <form onSubmit={handleLogin}>
@@ -434,7 +485,13 @@ const AdminBlog = () => {
                     variant="contained"
                     fullWidth
                     size="large"
-                    sx={{ py: 1.5 }}
+                    sx={{
+                      py: 1.5,
+                      background: "linear-gradient(135deg, #111111 0%, #333333 100%)",
+                      "&:hover": {
+                        background: "linear-gradient(135deg, #333333 0%, #555555 100%)",
+                      },
+                    }}
                     startIcon={<Lock size={18} />}
                   >
                     Login
@@ -473,6 +530,9 @@ const AdminBlog = () => {
   // ── Shared Sidebar Content ────────────────────────────────────
   const sidebarContent = (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      {/* Gradient accent bar */}
+      <Box sx={{ height: 3, background: "linear-gradient(90deg, #111111 0%, #6b7280 100%)", flexShrink: 0 }} />
+
       {/* Logo */}
       <Toolbar sx={{ px: 2.5, py: 2, borderBottom: "1px solid #e5e7eb", minHeight: "64px !important" }}>
         <Stack direction="row" alignItems="center" spacing={2}>
@@ -481,7 +541,7 @@ const AdminBlog = () => {
               width: 38,
               height: 38,
               borderRadius: 10,
-              background: "#111111",
+              background: "linear-gradient(135deg, #111111 0%, #333333 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -517,6 +577,14 @@ const AdminBlog = () => {
               borderRadius: 8,
               mb: 0.5,
               transition: "all 0.2s",
+              borderLeft: "3px solid transparent",
+              "&:hover": {
+                backgroundColor: "#f3f4f6",
+                borderLeftColor: activeTab === item.id ? "transparent" : "#d1d5db",
+              },
+              ...(activeTab === item.id && {
+                borderLeftColor: "#ffffff",
+              }),
             }}
           >
             <ListItemIcon sx={{ minWidth: 36, color: activeTab === item.id ? "#ffffff" : "#555555" }}>
@@ -578,6 +646,9 @@ const AdminBlog = () => {
         >
           Logout
         </Button>
+        <Typography variant="caption" color="#9ca3af" textAlign="center" sx={{ mt: 0.5, fontSize: "0.65rem", letterSpacing: 0.5 }}>
+          Blog CMS v1.0
+        </Typography>
       </Stack>
     </Box>
   );
@@ -669,23 +740,53 @@ const AdminBlog = () => {
                 Fill all fields and publish to Firebase
               </Typography>
 
-              <Card elevation={0}>
+              <Card
+                elevation={0}
+                sx={{
+                  position: "relative",
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    top: -1,
+                    left: -1,
+                    right: -1,
+                    bottom: -1,
+                    borderRadius: 11,
+                    background: "linear-gradient(135deg, #d1d5db 0%, #e5e7eb 50%, #d1d5db 100%)",
+                    zIndex: -1,
+                  },
+                }}
+              >
                 <CardContent>
                   <form onSubmit={handlePublish}>
                     <Stack spacing={2.5}>
+                      {/* Section: Content Details */}
+                      <Stack direction="row" alignItems="center" spacing={1}>
+                        <Box sx={{ width: 4, height: 18, borderRadius: 2, background: "#111111" }} />
+                        <Typography variant="overline" sx={{ color: "#6b7280", fontSize: "0.65rem", letterSpacing: 1.5, lineHeight: 1 }}>
+                          Content Details
+                        </Typography>
+                        <Box sx={{ flex: 1, height: 1, background: "#e5e7eb" }} />
+                      </Stack>
+
                       {/* Title */}
-                      <TextField
-                        id="blog-title"
-                        label="Blog Title *"
-                        name="title"
-                        value={form.title}
-                        onChange={handleChange}
-                        fullWidth
-                        size="small"
-                        placeholder="e.g. How to Start a Career in Web Development"
-                        required
-                        sx={{}} // theme handles styling
-                      />
+                      <Box>
+                        <TextField
+                          id="blog-title"
+                          label="Blog Title *"
+                          name="title"
+                          value={form.title}
+                          onChange={handleChange}
+                          fullWidth
+                          size="small"
+                          placeholder="e.g. How to Start a Career in Web Development"
+                          required
+                          sx={{}} // theme handles styling
+                        />
+                        <Typography variant="caption" color="#9ca3af" sx={{ mt: 0.25, display: "block", textAlign: "right", fontSize: "0.65rem" }}>
+                          {form.title.length} characters
+                        </Typography>
+                      </Box>
 
                       {/* Category + Author */}
                       <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
@@ -828,6 +929,15 @@ const AdminBlog = () => {
                         }}
                       />
 
+                      {/* Section: Article Body */}
+                      <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
+                        <Box sx={{ width: 4, height: 18, borderRadius: 2, background: "#111111" }} />
+                        <Typography variant="overline" sx={{ color: "#6b7280", fontSize: "0.65rem", letterSpacing: 1.5, lineHeight: 1 }}>
+                          Article Body
+                        </Typography>
+                        <Box sx={{ flex: 1, height: 1, background: "#e5e7eb" }} />
+                      </Stack>
+
                       {/* Content — Rich Text Editor */}
                       <Box>
                         <Typography
@@ -914,20 +1024,20 @@ const AdminBlog = () => {
                           disabled={publishing}
                           startIcon={
                             publishing ? (
-                              <CircularProgress size={14} sx={{ color: "#111111" }} />
+                              <CircularProgress size={14} sx={{ color: "#ffffff" }} />
                             ) : (
                               <Send size={15} />
                             )
                           }
                           sx={{
-                            backgroundColor: "#111111",
+                            background: "linear-gradient(135deg, #111111 0%, #333333 100%)",
                             color: "#ffffff",
                             "&:hover": {
-                              backgroundColor: "#333333",
-                              boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                              background: "linear-gradient(135deg, #333333 0%, #555555 100%)",
+                              boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
                             },
                             "&:disabled": {
-                              backgroundColor: "#e5e7eb",
+                              background: "#e5e7eb",
                               color: "#9ca3af",
                             },
                           }}
@@ -945,7 +1055,7 @@ const AdminBlog = () => {
           {/* ══ MANAGE TAB ══ */}
           {activeTab === "manage" && (
             <Box>
-              <Stack direction="row" alignItems="center" justifyContent="space-between" mb={4}>
+              <Stack direction="row" alignItems="center" justifyContent="space-between" mb={3}>
                 <Box>
                   <Typography variant="h5" fontWeight={700} color="text.primary">
                     All Blogs
@@ -985,6 +1095,79 @@ const AdminBlog = () => {
                 </Button>
               </Stack>
 
+              {/* Stats Bar */}
+              {blogs.length > 0 && (
+                <Stack
+                  direction="row"
+                  spacing={3}
+                  sx={{
+                    mb: 2.5,
+                    py: 1.5,
+                    px: 2.5,
+                    bgcolor: "#ffffff",
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 2,
+                    boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  <Stack alignItems="center" spacing={0.25}>
+                    <Typography variant="h6" fontWeight={700} color="#111111" lineHeight={1.2}>
+                      {blogs.length}
+                    </Typography>
+                    <Typography variant="caption" color="#9ca3af" sx={{ fontSize: "0.65rem", letterSpacing: 0.5 }}>
+                      TOTAL
+                    </Typography>
+                  </Stack>
+                  <Divider orientation="vertical" flexItem />
+                  <Stack alignItems="center" spacing={0.25}>
+                    <Typography variant="h6" fontWeight={700} color="#111111" lineHeight={1.2}>
+                      {blogs.filter((b) => b.showTimestamp !== false).length}
+                    </Typography>
+                    <Typography variant="caption" color="#9ca3af" sx={{ fontSize: "0.65rem", letterSpacing: 0.5 }}>
+                      PUBLISHED
+                    </Typography>
+                  </Stack>
+                  <Divider orientation="vertical" flexItem />
+                  <Stack alignItems="center" spacing={0.25}>
+                    <Typography variant="h6" fontWeight={700} color="#111111" lineHeight={1.2}>
+                      {blogs.filter((b) => {
+                        const d = new Date(b.createdAt);
+                        const now = new Date();
+                        return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+                      }).length}
+                    </Typography>
+                    <Typography variant="caption" color="#9ca3af" sx={{ fontSize: "0.65rem", letterSpacing: 0.5 }}>
+                      THIS MONTH
+                    </Typography>
+                  </Stack>
+                </Stack>
+              )}
+
+              {/* Search/Filter input (visual) */}
+              {blogs.length > 0 && (
+                <TextField
+                  size="small"
+                  placeholder="Search blogs by title, category, or author..."
+                  fullWidth
+                  sx={{
+                    mb: 2.5,
+                    "& .MuiOutlinedInput-root": {
+                      backgroundColor: "#ffffff",
+                      "& fieldset": { borderColor: "#e5e7eb" },
+                      "&:hover fieldset": { borderColor: "#d1d5db" },
+                      "&.Mui-focused fieldset": { borderColor: "#111111" },
+                    },
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search size={16} color="#9ca3af" />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              )}
+
               {loadingBlogs ? (
                 <Box display="flex" alignItems="center" gap={1.5} py={4} color="text.secondary">
                   <CircularProgress size={20} sx={{ color: "#111111" }} />
@@ -994,29 +1177,36 @@ const AdminBlog = () => {
                 <Box textAlign="center" py={8} color="text.secondary">
                   <Box
                     sx={{
-                      width: 60,
-                      height: 60,
-                      borderRadius: 15,
-                      background: "#f3f4f6",
+                      width: 80,
+                      height: 80,
+                      borderRadius: "50%",
+                      background: "linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       mx: "auto",
                       mb: 2,
+                      position: "relative",
                     }}
                   >
-                    <LayoutList size={32} strokeWidth={1.5} color="#111111" />
+                    <LayoutList size={36} strokeWidth={1.2} color="#6b7280" />
+                    <Box sx={{ position: "absolute", top: -4, right: -4, width: 20, height: 20, borderRadius: "50%", background: "#f3f4f6", border: "2px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <PenLine size={10} color="#9ca3af" />
+                    </Box>
                   </Box>
-                  <Typography variant="body1" mb={2} color="text.secondary">No blogs published yet.</Typography>
+                  <Typography variant="body1" fontWeight={600} mb={0.5} color="text.secondary">No blogs published yet</Typography>
+                  <Typography variant="body2" color="#9ca3af" mb={2.5}>
+                    Your published articles will appear here. Start writing your first blog post.
+                  </Typography>
                   <Button
                     variant="contained"
                     onClick={() => setActiveTab("write")}
                     startIcon={<PenLine size={15} />}
                     sx={{
-                      backgroundColor: "#111111",
+                      background: "linear-gradient(135deg, #111111 0%, #333333 100%)",
                       color: "#ffffff",
                       "&:hover": {
-                        backgroundColor: "#333333",
+                        background: "linear-gradient(135deg, #333333 0%, #555555 100%)",
                       },
                     }}
                   >
@@ -1031,9 +1221,11 @@ const AdminBlog = () => {
                       elevation={0}
                       sx={{
                         border: "1px solid #e5e7eb",
+                        borderLeft: `4px solid ${getCategoryColor(blog.category)}`,
                         background: "#ffffff",
                         "&:hover": {
                           borderColor: "#111111",
+                          borderLeftColor: getCategoryColor(blog.category),
                           boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
                           transform: "translateY(-2px)",
                         },
@@ -1212,16 +1404,23 @@ const AdminBlog = () => {
                     />
                   )}
                   <CardContent sx={{ p: "28px 32px" }}>
-                    <Chip
-                      label={form.category}
-                      size="small"
-                      sx={{
-                        bgcolor: "#f3f4f6",
-                        color: "#374151",
-                        border: "1px solid #e5e7eb",
-                        mb: 1.5,
-                      }}
-                    />
+                    <Stack direction="row" alignItems="center" spacing={1.5} mb={1.5}>
+                      <Chip
+                        label={form.category}
+                        size="small"
+                        sx={{
+                          bgcolor: "#f3f4f6",
+                          color: "#374151",
+                          border: "1px solid #e5e7eb",
+                        }}
+                      />
+                      <Stack direction="row" alignItems="center" spacing={0.5}>
+                        <Clock size={12} color="#9ca3af" />
+                        <Typography variant="caption" color="#9ca3af" fontWeight={500}>
+                          {estimateReadTime(form.content)} read
+                        </Typography>
+                      </Stack>
+                    </Stack>
                     <Typography variant="h5" fontWeight={800} mb={1} color="text.primary">
                       {form.title}
                     </Typography>
@@ -1232,15 +1431,21 @@ const AdminBlog = () => {
                     {form.excerpt && (
                       <Box
                         sx={{
-                          mt: 2,
-                          p: "14px 18px",
-                          bgcolor: "#f3f4f6",
-                          borderLeft: "4px solid #111111",
+                          mt: 2.5,
+                          p: "18px 22px",
+                          bgcolor: "#fafbfc",
+                          borderLeft: "3px solid #111111",
                           borderRadius: "0 8px 8px 0",
+                          position: "relative",
                         }}
                       >
-                        <Typography variant="body1" fontWeight={500} color="text.secondary">
-                          {form.excerpt}
+                        <Typography
+                          variant="body1"
+                          fontWeight={500}
+                          color="#374151"
+                          sx={{ fontStyle: "italic", lineHeight: 1.7, fontSize: "0.95rem" }}
+                        >
+                          &ldquo;{form.excerpt}&rdquo;
                         </Typography>
                       </Box>
                     )}

@@ -81,6 +81,21 @@ export const patchBlogField = async (id, field, value) => {
   if (!res.ok) throw new Error(`Failed to update ${field}`);
 };
 
+// ✅ Get blog count
+export const fetchBlogCount = async () => {
+  const res = await fetch(`${BLOG_DB_URL}/blogs.json`);
+  if (!res.ok) return 0;
+  const data = await res.json();
+  if (!data) return 0;
+  return Object.keys(data).length;
+};
+
+// ✅ Get recent blogs (last N)
+export const fetchRecentBlogs = async (limit = 5) => {
+  const blogs = await fetchAllBlogs();
+  return blogs.slice(0, limit);
+};
+
 // ✅ Delete a blog by ID
 export const deleteBlog = async (id) => {
   const res = await fetch(`${BLOG_DB_URL}/blogs/${id}.json`, {
