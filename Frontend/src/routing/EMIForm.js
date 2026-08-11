@@ -38,6 +38,7 @@ export default function EMIForm() {
           phone: formData.phone,
           course: formData.course,
           emiOption: emiOption,
+          page_url: window.location.href,
         },
         'j6fsWCbZRRU2n1J4A'
       );
