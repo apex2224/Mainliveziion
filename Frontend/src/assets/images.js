@@ -138,7 +138,8 @@ import jasmeet from "./placementImages/jasmeet.jpeg";
 // About us
 
 import FounderImg1 from "./aboutus/founder-img1.jpeg";
-import FounderImg2 from "./aboutus/founder-img2.jpeg";
+import FounderImg2 from "./aboutus/rashmimam-1.png";
+import rashmimam1 from "./aboutus/rashmimam-1.png";
 
 // courses card images
 
@@ -528,6 +529,7 @@ const images = {
 
   FounderImg1,
   FounderImg2,
+  rashmimam1,
 
   // coursescard
 

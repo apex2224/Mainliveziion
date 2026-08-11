@@ -1,7 +1,15 @@
 /* --- GLOBAL FONT RESET --- */
 :global(*) {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue,
-    Noto Sans, Liberation Sans, Arial, sans-serif !important;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica Neue,
+    Noto Sans,
+    Liberation Sans,
+    Arial,
+    sans-serif !important;
 }
 
 :root {
@@ -178,95 +186,504 @@
   line-height: 1.6;
 }
 
-/* --- LEADERSHIP / FOUNDER SECTION --- */
-.founderSection {
-  padding: 6rem 0;
+/* --- LEADERSHIP / BOARD OF DIRECTORS SECTION --- */
+.leadershipSection {
+  position: relative;
+  padding: 7rem 0;
   background: var(--bg-soft);
-}
-
-.spacer {
-  height: 6rem;
-}
-
-.founderBlock {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.founderBlock.reversed {
-  direction: rtl;
-}
-
-.founderBlock.reversed .founderContent {
-  direction: ltr;
-}
-
-.founderImgWrapper {
   overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
 }
 
-.founderImgWrapper img {
-  width: 100%;
-  display: block;
-  transition: transform 0.6s ease;
+.leadershipBgGlow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(44, 82, 190, 0.08) 0%,
+    rgba(255, 130, 43, 0.05) 50%,
+    transparent 70%
+  );
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.founderBlock:hover .founderImgWrapper img {
-  transform: scale(1.03);
+.leadershipHeader {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 5rem;
 }
 
-.founderContent {
-  padding: 0 1rem;
-}
-
-.roleTag {
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+.leadershipBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
   color: var(--accent);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(44, 82, 190, 0.2);
+  box-shadow: 0 4px 12px rgba(44, 82, 190, 0.06);
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(8px);
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.leadershipTitle {
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.leadershipSubtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+/* --- UNIFIED LEADERSHIP SHOWCASE CARD --- */
+.unifiedLeadershipCard {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Remove leaderRowDivider - no longer used */
+
+/* Portrait Card — vertical: image on top, content below */
+.directorPortraitCard {
+  background: #ffffff;
+  border-radius: 28px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 20px 50px -12px rgba(15, 23, 42, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.directorPortraitCard:hover {
+  box-shadow: 0 32px 70px -12px rgba(44, 82, 190, 0.16);
+}
+
+.directorImgFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.directorRowImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.directorFounder1Img,
+.directorFounder2Img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .6s ease;
+}
+
+.directorImgFrame:hover .directorFounder1Img,
+.directorImgFrame:hover .directorFounder2Img {
+    transform: scale(1.05);
+}
+
+.imgGradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(15, 23, 42, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+.experienceBadge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(15, 23, 42, 0.85);
+  color: #fbbf24;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.experienceBadge span {
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+
+.directorPortraitContent {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.75rem 1.5rem;
+  flex: 1;
+}
+
+.directorHeaderGroup {
   margin-bottom: 1rem;
 }
 
-.founderContent h2 {
-  font-size: 2.5rem;
+.directorRoleTag {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+  display: inline-block;
+}
+
+.directorName {
+  font-size: 2.25rem;
   font-weight: 800;
   color: var(--primary);
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.025em;
 }
 
-.founderContent p {
-  font-size: 1.1rem;
+.directorBio {
+  font-size: 1.05rem;
   color: #475569;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
+  line-height: 1.65;
+  font-style: italic;
+  margin-bottom: 1.75rem;
 }
 
-.founderStats {
-  display: flex;
-  gap: 3rem;
-  border-top: 1px solid #e2e8f0;
-  padding-top: 2rem;
+.cardStatsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  margin-bottom: 1.75rem;
 }
 
-.founderStats strong {
+.cardStatItem strong {
   display: block;
-  font-size: 2rem;
-  color: var(--primary);
+  font-size: 1.35rem;
+  color: var(--accent);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.15rem;
+}
+
+.cardStatItem span {
+  font-size: 0.725rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.expertiseWrapper {
+  margin-bottom: 2.25rem;
+}
+
+.expertiseTitle {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 0.85rem;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.expertiseTag {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 100px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s ease;
+}
+
+.expertiseTag:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.socialLinks a:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.knowMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.knowMoreBtn:hover {
+  background: var(--accent);
+  box-shadow: 0 6px 16px rgba(44, 82, 190, 0.25);
+  transform: translateY(-2px);
+}
+
+.knowMoreBtn svg {
+  transition: transform 0.2s ease;
+}
+
+.knowMoreBtn:hover svg {
+  transform: translateX(4px);
+}
+
+/* --- DIRECTOR DETAIL MODAL --- */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modalContent {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  font-size: 1.5rem;
   line-height: 1;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modalCloseBtn:hover {
+  background: #e2e8f0;
+  color: var(--primary);
+}
+
+.modalBody {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2.5rem;
+  padding: 2.5rem;
+}
+
+.modalLeft {
+  text-align: center;
+}
+
+.modalImg {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.modalRole {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
   margin-bottom: 0.25rem;
 }
 
-.founderStats span {
-  font-size: 0.85rem;
+.modalName {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.modalExpBadge {
+  display: inline-block;
+  background: #f1f5f9;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  border: 1px solid #e2e8f0;
+}
+
+.modalRight h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.modalRight h4:first-child {
+  margin-top: 0;
+}
+
+.modalFullBio {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.65;
+}
+
+.modalStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.modalStatItem strong {
+  display: block;
+  font-size: 1.35rem;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.modalStatItem span {
+  font-size: 0.7rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.modalTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.modalTag {
+  background: #f1f5f9;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
 }
 
 /* --- GALLERY (Bento) --- */
@@ -397,24 +814,29 @@
     font-size: 3rem;
   }
 
-  .founderBlock,
-  .founderBlock.reversed {
+  .unifiedLeadershipCard {
     grid-template-columns: 1fr;
-    direction: ltr;
-    text-align: left;
     gap: 2rem;
   }
 
-  .founderImgWrapper {
-    max-width: 100%;
+  .directorImgFrame {
+    height: 360px;
   }
 
-  .founderStats {
-    justify-content: flex-start;
+  .modalBody {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem;
   }
 
-  .spacer {
-    height: 4rem;
+  .modalLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modalImg {
+    max-width: 200px;
   }
 }
 
@@ -427,8 +849,31 @@
     font-size: 2.25rem;
   }
 
-  .founderContent h2 {
+  .leadershipTitle {
     font-size: 2rem;
+  }
+
+  .leadershipSection {
+    padding: 4.5rem 0;
+  }
+
+  .directorCardBody {
+    padding: 1.5rem;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+
+  .knowMoreBtn {
+    justify-content: center;
+    width: 100%;
   }
 
   .valuesGrid {
