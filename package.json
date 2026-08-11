@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "motion": "^13.1.0",
     "react-tsparticles": "^2.12.2",
     "tsparticles": "^3.9.1"
   }

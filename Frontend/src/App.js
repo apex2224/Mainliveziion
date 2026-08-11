@@ -7,6 +7,7 @@ import ScrollToTop from "./routing/ScrollonTop";
 
 const Form = lazy(() => import("./Components/form/Form"));
 const FixedForm = lazy(() => import("./routing/fixedForm"));
+const EMIForm = lazy(() => import("./routing/EMIForm"));
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -45,6 +46,7 @@ function App() {
       <div className="App">
         <Suspense fallback={null}>
           <FixedForm />
+          <EMIForm />
         </Suspense>
         <ScrollToTop />
         <Suspense
