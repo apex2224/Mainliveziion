@@ -6,11 +6,13 @@ import emailjs from "@emailjs/browser";
 import images from "../../assets/images";
 import { useNavigate } from "react-router-dom";
 import { FaInstagram, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
+import { usePageSource } from "../../context/PageContext";
 
 function Form({ closeForm }) {
   const formData = useSelector((state) => state.student);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const pageName = usePageSource();
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -32,6 +34,7 @@ function Form({ closeForm }) {
           phone: formData.phone,
           course: formData.course,
           preference: formData.category,
+          page_source: pageName,
         },
         "j6fsWCbZRRU2n1J4A",
       );

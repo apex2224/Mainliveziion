@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./SyllabusForm.module.css";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
+import { usePageSource } from "../../../context/PageContext";
 
 // --- Icon Components (Inline SVG for simplicity) ---
 const UserIcon = () => (
@@ -120,6 +121,7 @@ const SyllabusForm = ({ defaultCourse = "" }) => {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const navigate = useNavigate();
+  const pageName = usePageSource();
 
   // Add loaded class after component mounts for animation
   useEffect(() => {
@@ -207,7 +209,8 @@ const SyllabusForm = ({ defaultCourse = "" }) => {
           college: formData.college, // Using college as email for this template
           phone: formData.phone,
           course: formData.course,
-          preference: "Syllabus Request", // Using a fixed value for preference as this is a syllabus request
+          preference: "Syllabus Request",
+          page_source: pageName, // Using a fixed value for preference as this is a syllabus request
         },
         "j6fsWCbZRRU2n1J4A" // old Public Key  nxDr7y8eXJG5rDyyN
       );
