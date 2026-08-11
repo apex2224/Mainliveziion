@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import React, { useEffect, useState, Suspense, lazy } from "react";
+import { PageProvider } from "./context/PageContext";
 import { routes } from "./routing/routing";
 import styles from "./App.module.css";
 import homeImages from "./assets/homeImages";
@@ -15,7 +16,11 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       const path = window.location.pathname;
-      if (!path.startsWith('/admin') && !path.startsWith('/Studentform') && !path.startsWith('/search')) {
+      if (
+        !path.startsWith("/admin") &&
+        !path.startsWith("/Studentform") &&
+        !path.startsWith("/search")
+      ) {
         setShowForm(true);
       }
     }, 200000);
@@ -44,59 +49,61 @@ function App() {
       {/* {loading ? <Loading /> : <Main />} */}
 
       <div className="App">
-        <Suspense fallback={null}>
-          <FixedForm />
-          <EMIForm />
-        </Suspense>
-        <ScrollToTop />
-        <Suspense
-          fallback={
-            <div
-              style={{
-                height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              Loading...
-            </div>
-          }
-        >
-          <Routes>
-            {routes.map((route, index) => (
-              <Route key={index} path={route.path} element={route.element} />
-            ))}
-          </Routes>
-        </Suspense>
-
-        <section className={styles.toolsMain}>
-          {/* ✅ Use your existing Form component as popup */}
-          {showForm && (
-            <div className={styles.formOverlay}>
-              <div className={styles.formWrapper}>
-                <Suspense fallback={null}>
-                  <Form closeForm={() => setShowForm(false)} />
-                </Suspense>
+        <PageProvider>
+          <Suspense fallback={null}>
+            <FixedForm />
+            <EMIForm />
+          </Suspense>
+          <ScrollToTop />
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  height: "100vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                Loading...
               </div>
-            </div>
-          )}
-        </section>
+            }
+          >
+            <Routes>
+              {routes.map((route, index) => (
+                <Route key={index} path={route.path} element={route.element} />
+              ))}
+            </Routes>
+          </Suspense>
 
-        <div
-          className={styles.wtsapDiv}
-          onClick={() => window.open(url, "_blank")}
-          role="button"
-          aria-label="Chat on WhatsApp"
-          title="Any Query"
-        >
-          <img
-            src={homeImages.whatsappIcon}
-            alt="WhatsApp"
-            className={styles.wtsapImg}
-            loading="lazy"
-          />
-        </div>
+          <section className={styles.toolsMain}>
+            {/* ✅ Use your existing Form component as popup */}
+            {showForm && (
+              <div className={styles.formOverlay}>
+                <div className={styles.formWrapper}>
+                  <Suspense fallback={null}>
+                    <Form closeForm={() => setShowForm(false)} />
+                  </Suspense>
+                </div>
+              </div>
+            )}
+          </section>
+
+          <div
+            className={styles.wtsapDiv}
+            onClick={() => window.open(url, "_blank")}
+            role="button"
+            aria-label="Chat on WhatsApp"
+            title="Any Query"
+          >
+            <img
+              src={homeImages.whatsappIcon}
+              alt="WhatsApp"
+              className={styles.wtsapImg}
+              loading="lazy"
+            />
+          </div>
+        </PageProvider>
       </div>
     </>
   );

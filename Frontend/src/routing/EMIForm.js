@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FormFilled, resetForm } from '../store/studentSlice';
 import emailjs from '@emailjs/browser';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { usePageSource } from '../context/PageContext';
 
 export default function EMIForm() {
   const formData = useSelector(state => state.student);
@@ -13,6 +14,7 @@ export default function EMIForm() {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [emiOption, setEmiOption] = useState("");
+  const pageName = usePageSource();
 
   // Show form only on All Courses pages
   const isAllCoursesPage = location.pathname === '/allcourses' || location.pathname === '/courses';
@@ -38,7 +40,7 @@ export default function EMIForm() {
           phone: formData.phone,
           course: formData.course,
           emiOption: emiOption,
-          page_url: window.location.href,
+          page_source: pageName,
         },
         'j6fsWCbZRRU2n1J4A'
       );
