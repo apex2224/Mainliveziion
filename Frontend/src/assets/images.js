@@ -140,6 +140,7 @@ import jasmeet from "./placementImages/jasmeet.jpeg";
 import FounderImg1 from "./aboutus/founder-img1.jpeg";
 import FounderImg2 from "./aboutus/rashmimam-1.png";
 import rashmimam1 from "./aboutus/rashmimam-1.png";
+import philipsir from "./aboutus/philip.png";
 
 // courses card images
 
@@ -530,6 +531,7 @@ const images = {
   FounderImg1,
   FounderImg2,
   rashmimam1,
+  philipsir,
 
   // coursescard
 
