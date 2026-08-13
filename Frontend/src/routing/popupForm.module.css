@@ -1,0 +1,269 @@
+/* ── Overlay ── */
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 1rem;
+}
+
+/* ── Glass Modal Box ── */
+.popupFormBox {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.25rem 2rem 2rem;
+  border-radius: 22px;
+
+  /* White glassmorphism — matches navbar scrolled state */
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.9) inset,
+    0 16px 48px rgba(15, 23, 42, 0.14),
+    0 4px 16px rgba(30, 64, 175, 0.06);
+
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  overflow: hidden;
+}
+
+/* Top accent line — blue like course card hover */
+.popupFormBox::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Header ── */
+.formHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.formIconBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #eff6ff, #eef2ff);
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.formTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.formSubtitle {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0.1rem 0 0;
+}
+
+/* ── Close Button ── */
+.popupCloseBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(241, 245, 249, 0.8);
+  border: 1px solid #e2e8f0;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.popupCloseBtn:hover {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+/* ── Form ── */
+.popupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 0.85rem;
+  color: #0d0d0e;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.popupForm input,
+.popupForm select {
+  width: 100%;
+  padding: 0.72rem 0.85rem 0.72rem 2.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  color: #0f0f0f;
+  font-size: 0.875rem;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+  box-sizing: border-box;
+  appearance: none;
+  backdrop-filter: blur(4px);
+}
+
+.popupForm input::placeholder {
+  color: #000000;
+}
+
+.popupForm input:focus,
+.popupForm select:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.inputWrapper:focus-within .inputIcon {
+  color: #3b82f6;
+}
+
+.popupForm select option {
+  background: #ffffff;
+  color: #1e293b;
+}
+
+/* ── Buttons ── */
+.btnRow {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.popupSubmitBtn {
+  flex: 1;
+  padding: 0.78rem;
+  background: #1e40af;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition:
+    background 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(30, 64, 175, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Slide-in fill on hover — matches navbar headerBtn */
+.popupSubmitBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #1d4ed8;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+.popupSubmitBtn:hover:enabled::before {
+  transform: translateX(0);
+}
+
+.popupSubmitBtn span,
+.popupSubmitBtn {
+  position: relative;
+  z-index: 1;
+}
+
+.popupSubmitBtn:hover:enabled {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(30, 64, 175, 0.38);
+}
+
+.popupSubmitBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.popupResetBtn {
+  padding: 0.78rem 1.1rem;
+  background: rgba(241, 245, 249, 0.8);
+  color: #64748b;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.popupResetBtn:hover {
+  background: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .popupFormBox {
+    padding: 1.75rem 1.25rem 1.5rem;
+    border-radius: 18px;
+  }
+}

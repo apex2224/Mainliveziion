@@ -9,19 +9,53 @@ body {
 }
 
 /* WhatsApp floating button */
-.wtsapDiv {
+.floatingStack {
   position: fixed;
-  bottom: 20px;   /* distance from bottom */
-  right: 20px;    /* distance from right */
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.emiBubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: wave 1s infinite ease-in-out;
+}
+
+.emiBubble:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.55);
+  animation: none;
+}
+
+.wtsapDiv {
   width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 9999;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: visible;
+  transition: transform 0.3s ease;
   animation: wave 1s infinite ease-in-out;
 }
 

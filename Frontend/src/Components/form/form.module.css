@@ -1,25 +1,14 @@
 :root {
   --smooth-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
-  --pro-accent: #4a43d1;
-  --pro-accent-dark: #4038b5;
-  --pro-text-primary: #18191a;
-  --pro-text-secondary: #6b7280;
-  --pro-input-bg: #f8f9fa;
-  --pro-input-border: #e9ecef;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-/* --- Overlay & Modal --- */
+/* ── Overlay ── */
 .modalOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 10, 20, 0.5);
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: flex;
@@ -27,470 +16,405 @@
   justify-content: center;
   z-index: 9999;
   padding: 1rem;
-  opacity: 0;
-  animation: fadeIn 0.4s var(--smooth-ease) forwards;
+  animation: fadeIn 0.35s var(--smooth-ease) forwards;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* ── Modal ── */
 .modalContent {
-  background: #ffffff;
   display: flex;
   flex-wrap: wrap;
-  border-radius: clamp(12px, 3vw, 20px);
-  overflow: hidden; /* This is crucial for the slide-in */
+  border-radius: 20px;
+  overflow: hidden;
   position: relative;
-  max-width: 750px; /* Smaller width */
+  max-width: 780px;
   width: 100%;
-  max-height: 90vh; /* Prevents modal from exceeding screen height */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05),
-    0 20px 60px rgba(0, 0, 0, 0.1);
-  will-change: transform, opacity;
-  animation: slideUpFadeIn 0.7s var(--smooth-ease) 0.1s backwards;
-  /* --- PROFESSIONAL FONT STACK --- */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  max-height: 92vh;
+  /* White glassmorphism */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 2px 0 rgba(255,255,255,0.9) inset, 0 20px 60px rgba(15, 23, 42, 0.16);
+  animation: slideUp 0.4s var(--smooth-ease) forwards;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-@keyframes slideUpFadeIn {
-  0% {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* --- Refined Close Button --- */
+/* ── Close ── */
 .closeBtn {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 36px;
-  text-align: center;
-  background: transparent;
-  border: none;
-  border-radius: 50%;
-  color: #888;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 10;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .closeBtn:hover {
-  color: #111;
-  background: #f1f1f1;
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #b91c1c;
 }
 
-/* --- Left Banner (Slides in from Left) --- */
+/* ── LEFT BANNER ── */
 .leftBanner {
-  flex: 1 1 250px;
-  background: linear-gradient(170deg, #1e3a8a 0%, #3b0764 100%);
+  flex: 1 1 240px;
+  background: linear-gradient(160deg, #1e3a8a 0%, #3b0764 100%);
   color: white;
-  padding: clamp(1.5rem, 4vw, 2rem); /* Auto scaling height/padding */
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  will-change: transform, opacity;
-  /* This animation is symmetrical with the right side */
-  animation: slideInLeft 0.8s var(--smooth-ease) 0.3s backwards;
+  gap: 0.85rem;
+  position: relative;
+  overflow: hidden;
+  animation: slideInLeft 0.5s var(--smooth-ease) 0.1s backwards;
+}
+
+/* subtle grid pattern */
+.leftBanner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
 }
 
 @keyframes slideInLeft {
-  0% {
-    transform: translateX(-30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-.leftBanner img.logo {
-  width: 100px;
-  margin: 0 auto 20px;
-}
-
-.leftBanner h3 {
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.leftBanner p {
-  font-size: 0.9rem;
-  margin: 15px 0 10px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.socials {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-.formIcon {
-  height: 1.5rem;
-  width: 1.5rem;
-  color: rgba(255, 255, 255, 0.8);
-  transition: all 0.3s var(--smooth-ease);
-  will-change: transform, color;
-}
-.formIcon:hover {
-  color: #fff;
-  transform: scale(1.1) translateY(-2px);
-}
-
-/* --- Office Address Section (inside left banner) --- */
-.addressSection {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 14px 0 6px;
-  text-align: left;
-}
-
-.addressItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 8px 10px;
-}
-
-.addressIcon {
-  color: #4fe262;
-  font-size: 14px;
-  margin-top: 3px;
-  flex-shrink: 0;
-}
-
-.officeLabel {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: rgba(79, 226, 98, 0.9);
-  margin-bottom: 2px;
-}
-
-.addressItem p {
-  margin: 0;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.4;
-}
-
-/* --- Right Form (Slides in from Right) --- */
-.formContainer {
-  flex: 2 1 350px;
-  padding: clamp(1.5rem, 4vw, 2.5rem); /* Auto scaling height/padding */
-  overflow-y: auto;
-  min-height: 0; /* Crucial for flex child scrolling */
-  max-height: 100%;
-  will-change: transform, opacity;
-  /* This animation is symmetrical with the left side */
-  animation: slideInRight 0.8s var(--smooth-ease) 0.3s backwards;
-}
-
-/* New animation for the right side */
-@keyframes slideInRight {
-  0% {
-    transform: translateX(30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.formContainer h2 {
-  font-size: clamp(1.4rem, 5vw, 1.6rem); /* Auto height font */
-  font-weight: 700;
-  margin-bottom: clamp(15px, 4vw, 20px); /* Auto height margin */
-  color: var(--pro-text-primary);
-}
-
-.gradientText {
-  background: linear-gradient(269.86deg, #2c52be 11.04%, #ff822b 75.82%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-/* Custom Scrollbar for Form Container */
-.formContainer::-webkit-scrollbar {
-  width: 6px;
-}
-.formContainer::-webkit-scrollbar-track {
-  background: transparent;
-}
-.formContainer::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-.formContainer::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 2.5vw, 16px); /* Auto gap */
-}
-
-/* --- Floating Label System --- */
-.inputGroup {
+.logo {
+  width: 90px;
+  margin-bottom: 0.25rem;
   position: relative;
 }
 
-.floatingLabel {
+.bannerHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+}
+
+.giftIcon {
+  color: #fbbf24;
+  flex-shrink: 0;
+}
+
+.bannerHeading strong {
+  color: #fbbf24;
+}
+
+.bannerSub {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.65);
+  margin: 0;
+  position: relative;
+}
+
+/* ── EMI Cards ── */
+.emiCards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.emiCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+
+.emiCard:hover {
+  background: rgba(255,255,255,0.13);
+}
+
+.emiCardIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #93c5fd;
+  flex-shrink: 0;
+}
+
+.emiCardTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2px;
+}
+
+.emiCardDesc {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.bannerNote {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+  position: relative;
+}
+
+/* ── RIGHT FORM ── */
+.formContainer {
+  flex: 2 1 340px;
+  padding: 2rem 2rem 1.75rem;
+  overflow-y: auto;
+  max-height: 92vh;
+  animation: slideInRight 0.5s var(--smooth-ease) 0.1s backwards;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.formContainer::-webkit-scrollbar { width: 5px; }
+.formContainer::-webkit-scrollbar-track { background: transparent; }
+.formContainer::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+/* ── Form Header ── */
+.formHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.formIconBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #eff6ff, #eef2ff);
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.formTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.formSubtitle {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0.15rem 0 0;
+}
+
+/* ── Form ── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
   position: absolute;
-  top: clamp(8px, 2vw, 12px);
-  left: clamp(12px, 2vw, 14px);
-  font-size: clamp(0.9rem, 1.5vw, 1rem);
-  color: var(--pro-text-secondary);
+  left: 0.85rem;
+  color: #94a3b8;
   pointer-events: none;
-  transition: all 0.3s var(--smooth-ease);
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.inputWrapper:focus-within .inputIcon {
+  color: #3b82f6;
 }
 
 .form input,
 .form select {
-  position: relative;
-  z-index: 1;
   width: 100%;
-  padding: clamp(16px, 3vw, 20px) 14px clamp(6px, 1.5vw, 8px) 14px;
-  border-radius: 8px;
-  background: var(--pro-input-bg);
-  border: 1px solid var(--pro-input-border);
-  font-size: clamp(0.9rem, 1.5vw, 0.95rem);
-  color: var(--pro-text-primary);
-  transition: all 0.3s var(--smooth-ease);
-  -webkit-appearance: none;
+  padding: 0.72rem 0.85rem 0.72rem 2.5rem;
+  background: rgba(248, 250, 252, 0.8);
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  color: #1e293b;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
   appearance: none;
-  will-change: border-color, background, box-shadow;
+  -webkit-appearance: none;
 }
 
-/* Label Animation */
-.form input:focus ~ .floatingLabel,
-.form input:not(:placeholder-shown) ~ .floatingLabel,
-.form select:focus ~ .floatingLabel,
-.form select:valid ~ .floatingLabel {
-  top: clamp(4px, 1vw, 5px);
-  left: clamp(12px, 2vw, 14px);
-  font-size: clamp(0.7rem, 1.2vw, 0.75rem);
-  color: var(--pro-accent);
-}
+.form input::placeholder { color: #94a3b8; }
 
-/* Select Arrow */
-.form select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.7rem center;
-  background-repeat: no-repeat;
-  background-size: 1.25em 1.25em;
-  padding-right: 2.5rem;
-}
-
-/* Select Invalid State */
-.form select:invalid,
-.form select.invalidSelect {
-  color: transparent;
-}
-.form select option {
-  color: var(--pro-text-primary);
-}
-
-.form select:invalid ~ .floatingLabel,
-.form select.invalidSelect ~ .floatingLabel {
-  top: 5px; /* Shorter height */
-  left: 14px;
-  font-size: 0.75rem;
-  color: var(--pro-text-secondary);
-}
-
-/* Focus State */
 .form input:focus,
 .form select:focus {
-  outline: none;
-  border-color: var(--pro-accent);
+  border-color: #3b82f6;
   background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(74, 67, 209, 0.1); /* Softer focus ring */
-  z-index: 3;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* --- Custom Radio Buttons --- */
+.form select.emptySelect { color: #94a3b8; }
+.form select option { color: #1e293b; background: #fff; }
+
+/* select arrow */
+.form select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.7rem center;
+  background-repeat: no-repeat;
+  background-size: 1.1em 1.1em;
+  padding-right: 2.25rem;
+}
+
+/* ── Radio ── */
 .radioGroup {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(0.5rem, 1.5vw, 0.75rem); /* Auto scaling gap */
-  margin: 0;
+  gap: 0.5rem;
 }
 
-.radioGroup label {
-  font-size: clamp(0.85rem, 1.5vw, 0.9rem); /* Auto scaling font */
+.radioLabel {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--pro-text-primary);
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #334155;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  transition: background 0.3s var(--smooth-ease);
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: rgba(248,250,252,0.7);
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.radioGroup label:hover {
-  background: var(--pro-input-bg);
+.radioLabel:hover {
+  border-color: #bfdbfe;
+  background: #eff6ff;
 }
 
-.form input[type="radio"] {
+.radioLabel input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;
-  margin: 0;
-  width: 1.15em;
-  height: 1.15em;
-  border: 2px solid var(--pro-input-border);
+  width: 15px;
+  height: 15px;
+  border: 2px solid #cbd5e1;
   border-radius: 50%;
   background: transparent;
-  transition: all 0.2s var(--smooth-ease);
-  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  padding: 0;
 }
 
-.form input[type="radio"]:checked {
-  border-color: var(--pro-accent);
-  background: var(--pro-accent);
+.radioLabel input[type="radio"]:checked {
+  border-color: #2563eb;
+  background: #2563eb;
   box-shadow: inset 0 0 0 3px #fff;
 }
 
-/* --- Submit Button --- */
-.form button {
-  padding: clamp(12px, 2vw, 14px); /* Auto height */
+.radioLabel:has(input:checked) {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+/* ── Submit ── */
+.submitBtn {
+  width: 100%;
+  padding: 0.82rem;
+  background: #1e40af;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  background: var(--pro-accent);
-  color: white;
-  font-size: clamp(0.95rem, 1.5vw, 1rem);
+  border-radius: 10px;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: clamp(8px, 1.5vw, 12px); /* Auto scaling margin */
-  transition: background-color 0.3s var(--smooth-ease); /* Clean transition */
-  will-change: background-color, transform;
+  margin-top: 0.25rem;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(30, 64, 175, 0.28);
+  position: relative;
+  overflow: hidden;
 }
 
-.form button:hover:not(:disabled) {
-  background: var(--pro-accent-dark);
+.submitBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #1d4ed8;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
 }
 
-.form button:active:not(:disabled) {
-  background: var(--pro-accent-dark);
-  transform: translateY(1px);
+.submitBtn:hover:not(:disabled)::before { transform: translateX(0); }
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(30, 64, 175, 0.36);
 }
 
-.form button:disabled {
-  background: #a5b4fc;
-  cursor: not-allowed;
-}
+.submitBtn span { position: relative; z-index: 1; }
+.submitBtn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-/* --- Responsive --- */
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  .leftBanner {
-    display: none;
-  }
-  .modalContent {
-    flex-direction: column;
-    flex-wrap: nowrap;
-  }
-  .formContainer {
-    max-height: 90vh; /* Force height boundary on mobile to trigger scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS touch */
-  }
+  .leftBanner { display: none; }
+  .modalContent { flex-direction: column; }
+  .formContainer { max-height: 90vh; -webkit-overflow-scrolling: touch; }
 }
 
 @media (max-width: 480px) {
-  .formContainer {
-    padding: 1.2rem;
-  }
-  .formContainer h2 {
-    font-size: 1.35rem;
-    margin-bottom: 15px;
-  }
-  .radioGroup {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-  .form {
-    gap: 12px;
-  }
-  .form input,
-  .form select {
-    padding: 16px 12px 6px 12px;
-  }
-  .floatingLabel {
-    left: 12px;
-  }
-  .form input:focus ~ .floatingLabel,
-  .form input:not(:placeholder-shown) ~ .floatingLabel,
-  .form select:focus ~ .floatingLabel,
-  .form select:valid ~ .floatingLabel {
-    left: 12px;
-  }
+  .formContainer { padding: 1.5rem 1.25rem; }
+  .radioGroup { grid-template-columns: 1fr; }
 }
 
-/* --- Small Laptops / Short Screens --- */
 @media (max-height: 800px) and (min-width: 769px) {
-  .modalContent {
-    max-height: 95vh;
-  }
-  .formContainer {
-    padding: 1.25rem 2rem;
-  }
-  .formContainer h2 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-  }
-  .form {
-    gap: 10px;
-  }
-  .form input,
-  .form select {
-    padding: 14px 14px 4px 14px;
-    font-size: 0.9rem;
-  }
-  .form button {
-    padding: 10px;
-    margin-top: 6px;
-  }
-  .floatingLabel {
-    top: 8px;
-  }
-  .form input:focus ~ .floatingLabel,
-  .form input:not(:placeholder-shown) ~ .floatingLabel,
-  .form select:focus ~ .floatingLabel,
-  .form select:valid ~ .floatingLabel {
-    top: 4px;
-  }
+  .formContainer { padding: 1.5rem 1.75rem; }
+  .form { gap: 0.6rem; }
+  .formHeader { margin-bottom: 1rem; }
 }

@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useCallback, memo } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import styles from "./AboutUs.module.css";
 import NavBar from "../head/Navbar";
 import images from "../../assets/images";
@@ -22,9 +27,18 @@ const staggerContainer = {
 
 // --- Static Data (outside component to avoid re-creation on re-render) ---
 const coreValues = [
-  { title: "Precision", desc: "We engineer solutions with pixel-perfect accuracy and logic." },
-  { title: "Scalability", desc: "Building systems designed to grow alongside your ambition." },
-  { title: "Transparency", desc: "Clear communication is the foundation of our partnerships." },
+  {
+    title: "Precision",
+    desc: "We engineer solutions with pixel-perfect accuracy and logic.",
+  },
+  {
+    title: "Scalability",
+    desc: "Building systems designed to grow alongside your ambition.",
+  },
+  {
+    title: "Transparency",
+    desc: "Clear communication is the foundation of our partnerships.",
+  },
 ];
 
 const directorsData = [
@@ -33,14 +47,31 @@ const directorsData = [
     name: "Philip Verma",
     role: "Director",
     experience: "10+ Years Experience",
-    bio: "Engineers platforms that automate complex workflows and scale enterprise systems without friction, driving digital sovereignty.",
-    fullBio: "Philip Verma brings over 10+ years of deep software engineering experience and enterprise architecture leadership. Having led transformative software deliverables across global domains, Philip focuses on building high-performance, fault-tolerant platforms and pioneering next-generation tech training.",
+    bio: "Specializes in developing modern web applications, delivering real-world projects, and training aspiring developers with industry-focused MERN Stack expertise.",
+    fullBio:
+      "For the past 10+ years, I have been working as a Full Stack Developer, building web applications that solve real business problems. I specialize in the MERN Stack and have delivered multiple live projects across different industries, including the PGIBrainMem platform for PGI Chandigarh. Teaching has always been an important part of my journey, and I enjoy sharing practical knowledge with students and developers through hands-on, industry-focused training. My goal is to help learners build strong technical skills and prepare them for real-world software development.",
     img: images.philipsir,
-    expertise: ["Teaching", "Research", "Mentorship", "Industry Experience"],
+    expertise: [
+      "MERN Stack",
+      "Full Stack Development",
+      "React.js",
+      "Node.js",
+      "Enterprise Solutions",
+      "Software Architecture",
+    ],
+
+    specialties: [
+      "Technical Training",
+      "Project Development",
+      "System Design",
+      "Code Review",
+      "API Development",
+      "Industry Mentorship",
+    ],
     stats: [
-      { val: "1500+", label: "Deliverables" },
       { val: "10+", label: "Years Experience" },
-      { val: "50+", label: "Enterprise Clients" },
+      { val: "2000+", label: "Students Mentored" },
+      { val: "70+", label: "Projects Delivered" },
     ],
     social: {
       linkedin: "https://www.linkedin.com/in/philip-verma-ab5448266/",
@@ -52,13 +83,31 @@ const directorsData = [
     name: "Rashmi Bansal",
     role: "Director",
     experience: "12+ Years Experience",
-    bio: "Fosters an ecosystem where human capital is nurtured, ensuring every technological leap is grounded in purpose and excellence.",
-    fullBio: "Rashmi Bansal has spearheaded tech education and leadership initiatives, mentoring over 30,000 students and corporate professionals. With extensive expertise in academic research, consulting, and curriculum engineering, Rashmi bridges industrial demands with human-centric innovation.",
+    bio: "Supports students through career guidance, academic counseling, and one-on-one mentorship, empowering them to build successful futures.",
+    fullBio:
+      "Over the years, I have had the opportunity to work as an Education Consultant with Chandigarh University and other leading organizations, supporting students in their academic and career journeys. My focus has always been on understanding individual goals, providing the right guidance, and helping learners make confident career decisions. Through one-on-one mentoring and practical counseling, I strive to inspire students to unlock their potential and build successful futures.",
     img: images.FounderImg2,
-    expertise: ["Consulting", "Mentorship", "Industry Experience"],
+    expertise: [
+      "Education Consulting",
+      "Career Guidance",
+      "Student Mentorship",
+      "Academic Counseling",
+      "Professional Development",
+      "Training & Support",
+    ],
+
+    specialties: [
+      "Career Planning",
+      "Student Success",
+      "Personal Mentoring",
+      "Communication",
+      "Learning Strategies",
+      "Industry Guidance",
+    ],
     stats: [
-      { val: "12+", label: "Years Experience" },
-      { val: "100+", label: "Workshops" },
+      { val: "8+", label: "Years Experience" },
+      { val: "2000+", label: "Students Mentored" },
+      { val: "1000+", label: "Career Consultations" },
     ],
     social: {
       linkedin: "https://www.linkedin.com/in/rashmi-bansal-8a4b4b123/",
@@ -100,7 +149,11 @@ const DirectorCard = memo(({ director, index, onOpenModal }) => (
       <img
         src={director.img}
         alt={director.name}
-        className={director.id === "philip" ? styles.directorFounder1Img : styles.directorFounder2Img}
+        className={
+          director.id === "philip"
+            ? styles.directorFounder1Img
+            : styles.directorFounder2Img
+        }
         loading="lazy"
       />
       <div className={styles.imgGradientOverlay} />
@@ -131,14 +184,21 @@ const DirectorCard = memo(({ director, index, onOpenModal }) => (
         <span className={styles.expertiseTitle}>Core Focus & Expertise</span>
         <div className={styles.tagsContainer}>
           {director.expertise.map((tag, i) => (
-            <span key={i} className={styles.expertiseTag}>{tag}</span>
+            <span key={i} className={styles.expertiseTag}>
+              {tag}
+            </span>
           ))}
         </div>
       </div>
 
       <div className={styles.cardFooter}>
         <div className={styles.socialLinks}>
-          <a href={director.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <a
+            href={director.social.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
             <Linkedin size={16} />
           </a>
           <a href={director.social.email} aria-label="Email">
@@ -158,7 +218,9 @@ const DirectorModal = memo(({ director, onClose }) => {
   useEffect(() => {
     // Lock body scroll when modal is open
     document.body.style.overflow = "hidden";
-    const handleKeyDown = (e) => { if (e.key === "Escape") onClose(); };
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "";
@@ -176,12 +238,21 @@ const DirectorModal = memo(({ director, onClose }) => {
         exit={{ opacity: 0, scale: 0.92, y: 20 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
       >
-        <button className={styles.modalCloseBtn} onClick={onClose} aria-label="Close modal">
+        <button
+          className={styles.modalCloseBtn}
+          onClick={onClose}
+          aria-label="Close modal"
+        >
           &times;
         </button>
         <div className={styles.modalBody}>
           <div className={styles.modalLeft}>
-            <img src={director.img} alt={director.name} className={styles.modalImg} loading="lazy" />
+            <img
+              src={director.img}
+              alt={director.name}
+              className={styles.modalImg}
+              loading="lazy"
+            />
             <div className={styles.modalRole}>{director.role}</div>
             <h3 className={styles.modalName}>{director.name}</h3>
             <span className={styles.modalExpBadge}>{director.experience}</span>
@@ -200,8 +271,10 @@ const DirectorModal = memo(({ director, onClose }) => {
             </div>
             <h4>Core Competencies</h4>
             <div className={styles.modalTags}>
-              {director.expertise.map((item, i) => (
-                <span key={i} className={styles.modalTag}>{item}</span>
+              {director.specialties.map((item, i) => (
+                <span key={i} className={styles.modalTag}>
+                  {item}
+                </span>
               ))}
             </div>
           </div>
@@ -220,7 +293,10 @@ const AboutUs = () => {
   const y1 = useTransform(scrollY, [0, 500], [0, 150]);
   const y2 = useTransform(scrollY, [0, 500], [0, -100]);
 
-  const handleOpenModal = useCallback((director) => setSelectedDirector(director), []);
+  const handleOpenModal = useCallback(
+    (director) => setSelectedDirector(director),
+    [],
+  );
   const handleCloseModal = useCallback(() => setSelectedDirector(null), []);
 
   return (
@@ -230,8 +306,14 @@ const AboutUs = () => {
       {/* HERO */}
       <section className={styles.heroSection}>
         <div className={styles.heroBgContainer}>
-          <motion.div style={{ y: y1 }} className={`${styles.blob} ${styles.blob1}`} />
-          <motion.div style={{ y: y2 }} className={`${styles.blob} ${styles.blob2}`} />
+          <motion.div
+            style={{ y: y1 }}
+            className={`${styles.blob} ${styles.blob1}`}
+          />
+          <motion.div
+            style={{ y: y2 }}
+            className={`${styles.blob} ${styles.blob2}`}
+          />
         </div>
         <div className={styles.heroContent}>
           <motion.div
@@ -242,11 +324,21 @@ const AboutUs = () => {
           >
             Since 2018
           </motion.div>
-          <motion.h1 className={styles.heroTitle} initial="hidden" animate="visible" variants={fadeInUp}>
+          <motion.h1
+            className={styles.heroTitle}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+          >
             We Build the Future of <br />
             <span className={styles.gradientText}>Technology & Education</span>
           </motion.h1>
-          <motion.p className={styles.heroSubtitle} initial="hidden" animate="visible" variants={fadeInUp}>
+          <motion.p
+            className={styles.heroSubtitle}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+          >
             Ziion Technology helps businesses grow with smart software solutions
             and empowers the next generation through world-class tech training.
           </motion.p>
@@ -256,7 +348,12 @@ const AboutUs = () => {
       {/* CORE VALUES */}
       <section className={styles.valuesSection}>
         <div className={styles.container}>
-          <motion.div className={styles.sectionHeader} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+          <motion.div
+            className={styles.sectionHeader}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
             <h2>Our Core Values</h2>
           </motion.div>
           <motion.div
@@ -267,7 +364,11 @@ const AboutUs = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             {coreValues.map((item, idx) => (
-              <motion.div key={idx} variants={fadeInUp} className={styles.valueCard}>
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                className={styles.valueCard}
+              >
                 <div className={styles.valueNumber}>0{idx + 1}</div>
                 <h4>{item.title}</h4>
                 <p>{item.desc}</p>
@@ -298,7 +399,8 @@ const AboutUs = () => {
             </h2>
             <p className={styles.leadershipSubtitle}>
               Guiding Ziion Technology with over 20+ combined years of technical
-              excellence, academic research, enterprise consulting, and mentorship.
+              excellence, academic research, enterprise consulting, and
+              mentorship.
             </p>
           </motion.div>
 
@@ -318,7 +420,10 @@ const AboutUs = () => {
       {/* MODAL */}
       <AnimatePresence>
         {selectedDirector && (
-          <DirectorModal director={selectedDirector} onClose={handleCloseModal} />
+          <DirectorModal
+            director={selectedDirector}
+            onClose={handleCloseModal}
+          />
         )}
       </AnimatePresence>
 
@@ -328,7 +433,12 @@ const AboutUs = () => {
       {/* GALLERY */}
       <section className={styles.gallerySection}>
         <div className={styles.container}>
-          <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className={styles.galleryTitle}>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className={styles.galleryTitle}
+          >
             Operational Excellence
           </motion.h2>
           <div className={styles.bentoGrid}>

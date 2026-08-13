@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import styles from "./fixedform.module.css";
+import React, { useState, useEffect } from "react";
+import styles from "./popupForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FormFilled, resetForm } from "../store/studentSlice";
 import emailjs from "@emailjs/browser";
 import { useNavigate, useLocation } from "react-router-dom";
 import { usePageSource } from "../context/PageContext";
+import { User, Mail, Phone, BookOpen, CreditCard, X, MessageCircle } from "lucide-react";
 
-export default function FixedForm() {
+export default function FixedForm({ externalOpen, setExternalOpen }) {
   const formData = useSelector((state) => state.student);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,7 +17,13 @@ export default function FixedForm() {
   const [emiOption, setEmiOption] = useState("");
   const pageName = usePageSource();
 
-  // Show form on all course detail pages (except /allcourses and /courses which use EMIForm)
+  useEffect(() => {
+    if (externalOpen) {
+      setOpen(true);
+      setExternalOpen(false);
+    }
+  }, [externalOpen, setExternalOpen]);
+
   const isCourseDetailPage =
     location.pathname.startsWith("/web-development") ||
     location.pathname.startsWith("/web-designing") ||
@@ -31,12 +38,6 @@ export default function FixedForm() {
     location.pathname.startsWith("/allcourses/") ||
     location.pathname === "/industrial-training";
 
-  // Determine if we're on the special pages that need white theme
-  const isSpecialPage =
-    location.pathname === "/six-month-training" ||
-    location.pathname === "/six-weeks-training";
-
-  // Determine if we're on All Courses pages (to show EMI options)
   const isAllCoursesPage =
     location.pathname === "/allcourses" || location.pathname === "/courses";
 
@@ -57,17 +58,15 @@ export default function FixedForm() {
           email: formData.email,
           phone: formData.phone,
           course: formData.course,
-          emiOption: emiOption,
+          emiOption,
           page_source: pageName,
         },
-        "j6fsWCbZRRU2n1J4A",
+        "j6fsWCbZRRU2n1J4A"
       );
-
       dispatch(resetForm());
       setEmiOption("");
-      navigate("/thank-you", {
-        state: { name: formData.name, source: "tracking" },
-      });
+      setOpen(false);
+      navigate("/thank-you", { state: { name: formData.name, source: "tracking" } });
     } catch (error) {
       console.error("EmailJS Error:", error);
     } finally {
@@ -76,153 +75,79 @@ export default function FixedForm() {
   };
 
   const handleReset = () => {
-    dispatch(
-      resetForm({
-        name: "",
-        email: "",
-        phone: "",
-        course: "",
-      }),
-    );
+    dispatch(resetForm({ name: "", email: "", phone: "", course: "" }));
     setEmiOption("");
   };
 
+  if (!isCourseDetailPage || isAllCoursesPage) return null;
+
   return (
     <>
-      {/* Left Vertical Button - Show on all course pages (except All Courses which uses EMIForm) */}
-      {isCourseDetailPage && !isAllCoursesPage && (
-        <div
-          className={`${styles.leftButtonContainer} ${isSpecialPage ? styles.whiteTheme : ""}`}
-          onClick={() => setOpen(true)}
-        >
-          <span
-            className={`${styles.leftButtonText} ${isSpecialPage ? styles.whiteThemeText : ""}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`${styles.leftButtonIcon} ${isSpecialPage ? styles.whiteThemeIcon : ""}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke={isSpecialPage ? "white" : "currentColor"}
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 6h8m-8 6h8m-8 6h8"
-              />
-            </svg>
-            EMI Available
-          </span>
-        </div>
-      )}
+      {open && (
+        <div className={styles.popupOverlay} onClick={() => setOpen(false)}>
+          <div className={styles.popupFormBox} onClick={(e) => e.stopPropagation()}>
 
-      {/* Popup Form - Show on all course pages (except All Courses which uses EMIForm) */}
-      {isCourseDetailPage && !isAllCoursesPage && open && (
-        <div
-          className={`${styles.popupOverlay} ${isSpecialPage ? styles.whiteThemeOverlay : ""}`}
-        >
-          <div
-            className={`${styles.popupFormBox} ${isSpecialPage ? styles.whiteThemeFormBox : ""}`}
-          >
-            <h3 className={isSpecialPage ? styles.whiteThemeHeading : ""}>
-              we will get back to you soon
-            </h3>
-            <button
-              className={`${styles.popupCloseBtn} ${isSpecialPage ? styles.whiteThemeCloseBtn : ""}`}
-              onClick={() => setOpen(false)}
-              aria-label="Close form"
-            >
-              &times;
+            {/* Header */}
+            <div className={styles.formHeader}>
+              <div className={styles.formIconBadge}>
+                <MessageCircle size={20} />
+              </div>
+              <div>
+                <p className={styles.formTitle}>Talk To Our Expert</p>
+                <p className={styles.formSubtitle}>We'll get back to you within 24 hrs</p>
+              </div>
+            </div>
+
+            {/* Close */}
+            <button className={styles.popupCloseBtn} onClick={() => setOpen(false)} aria-label="Close">
+              <X size={16} />
             </button>
 
             <form onSubmit={handleSubmit} className={styles.popupForm}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name*"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className={isSpecialPage ? styles.whiteThemeInput : ""}
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email*"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className={isSpecialPage ? styles.whiteThemeInput : ""}
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number*"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                className={isSpecialPage ? styles.whiteThemeInput : ""}
-              />
-              <select
-                name="course"
-                value={formData.course}
-                onChange={handleChange}
-                required
-                className={isSpecialPage ? styles.whiteThemeInput : ""}
-              >
-                <option value="" disabled>
-                  Select Course*
-                </option>
-                <option value="Full Stack Development">
-                  Full Stack Development
-                </option>
-                <option value="Web Designing">Web Designing</option>
-                <option value="Graphic Designing">Graphic Designing</option>
-                <option value="Data Science">Data Science</option>
-                <option value="Data Analytics">Data Analytics</option>
-                <option value="Machine Learning">Machine Learning</option>
-                <option value="Artificial Intelligence">
-                  Artificial Intelligence
-                </option>
-                <option value="Digital Marketing">Digital Marketing</option>
-                <option value="DevOps">DevOps</option>
-                <option value="Cloud Computing">Cloud Computing</option>
-                <option value="Mobile App Development">
-                  Mobile App Development
-                </option>
-                <option value="Python">Python</option>
-              </select>
-
-              {/* EMI Options */}
-              <select
-                name="emiOption"
-                value={emiOption}
-                onChange={(e) => setEmiOption(e.target.value)}
-                required
-                className={isSpecialPage ? styles.whiteThemeInput : ""}
-              >
-                <option value="" disabled>
-                  Select EMI Plan*
-                </option>
-                <option value="1 Month">1 Month</option>
-                <option value="3 Months">3 Months</option>
-                <option value="6 Months">6 Months</option>
-              </select>
-
-              <div>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className={`${styles.popupSubmitBtn} ${isSpecialPage ? styles.whiteThemeSubmitBtn : ""}`}
-                >
+              <div className={styles.inputWrapper}>
+                <span className={styles.inputIcon}><User size={15} /></span>
+                <input type="text" name="name" placeholder="Full Name*" value={formData.name} onChange={handleChange} required />
+              </div>
+              <div className={styles.inputWrapper}>
+                <span className={styles.inputIcon}><Mail size={15} /></span>
+                <input type="email" name="email" placeholder="Email*" value={formData.email} onChange={handleChange} required />
+              </div>
+              <div className={styles.inputWrapper}>
+                <span className={styles.inputIcon}><Phone size={15} /></span>
+                <input type="tel" name="phone" placeholder="Phone Number*" value={formData.phone} onChange={handleChange} required />
+              </div>
+              <div className={styles.inputWrapper}>
+                <span className={styles.inputIcon}><BookOpen size={15} /></span>
+                <select name="course" value={formData.course} onChange={handleChange} required>
+                  <option value="" disabled>Select Course*</option>
+                  <option value="Full Stack Development">Full Stack Development</option>
+                  <option value="Web Designing">Web Designing</option>
+                  <option value="Graphic Designing">Graphic Designing</option>
+                  <option value="Data Science">Data Science</option>
+                  <option value="Data Analytics">Data Analytics</option>
+                  <option value="Machine Learning">Machine Learning</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence</option>
+                  <option value="Digital Marketing">Digital Marketing</option>
+                  <option value="DevOps">DevOps</option>
+                  <option value="Cloud Computing">Cloud Computing</option>
+                  <option value="Mobile App Development">Mobile App Development</option>
+                  <option value="Python">Python</option>
+                </select>
+              </div>
+              <div className={styles.inputWrapper}>
+                <span className={styles.inputIcon}><CreditCard size={15} /></span>
+                <select name="emiOption" value={emiOption} onChange={(e) => setEmiOption(e.target.value)} required>
+                  <option value="" disabled>Select EMI Plan*</option>
+                  <option value="1 Month">1 Month</option>
+                  <option value="3 Months">3 Months</option>
+                  <option value="6 Months">6 Months</option>
+                </select>
+              </div>
+              <div className={styles.btnRow}>
+                <button type="submit" disabled={loading} className={styles.popupSubmitBtn}>
                   {loading ? "Submitting..." : "Submit"}
                 </button>
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className={`${styles.popupResetBtn} ${isSpecialPage ? styles.whiteThemeResetBtn : ""}`}
-                >
+                <button type="button" onClick={handleReset} className={styles.popupResetBtn}>
                   Reset
                 </button>
               </div>
