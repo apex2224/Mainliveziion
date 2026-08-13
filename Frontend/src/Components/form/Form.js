@@ -5,8 +5,8 @@ import styles from "./form.module.css";
 import emailjs from "@emailjs/browser";
 import images from "../../assets/images";
 import { useNavigate } from "react-router-dom";
-import { FaInstagram, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
 import { usePageSource } from "../../context/PageContext";
+import { User, Mail, Phone, BookOpen, GraduationCap, X, Gift, CheckCircle2, CreditCard, BadgePercent, ShieldCheck } from "lucide-react";
 
 function Form({ closeForm }) {
   const formData = useSelector((state) => state.student);
@@ -38,7 +38,6 @@ function Form({ closeForm }) {
         },
         "j6fsWCbZRRU2n1J4A",
       );
-
       dispatch(resetForm());
       closeForm();
       navigate("/thank-you");
@@ -49,218 +48,114 @@ function Form({ closeForm }) {
     }
   };
 
+  const emiPerks = [
+    { icon: CreditCard,   title: "0% Interest EMI",     desc: "Pay in easy monthly instalments" },
+    { icon: BadgePercent, title: "Up to ₹15,000 Off",   desc: "Freebies & scholarship on enrolment" },
+    { icon: ShieldCheck,  title: "No Hidden Charges",   desc: "Transparent fee structure always" },
+    { icon: CheckCircle2, title: "Flexible Plans",       desc: "1, 3 or 6 month EMI options" },
+  ];
+
   return (
     <div className={styles.modalOverlay} onClick={closeForm}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={closeForm}>
-          &times;
+
+        {/* Close */}
+        <button className={styles.closeBtn} onClick={closeForm} aria-label="Close">
+          <X size={18} />
         </button>
 
         {/* LEFT BANNER */}
         <div className={styles.leftBanner}>
-          <img
-            src={images.ziionTechLogo}
-            alt="Ziion Technology"
-            className={styles.logo}
-          />
-          <h3>Delivering innovative IT strategies for real-world impact.</h3>
+          <img src={images.ziionTechLogo} alt="Ziion Technology" className={styles.logo} />
 
-          {/* Office Addresses */}
-          <div className={styles.addressSection}>
-            <div className={styles.addressItem}>
-              <FaMapMarkerAlt className={styles.addressIcon} />
-              <div>
-                <span className={styles.officeLabel}>Office 1 — Mohali</span>
-                <p>D-152, Phase 8, Industrial Area, Mohali</p>
-              </div>
-            </div>
-            <div className={styles.addressItem}>
-              <FaMapMarkerAlt className={styles.addressIcon} />
-              <div>
-                <span className={styles.officeLabel}>Office 2 — CANADA</span>
-                <p>2970 Drew Rd, CANADA, ON L4T 0A6</p>
-              </div>
-            </div>
+          <div className={styles.bannerHeading}>
+            <Gift size={18} className={styles.giftIcon} />
+            <span>Get Freebies worth <strong>₹15,000</strong></span>
           </div>
 
-          <p>You can also find us here:</p>
-          <div className={styles.socials}>
-            <a
-              href="https://www.instagram.com/ziion_technology/?next=%2F&hl=en"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaInstagram className={styles.formIcon} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/verma-programming-minds/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaLinkedin className={styles.formIcon} />
-            </a>
+          <p className={styles.bannerSub}>Enrol today & unlock exclusive benefits</p>
+
+          <div className={styles.emiCards}>
+            {emiPerks.map(({ icon: Icon, title, desc }) => (
+              <div className={styles.emiCard} key={title}>
+                <div className={styles.emiCardIcon}><Icon size={16} /></div>
+                <div>
+                  <p className={styles.emiCardTitle}>{title}</p>
+                  <p className={styles.emiCardDesc}>{desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
+
+          <p className={styles.bannerNote}>🎓 5000+ students already enrolled</p>
         </div>
 
         {/* RIGHT FORM */}
         <div className={styles.formContainer}>
-          <h2>
-            Get <span className={styles.gradientText}>Freebies</span> of upto
-            ₹15000
-          </h2>
+          <div className={styles.formHeader}>
+            <div className={styles.formIconBadge}><Gift size={20} /></div>
+            <div>
+              <h2 className={styles.formTitle}>
+                Claim Your <span className={styles.gradientText}>Freebies</span>
+              </h2>
+              <p className={styles.formSubtitle}>Fill in your details — takes 30 seconds</p>
+            </div>
+          </div>
 
           <form onSubmit={handleSubmit} className={styles.form}>
-            {/* --- Name Input --- */}
-            <div className={styles.inputGroup}>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder=" " /* Required for floating label */
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="name" className={styles.floatingLabel}>
-                Full Name*
-              </label>
+
+            <div className={styles.inputWrapper}>
+              <span className={styles.inputIcon}><User size={15} /></span>
+              <input type="text" name="name" placeholder="Full Name*" value={formData.name} onChange={handleChange} required />
             </div>
 
-            {/* --- Email Input --- */}
-            <div className={styles.inputGroup}>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder=" "
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="email" className={styles.floatingLabel}>
-                Email*
-              </label>
+            <div className={styles.inputWrapper}>
+              <span className={styles.inputIcon}><Mail size={15} /></span>
+              <input type="email" name="email" placeholder="Email*" value={formData.email} onChange={handleChange} required />
             </div>
 
-            {/* --- College Name Input --- */}
-            <div className={styles.inputGroup}>
-              <input
-                type="text"
-                name="college"
-                id="college"
-                placeholder=" "
-                value={formData.college}
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="college" className={styles.floatingLabel}>
-                College Name
-              </label>
+            <div className={styles.inputWrapper}>
+              <span className={styles.inputIcon}><GraduationCap size={15} /></span>
+              <input type="text" name="college" placeholder="College Name" value={formData.college} onChange={handleChange} />
             </div>
 
-            {/* --- Phone Input --- */}
-            <div className={styles.inputGroup}>
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                placeholder=" "
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="phone" className={styles.floatingLabel}>
-                Phone Number*
-              </label>
+            <div className={styles.inputWrapper}>
+              <span className={styles.inputIcon}><Phone size={15} /></span>
+              <input type="tel" name="phone" placeholder="Phone Number*" value={formData.phone} onChange={handleChange} required />
             </div>
 
-            {/* --- Course Select --- */}
-            <div className={styles.inputGroup}>
-              <select
-                name="course"
-                id="course"
-                value={formData.course}
-                onChange={handleChange}
-                required
-                /* This class applies the invalid style when no value is selected */
-                className={!formData.course ? styles.invalidSelect : ""}
-              >
-                <option value="" disabled>
-                  Select Course*
-                </option>
-                <option value="Full Stack Development">
-                  Full Stack Development
-                </option>
+            <div className={styles.inputWrapper}>
+              <span className={styles.inputIcon}><BookOpen size={15} /></span>
+              <select name="course" value={formData.course} onChange={handleChange} required className={!formData.course ? styles.emptySelect : ""}>
+                <option value="" disabled>Select Course*</option>
+                <option value="Full Stack Development">Full Stack Development</option>
                 <option value="Web Designing">Web Designing</option>
                 <option value="Graphic Designing">Graphic Designing</option>
                 <option value="Data Science">Data Science</option>
                 <option value="Data Analytics">Data Analytics</option>
                 <option value="Machine Learning">Machine Learning</option>
-                <option value="Artificial Intelligence">
-                  Artificial Intelligence
-                </option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
                 <option value="Digital Marketing">Digital Marketing</option>
                 <option value="DevOps">DevOps</option>
                 <option value="Cloud Computing">Cloud Computing</option>
-                <option value="Mobile App Development">
-                  Mobile App Development
-                </option>
+                <option value="Mobile App Development">Mobile App Development</option>
                 <option value="Python">Python</option>
               </select>
-              <label htmlFor="course" className={styles.floatingLabel}>
-                Select Course*
-              </label>
             </div>
 
-            {/* --- Radio Options --- */}
             <div className={styles.radioGroup}>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="Working Professional"
-                  checked={formData.category === "Working Professional"}
-                  onChange={handleChange}
-                  required
-                />
-                Working Professional
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="College Student - Pursuing"
-                  checked={formData.category === "College Student - Pursuing"}
-                  onChange={handleChange}
-                />
-                College Student - Pursuing
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="College Student - Final Year"
-                  checked={formData.category === "College Student - Final Year"}
-                  onChange={handleChange}
-                />
-                College Student - Final Year
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="Others"
-                  checked={formData.category === "Others"}
-                  onChange={handleChange}
-                />
-                Others
-              </label>
+              {["Working Professional", "College Student - Pursuing", "College Student - Final Year", "Others"].map((opt) => (
+                <label key={opt} className={styles.radioLabel}>
+                  <input type="radio" name="category" value={opt} checked={formData.category === opt} onChange={handleChange} required={!formData.category} />
+                  <span>{opt}</span>
+                </label>
+              ))}
             </div>
 
-            {/* --- Submit Button --- */}
-            <button type="submit" disabled={loading}>
-              {loading ? "Submitting..." : "Submit"}
+            <button type="submit" disabled={loading} className={styles.submitBtn}>
+              {loading ? "Submitting..." : "Claim Freebies →"}
             </button>
+
           </form>
         </div>
       </div>
