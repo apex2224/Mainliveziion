@@ -224,7 +224,7 @@ const Navbar = () => {
                   closeAllMenus();
                 }}
               >
-                Verified Certificate
+                Certificate Verification
               </button>
             )}
           </div>

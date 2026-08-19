@@ -46,7 +46,7 @@ const directorsData = [
     id: "philip",
     name: "Philip Verma",
     role: "Director",
-    experience: "10+ Years Experience",
+    experience: "8+ Years Experience",
     bio: "Specializes in developing modern web applications, delivering real-world projects, and training aspiring developers with industry-focused MERN Stack expertise.",
     fullBio:
       "For the past 10+ years, I have been working as a Full Stack Developer, building web applications that solve real business problems. I specialize in the MERN Stack and have delivered multiple live projects across different industries, including the PGIBrainMem platform for PGI Chandigarh. Teaching has always been an important part of my journey, and I enjoy sharing practical knowledge with students and developers through hands-on, industry-focused training. My goal is to help learners build strong technical skills and prepare them for real-world software development.",
@@ -58,6 +58,7 @@ const directorsData = [
       "Node.js",
       "Enterprise Solutions",
       "Software Architecture",
+      "Code Review",
     ],
 
     specialties: [
@@ -69,7 +70,7 @@ const directorsData = [
       "Industry Mentorship",
     ],
     stats: [
-      { val: "10+", label: "Years Experience" },
+      { val: "8+", label: "Years Experience" },
       { val: "2000+", label: "Students Mentored" },
       { val: "70+", label: "Projects Delivered" },
     ],
@@ -82,7 +83,7 @@ const directorsData = [
     id: "rashmi",
     name: "Rashmi Bansal",
     role: "Director",
-    experience: "12+ Years Experience",
+    experience: "15+ Years Experience",
     bio: "Supports students through career guidance, academic counseling, and one-on-one mentorship, empowering them to build successful futures.",
     fullBio:
       "Over the years, I have had the opportunity to work as an Education Consultant with Chandigarh University and other leading organizations, supporting students in their academic and career journeys. My focus has always been on understanding individual goals, providing the right guidance, and helping learners make confident career decisions. Through one-on-one mentoring and practical counseling, I strive to inspire students to unlock their potential and build successful futures.",
@@ -105,9 +106,9 @@ const directorsData = [
       "Industry Guidance",
     ],
     stats: [
-      { val: "8+", label: "Years Experience" },
-      { val: "2000+", label: "Students Mentored" },
-      { val: "1000+", label: "Career Consultations" },
+      { val: "15  +", label: "Years Experience" },
+      { val: "5000+", label: "Students Mentored" },
+      { val: "2000+", label: "Career Consultations" },
     ],
     social: {
       linkedin: "https://www.linkedin.com/in/rashmi-bansal-8a4b4b123/",
@@ -258,7 +259,7 @@ const DirectorModal = memo(({ director, onClose }) => {
             <span className={styles.modalExpBadge}>{director.experience}</span>
           </div>
           <div className={styles.modalRight}>
-            <h4>Executive Overview</h4>
+            <h4>Overview</h4>
             <p className={styles.modalFullBio}>{director.fullBio}</p>
             <h4>Key Impact & Metrics</h4>
             <div className={styles.modalStats}>
