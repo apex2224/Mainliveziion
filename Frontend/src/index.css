@@ -4,6 +4,8 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 *,
@@ -48,6 +50,7 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 /* 5. Code Font Stack */
@@ -55,3 +58,36 @@ code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+/* 6. Performance — content-visibility for below-fold sections */
+section:not(:first-of-type),
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* 7. Image optimisation */
+img {
+  image-rendering: auto;
+  decoding: async;
+}
+
+/* 8. Reduce layout thrashing — will-change only on actively animated elements */
+.animated,
+[class*="orb"],
+[class*="floating"] {
+  will-change: transform;
+}
+
+/* 9. Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

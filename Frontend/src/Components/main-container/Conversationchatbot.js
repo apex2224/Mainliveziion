@@ -125,7 +125,8 @@ const Conversationchatbot = () => {
           className={styles.integrationGrid}
           variants={gridVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
         >
           {services.map((service) => (
             <motion.div

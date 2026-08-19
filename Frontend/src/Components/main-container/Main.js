@@ -43,13 +43,21 @@ const Main = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let rafId = null;
     const handleMouseMove = (e) => {
-      const x = (e.clientX / window.innerWidth) * 20 - 10;
-      const y = (e.clientY / window.innerHeight) * 20 - 10;
-      setMousePosition({ x, y });
+      if (rafId) return; // already queued — skip this event
+      rafId = requestAnimationFrame(() => {
+        const x = (e.clientX / window.innerWidth) * 20 - 10;
+        const y = (e.clientY / window.innerHeight) * 20 - 10;
+        setMousePosition({ x, y });
+        rafId = null;
+      });
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const handleExplorePrograms = () => {

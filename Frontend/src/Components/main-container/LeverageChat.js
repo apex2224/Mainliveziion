@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from "./LeverageChat.module.css";
-import images from "../../assets/images"; // Note: This import seems unused in this component, but I've kept it as it was in your original code.
 import { Link } from "react-router-dom";
 import ReviewsSection from "../reviews/ReviewsSection";
 import StudentGallery from "./StudentGallery";
 import BlogPreview from "../blog/BlogPreview";
 import SecondForm from "../secondForm/SecondForm";
+
 
 const MainContent = () => {
   const [showForm, setShowForm] = useState(false);
