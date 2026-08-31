@@ -1,17 +1,25 @@
 /* ============ MAIN CONTAINER ============ */
 .footerSection {
-  background: black;
+  background: #000;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* ============ GLARE HEADING ============ */
 .glareText {
-  font-size: clamp(2rem, 10vw, 6rem);
+  font-size: clamp(2rem, 6vw, 4.5rem);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: clamp(2px, 0.5vw, 4px);
-  margin-bottom: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 2.5rem;
   font-weight: 900;
   color: transparent;
   background: linear-gradient(
@@ -42,136 +50,134 @@
 
 /* ============ CTA BOX ============ */
 .footerCta {
+  padding: 3rem 0 2.5rem 0;
   border-bottom: 1px solid #373636;
+}
+
+.ctaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
 }
 
 .singleCta {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: white;
+  gap: 15px;
 }
 
-.ctaAlignSmall {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Style for the CTA React Icons (Map, Phone, Mail) */
 .ctaIcon {
-  color: rgba(79, 226, 98, 0.43);
-  font-size: 30px;
-  margin-right: 0.9rem;
+  color: #4fe262;
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 4px;
   transition: transform 0.3s ease;
 }
 
 .singleCta:hover .ctaIcon {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
-/* ============ CTA TEXT ============ */
 .ctaText h4 {
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 2px;
+  margin: 0 0 6px 0;
 }
 
 .ctaText span {
-  color: white;
+  color: #d1d1d1;
   font-size: 14px;
-}
-
-/* ============ DUAL ADDRESS BLOCK ============ */
-.addressBlock {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 6px;
   line-height: 1.4;
 }
 
-.addressBlock span {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+.addressBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
 }
 
 .officeBadge {
   display: inline-block;
   flex-shrink: 0;
-  background: rgba(79, 226, 98, 0.18);
+  background: rgba(79, 226, 98, 0.15);
   color: #4fe262 !important;
   font-size: 10px !important;
   font-weight: 700;
   letter-spacing: 0.5px;
-  border: 1px solid rgba(79, 226, 98, 0.35);
+  border: 1px solid rgba(79, 226, 98, 0.3);
   border-radius: 4px;
-  padding: 2px 6px;
-  margin-top: 2px;
+  padding: 1px 5px;
   text-transform: uppercase;
 }
 
 /* ============ FOOTER MAIN CONTENT ============ */
 .footerContent {
-  position: relative;
-  z-index: 2;
+  padding: 3.5rem 0;
 }
 
-/* ============ WIDGETS ============ */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 3rem;
+}
+
 .footerWidget {
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .footerLogo img {
-  max-width: 175px;
+  max-width: 190px;
+  height: auto;
+  margin-bottom: 1.2rem;
 }
 
 .footerText p {
-  margin-bottom: 14px;
+  margin-bottom: 1.5rem;
   font-size: 14px;
-  color: #7e7e7e;
-  line-height: 28px;
+  color: #878787;
+  line-height: 1.7;
 }
 
-/* ============ SOCIAL ICONS (UPDATED) ============ */
+/* ============ SOCIAL ICONS ============ */
 .footerSocialIcon span {
   color: #fff;
   display: block;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.footerSocialIcon a {
+.socialList {
+  display: flex;
+  gap: 12px;
+}
+
+.socialList a {
   text-decoration: none;
-  display: inline-block;
-  margin-right: 15px;
-  transition: transform 0.3s ease;
 }
 
-.footerSocialIcon a:hover {
-  transform: translateY(-3px);
-}
-
-/* New class for the circular icon container */
 .iconCircle {
-  height: 40px;
-  width: 40px;
+  height: 38px;
+  width: 38px;
   border-radius: 50%;
-  display: inline-flex; /* Flexbox handles centering perfectly */
-  align-items: center; /* Vertical center */
-  justify-content: center; /* Horizontal center */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: white;
-  font-size: 18px; /* Size of the SVG icon */
+  font-size: 16px;
   transition: all 0.3s ease;
 }
 
-.footerSocialIcon a:hover .iconCircle {
-  transform: scale(1.1);
+.socialList a:hover .iconCircle {
+  transform: translateY(-3px) scale(1.08);
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
-/* Social Icon Backgrounds */
 .facebookBg {
   background: #3b5998;
 }
@@ -186,40 +192,44 @@
 }
 
 /* ============ HEADINGS ============ */
+.footerWidgetHeading {
+  margin-bottom: 2rem;
+}
+
 .footerWidgetHeading h3 {
   color: #fff;
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 40px;
+  margin: 0;
   position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
 }
 
 .footerWidgetHeading h3::before {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -15px;
+  bottom: 0;
   height: 2px;
-  width: 50px;
+  width: 45px;
   background: rgb(130, 186, 235);
 }
 
-/* ============ LINK STYLES ============ */
-.footerWidget ul {
+/* ============ LINK LIST (2-COLUMN GRID) ============ */
+.linkList {
   padding: 0;
   margin: 0;
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 0.75rem;
 }
 
-.footerWidget ul li {
-  display: inline-block;
-  float: left;
-  width: 50%;
-  margin-bottom: 12px;
-}
-
-.footerWidget ul li a {
+.linkList li a {
   color: #878787;
+  font-size: 14px;
   text-transform: capitalize;
   text-decoration: none;
   position: relative;
@@ -227,11 +237,11 @@
   transition: color 0.3s ease;
 }
 
-.footerWidget ul li a:hover {
+.linkList li a:hover {
   color: rgb(130, 186, 235);
 }
 
-.footerWidget ul li a::after {
+.linkList li a::after {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -242,17 +252,26 @@
   transition: width 300ms ease;
 }
 
-.footerWidget ul li a:hover::after {
+.linkList li a:hover::after {
   width: 100%;
 }
 
-/* ============ COPYRIGHT ============ */
+/* ============ COPYRIGHT AREA ============ */
 .copyrightArea {
-  background: #202020;
-  padding: 25px 0;
+  background: #181818;
+  padding: 20px 0;
+  border-top: 1px solid #282828;
 }
 
-.copyrightText {
+.copyrightWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.copyrightText p {
   margin: 0;
   font-size: 14px;
   color: #878787;
@@ -262,72 +281,48 @@
   color: rgb(130, 186, 235);
   text-decoration: none;
 }
+
 .copyrightText a:hover {
   color: #fff;
 }
 
-/* ============ RESPONSIVE ============ */
-@media (max-width: 1200px) {
-  .footerSocialIcon a {
-    white-space: nowrap;
-    margin-right: 10px;
-  }
+.footerNavLinks {
+  display: flex;
+  gap: 20px;
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
-  .glareText {
-    font-size: clamp(2rem, 9vw, 4rem);
-    margin-bottom: 1.5rem;
-    padding: 0 0.5rem;
-  }
-  .ctaText span {
-    font-size: 0.9rem;
-  }
+.footerNavLinks a {
+  color: #878787;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-@media (min-width: 521px) and (max-width: 767px) {
-  .ctaText {
-    margin-left: 0.2rem;
-    margin-top: 0.7rem;
-  }
-  .footerWidget {
-    margin-top: 2rem;
-  }
-  .glareText {
-    font-size: clamp(2rem, 9vw, 4rem);
-    margin-bottom: 1.5rem;
-    padding: 0 0.5rem;
-  }
+.footerNavLinks a:hover {
+  color: rgb(130, 186, 235);
 }
 
-@media (max-width: 334px) {
-  .iconCircle {
-    height: 35px;
-    width: 35px;
-    font-size: 16px;
-  }
-  .footerWidget {
-    margin-top: 1rem;
-  }
-  .ctaAlignSmall {
-    display: flex;
-    align-items: center;
-  }
-}
-
-/* ============================================= */
-/* MOBILE ACCORDION STYLES */
-/* ============================================= */
-
-/* 1. Hide the accordion icon by default on desktop */
+/* ============ RESPONSIVE MEDIA QUERIES ============ */
 .accordionIcon {
   display: none;
-  color: #fff;
-  font-size: 1.25rem;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 2. Apply accordion logic on mobile */
+@media (max-width: 992px) {
+  .ctaGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footerWidgetHeading h3::before {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .footerWidgetHeading {
     display: flex;
@@ -335,19 +330,25 @@
     align-items: center;
     cursor: pointer;
     margin-bottom: 0;
-    padding: 1rem 0;
-    -webkit-tap-highlight-color: transparent;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #282828;
   }
+
+  .footerWidgetHeading h3 {
+    padding-bottom: 0;
+  }
+
   .footerWidgetHeading h3::before {
     display: none;
-  }
-  .footerWidgetHeading h3 {
-    margin-bottom: 0;
   }
 
   .accordionIcon {
     display: inline-block;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: transform 0.35s ease;
   }
+
   .accordionIconOpen {
     transform: rotate(180deg);
   }
@@ -356,27 +357,22 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s ease-out, padding-top 0.35s ease-out;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    width: 100%;
-    float: none;
-  }
-
-  .footerWidget ul li {
-    width: 100%;
-    float: none;
-    margin-bottom: 12px;
   }
 
   .accordionContentOpen {
-    max-height: 100vh;
-    padding-top: 1.5rem;
+    max-height: 1000px;
+    padding-top: 1rem;
+  }
+
+  .copyrightWrapper {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .footerNavLinks {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
-@media (min-width: 768px) {
-  .accordionIcon {
-    display: none !important;
-  }
-}
