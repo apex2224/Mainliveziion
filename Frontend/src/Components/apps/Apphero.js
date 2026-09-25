@@ -1,7 +1,4 @@
-import React, { useState, useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
-import particlesConfig from "../apps/Particles-config";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import NavBar from "../head/Navbar";
@@ -22,10 +19,6 @@ export default function Apphero() {
   const navigate = useNavigate();
 
   useCustom("Services | Ziion Technology");
-
-  const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
-  }, []);
 
   // Data for "How to Join" section
   const steps = [
@@ -152,12 +145,6 @@ export default function Apphero() {
       {/* --- HERO SECTION --- */}
       <section className={styles.heroSection}>
         <div className={styles.heroBackground}>
-          <Particles
-            id="tsparticles"
-            init={particlesInit}
-            options={particlesConfig}
-            className={styles.particlesCanvas}
-          />
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>Empowering Your Future</h1>
             <p className={styles.heroSubtitle}>
