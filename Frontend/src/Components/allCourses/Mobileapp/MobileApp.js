@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./mobileApp.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -174,6 +175,11 @@ const MobileApp = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Mobile App Development Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Learn Mobile App Development at Ziion Technology, Chandigarh. Master Android, iOS, Flutter & React Native. 100% job assistance. Enroll today!" />
+        <link rel="canonical" href="https://ziiontechnology.in/mobileapp" />
+      </Helmet>
       <Navbar />
       <section className={styles.webDesigningHeroSection}>
         {/* Using the page-specific icons from your JS file */}

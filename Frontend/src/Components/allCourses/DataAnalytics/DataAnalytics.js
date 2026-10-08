@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./dataAnalytics.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -210,6 +211,11 @@ const DataAnalytics = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Data Analytics Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Join Ziion Technology's Data Analytics course in Chandigarh. Master Excel, SQL, Power BI, Tableau & Python. 100% job assistance. Enroll today!" />
+        <link rel="canonical" href="https://ziiontechnology.in/data-analytics" />
+      </Helmet>
       <Navbar />
       
       {/* --- HERO SECTION --- */}

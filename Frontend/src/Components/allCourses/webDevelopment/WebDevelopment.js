@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Helmet } from "react-helmet-async";
 import PropTypes from "prop-types";
 import styles from "./webDev.module.css";
 import images from "../../../assets/images";
@@ -1028,9 +1029,12 @@ const WebDevelopment = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Web Development Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Join Ziion Technology's Web Development course in Chandigarh. Learn HTML, CSS, JavaScript, React, Node.js & MERN stack. 100% job assistance. Enroll now!" />
+        <link rel="canonical" href="https://ziiontechnology.in/web-development" />
+      </Helmet>
       <Navbar />
-
-      <HeroSection typedText={typedOutput} onShowForm={handleShowForm} />
 
       {/* Render the form as a modal at the component level */}
       {showForm && <Form closeForm={handleCloseForm} />}

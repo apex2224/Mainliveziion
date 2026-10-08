@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./dataScience.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -237,6 +238,11 @@ const DataScience = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Data Science Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Learn Data Science with AI & ML at Ziion Technology, Chandigarh. Master Python, TensorFlow, Scikit-learn & more. 100% placement assistance. Enroll now!" />
+        <link rel="canonical" href="https://ziiontechnology.in/data-science" />
+      </Helmet>
       <Navbar />
       <section className={styles.webDesigningHeroSection}>
         <div className={styles.overlay}>

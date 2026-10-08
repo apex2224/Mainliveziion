@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./AI.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -247,19 +248,16 @@ const Ai = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Artificial Intelligence Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Learn AI at Ziion Technology, Chandigarh. Master Machine Learning, Deep Learning, NLP, TensorFlow & more. 100% placement assistance. Enroll today!" />
+        <link rel="canonical" href="https://ziiontechnology.in/ai" />
+      </Helmet>
       <Navbar />
       <section className={styles.webDesigningHeroSection}>
         <div className={styles.overlay}>
-          <img
-            src={images.scikitlearn}
-            alt="scikitlearn"
-            className={styles.html}
-          />
-          <img
-            src={images.tenserflow}
-            alt="tenserflow"
-            className={styles.css}
-          />
+          <img src={images.scikitlearn} alt="scikitlearn" className={styles.html} />
+          <img src={images.tenserflow} alt="tenserflow" className={styles.css} />
           <img src={images.nlp} alt="nlp" className={styles.js} />
           <img src={images.keras} alt="keras" className={styles.react} />
           <img src={images.github} alt="github" className={styles.bootstrap} />

@@ -1,12 +1,13 @@
-// src/useDocumentTitle.js
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
-const useCustomTitle = (title) => {
-  useEffect(() => {
-    if (title) {
-      document.title = title;
-    }
-  }, [title]);
+const useCustom = (title, description, canonical) => {
+  return (
+    <Helmet>
+      {title && <title>{title}</title>}
+      {description && <meta name="description" content={description} />}
+      {canonical && <link rel="canonical" href={canonical} />}
+    </Helmet>
+  );
 };
 
-export default useCustomTitle;
+export default useCustom;

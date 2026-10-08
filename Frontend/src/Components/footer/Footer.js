@@ -234,6 +234,9 @@ const Footer = () => {
                   <a href="/contact-us">Contact Us</a>
                 </li>
                 <li>
+                  <a href="/careers">Careers</a>
+                </li>
+                <li>
                   <a href="/blogs">Latest News</a>
                 </li>
               </ul>

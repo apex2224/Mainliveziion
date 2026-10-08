@@ -30,6 +30,7 @@ import {
   FileText,
   GraduationCap,
   BookOpen,
+  Briefcase,
   Search,
   Settings,
   Menu as MenuIcon,
@@ -73,6 +74,7 @@ import {
 } from "recharts";
 
 import AdminBlog from "./AdminBlog";
+import AdminCareers from "./AdminCareers";
 import CoursesPanel from "./panels/CoursesPanel";
 import SixWeekPanel from "./panels/SixWeekPanel";
 import SixMonthPanel from "./panels/SixMonthPanel";
@@ -120,6 +122,7 @@ const PIE_COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
 const MENU_ITEMS = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { id: "blog", label: "Blog Manager", icon: FileText },
+  { id: "careers", label: "Careers", icon: Briefcase },
   { id: "courses", label: "Courses", icon: BookOpen },
   { id: "six-week", label: "6-Week Training", icon: GraduationCap },
   { id: "six-month", label: "6-Month Training", icon: GraduationCap },
@@ -571,6 +574,8 @@ const AdminPanel = () => {
 
   const renderContent = () => {
     switch (activeTab) {
+      case "careers":
+        return <AdminCareers />;
       case "courses":
         return <CoursesPanel />;
       case "six-week":

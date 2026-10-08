@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./ML.module.css";
 import images from "../../../assets/images"; // Ensure this has your ML images
 import Navbar from "../../head/Navbar";
@@ -233,10 +234,13 @@ const MachineLearning = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Machine Learning Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Join Ziion Technology's Machine Learning course in Chandigarh. Master Python, TensorFlow, Keras, Scikit-learn & Neural Networks. 100% job assistance!" />
+        <link rel="canonical" href="https://ziiontechnology.in/ml" />
+      </Helmet>
       <Navbar />
-
-      {/* --- HERO SECTION --- */}
-      <section className={styles.heroSection}>
+      <section className={styles.webDesigningHeroSection}>
         <div className={styles.overlay}>
           {/* Using classNames from CSS for animation, referencing React Icons */}
           <div className={styles.html}>
