@@ -315,14 +315,18 @@ const ApplicationModal = ({ jobTitle, jobId, onClose, onSuccess }) => {
     if (Object.keys(validationErrors).length > 0) { setErrors(validationErrors); return; }
     setSubmitting(true);
     try {
-      await submitApplication({
-        ...form,
-        jobTitle,
-        resumeName: resume ? resume.name : "",
-      });
+      const formData = new FormData();
+      Object.entries(form).forEach(([k, v]) => formData.append(k, v));
+      formData.append('jobTitle', jobTitle);
+      if (resume) formData.append('resume', resume);
+
+      const res = await fetch('/api/careers/apply', { method: 'POST', body: formData });
+      if (!res.ok) throw new Error('Failed');
+
+      await submitApplication({ ...form, jobTitle, resumeName: resume?.name || '' });
       onSuccess();
     } catch {
-      setErrors((prev) => ({ ...prev, submit: "Submission failed. Please try again." }));
+      setErrors((prev) => ({ ...prev, submit: 'Submission failed. Please try again.' }));
     } finally {
       setSubmitting(false);
     }

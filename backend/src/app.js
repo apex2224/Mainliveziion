@@ -16,6 +16,7 @@ const planRoutes = require("./routes/PlanRoutes");
 const errorHandler = require('./middleware/errorMiddleware');
 const visitorRoutes = require("./routes/visitorRoutes");
 const studentRoutes = require('./routes/studentRoutes');
+const careerRoutes = require('./routes/careerRoutes');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/api/otp', otpRoutes);
 app.use("/api/plans", planRoutes);
 app.use("/api/visitor", visitorRoutes);
 app.use('/api', studentRoutes);
+app.use('/api/careers', careerRoutes);
 
 // ✅ Serve React frontend static files (production)
 const frontendBuildPath = path.join(__dirname, '../../Frontend/build');
