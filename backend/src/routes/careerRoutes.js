@@ -6,8 +6,11 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
   auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS },
+  tls: { rejectUnauthorized: false },
 });
 
 router.get('/ping', (req, res) => res.json({ ok: true }));
