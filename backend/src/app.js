@@ -26,7 +26,7 @@ const store = new MongoDBStore({
 });
 
 // Middleware
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: ["http://localhost:3000", "https://ziiontechnology.in", "https://www.ziiontechnology.in"], credentials: true }));
 app.use(express.json());
 
 app.use(

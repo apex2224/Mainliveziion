@@ -320,7 +320,7 @@ const ApplicationModal = ({ jobTitle, jobId, onClose, onSuccess }) => {
       formData.append('jobTitle', jobTitle);
       if (resume) formData.append('resume', resume);
 
-      const res = await fetch('/api/careers/apply', { method: 'POST', body: formData });
+      const res = await fetch('https://mainliveziion.onrender.com/api/careers/apply', { method: 'POST', body: formData });
       if (!res.ok) throw new Error('Failed');
 
       await submitApplication({ ...form, jobTitle, resumeName: resume?.name || '' });
