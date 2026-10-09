@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./digitalMarketing.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -225,14 +226,15 @@ const DigitalMarketing = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Digital Marketing Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Master Digital Marketing at Ziion Technology, Chandigarh. Learn SEO, Google Ads, Social Media, Content Marketing & more. 100% job assistance. Enroll now!" />
+        <link rel="canonical" href="https://ziiontechnology.in/digital-marketing" />
+      </Helmet>
       <Navbar />
       <section className={styles.webDesigningHeroSection}>
         <div className={styles.overlay}>
-          <img
-            src={images.analytics}
-            alt="analytics"
-            className={styles.analytics}
-          />
+          <img src={images.analytics} alt="analytics" className={styles.analytics} />
           <img src={images.search} alt="search" className={styles.search} />
           <img src={images.keywords} alt="tag" className={styles.tag} />
           <img src={images.seo} alt="seo" className={styles.seo} />

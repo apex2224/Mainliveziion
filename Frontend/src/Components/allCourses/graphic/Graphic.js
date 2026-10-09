@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./graphic.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -317,6 +318,11 @@ const GraphicDesigning = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Graphic Designing Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Learn Graphic Designing at Ziion Technology, Chandigarh. Master Photoshop, Illustrator, Figma, CorelDRAW & more. 100% placement support. Enroll today!" />
+        <link rel="canonical" href="https://ziiontechnology.in/graphic" />
+      </Helmet>
       <Navbar />
       <HeroSection typedText={typedOutput} onShowForm={() => setShowForm(true)} />
       {showForm && <Form closeForm={() => setShowForm(false)} />}

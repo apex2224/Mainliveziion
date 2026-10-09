@@ -1,3 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /admin/
+Disallow: /Studentform
+Disallow: /search
+Disallow: /inbox
+Disallow: /forgotpassword
+Disallow: /resetpassword
+
+Sitemap: https://ziiontechnology.in/sitemap.xml

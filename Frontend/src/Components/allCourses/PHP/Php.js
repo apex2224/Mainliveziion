@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./Php.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -224,6 +225,11 @@ const Php = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>PHP Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Learn PHP & Laravel at Ziion Technology, Chandigarh. Master backend development, MySQL, WordPress & more. 100% job assistance. Enroll now!" />
+        <link rel="canonical" href="https://ziiontechnology.in/php" />
+      </Helmet>
       <Navbar />
 
       {/* --- HERO SECTION --- */}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./webdesigning.module.css";
 import images from "../../../assets/images";
 import Navbar from "../../head/Navbar";
@@ -189,6 +190,11 @@ const Webdesigning = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Web Designing Course in Chandigarh | Ziion Technology</title>
+        <meta name="description" content="Learn Web Designing at Ziion Technology, Chandigarh. Master HTML, CSS, JavaScript, React, WordPress & Figma. 100% placement support. Enroll today!" />
+        <link rel="canonical" href="https://ziiontechnology.in/web-designing" />
+      </Helmet>
       <Navbar />
       <section className={styles.webDesigningHeroSection}>
         <div className={styles.overlay}>

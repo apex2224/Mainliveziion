@@ -84,8 +84,11 @@ const BlogList = lazy(() => import("../Components/blog/BlogList"));
 const BlogDetail = lazy(() => import("../Components/blog/BlogDetail"));
 const AdminBlog = lazy(() => import("../Components/admin/AdminBlog"));
 const AdminPanel = lazy(() => import("../Components/admin/AdminPanel"));
+const AdminCareers = lazy(() => import("../Components/admin/AdminCareers"));
 
 const AdminProtectedRoute = lazy(() => import("../Components/admin/AdminProtectedRoute"));
+const Careers = lazy(() => import("../Components/careers/Careers"));
+const JobDetail = lazy(() => import("../Components/careers/JobDetail"));
 
 export const routes = [
   { path: "/", element: <Main /> },
@@ -116,7 +119,6 @@ export const routes = [
   { path: "/aboutus", element: <AboutUs /> },
   { path: "/allcourses", element: <CoursesCard /> },
   { path: "/allcourses/:courseRoute", element: <CourseDetail /> },
-  { path: "/allcourses/:courseTitle", element: <CourseDetail /> },
   { path: "/form", element: <Form /> },
   { path: "/industrial-training", element: <IndustrialTraining /> },
   { path: "/thank-you", element: <ThankYou /> },
@@ -125,13 +127,14 @@ export const routes = [
   { path: "/six-month-training", element: <Sixmonth /> },
   { path: "/six-week-training", element: <Sixweek /> },
   { path: "/card", element: <CardCarousel /> },
-  { path: "/search", element: <AdminProtectedRoute><StudentSearch /></AdminProtectedRoute> },
-  { path: "/courses", element: <CoursesCard /> },
-  { path: "/about", element: <AboutUs /> },
   { path: "/Studentform", element: <AdminProtectedRoute><StudentForm /></AdminProtectedRoute> },
+  // ── Careers Routes ─────────────────────────────
+  { path: "/careers", element: <Careers /> },
+  { path: "/careers/:jobSlug", element: <JobDetail /> },
   // ── Blog Routes ──────────────────────────────
   { path: "/blogs", element: <BlogList /> },
   { path: "/blogs/:id", element: <BlogDetail /> },
   { path: "/admin/blog", element: <AdminProtectedRoute><AdminBlog /></AdminProtectedRoute> },
   { path: "/admin/panel", element: <AdminProtectedRoute><AdminPanel /></AdminProtectedRoute> },
+  { path: "/admin/careers", element: <AdminProtectedRoute><AdminCareers /></AdminProtectedRoute> },
 ];

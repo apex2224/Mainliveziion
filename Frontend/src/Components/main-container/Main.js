@@ -37,7 +37,11 @@ const LazySection = ({ children, minHeight = "400px" }) => {
 };
 
 const Main = () => {
-  useCustom("Home | Ziion Technology");
+  const seoHelmet = useCustom(
+    "Best IT Training Institute in Chandigarh | Ziion Technology",
+    "Ziion Technology offers top IT courses in Chandigarh — Web Development, Data Science, AI/ML, Digital Marketing & more. 100% job assistance. Enroll now!",
+    "https://ziiontechnology.in/"
+  );
   const [showForm, setShowForm] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
@@ -74,6 +78,7 @@ const Main = () => {
 
   return (
     <>
+      {seoHelmet}
       <NavBar />
 
       <section className={styles.heroSection}>
