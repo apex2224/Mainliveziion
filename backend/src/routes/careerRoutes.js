@@ -10,6 +10,8 @@ const transporter = nodemailer.createTransport({
   auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS },
 });
 
+router.get('/ping', (req, res) => res.json({ ok: true }));
+
 router.post('/apply', upload.single('resume'), async (req, res) => {
   const { fullName, email, phone, location, experience, portfolio, linkedin, coverLetter, jobTitle } = req.body;
 
